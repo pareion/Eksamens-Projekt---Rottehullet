@@ -8,5 +8,8 @@ namespace RotteHullet.Domain.BusinessLogic
 {
     class Brætspil : IAktiv
     {
+        private int id { get; set; }
+        private string navn { get; set; }
+        private string udgiver { get; set; }
     }
 }
