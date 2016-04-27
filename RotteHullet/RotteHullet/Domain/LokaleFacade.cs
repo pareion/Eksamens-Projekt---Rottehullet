@@ -20,18 +20,18 @@ namespace RotteHullet.Domain
             }
             return _lokaleFacade;
         }
-        public string SkabLokale(int id, string navn, string lokation, int størrelse, string møbler)
+        public string SkabLokale(int id, string navn, string lokation, string kommentar, string møbler)
         {
-            Lokale lok = AktivFactory.HentAktivFactory().SkabNytLokale(id, navn, lokation, størrelse, møbler);
+            Lokale lok = AktivFactory.HentAktivFactory().SkabNytLokale(id, navn, lokation, kommentar, møbler);
             if (DBSQLFacade.HentDBSQLFacade().GemLokale(lok))
             {
                 return "Lokalet er skabt";
             }
             return "Lokalet blev ikke skabt";
         }
-        public string ÆndreLokale(int gammeltID, int id, string navn, string lokation, int størrelse, string møbler)
+        public string ÆndreLokale(int gammeltID, int id, string navn, string lokation, string kommentar, string møbler)
         {
-            Lokale lok = AktivFactory.HentAktivFactory().SkabNytLokale(id, navn, lokation, størrelse, møbler);
+            Lokale lok = AktivFactory.HentAktivFactory().SkabNytLokale(id, navn, lokation, kommentar, møbler);
             if (DBSQLFacade.HentDBSQLFacade().ÆndreLokale(gammeltID, lok))
             {
                 return "Lokalet er blevet ændret";
