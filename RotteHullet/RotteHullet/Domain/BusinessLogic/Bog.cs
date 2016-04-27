@@ -8,40 +8,159 @@ namespace RotteHullet.Domain.BusinessLogic
 {
     class Bog : IAktiv
     {
-        private int id { get; set; }
-        private string titel { get; set; }
-        private string forfatter { get; set; }
-        private string genre { get; set; }
-        private string subkategori { get; set; }
-        private string isbn { get; set; }
-        private string familie { get; set; }
-        private string forlag { get; set; }
-        private string kommentar { get; set; }
+        private int _id;
+        private string _titel;
+        private string _forfatter;
+        private string _genre;
+        private string _subkategori;
+        private string _isbn;
+        private string _familie;
+        private string _forlag;
+        private string _kommentar;
+
+        #region properties
+        public int Id
+        {
+            get
+            {
+                return _id;
+            }
+
+            private set
+            {
+                _id = value;
+            }
+        }
+
+        public string Titel
+        {
+            get
+            {
+                return _titel;
+            }
+
+            private set
+            {
+                _titel = value;
+            }
+        }
+
+        public string Forfatter
+        {
+            get
+            {
+                return _forfatter;
+            }
+
+            private set
+            {
+                _forfatter = value;
+            }
+        }
+
+        public string Genre
+        {
+            get
+            {
+                return _genre;
+            }
+
+            private set
+            {
+                _genre = value;
+            }
+        }
+
+        public string Subkategori
+        {
+            get
+            {
+                return _subkategori;
+            }
+
+            private set
+            {
+                _subkategori = value;
+            }
+        }
+
+        public string Isbn
+        {
+            get
+            {
+                return _isbn;
+            }
+
+            private set
+            {
+                _isbn = value;
+            }
+        }
+
+        public string Familie
+        {
+            get
+            {
+                return _familie;
+            }
+
+            private set
+            {
+                _familie = value;
+            }
+        }
+
+        public string Forlag
+        {
+            get
+            {
+                return _forlag;
+            }
+
+            private set
+            {
+                _forlag = value;
+            }
+        }
+
+        public string Kommentar
+        {
+            get
+            {
+                return _kommentar;
+            }
+
+            private set
+            {
+                _kommentar = value;
+            }
+        }
+#endregion
 
         public Bog()
         {}
         public Bog(string titel, string forfatter, string genre, string subkategori, string familie, string forlag, string isbn, string kommentar = null)
         {
-            this.titel = titel;
-            this.forfatter = forfatter;
-            this.genre = genre;
-            this.subkategori = subkategori;
-            this.familie = familie;
-            this.forlag = forlag;
-            this.isbn = isbn;
-            this.kommentar = kommentar;
+            this._titel = titel;
+            this._forfatter = forfatter;
+            this._genre = genre;
+            this._subkategori = subkategori;
+            this._familie = familie;
+            this._forlag = forlag;
+            this._isbn = isbn;
+            this._kommentar = kommentar;
         }
         public Bog(int id, string titel, string forfatter, string genre, string subkategori, string familie, string forlag, string isbn, string kommentar = null)
         {
-            this.id = id;
-            this.titel = titel;
-            this.forfatter = forfatter;
-            this.genre = genre;
-            this.subkategori = subkategori;
-            this.familie = familie;
-            this.forlag = forlag;
-            this.isbn = isbn;
-            this.kommentar = kommentar;
+            this._id = id;
+            this._titel = titel;
+            this._forfatter = forfatter;
+            this._genre = genre;
+            this._subkategori = subkategori;
+            this._familie = familie;
+            this._forlag = forlag;
+            this._isbn = isbn;
+            this._kommentar = kommentar;
         }
     }
 }
