@@ -24,7 +24,7 @@ namespace RotteHullet
         {
             InitializeComponent();
         }
-
+        //Skal slettes
         private void tabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
@@ -34,7 +34,7 @@ namespace RotteHullet
         {
 
         }
-
+        // slut på skal slettes
         private void btn_GemBog_Click(object sender, RoutedEventArgs e)
         {
             BogFacade.getBogFacade().SkabBog(tb_Titel.Text,tb_Forfatter.Text,tb_Genre.Text,tb_Subkategori.Text,tb_Familie.Text,tb_Familie.Text,"FejlHER",tb_Kommentar.Text);
@@ -47,7 +47,7 @@ namespace RotteHullet
 
         private void btn_GemUdstyr_Click(object sender, RoutedEventArgs e)
         {
-            UdstyrFacade.HentUdstyrFacade().GemUdstyr(tb_Udstyrnavn.Text, tb_UdstyrKategori.Text, tb_UdstyrKommentar.Text);
+            UdstyrFacade.HentUdstyrFacade().SkabUdstyr(0,tb_Udstyrnavn.Text, tb_UdstyrKategori.Text, tb_UdstyrKommentar.Text);
         }
 
         private void btn_GemLokale_Click(object sender, RoutedEventArgs e)
