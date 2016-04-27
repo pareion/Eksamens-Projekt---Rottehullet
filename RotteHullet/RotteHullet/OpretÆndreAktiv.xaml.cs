@@ -33,5 +33,10 @@ namespace RotteHullet
         {
 
         }
+
+        private void btn_GemBog_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
