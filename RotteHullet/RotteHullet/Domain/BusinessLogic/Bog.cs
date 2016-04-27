@@ -13,7 +13,6 @@ namespace RotteHullet.Domain.BusinessLogic
         private string _forfatter;
         private string _genre;
         private string _subkategori;
-        private string _isbn;
         private string _familie;
         private string _forlag;
         private string _kommentar;
@@ -84,19 +83,6 @@ namespace RotteHullet.Domain.BusinessLogic
             }
         }
 
-        public string Isbn
-        {
-            get
-            {
-                return _isbn;
-            }
-
-            private set
-            {
-                _isbn = value;
-            }
-        }
-
         public string Familie
         {
             get
@@ -135,32 +121,48 @@ namespace RotteHullet.Domain.BusinessLogic
                 _kommentar = value;
             }
         }
-#endregion
+        #endregion
 
-        public Bog()
-        {}
-        public Bog(string titel, string forfatter, string genre, string subkategori, string familie, string forlag, string isbn, string kommentar = null)
+        #region Constructors
+        /// <summary>
+        /// Constructor til oprettelse af Bog fra UI
+        /// </summary>
+        /// <param name="titel"></param>
+        /// <param name="forfatter"></param>
+        /// <param name="genre"></param>
+        /// <param name="subkategori"></param>
+        /// <param name="familie"></param>
+        /// <param name="forlag"></param>
+        /// <param name="kommentar"></param>
+        public Bog(string titel, string forfatter, string genre, string subkategori,
+            string familie, string forlag, string kommentar = null)
         {
-            this._titel = titel;
-            this._forfatter = forfatter;
-            this._genre = genre;
-            this._subkategori = subkategori;
-            this._familie = familie;
-            this._forlag = forlag;
-            this._isbn = isbn;
-            this._kommentar = kommentar;
+            _titel = titel;
+            _forfatter = forfatter;
+            _genre = genre;
+            _subkategori = subkategori;
+            _familie = familie;
+            _forlag = forlag;
+            _kommentar = kommentar;
         }
-        public Bog(int id, string titel, string forfatter, string genre, string subkategori, string familie, string forlag, string isbn, string kommentar = null)
+        /// <summary>
+        /// Constructor til oprettelse af bog fra Database
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="titel"></param>
+        /// <param name="forfatter"></param>
+        /// <param name="genre"></param>
+        /// <param name="subkategori"></param>
+        /// <param name="familie"></param>
+        /// <param name="forlag"></param>
+        /// <param name="kommentar"></param>
+        public Bog(int id, string titel, string forfatter, string genre, string subkategori,
+            string familie, string forlag, string kommentar = null)
+            : this(titel, forfatter, genre, subkategori, familie, forlag, kommentar)
         {
-            this._id = id;
-            this._titel = titel;
-            this._forfatter = forfatter;
-            this._genre = genre;
-            this._subkategori = subkategori;
-            this._familie = familie;
-            this._forlag = forlag;
-            this._isbn = isbn;
-            this._kommentar = kommentar;
+            _id = id;
         }
-    }
-}
+        #endregion
+
+    }//Klasse
+}//Namespace
