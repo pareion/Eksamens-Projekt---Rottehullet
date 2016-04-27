@@ -23,9 +23,9 @@ namespace RotteHullet.Domain.BusinessLogic
         {
             return new Brætspil(id, navn,udgiver,kommentar);
         }
-<<<<<<< HEAD
-        public Bog SkabNyBog(int id, string titel, string forfatter, string genre, string subkategori, string familie, string forlag, string kommentar = null)
-=======
+
+        public Bog SkabNyBog(int id, string titel, string forfatter, string genre, string subkategori, string familie, string forlag, string kommentar = null);
+
 
         public Udstyr SkabNytUdstyr(int id, string navn, string kategori, string kommentar)
         {
@@ -33,7 +33,7 @@ namespace RotteHullet.Domain.BusinessLogic
         }
 
         public Bog SkabNyBog(string titel, string forfatter, string genre, string subkategori, string familie, string forlag, string isbn, string kommentar = null)
->>>>>>> 32297d932b82953093bba61fefc4421519721282
+
         {
             return new Bog(id, titel, forfatter, genre, subkategori, familie, forlag, kommentar);
         }
