@@ -23,10 +23,13 @@ namespace RotteHullet.Domain.BusinessLogic
         {
             return new Brætspil(id, navn,udgiver);
         }
-
         public Bog SkabNyBog(string titel, string forfatter, string genre, string subkategori, string familie, string forlag, string isbn, string kommentar = null)
         {
             return new Bog(titel, forfatter, genre, subkategori, familie, forlag, isbn, kommentar);
+        }
+        public Lokale SkabNytLokale(int id, string navn, string lokation, int størrelse, string møbler)
+        {
+            return new Lokale(id, navn, lokation, størrelse, møbler);
         }
     }
 }

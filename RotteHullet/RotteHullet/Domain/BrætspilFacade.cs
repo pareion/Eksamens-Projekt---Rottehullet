@@ -8,13 +8,6 @@ using RotteHullet.Data;
 
 namespace RotteHullet.Domain
 {
-    /*
-        Private variabler skrives sådan: _myVariable
-        Private variabler har properties
-        Private metoder med småt - Public med stort
-        Brackets {} ved metode, får sin egen linje.
- 
-     */
     class BrætspilFacade
     {
         private static BrætspilFacade _brætSpilFacade;
@@ -30,20 +23,41 @@ namespace RotteHullet.Domain
         public string SkabBrætSpil(int id, string navn, string udgiver)
         {
             Brætspil bs = AktivFactory.HentAktivFactory().SkabNyBrætspil(id, navn, udgiver);
-            return DBSQLFacade.HentDBSQLFacade().GemBrætSpil(bs);
+            if (DBSQLFacade.HentDBSQLFacade().GemBrætSpil(bs))
+            {
+                return "Brætspillet er skabt";
+            }
+            return "Brætspillet blev ikke skabt";
         }
         public string ÆndreBrætSpil(int gammeltID, int nytid, string navn, string udgiver)
         {
             Brætspil bs = AktivFactory.HentAktivFactory().SkabNyBrætspil(nytid, navn, udgiver);
-            return DBSQLFacade.HentDBSQLFacade().ÆndreBrætSpil(gammeltID, bs);
+            if (DBSQLFacade.HentDBSQLFacade().ÆndreBrætSpil(gammeltID, bs))
+            {
+                return "Brætspillet er ændret";
+            }
+            return "Brætspillet blev ikke ændret";
         }
         public string HentBrætSpil(int id)
         {
-            return DBSQLFacade.HentDBSQLFacade().HentBrætSpil(id);
+            return DBSQLFacade.HentDBSQLFacade().HentBrætSpil(id).ToString();
+        }
+        public List<string> HentAlleBrætspil()
+        {
+            List<string> nyeBrætspil = new List<string>();
+            foreach (var item in DBSQLFacade.HentDBSQLFacade().HentAlleBrætSpil())
+            {
+                nyeBrætspil.Add(item.ToString());
+            }
+            return nyeBrætspil;
         }
         public string SletBrætSpil(int id)
         {
-            return DBSQLFacade.HentDBSQLFacade().SletBrætSpil(id);
+            if (DBSQLFacade.HentDBSQLFacade().SletBrætSpil(id))
+            {
+                return "Brætspillet er slettet";
+            }
+            return "Brætspillet blev ikke slettet";
         }
     }
 }

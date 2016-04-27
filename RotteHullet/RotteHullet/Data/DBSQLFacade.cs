@@ -8,12 +8,13 @@ namespace RotteHullet.Data
 {
     class DBSQLFacade : IDBFacade
     {
-        private static DBSQLFacade _dbsqlFacade;
-        public static DBSQLFacade HentDBSQLFacade()
+        private static IDBFacade _dbsqlFacade;
+        public static IDBFacade HentDBSQLFacade()
         {
             if (_dbsqlFacade == null)
             {
-                _dbsqlFacade = new DBSQLFacade();
+                // Skal ændres til DBSQLFacade når vi bruger en rigtig database
+                _dbsqlFacade = DBSQLFacade.HentDBSQLFacade();
             }
             return _dbsqlFacade;
         }

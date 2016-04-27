@@ -8,10 +8,55 @@ namespace RotteHullet.Domain.BusinessLogic
 {
     class Lokale : IAktiv
     {
-        private int id { get; set; }
-        private string navn { get; set; }
-        private string lokation { get; set; }
-        private int størrelse { get; set; }
-        private string møbler { get; set; }
+        private int _id;
+        private string _navn;
+        private string _lokation;
+        private int _størrelse;
+        private string _møbler;
+
+        public int Id
+        {
+            get
+            {
+                return _id;
+            }
+        }
+        public string Navn
+        {
+            get
+            {
+                return _navn;
+            }
+        }
+        public string Lokation
+        {
+            get
+            {
+                return _lokation;
+            }
+        }
+        public int Størrelse
+        {
+            get
+            {
+                return _størrelse;
+            }
+        }
+        public string Møbler
+        {
+            get
+            {
+                return _møbler;
+            }
+        }
+
+        public Lokale(int id, string navn, string lokation, int størrelse, string møbler)
+        {
+            this._id = id;
+            this._navn = navn;
+            this._lokation = lokation;
+            this._størrelse = størrelse;
+            this._møbler = møbler;
+        }
     }
 }

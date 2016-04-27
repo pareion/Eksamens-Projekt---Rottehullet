@@ -12,6 +12,7 @@ namespace RotteHullet.Data
         bool GemBrætSpil(Brætspil bs);
         bool ÆndreBrætSpil(int gammeltID, Brætspil bs);
         Brætspil HentBrætSpil(int id);
+        List<Brætspil> HentAlleBrætSpil();
         bool SletBrætSpil(int id);
         bool GemBog(Bog bog);
         bool ÆndreBog(int gammeltID, Bog bog);
@@ -24,6 +25,7 @@ namespace RotteHullet.Data
         bool GemLokale(Lokale lokale);
         bool ÆndreLokale(int gammeltID, Lokale lokale);
         Lokale HentLokale(int id);
+        List<Lokale> HentAlleLokaler();
         bool SletLokale(int id);
     }
 }
