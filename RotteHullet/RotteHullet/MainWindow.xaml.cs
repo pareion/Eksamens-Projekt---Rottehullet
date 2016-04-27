@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using RotteHullet.Domain;
 
 namespace RotteHullet
 {
@@ -23,6 +24,7 @@ namespace RotteHullet
         public MainWindow()
         {
             InitializeComponent();
+            UIFacade.getUIFacade().getBogFacade().doBogStuff();
         }
     }
 }
