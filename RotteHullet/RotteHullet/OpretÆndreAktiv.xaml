@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="OpretÆndreAktiv" Height="501.146" Width="389.398">
     <Grid>
-        <TabControl x:Name="tabControl" HorizontalAlignment="Left" Height="451" Margin="10,10,0,0" VerticalAlignment="Top" Width="361" SelectionChanged="tabControl_SelectionChanged_1">
+        <TabControl x:Name="maintab" HorizontalAlignment="Left" Height="451" Margin="10,10,0,0" VerticalAlignment="Top" Width="361" SelectionChanged="tabControl_SelectionChanged_1">
             <TabItem Header="Bog">
                 <Grid>
                     <Label x:Name="l_Titel" Content="Titel" HorizontalAlignment="Left" Margin="50,31,0,0" VerticalAlignment="Top"/>

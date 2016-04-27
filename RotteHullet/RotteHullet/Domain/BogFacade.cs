@@ -25,19 +25,19 @@ namespace RotteHullet.Domain
             Console.WriteLine("lol");
         }
 
-        public bool SkabBog(string bognavn, string forfatter, string genre, string subkategori, string familie, string forlag, string isbn, string kommentar)
+        public bool SkabBog(string bognavn, string forfatter, string genre, string subkategori, string familie, string forlag, string kommentar)
         {
-            Bog bog = AktivFactory.HentAktivFactory().SkabNyBog(bognavn, forfatter, genre, subkategori, familie, forlag, isbn, kommentar);
+            Bog bog = AktivFactory.HentAktivFactory().SkabNyBog(0, bognavn, forfatter, genre, subkategori, familie, forlag, kommentar);
             return DBSQLFacade.HentDBSQLFacade().GemBog(bog);
         }
 
-        public bool ÆndreBog(int id, string bognavn, string forfatter, string genre, string subkategori, string familie, string forlag, string isbn, string kommentar)
+        public bool ÆndreBog(int id, string bognavn, string forfatter, string genre, string subkategori, string familie, string forlag, string kommentar)
         {
-            Bog bog = AktivFactory.HentAktivFactory().SkabNyBog(bognavn, forfatter, genre, subkategori, familie, forlag, isbn, kommentar);
-            return DBSQLFacade.HentDBSQLFacade().ÆndreBog(bog);
+            Bog bog = AktivFactory.HentAktivFactory().SkabNyBog(id, bognavn, forfatter, genre, subkategori, familie, forlag, kommentar);
+            return DBSQLFacade.HentDBSQLFacade().ÆndreBog(id, bog);
         }
 
-        public List<Bog> LæsBog(int id)
+        public Bog LæsBog(int id)
         {
             return DBSQLFacade.HentDBSQLFacade().HentBog(id);
         }

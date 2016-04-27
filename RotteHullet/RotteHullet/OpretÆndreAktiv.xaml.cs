@@ -20,6 +20,8 @@ namespace RotteHullet
     /// </summary>
     public partial class OpretÆndreAktiv : Window
     {
+        public enum IndexTab { Bog, Brætspil, Udstyr, Lokal }
+
         public OpretÆndreAktiv()
         {
             InitializeComponent();
