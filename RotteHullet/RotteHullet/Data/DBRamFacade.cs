@@ -37,10 +37,15 @@ namespace RotteHullet.Data
 
         public bool ÆndreBrætSpil(int gammeltID, Brætspil bs)
         {
-            //from brætSpil in _brætspilsListe
-            //where brætSpil.Id == gammeltID
-            //select 
-            throw new NotImplementedException();
+            for (int i = 0; i < _brætspilsListe.Count; i++)
+            {
+                if (_brætspilsListe[i].HentID() == bs.HentID())
+                {
+                    _brætspilsListe[i] = bs;
+                    return true;
+                }
+            }
+            return false;
         }
 
         public Brætspil HentBrætSpil(int id)
