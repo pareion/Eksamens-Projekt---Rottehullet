@@ -26,5 +26,23 @@ namespace RotteHullet
             InitializeComponent();
             UIFacade.getUIFacade().getBogFacade().doBogStuff();
         }
+
+
+        private void TilmeldEvent(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void GlemtAdgangskodeEvent(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void btn_LogPå_Click(object sender, RoutedEventArgs e)
+        {
+
+            var newWindow = new OpretÆndreAktiv();
+            newWindow.Show();
+        }
     }
 }

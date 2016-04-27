@@ -1,0 +1,14 @@
+﻿<Window x:Class="RotteHullet.OpretÆndreAktiv"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RotteHullet"
+        mc:Ignorable="d"
+        Title="OpretÆndreAktiv" Height="501.146" Width="389.398">
+    <Grid>
+        <ComboBox x:Name="cb_AktivType" HorizontalAlignment="Left" Margin="10,39,0,0" VerticalAlignment="Top" Width="120" Loaded="AktivType_Loaded" SelectionChanged="Valgt_AktivType"/>
+        <Label x:Name="l_AktivType" Content="Aktivtype" HorizontalAlignment="Left" Margin="21,8,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>
