@@ -24,34 +24,14 @@ namespace RotteHullet
             InitializeComponent();
         }
 
-        private void AktivType_Loaded(object sender, RoutedEventArgs e)
+        private void tabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // ... A List.
-            List<string> data = new List<string>();
-            data.Add("Bog");
-            data.Add("Brætspil");
-            data.Add("Udstyr");
-            data.Add("Lokale");
 
-            // ... Get the ComboBox reference.
-            var comboBox = sender as ComboBox;
-
-            // ... Assign the ItemsSource to the List.
-            comboBox.ItemsSource = data;
-
-            // ... Make the first item selected.
-            comboBox.SelectedIndex = 0;
         }
 
-        private void Valgt_AktivType(object sender, SelectionChangedEventArgs e)
+        private void tabControl_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
-            // ... Get the ComboBox.
-            var comboBox = sender as ComboBox;
 
-            // ... Set SelectedItem as Window Title.
-            string value = comboBox.SelectedItem as string;
-            this.Title = "Opret: " + value;
         }
-
     }
 }
