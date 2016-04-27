@@ -121,6 +121,11 @@ namespace RotteHullet.Data
             return null;
         }
 
+        public List<Bog> HentAlleBøger()
+        {
+            return _bogListe;
+        }
+
         public bool SletBog(int id)
         {
             for (int i = 0; i < _bogListe.Count; i++)
@@ -165,6 +170,11 @@ namespace RotteHullet.Data
                 }
             }
             return null;
+        }
+
+        public List<Udstyr> HentAlleUdstyr()
+        {
+            return _udstyrsListe;
         }
 
         public bool SletUdstyr(int id)
@@ -232,5 +242,69 @@ namespace RotteHullet.Data
         }
         #endregion
 
+        #region søgning
+        public bool Søg(bool bøger, bool lokaler, bool brætspil, bool udstyr, string søgning, out List<Bog> bogResult, out List<Lokale> lokaleResult, out List<Brætspil> brætspilResult, out List<Udstyr> udstyrResult)
+        {
+            bogResult = new List<Bog>();
+            lokaleResult = new List<Lokale>();
+            brætspilResult = new List<Brætspil>();
+            udstyrResult = new List<Udstyr>();
+
+            bool result = false;
+            //Søger alle bøger igennem og finder de relevante 
+            if (bøger == true)
+            {
+                foreach (Bog item in _bogListe)
+                {
+                    if (item.Titel.Contains(søgning) || item.Genre.Contains(søgning))
+                    {
+                        bogResult.Add(item);
+                        result = true;
+                    }
+                }
+            }
+
+            //Søger alle lokaler igennem og finder de relevante 
+            if (lokaler == true)
+            {
+                foreach (Lokale item in _lokaleListe)
+                {
+                    if (item.Navn.Contains(søgning) || item.Møbler.Contains(søgning))
+                    {
+                        lokaleResult.Add(item);
+                        result = true;
+                    }
+                }
+            }
+
+            //Søger alle brætspil igennem og finder de relevante 
+            if (brætspil == true)
+            {
+                foreach (Brætspil item in _brætspilsListe)
+                {
+                    if (item.Navn.Contains(søgning) || item.Udgiver.Contains(søgning))
+                    {
+                        brætspilResult.Add(item);
+                        result = true;
+                    }
+                }
+            }
+
+            //Søger alle udstyr igennem og finder de relevante 
+            if (udstyr == true)
+            {
+                foreach (Udstyr item in _udstyrsListe)
+                {
+                    if (item.Navn.Contains(søgning) || item.Kategori.Contains(søgning))
+                    {
+                        udstyrResult.Add(item);
+                        result = true;
+                    }
+                }
+            }
+
+            return result;
+        }
+        #endregion
     }//Klasse
 }//Namespace

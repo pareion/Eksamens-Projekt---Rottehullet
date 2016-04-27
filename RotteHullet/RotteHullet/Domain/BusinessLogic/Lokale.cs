@@ -11,52 +11,82 @@ namespace RotteHullet.Domain.BusinessLogic
         private int _id;
         private string _navn;
         private string _lokation;
-        private int _størrelse;
+        private string _kommentar;
         private string _møbler;
 
+        #region Properties
         public int Id
         {
             get
             {
                 return _id;
             }
+
+            private set
+            {
+                _id = value;
+            }
         }
+
         public string Navn
         {
             get
             {
                 return _navn;
             }
+
+            private set
+            {
+                _navn = value;
+            }
         }
+
         public string Lokation
         {
             get
             {
                 return _lokation;
             }
+
+            private set
+            {
+                _lokation = value;
+            }
         }
-        public int Størrelse
+
+        public string Kommentar
         {
             get
             {
-                return _størrelse;
+                return _kommentar;
+            }
+
+            private set
+            {
+                _kommentar = value;
             }
         }
+
         public string Møbler
         {
             get
             {
                 return _møbler;
             }
-        }
 
-        public Lokale(int id, string navn, string lokation, int størrelse, string møbler)
-        {
-            this._id = id;
-            this._navn = navn;
-            this._lokation = lokation;
-            this._størrelse = størrelse;
-            this._møbler = møbler;
+            private set
+            {
+                _møbler = value;
+            }
         }
-    }
-}
+        #endregion
+
+        public Lokale(int id, string navn, string lokation, string kommentar, string møbler)
+        {
+            _navn = navn;
+            _lokation = lokation;
+            _kommentar = kommentar;
+            _møbler = møbler;
+        }
+    }//Klasse
+}//Namespace

@@ -11,20 +11,19 @@ namespace RotteHullet.Domain.BusinessLogic
         private int _id;
         private string _navn;
         private string _udgiver;
+        private string _kommentar;
 
+        #region Properties
         public int Id
         {
             get
             {
                 return _id;
             }
-        }
 
-        public string Udgiver
-        {
-            get
+            private set
             {
-                return _udgiver;
+                _id = value;
             }
         }
 
@@ -34,13 +33,46 @@ namespace RotteHullet.Domain.BusinessLogic
             {
                 return _navn;
             }
+
+            private set
+            {
+                _navn = value;
+            }
         }
 
-        public Brætspil(int id, string navn, string udgiver)
+        public string Udgiver
         {
-            this._id = id;
-            this._navn = navn;
-            this._udgiver = udgiver;
+            get
+            {
+                return _udgiver;
+            }
+
+            private set
+            {
+                _udgiver = value;
+            }
         }
-    }
-}
+
+        public string Kommentar
+        {
+            get
+            {
+                return _kommentar;
+            }
+
+            private set
+            {
+                _kommentar = value;
+            }
+        }
+        #endregion
+
+        public Brætspil(int id, string navn, string udgiver, string kommentar)
+        {
+            _id = id;
+            _navn = navn;
+            _udgiver = udgiver;
+            _kommentar = kommentar;
+        }
+    }//Klasse
+}//Namespace
