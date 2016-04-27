@@ -11,7 +11,7 @@ namespace RotteHullet.Domain.BusinessLogic
         private int _id;
         private string _navn;
         private string _lokation;
-        private int _størrelse;
+        private string _kommentar;
         private string _møbler;
 
         public int Id
@@ -35,13 +35,6 @@ namespace RotteHullet.Domain.BusinessLogic
                 return _lokation;
             }
         }
-        public int Størrelse
-        {
-            get
-            {
-                return _størrelse;
-            }
-        }
         public string Møbler
         {
             get
@@ -49,13 +42,20 @@ namespace RotteHullet.Domain.BusinessLogic
                 return _møbler;
             }
         }
+        public string Kommentar
+        {
+            get
+            {
+                return _kommentar;
+            }
+        }
 
-        public Lokale(int id, string navn, string lokation, int størrelse, string møbler)
+        public Lokale(int id, string navn, string lokation, string kommentar, string møbler)
         {
             this._id = id;
             this._navn = navn;
             this._lokation = lokation;
-            this._størrelse = størrelse;
+            this._kommentar = kommentar;
             this._møbler = møbler;
         }
     }

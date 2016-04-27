@@ -11,6 +11,7 @@ namespace RotteHullet.Domain.BusinessLogic
         private int _id;
         private string _navn;
         private string _udgiver;
+        private string _kommentar;
 
         public int Id
         {
@@ -19,7 +20,6 @@ namespace RotteHullet.Domain.BusinessLogic
                 return _id;
             }
         }
-
         public string Udgiver
         {
             get
@@ -27,7 +27,6 @@ namespace RotteHullet.Domain.BusinessLogic
                 return _udgiver;
             }
         }
-
         public string Navn
         {
             get
@@ -35,12 +34,20 @@ namespace RotteHullet.Domain.BusinessLogic
                 return _navn;
             }
         }
+        public string Kommentar
+        {
+            get
+            {
+                return _kommentar;
+            }
+        }
 
-        public Brætspil(int id, string navn, string udgiver)
+        public Brætspil(int id, string navn, string udgiver, string kommentar)
         {
             this._id = id;
             this._navn = navn;
             this._udgiver = udgiver;
+            this._kommentar = kommentar;
         }
     }
 }
