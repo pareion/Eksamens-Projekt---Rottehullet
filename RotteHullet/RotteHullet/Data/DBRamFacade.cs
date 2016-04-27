@@ -39,7 +39,7 @@ namespace RotteHullet.Data
         {
             for (int i = 0; i < _brætspilsListe.Count; i++)
             {
-                if (_brætspilsListe[i].HentID() == bs.HentID())
+                if (_brætspilsListe[i].Id == bs.Id)
                 {
                     _brætspilsListe[i] = bs;
                     return true;
@@ -50,12 +50,27 @@ namespace RotteHullet.Data
 
         public Brætspil HentBrætSpil(int id)
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < _brætspilsListe.Count; i++)
+            {
+                if (_brætspilsListe[i].Id == id)
+                {
+                    return _brætspilsListe[i];
+                }
+            }
+            return null;
         }
 
         public bool SletBrætSpil(int id)
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < _brætspilsListe.Count; i++)
+            {
+                if (_brætspilsListe[i].Id == id)
+                {
+                    _brætspilsListe.Remove(_brætspilsListe[i]);
+                    return true;
+                }
+            }
+            return false;
         }
 
         public bool GemBog(Bog bog)
