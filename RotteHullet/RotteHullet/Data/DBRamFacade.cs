@@ -121,6 +121,11 @@ namespace RotteHullet.Data
             return null;
         }
 
+        public List<Bog> HentAlleBøger()
+        {
+            return _bogListe;
+        }
+
         public bool SletBog(int id)
         {
             for (int i = 0; i < _bogListe.Count; i++)
@@ -165,6 +170,11 @@ namespace RotteHullet.Data
                 }
             }
             return null;
+        }
+
+        public List<Udstyr> HentAlleUdstyr()
+        {
+            return _udstyrsListe;
         }
 
         public bool SletUdstyr(int id)

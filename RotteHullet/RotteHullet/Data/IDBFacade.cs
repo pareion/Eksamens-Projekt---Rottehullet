@@ -20,12 +20,14 @@ namespace RotteHullet.Data
         bool GemBog(Bog bog);
         bool ÆndreBog(int gammeltID, Bog bog);
         Bog HentBog(int id);
+        List<Bog> HentAlleBøger();
         bool SletBog(int id);
         #endregion
         #region Udstyr
         bool GemUdstyr(Udstyr udstyr);
         bool ÆndreUdstyr(int gammeltID, Udstyr udstyr);
         Udstyr HentUdstyr(int id);
+        List<Udstyr> HentAlleUdstyr();
         bool SletUdstyr(int id);
         #endregion
         #region Lokale
