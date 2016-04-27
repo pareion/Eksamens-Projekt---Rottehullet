@@ -102,7 +102,7 @@ namespace RotteHullet.Data
             {
                 if (_bogListe[i].Id == gammeltID)
                 {
-                    _brætspilsListe[i] = bog;
+                    _bogListe[i] = bog;
                     return true;
                 }
             }
