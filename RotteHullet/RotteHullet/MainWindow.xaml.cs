@@ -40,9 +40,8 @@ namespace RotteHullet
 
         private void btn_LogPå_Click(object sender, RoutedEventArgs e)
         {
-
-            var newWindow = new OpretÆndreAktiv();
-            newWindow.Show();
+            Window panel = new AdminPanel();
+            panel.Show();
         }
     }
 }
