@@ -10,25 +10,23 @@
         <TabControl x:Name="maintab" HorizontalAlignment="Left" Height="451" Margin="10,10,0,0" VerticalAlignment="Top" Width="361" SelectionChanged="tabControl_SelectionChanged_1">
             <TabItem Header="Bog">
                 <Grid>
-                    <Label x:Name="l_titel" Content="Titel" HorizontalAlignment="Left" Margin="50,31,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="tb_titel" HorizontalAlignment="Left" Height="23" Margin="87,34,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Padding="0,5"/>
+                    <Label x:Name="l_Titel" Content="Titel" HorizontalAlignment="Left" Margin="50,31,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="tb_Titel" HorizontalAlignment="Left" Height="23" Margin="87,34,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Padding="0,5"/>
 
-                    <Label x:Name="l_Genre" Content="Genre" HorizontalAlignment="Left" Margin="50,59,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="l_Genre" Content="Genre" HorizontalAlignment="Left" Margin="41,57,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.511,0.665"/>
                     <TextBox x:Name="tb_Genre" HorizontalAlignment="Left" Height="23" Margin="87,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Padding="0,5"/>
                     <Label x:Name="l_Familie" Content="Familie" HorizontalAlignment="Left" Margin="36,90,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="tb_Familie" HorizontalAlignment="Left" Height="23" Margin="87,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Padding="0,5"/>
-                    <Label x:Name="l_Subkategori" Content="Subkategori" HorizontalAlignment="Left" Margin="13,118,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="l_Subkategori" Content="Subkategori" HorizontalAlignment="Left" Margin="8,119,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="tb_Subkategori" HorizontalAlignment="Left" Height="23" Margin="87,118,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Padding="0,5"/>
-                    <Label x:Name="l_Forfatter" Content="Forfatter" HorizontalAlignment="Left" Margin="31,145,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="l_Forfatter" Content="Forfatter" HorizontalAlignment="Left" Margin="26,145,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="tb_Forfatter" HorizontalAlignment="Left" Height="23" Margin="87,146,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Padding="0,5"/>
-                    <Label x:Name="l_Forlag" Content="Forlag" HorizontalAlignment="Left" Margin="40,171,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="l_Forlag" Content="Forlag" HorizontalAlignment="Left" Margin="36,171,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.116,0.41"/>
                     <TextBox x:Name="tb_Forlag" HorizontalAlignment="Left" Height="23" Margin="87,174,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Padding="0,5"/>
-                    <Label x:Name="l_ISBN" Content="ISBN" HorizontalAlignment="Left" Margin="48,199,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="tb_ISBN" HorizontalAlignment="Left" Height="23" Margin="87,202,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Padding="0,5"/>
-                    <Label x:Name="l_Kommentar" Content="Kommentar" HorizontalAlignment="Left" Margin="15,228,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="tb_Kommentar" HorizontalAlignment="Left" Height="145" Margin="87,230,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Padding="0,5"/>
-                    <Button x:Name="btn_GemBog" Content="Gem" Margin="64,387,222,10"/>
-                    <Button x:Name="btn_AnnullerBog" Content="Annuller" Margin="252,387,34,10"/>
+                    <Label x:Name="l_Kommentar" Content="Kommentar" HorizontalAlignment="Left" Margin="10,202,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="tb_Kommentar" HorizontalAlignment="Left" Height="145" Margin="87,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Padding="0,5"/>
+                    <Button x:Name="btn_GemBog" Content="Gem" Margin="64,387,222,10" Click="btn_GemBog_Click"/>
+                    <Button x:Name="btn_AnnullerBog" Content="Annuller" Margin="252,387,34,10" Click="btn_AnnullerBog_Click"/>
 
                 </Grid>
             </TabItem>
@@ -40,8 +38,8 @@
                     <TextBox x:Name="tb_BrætspilUdgiver" HorizontalAlignment="Left" Height="23" Margin="87,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Padding="0,5"/>
                     <Label x:Name="l_BrætspilKommentar" Content="Kommentar" HorizontalAlignment="Left" Margin="16,90,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="tb_BrætspilKommentar" HorizontalAlignment="Left" Height="145" Margin="88,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Padding="0,5"/>
-                    <Button x:Name="btn_GemBrætspil" Content="Gem" Margin="64,387,222,10"/>
-                    <Button x:Name="btn_AnnullerBrætspil" Content="Annuller" Margin="252,387,34,10"/>
+                    <Button x:Name="btn_GemBrætspil" Content="Gem" Margin="64,387,222,10" Click="btn_GemBrætspil_Click"/>
+                    <Button x:Name="btn_AnnullerBrætspil" Content="Annuller" Margin="252,387,34,10" Click="btn_AnnullerBrætspil_Click"/>
 
                 </Grid>
             </TabItem>
@@ -51,12 +49,11 @@
                     <TextBox x:Name="tb_Udstyrnavn" HorizontalAlignment="Left" Height="23" Margin="87,34,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Padding="0,5"/>
                     <Label x:Name="l_UdstyrKategori" Content="Kategori" HorizontalAlignment="Left" Margin="33,57,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.398,0.444"/>
                     <TextBox x:Name="tb_UdstyrKategori" HorizontalAlignment="Left" Height="23" Margin="87,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Padding="0,5"/>
-                    <Label x:Name="l_UdstyrKommentar" Content="Kommentar" HorizontalAlignment="Left" Margin="15,116,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="tb_UdstyrKommentar" HorizontalAlignment="Left" Height="145" Margin="87,118,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Padding="0,5"/>
-                    <Label x:Name="l_UdstyrStørrelse" Content="Størelse" HorizontalAlignment="Left" Margin="33,85,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.398,0.444"/>
-                    <TextBox x:Name="tb_UdstyrStørrelse" HorizontalAlignment="Left" Height="23" Margin="87,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Padding="0,5"/>
-                    <Button x:Name="btn_GemUdstyr" Content="Gem" Margin="64,387,222,10"/>
-                    <Button x:Name="btn_AnnullerUdstyr" Content="Annuller" Margin="252,387,34,10"/>
+                    <Label x:Name="l_UdstyrKommentar" Content="Kommentar" HorizontalAlignment="Left" Margin="16,90,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="tb_UdstyrKommentar" HorizontalAlignment="Left" Height="235" Margin="88,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Padding="0,5"/>
+
+                    <Button x:Name="btn_GemUdstyr" Content="Gem" Margin="64,387,222,10" Click="btn_GemUdstyr_Click"/>
+                    <Button x:Name="btn_AnnullerUdstyr" Content="Annuller" Margin="252,387,34,10" Click="btn_AnnullerUdstyr_Click"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Lokale">
@@ -66,12 +63,14 @@
                     <TextBox x:Name="tb_Lokalenavn" HorizontalAlignment="Left" Height="23" Margin="87,34,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Padding="0,5"/>
                     <Label x:Name="l_Lokation" Content="Lokation" HorizontalAlignment="Left" Margin="33,57,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.398,0.444"/>
                     <TextBox x:Name="tb_Lokation" HorizontalAlignment="Left" Height="23" Margin="87,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Padding="0,5"/>
-                    <Label x:Name="l_LokaleKommentar" Content="Kommentar" HorizontalAlignment="Left" Margin="15,116,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="tb_LokaleKommentar" HorizontalAlignment="Left" Height="145" Margin="87,118,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Padding="0,5"/>
                     <Label x:Name="l_LokaleMøbler" Content="Møbler" HorizontalAlignment="Left" Margin="33,85,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.398,0.444"/>
                     <TextBox x:Name="tb_LokaleMøbler" HorizontalAlignment="Left" Height="23" Margin="87,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Padding="0,5"/>
-                    <Button x:Name="btn_GemLokale" Content="Gem" Margin="64,387,222,10"/>
-                    <Button x:Name="btn_AnnullerLokale" Content="Annuller" Margin="252,387,34,10"/>
+                    <Button x:Name="btn_GemLokale" Content="Gem" Margin="64,387,222,10" Click="btn_GemLokale_Click"/>
+                    <Label x:Name="l_LokaleKommentar" Content="Kommentar" HorizontalAlignment="Left" Margin="15,116,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="tb_LokaleKommentar" HorizontalAlignment="Left" Height="145" Margin="87,118,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Padding="0,5"/>
+
+
+                    <Button x:Name="btn_AnnullerLokale" Content="Annuller" Margin="252,387,34,10" Click="btn_AnnullerLokale_Click"/>
 
 
                 </Grid>

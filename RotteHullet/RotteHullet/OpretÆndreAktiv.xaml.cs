@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using RotteHullet.Domain;
 
 namespace RotteHullet
 {
@@ -33,6 +34,54 @@ namespace RotteHullet
 
         private void tabControl_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
+
+        }
+
+        private void btn_GemBog_Click(object sender, RoutedEventArgs e)
+        {
+            BogFacade.getBogFacade().SkabBog(tb_Titel.Text,tb_Forfatter.Text,tb_Genre.Text,tb_Subkategori.Text,tb_Familie.Text,tb_Familie.Text,"FejlHER",tb_Kommentar.Text);
+        }
+
+        private void btn_GemBrætspil_Click(object sender, RoutedEventArgs e)
+        {
+            BrætspilFacade.HentBrætSpilFacade().SkabBrætSpil(0, tb_Brætspilnavn.Text, tb_BrætspilUdgiver.Text, tb_BrætspilKommentar.Text);
+        }
+
+        private void btn_GemUdstyr_Click(object sender, RoutedEventArgs e)
+        {
+            UdstyrFacade.HentUdstyrFacade().GemUdstyr(tb_Udstyrnavn.Text, tb_UdstyrKategori.Text, tb_UdstyrKommentar.Text);
+        }
+
+        private void btn_GemLokale_Click(object sender, RoutedEventArgs e)
+        {
+            LokaleFacade.HentLokaleFacade().SkabLokale(0, tb_Lokalenavn.Text, tb_Lokation.Text, tb_LokaleKommentar.Text, tb_LokaleMøbler.Text);
+
+        }
+
+        private void GåTilMenu() {
+            // Gør noget her
+
+        }
+
+        private void btn_AnnullerLokale_Click(object sender, RoutedEventArgs e)
+        {
+            GåTilMenu();
+        }
+
+        private void btn_AnnullerUdstyr_Click(object sender, RoutedEventArgs e)
+        {
+            GåTilMenu();
+        }
+
+        private void btn_AnnullerBrætspil_Click(object sender, RoutedEventArgs e)
+        {
+            GåTilMenu();
+
+        }
+
+        private void btn_AnnullerBog_Click(object sender, RoutedEventArgs e)
+        {
+            GåTilMenu();
 
         }
     }

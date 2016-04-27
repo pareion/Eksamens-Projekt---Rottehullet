@@ -30,5 +30,9 @@ namespace RotteHullet.Domain
         {
             return LokaleFacade.HentLokaleFacade();
         }
+        public UdstyrFacade HentUdstyrFacade()
+        {
+            return UdstyrFacade.HentUdstyrFacade();
+        }
     }
 }
