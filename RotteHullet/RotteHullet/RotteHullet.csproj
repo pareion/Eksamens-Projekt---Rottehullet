@@ -63,6 +63,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Data\DBRamFacade.cs" />
     <Compile Include="Data\DBSQLFacade.cs" />
     <Compile Include="Data\IDBFacade.cs" />
     <Compile Include="Domain\BogFacade.cs" />

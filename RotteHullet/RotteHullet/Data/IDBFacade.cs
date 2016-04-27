@@ -9,21 +9,21 @@ namespace RotteHullet.Data
 {
     interface IDBFacade
     {
-        string GemBrætSpil(Brætspil bs);
-        string ÆndreBrætSpil(int gammeltID, Brætspil bs);
-        string HentBrætSpil(int id);
-        string SletBrætSpil(int id);
-        string GemBog(Bog bog);
-        string ÆndreBog(int gammeltID, Bog bog);
-        string HentBog(int id);
-        string SletBog(int id);
-        string GemUdstyr(Udstyr udstyr);
-        string ÆndreUdstyr(int gammeltID, Udstyr udstyr);
-        string HentUdstyr(int id);
-        string SletUdstyr(int id);
-        string GemLokale(Lokale lokale);
-        string ÆndreLokale(int gammeltID, Lokale lokale);
-        string HentLokale(int id);
-        string SletLokale(int id);
+        bool GemBrætSpil(Brætspil bs);
+        bool ÆndreBrætSpil(int gammeltID, Brætspil bs);
+        Brætspil HentBrætSpil(int id);
+        bool SletBrætSpil(int id);
+        bool GemBog(Bog bog);
+        bool ÆndreBog(int gammeltID, Bog bog);
+        Bog HentBog(int id);
+        bool SletBog(int id);
+        bool GemUdstyr(Udstyr udstyr);
+        bool ÆndreUdstyr(int gammeltID, Udstyr udstyr);
+        Udstyr HentUdstyr(int id);
+        bool SletUdstyr(int id);
+        bool GemLokale(Lokale lokale);
+        bool ÆndreLokale(int gammeltID, Lokale lokale);
+        Lokale HentLokale(int id);
+        bool SletLokale(int id);
     }
 }
