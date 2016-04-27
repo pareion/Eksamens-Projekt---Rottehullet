@@ -15,7 +15,17 @@ namespace RotteHullet.Data
         private List<Brætspil> _brætspilsListe;
         private List<Udstyr> _udstyrsListe;
         private List<Lokale> _lokaleListe;
-        
+
+        #region Constructor
+        public DBRamFacade()
+        {
+            _bogListe = new List<Bog>();
+            _brætspilsListe = new List<Brætspil>();
+            _udstyrsListe = new List<Udstyr>();
+            _lokaleListe = new List<Lokale>();
+        }
+        #endregion
+
         /// <summary>
         /// Statisk metode som returner den instans af facaden. Laver en ny, hvis den ikke eksisterer.
         /// </summary>
@@ -29,17 +39,17 @@ namespace RotteHullet.Data
             return _dbRamFacade;
         }
 
+        #region Brætspil
         public bool GemBrætSpil(Brætspil bs)
         {
             _brætspilsListe.Add(bs);
             return true;
         }
-
         public bool ÆndreBrætSpil(int gammeltID, Brætspil bs)
         {
             for (int i = 0; i < _brætspilsListe.Count; i++)
             {
-                if (_brætspilsListe[i].Id == bs.Id)
+                if (_brætspilsListe[i].Id == gammeltID)
                 {
                     _brætspilsListe[i] = bs;
                     return true;
@@ -72,7 +82,9 @@ namespace RotteHullet.Data
             }
             return false;
         }
+        #endregion
 
+        #region Bog
         public bool GemBog(Bog bog)
         {
             _bogListe.Add(bog);
@@ -81,19 +93,44 @@ namespace RotteHullet.Data
 
         public bool ÆndreBog(int gammeltID, Bog bog)
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < _bogListe.Count; i++)
+            {
+                if (_bogListe[i].Id == gammeltID)
+                {
+                    _brætspilsListe[i] = bog;
+                    return true;
+                }
+            }
+            return false;
         }
 
         public Bog HentBog(int id)
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < _bogListe.Count; i++)
+            {
+                if (_bogListe[i].Id == id)
+                {
+                    return _bogListe[i];
+                }
+            }
+            return null;
         }
 
         public bool SletBog(int id)
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < _bogListe.Count; i++)
+            {
+                if (_bogListe[i].Id == id)
+                {
+                    _bogListe.Remove(_bogListe[i]);
+                    return true;
+                }
+            }
+            return false;
         }
+        #endregion
 
+        #region Udstyr
         public bool GemUdstyr(Udstyr udstyr)
         {
             _udstyrsListe.Add(udstyr);
@@ -102,22 +139,47 @@ namespace RotteHullet.Data
 
         public bool ÆndreUdstyr(int gammeltID, Udstyr udstyr)
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < _udstyrsListe.Count; i++)
+            {
+                if (_udstyrsListe[i].Id == gammeltID)
+                {
+                    _udstyrsListe[i] = udstyr;
+                    return true;
+                }
+            }
+            return false;
         }
 
         public Udstyr HentUdstyr(int id)
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < _udstyrsListe.Count; i++)
+            {
+                if (_udstyrsListe[i].Id == id)
+                {
+                    return _udstyrsListe[i];
+                }
+            }
+            return null;
         }
 
         public bool SletUdstyr(int id)
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < _udstyrsListe.Count; i++)
+            {
+                if (_udstyrsListe[i].Id == id)
+                {
+                    _udstyrsListe.Remove(_udstyrsListe[i]);
+                    return true;
+                }
+            }
+            return false;
         }
+        #endregion
 
+        #region Lokale
         public bool GemLokale(Lokale lokale)
         {
-           _lokaleListe.Add(lokale);
+            _lokaleListe.Add(lokale);
             return true;
         }
 
@@ -128,26 +190,29 @@ namespace RotteHullet.Data
 
         public Lokale HentLokale(int id)
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < _lokaleListe.Count; i++)
+            {
+                if (_lokaleListe[i].Id == id)
+                {
+                    return _lokaleListe[i];
+                }
+            }
+            return null;
         }
 
         public bool SletLokale(int id)
         {
-            throw new NotImplementedException();
-        }
-
-        #region Constructor
-        public DBRamFacade()
-        {
-            _bogListe = new List<Bog>();
-            _brætspilsListe = new List<Brætspil>();
-            _udstyrsListe = new List<Udstyr>();
-            _lokaleListe = new List<Lokale>();
+            for (int i = 0; i < _lokaleListe.Count; i++)
+            {
+                if (_lokaleListe[i].Id == id)
+                {
+                    _lokaleListe.Remove(_lokaleListe[i]);
+                    return true;
+                }
+            }
+            return false;
         }
         #endregion
 
-        
-
-        
-    }
-}
+    }//Klasse
+}//Namespace
