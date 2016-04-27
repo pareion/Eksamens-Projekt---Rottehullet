@@ -26,5 +26,9 @@ namespace RotteHullet.Domain
         {
             return BrætspilFacade.HentBrætSpilFacade();
         }
+        public LokaleFacade HentLokaleFacade()
+        {
+            return LokaleFacade.HentLokaleFacade();
+        }
     }
 }
