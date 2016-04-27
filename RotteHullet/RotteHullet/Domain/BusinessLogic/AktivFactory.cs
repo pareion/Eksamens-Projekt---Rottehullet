@@ -19,9 +19,14 @@ namespace RotteHullet.Domain.BusinessLogic
             return _aktivFactory;
         }
 
-        public IAktiv SkabNyBrætspil(int id, string navn, string udgiver)
+        public Brætspil SkabNyBrætspil(int id, string navn, string udgiver)
         {
             return new Brætspil(id, navn,udgiver);
+        }
+
+        public Bog SkabNyBog(string titel, string forfatter, string genre, string subkategori, string familie, string forlag, string isbn, string kommentar = null)
+        {
+            return new Bog(titel, forfatter, genre, subkategori, familie, forlag, isbn, kommentar);
         }
     }
 }
