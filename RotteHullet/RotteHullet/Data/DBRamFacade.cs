@@ -70,6 +70,11 @@ namespace RotteHullet.Data
             return null;
         }
 
+        public List<Brætspil> HentAlleBrætSpil()
+        {
+            return _brætspilsListe;
+        }
+
         public bool SletBrætSpil(int id)
         {
             for (int i = 0; i < _brætspilsListe.Count; i++)
@@ -97,7 +102,7 @@ namespace RotteHullet.Data
             {
                 if (_bogListe[i].Id == gammeltID)
                 {
-                    _brætspilsListe[i] = bog;
+                    _bogListe[i] = bog;
                     return true;
                 }
             }
@@ -185,7 +190,15 @@ namespace RotteHullet.Data
 
         public bool ÆndreLokale(int gammeltID, Lokale lokale)
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < _lokaleListe.Count; i++)
+            {
+                if (_lokaleListe[i].Id == gammeltID)
+                {
+                    _lokaleListe[i] = lokale;
+                    return true;
+                }
+            }
+            return false;
         }
 
         public Lokale HentLokale(int id)
@@ -198,6 +211,11 @@ namespace RotteHullet.Data
                 }
             }
             return null;
+        }
+
+        public List<Lokale> HentAlleLokaler()
+        {
+            return _lokaleListe;
         }
 
         public bool SletLokale(int id)
