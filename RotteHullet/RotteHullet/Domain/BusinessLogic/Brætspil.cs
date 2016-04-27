@@ -11,5 +11,12 @@ namespace RotteHullet.Domain.BusinessLogic
         private int id { get; set; }
         private string navn { get; set; }
         private string udgiver { get; set; }
+
+        public Brætspil(int id, string navn, string udgiver)
+        {
+            this.id = id;
+            this.navn = navn;
+            this.udgiver = udgiver;
+        }
     }
 }

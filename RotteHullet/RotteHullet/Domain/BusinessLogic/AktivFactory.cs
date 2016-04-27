@@ -8,5 +8,20 @@ namespace RotteHullet.Domain.BusinessLogic
 {
     class AktivFactory
     {
+        private static AktivFactory _aktivFactory;
+
+        public static AktivFactory HentAktivFactory()
+        {
+            if (_aktivFactory == null)
+            {
+                _aktivFactory = new AktivFactory();
+            }
+            return _aktivFactory;
+        }
+
+        public IAktiv SkabNyBrætspil(int id, string navn, string udgiver)
+        {
+            return new Brætspil(id, navn,udgiver);
+        }
     }
 }

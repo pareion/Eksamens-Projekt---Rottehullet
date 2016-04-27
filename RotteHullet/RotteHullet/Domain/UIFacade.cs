@@ -22,5 +22,9 @@ namespace RotteHullet.Domain
         {
             return BogFacade.getBogFacade();
         }
+        public BrætspilFacade HentBrætSpilFacade()
+        {
+            return BrætspilFacade.HentBrætSpilFacade();
+        }
     }
 }
