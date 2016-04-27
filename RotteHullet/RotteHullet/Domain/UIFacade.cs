@@ -8,5 +8,19 @@ namespace RotteHullet.Domain
 {
     class UIFacade
     {
+        private static UIFacade UIfacade;
+        public static UIFacade getUIFacade()
+        {
+            if (UIfacade == null)
+            {
+                UIfacade = new UIFacade();
+            }
+            return UIfacade;
+        }
+
+        public BogFacade getBogFacade()
+        {
+            return BogFacade.getBogFacade();
+        }
     }
 }

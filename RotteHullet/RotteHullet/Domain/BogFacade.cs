@@ -8,5 +8,19 @@ namespace RotteHullet.Domain
 {
     class BogFacade
     {
+        private static BogFacade bogFacade;
+        public static BogFacade getBogFacade()
+        {
+            if (bogFacade == null)
+            {
+                bogFacade = new BogFacade();
+            }
+            return bogFacade;
+        }
+
+        public void doBogStuff()
+        {
+            Console.WriteLine("lol");
+        }
     }
 }
