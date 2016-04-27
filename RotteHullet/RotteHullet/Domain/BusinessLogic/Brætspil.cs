@@ -67,33 +67,12 @@ namespace RotteHullet.Domain.BusinessLogic
         }
         #endregion
 
-        #region Constructors
-        /// <summary>
-        /// Constructor til skabelse af Brætspil fra UI
-        /// </summary>
-        /// <param name="navn"></param>
-        /// <param name="udgiver"></param>
-        /// <param name="kommentar"></param>
-        public Brætspil(string navn, string udgiver, string kommentar)
+        public Brætspil(int id, string navn, string udgiver, string kommentar)
         {
+            _id = id;
             _navn = navn;
             _udgiver = udgiver;
             _kommentar = kommentar;
         }
-
-        /// <summary>
-        /// Constructor til skabelse af Brætspil fra database
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="navn"></param>
-        /// <param name="udgiver"></param>
-        /// <param name="kommentar"></param>
-        public Brætspil(int id, string navn, string udgiver, string kommentar)
-            :this(navn, udgiver, kommentar)
-        {
-            this._id = id;
-        }
-        #endregion
-
     }//Klasse
 }//Namespace

@@ -123,20 +123,10 @@ namespace RotteHullet.Domain.BusinessLogic
         }
         #endregion
 
-        #region Constructors
-        /// <summary>
-        /// Constructor til oprettelse af Bog fra UI
-        /// </summary>
-        /// <param name="titel"></param>
-        /// <param name="forfatter"></param>
-        /// <param name="genre"></param>
-        /// <param name="subkategori"></param>
-        /// <param name="familie"></param>
-        /// <param name="forlag"></param>
-        /// <param name="kommentar"></param>
-        public Bog(string titel, string forfatter, string genre, string subkategori,
+        public Bog(int id, string titel, string forfatter, string genre, string subkategori,
             string familie, string forlag, string kommentar = null)
         {
+            _id = id;
             _titel = titel;
             _forfatter = forfatter;
             _genre = genre;
@@ -145,24 +135,5 @@ namespace RotteHullet.Domain.BusinessLogic
             _forlag = forlag;
             _kommentar = kommentar;
         }
-        /// <summary>
-        /// Constructor til oprettelse af bog fra Database
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="titel"></param>
-        /// <param name="forfatter"></param>
-        /// <param name="genre"></param>
-        /// <param name="subkategori"></param>
-        /// <param name="familie"></param>
-        /// <param name="forlag"></param>
-        /// <param name="kommentar"></param>
-        public Bog(int id, string titel, string forfatter, string genre, string subkategori,
-            string familie, string forlag, string kommentar = null)
-            : this(titel, forfatter, genre, subkategori, familie, forlag, kommentar)
-        {
-            _id = id;
-        }
-        #endregion
-
     }//Klasse
 }//Namespace
