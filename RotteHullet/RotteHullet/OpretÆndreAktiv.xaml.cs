@@ -55,7 +55,6 @@ namespace RotteHullet
         private void btn_GemLokale_Click(object sender, RoutedEventArgs e)
         {
             UIFacade.HentUIFacade().HentLokaleFacade().SkabLokale(0, tb_Lokalenavn.Text, tb_Lokation.Text, tb_LokaleKommentar.Text, tb_LokaleMøbler.Text);
-
         }
 
         private void GåTilMenu() {
