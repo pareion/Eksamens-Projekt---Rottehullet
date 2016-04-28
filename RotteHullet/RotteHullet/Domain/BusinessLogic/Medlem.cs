@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Markup;
 
 namespace RotteHullet.Domain.BusinessLogic
 {
@@ -11,6 +12,8 @@ namespace RotteHullet.Domain.BusinessLogic
         public enum MedlemType { Bestyrelse, Bruger }
 
         private int _id;
+        private string _fornavn;
+        private string _efternavn;
         private string _brugernavn;
         private string _password;
         private string _email;
@@ -81,11 +84,39 @@ namespace RotteHullet.Domain.BusinessLogic
                 _status = value;
             }
         }
+
+        public string Fornavn
+        {
+            get
+            {
+                return _fornavn;
+            }
+
+            set
+            {
+                _fornavn = value;
+            }
+        }
+
+        public string Efternavn
+        {
+            get
+            {
+                return _efternavn;
+            }
+
+            set
+            {
+                _efternavn = value;
+            }
+        }
         #endregion
 
-        public Medlem(int id, string brugernavn, string password, string email, MedlemType status)
+        public Medlem(int id, string fornavn, string efternavn, string brugernavn, string password, string email, MedlemType status)
         {
             _id = id;
+            _fornavn = fornavn;
+            _efternavn = efternavn;
             _brugernavn = brugernavn;
             _password = password;
             _email = email;
