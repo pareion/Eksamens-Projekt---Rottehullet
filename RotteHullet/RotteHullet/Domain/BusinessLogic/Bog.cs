@@ -136,16 +136,36 @@ namespace RotteHullet.Domain.BusinessLogic
             _kommentar = kommentar;
         }
 
-        //Test om et bog objekt er ens med et andet
-        public bool ErSammeBog(Bog bog)
-        { 
-            if (bog.Id == Id && bog.Familie == Familie && bog.Forfatter == Forfatter
-                && bog.Forlag == Forlag && bog.Genre == Genre && bog.Kommentar == Kommentar
-                && bog.Subkategori == Subkategori && bog.Titel == Titel)
+        public override string ToString()
+        {
+            return "ID: " + _id + " Titel: " + _titel + " Forfatter: " + _forfatter + " Genre: " + _genre
+                   + " Subkategori: " + _subkategori + " Familie: " + _familie + " Forlag: " + _forlag
+                   + " Kommentar: " + _kommentar;
+        }
+
+        public string ToString(int position)
+        {
+            switch (position)
             {
-                return true;
+                case 0:
+                    return "" + _id;
+                case 1:
+                    return _titel;
+                case 2:
+                    return _forfatter;
+                case 3:
+                    return _genre;
+                case 4:
+                    return _subkategori;
+                case 5:
+                    return _familie;
+                case 6:
+                    return _forlag;
+                case 7:
+                    return _kommentar;
+                default:
+                    return ToString();
             }
-            return false;
         }
 
     }//Klasse

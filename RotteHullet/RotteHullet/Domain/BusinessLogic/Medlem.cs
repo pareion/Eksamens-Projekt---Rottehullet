@@ -122,5 +122,6 @@ namespace RotteHullet.Domain.BusinessLogic
             _email = email;
             _status = status;
         }
+
     }//Klasse
 }//Namespace
