@@ -88,5 +88,9 @@ namespace RotteHullet.Domain.BusinessLogic
             _kommentar = kommentar;
             _møbler = møbler;
         }
+        public override string ToString()
+        {
+            return "ID: " + _id + " Lokalenavn: " + _lokaleNavn + " Lokation: " + _lokation + " Kommentar: " + _kommentar + " Møbler: " + _møbler;
+        }
     }//Klasse
 }//Namespace

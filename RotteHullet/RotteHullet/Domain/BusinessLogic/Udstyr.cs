@@ -74,5 +74,9 @@ namespace RotteHullet.Domain.BusinessLogic
             _kategori = kategori;
             Kommentar = kommentar;
         }
+        public override string ToString()
+        {
+            return "ID: " + _id + " Udstyrsnavn: " + _udstyrsNavn + " Kategori: " + _kategori + " Kommentar: " + _kommentar;
+        }
     }//Klasse
 }//Namespace

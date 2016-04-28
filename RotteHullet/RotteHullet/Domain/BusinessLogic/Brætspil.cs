@@ -74,5 +74,9 @@ namespace RotteHullet.Domain.BusinessLogic
             _udgiver = udgiver;
             _kommentar = kommentar;
         }
+        public override string ToString()
+        {
+            return "ID: " + _id + " Brætspilsnavn: " + _brætspilsNavn + " Udgiver: " + _udgiver + " Kommentar: " + _kommentar;
+        }
     }//Klasse
 }//Namespace
