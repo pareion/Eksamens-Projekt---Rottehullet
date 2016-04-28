@@ -21,10 +21,10 @@ namespace Unit_Testing_Sprint_1
                 "Abernes Planet", "Gyldendal", "Stand: Ødelagt. Må ikke udlånes.");
             
             //Hent bog
-            Bog bogHentet = UIFacade.HentUIFacade().HentBogFacade().LæsBog(0);
+            string bogHentet = UIFacade.HentUIFacade().HentBogFacade().LæsBog(0);
 
             //Sammenlign om den gemte er identisk med den som er hentet ud
-            Assert.IsTrue(bog.ErSammeBog(bogHentet));
+            Assert.AreEqual(bog.ToString(), bogHentet);
         }
     }
 }
