@@ -305,6 +305,39 @@ namespace RotteHullet.Data
 
             return result;
         }
+
+        public bool Søg(string søgord, out List<Bog> bøger)
+        {
+            bøger = new List<Bog>();
+            bøger = _bogListe.FindAll(x => x.Titel.Contains(søgord) || x.Familie.Contains(søgord) || x.Forfatter.Contains(søgord) || x.Genre.Contains(søgord));
+
+            return bøger.Count != 0;
+        }
+
+        public bool Søg(string søgord, out List<Lokale> lokaler)
+        {
+            lokaler = new List<Lokale>();
+            lokaler = _lokaleListe.FindAll(x => x.LokaleNavn.Contains(søgord));
+
+            return lokaler.Count != 0;
+        }
+
+        public bool Søg(string søgord, out List<Udstyr> udstyr)
+        {
+            udstyr = new List<Udstyr>();
+            udstyr = _udstyrsListe.FindAll(x => x.UdstyrsNavn.Contains(søgord));
+
+            return udstyr.Count != 0;
+        }
+
+        public bool Søg(string søgord, out List<Brætspil> brætspil)
+        {
+            brætspil = new List<Brætspil>();
+            brætspil = _brætspilsListe.FindAll(x => x.BrætspilsNavn.Contains(søgord));
+
+            return brætspil.Count != 0;
+        }
+
         #endregion
     }//Klasse
 }//Namespace
