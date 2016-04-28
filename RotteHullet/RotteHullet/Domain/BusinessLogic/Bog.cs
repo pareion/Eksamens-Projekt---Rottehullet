@@ -147,5 +147,6 @@ namespace RotteHullet.Domain.BusinessLogic
             }
             return false;
         }
+
     }//Klasse
 }//Namespace
