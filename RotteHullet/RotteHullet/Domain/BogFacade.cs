@@ -19,16 +19,16 @@ namespace RotteHullet.Domain
             }
             return _bogFacade;
         }
-        public bool SkabBog(string bognavn, string forfatter, string genre, string subkategori, string familie, string forlag, string kommentar)
+        public string SkabBog(string bognavn, string forfatter, string genre, string subkategori, string familie, string forlag, string kommentar)
         {
             Bog bog = AktivFactory.HentAktivFactory().SkabNyBog(0, bognavn, forfatter, genre, subkategori, familie, forlag, kommentar);
-            return DBSQLFacade.HentDBSQLFacade().GemBog(bog);
+            return DBSQLFacade.HentDBSQLFacade().GemBog(bog) ? "Bog er oprettet" : "Bog blev ikke oprettetS";
         }
 
-        public bool ÆndreBog(int id, string bognavn, string forfatter, string genre, string subkategori, string familie, string forlag, string kommentar)
+        public string ÆndreBog(int id, string bognavn, string forfatter, string genre, string subkategori, string familie, string forlag, string kommentar)
         {
             Bog bog = AktivFactory.HentAktivFactory().SkabNyBog(id, bognavn, forfatter, genre, subkategori, familie, forlag, kommentar);
-            return DBSQLFacade.HentDBSQLFacade().ÆndreBog(id, bog);
+            return DBSQLFacade.HentDBSQLFacade().ÆndreBog(id, bog) ? "Bog blev ændret" : "Bog blev ikke ændret";
         }
 
         public Bog LæsBog(int id)
@@ -36,9 +36,9 @@ namespace RotteHullet.Domain
             return DBSQLFacade.HentDBSQLFacade().HentBog(id);
         }
 
-        public bool SletBog(int id)
+        public string SletBog(int id)
         {
-            return DBSQLFacade.HentDBSQLFacade().SletBog(id);
+            return DBSQLFacade.HentDBSQLFacade().SletBog(id) ? "Bog blev slettet" : "Kan ikke slet bog";
         }
     }
 }

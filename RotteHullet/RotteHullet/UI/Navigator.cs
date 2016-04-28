@@ -43,7 +43,9 @@ namespace RotteHullet.UI
                 if(tidligere != null)
                 {
                     UserControl middletid = nuværende;
-                    
+                    HovedVindue.Content = tidligere;
+                    nuværende = tidligere;
+                    tidligere = middletid;
                 }
             }
             else
