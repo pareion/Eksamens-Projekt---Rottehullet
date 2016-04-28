@@ -22,21 +22,25 @@ namespace RotteHullet
     {
         public enum IndexTab { Bog, Brætspil, Udstyr, Lokal }
 
+        private void AktivSlettet() {
+            MessageBox.Show("Aktivet du forsøger at ændre, er blevet slettet af en anden bruger");
+            
+
+        }
         public OpretÆndreAktiv()
         {
             InitializeComponent();
         }
-        //Skal slettes
-        private void tabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
+        
+
+        public void SætTabAktiv(int tabID) {
+
+            maintab.SelectedIndex = tabID;
+
 
         }
 
-        private void tabControl_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-        // slut på skal slettes
+        
         private void btn_GemBog_Click(object sender, RoutedEventArgs e)
         {
           UIFacade.HentUIFacade().HentBogFacade().SkabBog(tb_Titel.Text,tb_Forfatter.Text,tb_Genre.Text,tb_Subkategori.Text,tb_Familie.Text,tb_Familie.Text,tb_Kommentar.Text);
@@ -57,30 +61,30 @@ namespace RotteHullet
             UIFacade.HentUIFacade().HentLokaleFacade().SkabLokale(0, tb_Lokalenavn.Text, tb_Lokation.Text, tb_LokaleKommentar.Text, tb_LokaleMøbler.Text);
         }
 
-        private void GåTilMenu() {
+        private void gåTilMenu() {
             // Gør noget her
 
         }
 
         private void btn_AnnullerLokale_Click(object sender, RoutedEventArgs e)
         {
-            GåTilMenu();
+            gåTilMenu();
         }
 
         private void btn_AnnullerUdstyr_Click(object sender, RoutedEventArgs e)
         {
-            GåTilMenu();
+            gåTilMenu();
         }
 
         private void btn_AnnullerBrætspil_Click(object sender, RoutedEventArgs e)
         {
-            GåTilMenu();
+            gåTilMenu();
 
         }
 
         private void btn_AnnullerBog_Click(object sender, RoutedEventArgs e)
         {
-            GåTilMenu();
+            gåTilMenu();
 
         }
     }

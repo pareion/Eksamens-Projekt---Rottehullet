@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using RotteHullet.Domain;
 
 namespace RotteHullet
 {
@@ -19,6 +20,10 @@ namespace RotteHullet
     /// </summary>
     public partial class AdminPanel : Window
     {
+        private int _selectionID;
+        
+    
+
         public AdminPanel()
         {
             InitializeComponent();
@@ -26,7 +31,7 @@ namespace RotteHullet
 
         private void lv_lokal_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            
         }
 
         private void lv_udstyr_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -48,6 +53,7 @@ namespace RotteHullet
         {
             OpretÆndreAktiv opret = new OpretÆndreAktiv();
             opret.Show();
+            opret.SætTabAktiv(adminTab.SelectedIndex);
         }
     }
 }
