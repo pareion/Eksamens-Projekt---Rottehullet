@@ -8,19 +8,19 @@ namespace RotteHullet.Domain
 {
     class UIFacade
     {
-        private static UIFacade UIfacade;
-        public static UIFacade getUIFacade()
+        private static UIFacade _uifacade;
+        public static UIFacade HentUIFacade()
         {
-            if (UIfacade == null)
+            if (_uifacade == null)
             {
-                UIfacade = new UIFacade();
+                _uifacade = new UIFacade();
             }
-            return UIfacade;
+            return _uifacade;
         }
 
-        public BogFacade getBogFacade()
+        public BogFacade HentBogFacade()
         {
-            return BogFacade.getBogFacade();
+            return BogFacade.HentBogFacade();
         }
         public BrætspilFacade HentBrætSpilFacade()
         {

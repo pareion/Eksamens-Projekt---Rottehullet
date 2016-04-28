@@ -39,7 +39,7 @@ namespace RotteHullet
         // slut på skal slettes
         private void btn_GemBog_Click(object sender, RoutedEventArgs e)
         {
-            BogFacade.getBogFacade().SkabBog(tb_Titel.Text,tb_Forfatter.Text,tb_Genre.Text,tb_Subkategori.Text,tb_Familie.Text,tb_Familie.Text,tb_Kommentar.Text);
+            BogFacade.HentBogFacade().SkabBog(tb_Titel.Text,tb_Forfatter.Text,tb_Genre.Text,tb_Subkategori.Text,tb_Familie.Text,tb_Familie.Text,tb_Kommentar.Text);
         }
 
         private void btn_GemBrætspil_Click(object sender, RoutedEventArgs e)

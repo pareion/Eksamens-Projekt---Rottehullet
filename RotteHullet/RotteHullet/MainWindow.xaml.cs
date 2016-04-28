@@ -24,7 +24,6 @@ namespace RotteHullet
         public MainWindow()
         {
             InitializeComponent();
-            UIFacade.getUIFacade().getBogFacade().doBogStuff();
         }
 
 

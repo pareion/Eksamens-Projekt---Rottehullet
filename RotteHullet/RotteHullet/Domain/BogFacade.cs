@@ -10,21 +10,15 @@ namespace RotteHullet.Domain
 {
     class BogFacade
     {
-        private static BogFacade bogFacade;
-        public static BogFacade getBogFacade()
+        private static BogFacade _bogFacade;
+        public static BogFacade HentBogFacade()
         {
-            if (bogFacade == null)
+            if (_bogFacade == null)
             {
-                bogFacade = new BogFacade();
+                _bogFacade = new BogFacade();
             }
-            return bogFacade;
+            return _bogFacade;
         }
-
-        public void doBogStuff()
-        {
-            Console.WriteLine("lol");
-        }
-
         public bool SkabBog(string bognavn, string forfatter, string genre, string subkategori, string familie, string forlag, string kommentar)
         {
             Bog bog = AktivFactory.HentAktivFactory().SkabNyBog(0, bognavn, forfatter, genre, subkategori, familie, forlag, kommentar);
