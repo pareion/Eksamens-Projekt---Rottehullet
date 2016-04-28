@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using RotteHullet.Domain;
+using RotteHullet.Data;
 
 namespace RotteHullet
 {
@@ -39,8 +40,14 @@ namespace RotteHullet
 
         private void btn_LogPå_Click(object sender, RoutedEventArgs e)
         {
-            Window panel = new AdminPanel();
-            panel.Show();
+            if (MedlemFacade.TjekLogind(tb_Brugernavn.Text, tb_Kodeord.Password))
+            {
+                
+            }
+            else
+            {
+
+            }
         }
     }
 }
