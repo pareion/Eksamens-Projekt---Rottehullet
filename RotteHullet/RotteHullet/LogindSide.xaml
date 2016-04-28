@@ -1,11 +1,11 @@
-﻿<Window x:Class="RotteHullet.MainWindow"
+﻿<Window x:Class="RotteHullet.LogindSide"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RotteHullet"
         mc:Ignorable="d"
-        Title="Rottehullet" Height="272.78" Width="471.037">
+        Title="LogindSide" Height="300" Width="300">
     <Grid>
         <TextBox x:Name="tb_Brugernavn" HorizontalAlignment="Left" Height="23" Margin="162,79,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="185"/>
         <TextBox x:Name="tb_Kodeord" HorizontalAlignment="Left" Height="23" Margin="162,140,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="185"/>

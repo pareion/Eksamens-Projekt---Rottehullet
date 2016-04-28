@@ -57,4 +57,4 @@ using System.Windows;
 
 
 // UnitTest
-[assembly: InternalsVisibleTo("Unit_Testing_Sprint_1")]
+[assembly: InternalsVisibleTo("Unit Testing Sprint 1")]
