@@ -9,7 +9,7 @@ namespace RotteHullet.Domain.BusinessLogic
     class Udstyr : IAktiv
     {
         private int _id;
-        private string _navn;
+        private string _udstyrsNavn;
         private string _kategori;
         private string _kommentar;
 
@@ -27,16 +27,16 @@ namespace RotteHullet.Domain.BusinessLogic
             }
         }
 
-        public string Navn
+        public string UdstyrsNavn
         {
             get
             {
-                return _navn;
+                return _udstyrsNavn;
             }
 
             private set
             {
-                _navn = value;
+                _udstyrsNavn = value;
             }
         }
 
@@ -67,10 +67,10 @@ namespace RotteHullet.Domain.BusinessLogic
         }
         #endregion
 
-        public Udstyr(int id, string navn, string kategori, string kommentar)
+        public Udstyr(int id, string udstyrsNavn, string kategori, string kommentar)
         {
             _id = id;
-            _navn = navn;
+            _udstyrsNavn = udstyrsNavn;
             _kategori = kategori;
             Kommentar = kommentar;
         }

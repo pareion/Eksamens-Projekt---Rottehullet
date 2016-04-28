@@ -9,7 +9,7 @@ namespace RotteHullet.Domain.BusinessLogic
     class Lokale : IAktiv
     {
         private int _id;
-        private string _navn;
+        private string _lokaleNavn;
         private string _lokation;
         private string _kommentar;
         private string _møbler;
@@ -28,16 +28,16 @@ namespace RotteHullet.Domain.BusinessLogic
             }
         }
 
-        public string Navn
+        public string LokaleNavn
         {
             get
             {
-                return _navn;
+                return _lokaleNavn;
             }
 
             private set
             {
-                _navn = value;
+                _lokaleNavn = value;
             }
         }
 
@@ -81,9 +81,9 @@ namespace RotteHullet.Domain.BusinessLogic
         }
         #endregion
 
-        public Lokale(int id, string navn, string lokation, string kommentar, string møbler)
+        public Lokale(int id, string lokaleNavn, string lokation, string kommentar, string møbler)
         {
-            _navn = navn;
+            _lokaleNavn = lokaleNavn;
             _lokation = lokation;
             _kommentar = kommentar;
             _møbler = møbler;

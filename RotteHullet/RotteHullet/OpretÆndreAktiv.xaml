@@ -32,7 +32,7 @@
             </TabItem>
             <TabItem Header="Brætspil">
                 <Grid>
-                    <Label x:Name="l_BrætspilNavn" Content="Navn" HorizontalAlignment="Left" Margin="50,31,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="l_BrætspilNavn" Content="UdstyrsNavn" HorizontalAlignment="Left" Margin="50,31,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="tb_Brætspilnavn" HorizontalAlignment="Left" Height="23" Margin="87,34,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Padding="0,5"/>
                     <Label x:Name="l_BrætspilUdgiver" Content="Udgiver" HorizontalAlignment="Left" Margin="37,57,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.398,0.444"/>
                     <TextBox x:Name="tb_BrætspilUdgiver" HorizontalAlignment="Left" Height="23" Margin="87,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Padding="0,5"/>
@@ -45,7 +45,7 @@
             </TabItem>
             <TabItem Header="Udstyr">
                 <Grid>
-                    <Label x:Name="l_Udstyrnavn" Content="Navn" HorizontalAlignment="Left" Margin="50,31,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="l_Udstyrnavn" Content="UdstyrsNavn" HorizontalAlignment="Left" Margin="50,31,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="tb_Udstyrnavn" HorizontalAlignment="Left" Height="23" Margin="87,34,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Padding="0,5"/>
                     <Label x:Name="l_UdstyrKategori" Content="Kategori" HorizontalAlignment="Left" Margin="33,57,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.398,0.444"/>
                     <TextBox x:Name="tb_UdstyrKategori" HorizontalAlignment="Left" Height="23" Margin="87,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Padding="0,5"/>
@@ -59,7 +59,7 @@
             <TabItem Header="Lokale">
                 <Grid>
 
-                    <Label x:Name="l_Lokalenavn" Content="Navn" HorizontalAlignment="Left" Margin="50,31,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="l_Lokalenavn" Content="UdstyrsNavn" HorizontalAlignment="Left" Margin="50,31,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="tb_Lokalenavn" HorizontalAlignment="Left" Height="23" Margin="87,34,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Padding="0,5"/>
                     <Label x:Name="l_Lokation" Content="Lokation" HorizontalAlignment="Left" Margin="33,57,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.398,0.444"/>
                     <TextBox x:Name="tb_Lokation" HorizontalAlignment="Left" Height="23" Margin="87,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Padding="0,5"/>

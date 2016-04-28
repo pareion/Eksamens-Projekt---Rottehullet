@@ -9,7 +9,7 @@ namespace RotteHullet.Domain.BusinessLogic
     class Brætspil : IAktiv
     {
         private int _id;
-        private string _navn;
+        private string _brætspilsNavn;
         private string _udgiver;
         private string _kommentar;
 
@@ -27,16 +27,16 @@ namespace RotteHullet.Domain.BusinessLogic
             }
         }
 
-        public string Navn
+        public string BrætspilsNavn
         {
             get
             {
-                return _navn;
+                return _brætspilsNavn;
             }
 
             private set
             {
-                _navn = value;
+                _brætspilsNavn = value;
             }
         }
 
@@ -67,10 +67,10 @@ namespace RotteHullet.Domain.BusinessLogic
         }
         #endregion
 
-        public Brætspil(int id, string navn, string udgiver, string kommentar)
+        public Brætspil(int id, string brætspilsNavn, string udgiver, string kommentar)
         {
             _id = id;
-            _navn = navn;
+            _brætspilsNavn = brætspilsNavn;
             _udgiver = udgiver;
             _kommentar = kommentar;
         }

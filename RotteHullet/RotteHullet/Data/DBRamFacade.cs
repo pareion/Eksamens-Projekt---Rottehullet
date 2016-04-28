@@ -269,7 +269,7 @@ namespace RotteHullet.Data
             {
                 foreach (Lokale item in _lokaleListe)
                 {
-                    if (item.Navn.Contains(søgning) || item.Møbler.Contains(søgning))
+                    if (item.LokaleNavn.Contains(søgning) || item.Møbler.Contains(søgning))
                     {
                         lokaleResult.Add(item);
                         result = true;
@@ -282,7 +282,7 @@ namespace RotteHullet.Data
             {
                 foreach (Brætspil item in _brætspilsListe)
                 {
-                    if (item.Navn.Contains(søgning) || item.Udgiver.Contains(søgning))
+                    if (item.BrætspilsNavn.Contains(søgning) || item.Udgiver.Contains(søgning))
                     {
                         brætspilResult.Add(item);
                         result = true;
@@ -295,7 +295,7 @@ namespace RotteHullet.Data
             {
                 foreach (Udstyr item in _udstyrsListe)
                 {
-                    if (item.Navn.Contains(søgning) || item.Kategori.Contains(søgning))
+                    if (item.UdstyrsNavn.Contains(søgning) || item.Kategori.Contains(søgning))
                     {
                         udstyrResult.Add(item);
                         result = true;
