@@ -31,9 +31,9 @@ namespace RotteHullet.Domain
             return DBSQLFacade.HentDBSQLFacade().ÆndreBog(id, bog) ? "Bog blev ændret" : "Bog blev ikke ændret";
         }
 
-        public Bog LæsBog(int id)
+        public string LæsBog(int id)
         {
-            return DBRamFacade.HentDbRamFacade().HentBog(id);
+            return DBRamFacade.HentDbRamFacade().HentBog(id).ToString();
         }
 
         public string SletBog(int id)

@@ -91,7 +91,28 @@ namespace RotteHullet.Domain.BusinessLogic
         }
         public override string ToString()
         {
-            return "ID: " + _id + " Lokalenavn: " + _lokaleNavn + " Lokation: " + _lokation + " Kommentar: " + _kommentar + " Møbler: " + _møbler;
+            return "ID: " + _id + " Lokalenavn: " + _lokaleNavn + " Lokation: " + _lokation + 
+                " Kommentar: " + _kommentar + " Møbler: " + _møbler;
         }
+
+        public string ToString(int position)
+        {
+            switch (position)
+            {
+                case 0:
+                    return "" + _id;
+                case 1:
+                    return _lokaleNavn;
+                case 2:
+                    return _lokation;
+                case 3:
+                    return _kommentar;
+                case 4:
+                    return _møbler;
+                default:
+                    return ToString();
+            }
+        }
+
     }//Klasse
 }//Namespace
