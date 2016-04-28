@@ -39,22 +39,22 @@ namespace RotteHullet
         // slut på skal slettes
         private void btn_GemBog_Click(object sender, RoutedEventArgs e)
         {
-          UIFacade.getUIFacade().getBogFacade().SkabBog(tb_Titel.Text,tb_Forfatter.Text,tb_Genre.Text,tb_Subkategori.Text,tb_Familie.Text,tb_Familie.Text,tb_Kommentar.Text);
+          UIFacade.HentUIFacade().HentBogFacade().SkabBog(tb_Titel.Text,tb_Forfatter.Text,tb_Genre.Text,tb_Subkategori.Text,tb_Familie.Text,tb_Familie.Text,tb_Kommentar.Text);
         }
 
         private void btn_GemBrætspil_Click(object sender, RoutedEventArgs e)
         {
-            UIFacade.getUIFacade().HentBrætSpilFacade().SkabBrætSpil(0, tb_Brætspilnavn.Text, tb_BrætspilUdgiver.Text, tb_BrætspilKommentar.Text);
+            UIFacade.HentUIFacade().HentBrætSpilFacade().SkabBrætSpil(0, tb_Brætspilnavn.Text, tb_BrætspilUdgiver.Text, tb_BrætspilKommentar.Text);
         }
 
         private void btn_GemUdstyr_Click(object sender, RoutedEventArgs e)
         {
-            UIFacade.getUIFacade().HentUdstyrFacade().SkabUdstyr(0,tb_Udstyrnavn.Text, tb_UdstyrKategori.Text, tb_UdstyrKommentar.Text);
+            UIFacade.HentUIFacade().HentUdstyrFacade().SkabUdstyr(0,tb_Udstyrnavn.Text, tb_UdstyrKategori.Text, tb_UdstyrKommentar.Text);
         }
 
         private void btn_GemLokale_Click(object sender, RoutedEventArgs e)
         {
-            UIFacade.getUIFacade().HentLokaleFacade().SkabLokale(0, tb_Lokalenavn.Text, tb_Lokation.Text, tb_LokaleKommentar.Text, tb_LokaleMøbler.Text);
+            UIFacade.HentUIFacade().HentLokaleFacade().SkabLokale(0, tb_Lokalenavn.Text, tb_Lokation.Text, tb_LokaleKommentar.Text, tb_LokaleMøbler.Text);
 
         }
 
