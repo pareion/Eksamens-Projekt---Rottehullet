@@ -51,9 +51,8 @@ namespace RotteHullet
 
         private void opret_Click(object sender, RoutedEventArgs e)
         {
-            OpretÆndreAktiv opret = new OpretÆndreAktiv();
+            OpretÆndreAktiv opret = new OpretÆndreAktiv(adminTab.SelectedIndex);
             opret.Show();
-            opret.SætTabAktiv(adminTab.SelectedIndex);
         }
     }
 }

@@ -13,7 +13,7 @@
         <Button x:Name="btn_LogPå" Content="Log på" HorizontalAlignment="Left" Margin="228,168,0,0" VerticalAlignment="Top" Padding="10,5" Click="btn_LogPå_Click"/>
         <Label x:Name="l_Brugernavn" Content="Brugernavn" HorizontalAlignment="Left" Margin="103,53,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.674,-0.715"/>
         <Label x:Name="l_Kodeord" Content="Kodeord" HorizontalAlignment="Left" Margin="103,114,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.674,-0.715"/>
-        <Label x:Name="l_Tilmeld" Content="Tilmeld som Medlem" HorizontalAlignment="Left" Margin="66,233,0,0" VerticalAlignment="Top" FontWeight="Bold" MouseLeftButtonDown="TilmeldEvent"/>
-        <Label x:Name="l_GlemtAdgangskode" Content="Glemt Adgangskode" HorizontalAlignment="Left" Margin="214,233,0,0" VerticalAlignment="Top" FontWeight="Bold" MouseLeftButtonDown="GlemtAdgangskodeEvent"/>
+        <Label x:Name="l_Tilmeld" Content="Tilmeld som Medlem" HorizontalAlignment="Left" Margin="66,233,0,0" VerticalAlignment="Top" FontWeight="Bold" MouseLeftButtonDown="TilmeldEvent" MouseEnter="MusOverEffekt" MouseLeave="MusForladEffekt"/>
+        <Label x:Name="l_GlemtAdgangskode" Content="Glemt Adgangskode" HorizontalAlignment="Left" Margin="214,233,0,0" VerticalAlignment="Top" FontWeight="Bold" MouseLeftButtonDown="GlemtAdgangskodeEvent" MouseEnter="MusOverEffekt" MouseLeave="MusForladEffekt"/>
     </Grid>
 </Window>

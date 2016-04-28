@@ -8,7 +8,7 @@
         Title="OpretÆndreAktiv" Height="501.146" Width="389.398">
     <Grid>
         <TabControl x:Name="maintab" HorizontalAlignment="Left" Height="451" Margin="10,10,0,0" VerticalAlignment="Top" Width="361">
-            <TabItem Header="Bog">
+            <TabItem Header="Bog" IsEnabled="False">
                 <Grid>
                     <Label x:Name="l_Titel" Content="Titel" HorizontalAlignment="Left" Margin="50,31,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="tb_Titel" HorizontalAlignment="Left" Height="23" Margin="87,34,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Padding="0,5"/>
@@ -30,7 +30,7 @@
 
                 </Grid>
             </TabItem>
-            <TabItem Header="Brætspil">
+            <TabItem Header="Brætspil" IsEnabled="False">
                 <Grid>
                     <Label x:Name="l_BrætspilNavn" Content="Brætspilsnavn" HorizontalAlignment="Left" Margin="6,32,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="tb_Brætspilnavn" HorizontalAlignment="Left" Height="23" Margin="87,34,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Padding="0,5"/>
@@ -43,7 +43,7 @@
 
                 </Grid>
             </TabItem>
-            <TabItem Header="Udstyr">
+            <TabItem Header="Udstyr" IsEnabled="False">
                 <Grid>
                     <Label x:Name="l_Udstyrnavn" Content="Udstyrsnavn" HorizontalAlignment="Left" Margin="12,31,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="tb_Udstyrnavn" HorizontalAlignment="Left" Height="23" Margin="87,34,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Padding="0,5"/>
@@ -56,7 +56,7 @@
                     <Button x:Name="btn_AnnullerUdstyr" Content="Annuller" Margin="252,387,34,10" Click="btn_AnnullerUdstyr_Click"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Lokale">
+            <TabItem Header="Lokale" IsEnabled="False">
                 <Grid>
 
                     <Label x:Name="l_Lokalenavn" Content="Lokalenavn" HorizontalAlignment="Left" Margin="18,35,0,0" VerticalAlignment="Top"/>

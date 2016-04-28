@@ -27,19 +27,19 @@ namespace RotteHullet
             
 
         }
-        public OpretÆndreAktiv()
+        public OpretÆndreAktiv(int index)
         {
             InitializeComponent();
+            TabItem item = maintab.Items[index] as TabItem;
+            item.IsEnabled = true;
         }
-        
-
-        public void SætTabAktiv(int tabID) {
-
-            maintab.SelectedIndex = tabID;
-
-
+        public OpretÆndreAktiv(IndexTab index)
+        {
+            InitializeComponent();
+            int tabindex = (int)index;
+            TabItem item = maintab.Items[tabindex] as TabItem;
+            item.IsEnabled = true;
         }
-
         
         private void btn_GemBog_Click(object sender, RoutedEventArgs e)
         {
@@ -62,8 +62,8 @@ namespace RotteHullet
         }
 
         private void gåTilMenu() {
-            // Gør noget her
-
+            // Lukke Opret og Ændre aktiv vindue ned
+            this.Close();
         }
 
         private void btn_AnnullerLokale_Click(object sender, RoutedEventArgs e)

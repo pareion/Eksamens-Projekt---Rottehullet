@@ -42,12 +42,44 @@ namespace RotteHullet
         {
             if (MedlemFacade.TjekLogind(tb_Brugernavn.Text, tb_Kodeord.Password))
             {
-                
+                advarelse(false);
+                AdminPanel panel = new AdminPanel();
+                panel.Show();
+                panel.Activate();
+                this.Close();
             }
             else
             {
-
+                advarelse(true);
             }
+        }
+
+        private void advarelse(bool status = true)
+        {
+            if (status)
+            {
+                l_Brugernavn.Foreground = Brushes.Red;
+                l_Kodeord.Foreground = Brushes.Red;
+            }
+            else
+            {
+                l_Brugernavn.Foreground = Brushes.Black;
+                l_Kodeord.Foreground = Brushes.Black;
+            }
+        }
+
+        private void MusOverEffekt(object sender, MouseEventArgs e)
+        {
+            Label textKnap = sender as Label;
+            textKnap.Foreground = Brushes.SkyBlue;
+            textKnap.Cursor = Cursors.Hand;
+        }
+
+        private void MusForladEffekt(object sender, MouseEventArgs e)
+        {
+            Label textKnap = sender as Label;
+            textKnap.Foreground = Brushes.Black;
+            textKnap.Cursor = Cursors.Arrow;
         }
     }
 }
