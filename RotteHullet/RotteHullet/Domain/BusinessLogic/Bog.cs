@@ -135,5 +135,17 @@ namespace RotteHullet.Domain.BusinessLogic
             _forlag = forlag;
             _kommentar = kommentar;
         }
+
+        //Test om et bog objekt er ens med et andet
+        public bool ErSammeBog(Bog bog)
+        { 
+            if (bog.Id == Id && bog.Familie == Familie && bog.Forfatter == Forfatter
+                && bog.Forlag == Forlag && bog.Genre == Genre && bog.Kommentar == Kommentar
+                && bog.Subkategori == Subkategori && bog.Titel == Titel)
+            {
+                return true;
+            }
+            return false;
+        }
     }//Klasse
 }//Namespace
