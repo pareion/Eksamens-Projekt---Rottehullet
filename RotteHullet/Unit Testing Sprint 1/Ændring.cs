@@ -49,20 +49,38 @@ namespace Unit_Testing_Sprint_1
         [TestMethod]
         public void TestÆndringAfLokaler()
         {
-            //Opret udstyr
-            Udstyr uds = new Udstyr(1, "test2", "test3", "test4");
+            //Opret lokale
+            Lokale lok = new Lokale(1, "test2", "test3", "test4", "test5");
 
-            //Gem udstyr
-            UIFacade.HentUIFacade().HentUdstyrFacade().SkabUdstyr(0, "test1", "test2", "test3");
+            //Gem lokale
+            UIFacade.HentUIFacade().HentLokaleFacade().SkabLokale(0, "test1", "test2", "test3", "test4");
 
-            //Ændre udstyr
-            UIFacade.HentUIFacade().HentUdstyrFacade().ÆndreUdstyr(0, 1, "test2", "test3", "test4");
+            //Ændre lokale
+            UIFacade.HentUIFacade().HentLokaleFacade().ÆndreLokale(0, 1, "test2", "test3", "test4", "test5");
 
-            //Hent udstyr
-            string udstyrhentet = UIFacade.HentUIFacade().HentUdstyrFacade().HentUdstyr(1);
+            //Hent lokale
+            string lokhentet = UIFacade.HentUIFacade().HentLokaleFacade().HentLokale(1);
 
             //Sammenlign om den gemte er identisk med den som er hentet ud
-            Assert.AreEqual(uds.ToString(), udstyrhentet);
+            Assert.AreEqual(lok.ToString(), lokhentet);
+        }
+        [TestMethod]
+        public void TestÆndringAfBrætspil()
+        {
+            //Opret brætspil
+            Brætspil bs = new Brætspil(1, "test2", "test3", "test4");
+
+            //Gem brætspil
+            UIFacade.HentUIFacade().HentBrætSpilFacade().SkabBrætSpil(0, "test1", "test2", "test3");
+
+            //Ændre brætspil
+            UIFacade.HentUIFacade().HentBrætSpilFacade().ÆndreBrætSpil(0, 1, "test2", "test3", "test4");
+
+            //Hent brætspil
+            string bsHentet = UIFacade.HentUIFacade().HentBrætSpilFacade().HentBrætSpil(1);
+
+            //Sammenlign om den gemte er identisk med den som er hentet ud
+            Assert.AreEqual(bs.ToString(), bsHentet);
         }
     }
 }
