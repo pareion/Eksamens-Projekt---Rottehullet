@@ -83,6 +83,7 @@ namespace RotteHullet.Domain.BusinessLogic
 
         public Lokale(int id, string lokaleNavn, string lokation, string kommentar, string møbler)
         {
+            _id = id;
             _lokaleNavn = lokaleNavn;
             _lokation = lokation;
             _kommentar = kommentar;
