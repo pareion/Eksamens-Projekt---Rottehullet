@@ -22,7 +22,7 @@ namespace Unit_Testing_Sprint_1
             UIFacade.HentUIFacade().HentBogFacade().ÆndreBog(0, "test1", "test2", "test3", "test4", "test5", "test6", "test7");
 
             //Hent bog
-            string bogHentet = UIFacade.HentUIFacade().HentBogFacade().LæsBog(0);
+            string bogHentet = UIFacade.HentUIFacade().HentBogFacade().HentBog(0);
 
             //Sammenlign om den gemte er identisk med den som er hentet ud
             Assert.AreEqual(bog.ToString(), bogHentet);
