@@ -22,7 +22,7 @@ namespace RotteHullet.Domain
 
         public void doBogStuff()
         {
-            Console.WriteLine("lol");
+           // Console.WriteLine("lol");
         }
 
         public bool SkabBog(string bognavn, string forfatter, string genre, string subkategori, string familie, string forlag, string kommentar)
