@@ -62,6 +62,12 @@
       <Name>RotteHullet</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RotteHullet\RotteHullet.csproj">
+      <Project>{c83abc0b-0ebe-4da0-ba43-15654d0ea4c0}</Project>
+      <Name>RotteHullet</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

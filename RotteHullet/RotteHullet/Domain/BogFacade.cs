@@ -22,7 +22,11 @@ namespace RotteHullet.Domain
         public string SkabBog(string bognavn, string forfatter, string genre, string subkategori, string familie, string forlag, string kommentar)
         {
             Bog bog = AktivFactory.HentAktivFactory().SkabNyBog(0, bognavn, forfatter, genre, subkategori, familie, forlag, kommentar);
+<<<<<<< HEAD
             return DBSQLFacade.HentDBSQLFacade().GemBog(bog) ? "Bog er oprettet" : "Bog blev ikke oprettetS";
+=======
+            return DBRamFacade.HentDbRamFacade().GemBog(bog);
+>>>>>>> 62eb71f3022e886f7f93a255b9bcd5d5a5a34105
         }
 
         public string ÆndreBog(int id, string bognavn, string forfatter, string genre, string subkategori, string familie, string forlag, string kommentar)
@@ -33,7 +37,7 @@ namespace RotteHullet.Domain
 
         public Bog LæsBog(int id)
         {
-            return DBSQLFacade.HentDBSQLFacade().HentBog(id);
+            return DBRamFacade.HentDbRamFacade().HentBog(id);
         }
 
         public string SletBog(int id)
