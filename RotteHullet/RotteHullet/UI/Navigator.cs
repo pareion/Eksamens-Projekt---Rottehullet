@@ -11,10 +11,10 @@ namespace RotteHullet.UI
     class Navigator
     {
         public static Window HovedVindue { get; set; }
-        private UserControl nuværende { get; set; }
-        private UserControl tidligere { get; set; }
+        private static UserControl nuværende { get; set; }
+        private static UserControl tidligere { get; set; }
 
-        public void Skift(UserControl kontrol)
+        public static void Skift(UserControl kontrol)
         {
             if (HovedVindue != null)
             {
@@ -36,7 +36,7 @@ namespace RotteHullet.UI
             }
         }
 
-        public void Tilbage()
+        public static void Tilbage()
         {
             if (HovedVindue != null)
             {
