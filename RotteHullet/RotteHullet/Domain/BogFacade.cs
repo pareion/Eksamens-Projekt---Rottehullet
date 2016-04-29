@@ -47,6 +47,17 @@ namespace RotteHullet.Domain
             return bøgerListe;
         }
 
+        public List<object> FindAlleBøger()
+        {
+            List<Bog> bøgerListe = DBRamFacade.HentDbRamFacade().HentAlleBøger();
+            List<object> dataListe = new List<object>();
+            foreach (Bog item in bøgerListe)
+            {
+                dataListe.Add(item);
+            }
+            return dataListe;
+        }
+
         public string SletBog(int id)
         {
             return DBSQLFacade.HentDBSQLFacade().SletBog(id) ? "Bog blev slettet" : "Kan ikke slet bog";

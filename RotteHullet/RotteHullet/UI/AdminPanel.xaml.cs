@@ -11,9 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using RotteHullet.Domain;
-using RotteHullet.Data;
-using RotteHullet.Domain.BusinessLogic;
+//using RotteHullet.Domain;
 
 namespace RotteHullet
 {
@@ -22,10 +20,7 @@ namespace RotteHullet
     /// </summary>
     public partial class AdminPanel : Window
     {
-        private int _selectionID;
-
-        private List<Bog> _bogListe = new List<Bog>(); 
-    
+        private List<object> _datavisningListe = new List<object>();
 
         public AdminPanel()
         {
@@ -55,13 +50,26 @@ namespace RotteHullet
 
         private void indlæsData()
         {
-            Bog bog1 = new Bog(1, "hello", "world", "action", "rpg", "app", "Nothing");
-            Bog bog2 = new Bog(2, "hello2", "world2", "action", "rpg", "app", "Nothing");
-            Bog bog3 = new Bog(3, "hello3", "world3", "action", "rpg", "app", "Nothing");
+            Random rand = new Random();
+            for (int i = 0; i < 9999; i++)
+            {
+                RotteHullet.Domain.UIFacade.HentUIFacade().HentBogFacade().SkabBog(GetText(rand), GetText(rand), GetText(rand), GetText(rand), GetText(rand), GetText(rand), GetText(rand));
+            }
 
-            lv_bøger.Items.Add(bog1);
-            lv_bøger.Items.Add(bog2);
-            lv_bøger.Items.Add(bog3);
+            _datavisningListe = RotteHullet.Domain.UIFacade.HentUIFacade().HentBogFacade().FindAlleBøger();
+
+            _datavisningListe.ForEach(x => lv_bøger.Items.Add(x));
+        }
+
+        private string GetText(Random rand)
+        {
+
+            byte[] raw = new byte[32];
+            rand.NextBytes(raw);
+
+            System.Security.Cryptography.SHA1Managed sha = new System.Security.Cryptography.SHA1Managed();
+            byte[] data = sha.ComputeHash(raw);
+            return Convert.ToBase64String(data);
         }
 
         private void opret_Click(object sender, RoutedEventArgs e)

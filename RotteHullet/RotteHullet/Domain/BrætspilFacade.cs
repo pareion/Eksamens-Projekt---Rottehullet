@@ -51,6 +51,22 @@ namespace RotteHullet.Domain
             }
             return nyeBrætspil;
         }
+
+        public object FindBrætspil()
+        {
+            return null;
+        }
+        public List<object> FindAlleBrætspil()
+        {
+            List<Bog> bøgerListe = DBRamFacade.HentDbRamFacade().HentAlleBøger();
+            List<object> dataListe = new List<object>();
+            foreach (Bog item in bøgerListe)
+            {
+                dataListe.Add(item);
+            }
+            return dataListe;
+        }
+
         public string SletBrætSpil(int id)
         {
             if (DBSQLFacade.HentDBSQLFacade().SletBrætSpil(id))
