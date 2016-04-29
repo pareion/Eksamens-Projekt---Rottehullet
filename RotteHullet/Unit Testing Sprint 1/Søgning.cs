@@ -15,17 +15,21 @@ namespace Unit_Testing_Sprint_1
         [TestMethod]
         public void TestSøgBog()
         {
+            //Skab 3 bog objekter
             Bog aktiv1 = new Bog(1, "Hello world", "Forfatter1", "Genre1", "Subkategori1", "Greeting", "Forlag1", "Kommentar1");
             Bog aktiv2 = new Bog(2, "The World is a big place", "Forfatter2", "Genre2", "Subkategori2", "Geography", "Forlag2", "Kommentar2");
             Bog aktiv3 = new Bog(3, "The Code 3", "Forfatter3", "Genre3", "Subkategori3", "PRogramming", "Forlag3", "Kommentar3");
 
+            //Gem bog objekterne
             DBRamFacade.HentDbRamFacade().GemBog(aktiv1);
             DBRamFacade.HentDbRamFacade().GemBog(aktiv2);
             DBRamFacade.HentDbRamFacade().GemBog(aktiv3);
 
+            //liste med bøger
             List<Bog> aktiver = new List<Bog>();
             bool resultat = UIFacade.HentUIFacade().HentSøgningsFacade().Søg("Hello", out aktiver);
 
+            //Tjekker resultatet. Resultatet burde være at der findes bogen med id´et 1 på listen.
             if (aktiver.Count > 0)
             {
                 Assert.IsTrue(aktiver.Exists(x => x.Id == 1));
@@ -35,6 +39,10 @@ namespace Unit_Testing_Sprint_1
                 Assert.IsTrue(false);
             }
         }
+
+        /// <summary>
+        /// Resten af metoderne herunder er identiske og kommenteres ikke.
+        /// </summary>
 
         [TestMethod]
         public void TestSøgBrætspil()
