@@ -89,15 +89,15 @@ namespace Unit_Testing_Sprint_1
         [TestMethod]
         public void TestSøgUdstyr()
         {
-            Lokale aktiv1 = new Lokale(1, "Hello world", "Forfatter1", "Greeting", "Test");
-            Lokale aktiv2 = new Lokale(2, "The World is a big place", "Forfatter2", "Greeting", "Test");
-            Lokale aktiv3 = new Lokale(3, "The Code 3", "Forfatter3", "Kommentar3", "Test");
+            Udstyr aktiv1 = new Udstyr(1, "Hello world", "Forfatter1", "Greeting");
+            Udstyr aktiv2 = new Udstyr(2, "The World is a big place", "Forfatter2", "Greeting");
+            Udstyr aktiv3 = new Udstyr(3, "The Code 3", "Forfatter3", "Kommentar3");
 
-            DBRamFacade.HentDbRamFacade().GemLokale(aktiv1);
-            DBRamFacade.HentDbRamFacade().GemLokale(aktiv2);
-            DBRamFacade.HentDbRamFacade().GemLokale(aktiv3);
+            DBRamFacade.HentDbRamFacade().GemUdstyr(aktiv1);
+            DBRamFacade.HentDbRamFacade().GemUdstyr(aktiv2);
+            DBRamFacade.HentDbRamFacade().GemUdstyr(aktiv3);
 
-            List<Lokale> aktiver = new List<Lokale>();
+            List<Udstyr> aktiver = new List<Udstyr>();
             bool resultat = DBRamFacade.HentDbRamFacade().Søg("Code", out aktiver);
 
             if (aktiver.Count > 0)

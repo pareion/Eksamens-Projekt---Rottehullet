@@ -19,7 +19,7 @@
                             <GridView>
                                 <GridViewColumn Header="ID" Width="Auto" DisplayMemberBinding="{Binding Id}"/>
                                 <GridViewColumn Header="Familie" Width="200" DisplayMemberBinding="{Binding Familie}"/>
-                                <GridViewColumn Header="UdstyrsLokaleNavn" Width="290" DisplayMemberBinding="{Binding Navn}"/>
+                                <GridViewColumn Header="Titel" Width="290" DisplayMemberBinding="{Binding Titel}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
@@ -36,7 +36,7 @@
                             <GridView>
                                 <GridViewColumn Header="ID" Width="Auto" DisplayMemberBinding="{Binding Id}"/>
                                 <GridViewColumn Header="Udgiver" Width="180" DisplayMemberBinding="{Binding Udgiver}"/>
-                                <GridViewColumn Header="UdstyrsLokaleNavn" Width="300" DisplayMemberBinding="{Binding Navn}"/>
+                                <GridViewColumn Header="Navn" Width="300" DisplayMemberBinding="{Binding BrætspilsNavn}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
@@ -52,7 +52,7 @@
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="ID" Width="Auto" DisplayMemberBinding="{Binding Id}"/>
-                                <GridViewColumn Header="UdstyrsLokaleNavn" Width="400" DisplayMemberBinding="{Binding Navn}"/>
+                                <GridViewColumn Header="Udstyr" Width="400" DisplayMemberBinding="{Binding UdstyrsNavn}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
@@ -68,7 +68,7 @@
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="ID" Width="Auto" DisplayMemberBinding="{Binding Id}"/>
-                                <GridViewColumn Header="UdstyrsLokaleNavn" Width="220" DisplayMemberBinding="{Binding Navn}"/>
+                                <GridViewColumn Header="Navn" Width="220" DisplayMemberBinding="{Binding LokaleNavn}"/>
                                 <GridViewColumn Header="Lokation" Width="260" DisplayMemberBinding="{Binding Lokation}"/>
                             </GridView>
                         </ListView.View>
