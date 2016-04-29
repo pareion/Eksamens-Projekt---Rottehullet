@@ -33,6 +33,7 @@ namespace RotteHullet.Domain
 
         public string HentBog(int id)
         {
+
             return DBRamFacade.HentDbRamFacade().HentBog(id).ToString();
         }
 

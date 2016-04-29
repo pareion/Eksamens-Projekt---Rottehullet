@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 
 namespace RotteHullet.Domain
 {
-    class SøgningsFacade
+    class VærktøjsFacade
     {
-        private static SøgningsFacade _søgningsFacade;
+        private static VærktøjsFacade _værktøjsFacade;
 
-        public static SøgningsFacade GetSøgningsFacade()
+        public static VærktøjsFacade HentVærktøjsFacade()
         {
-            if (_søgningsFacade == null)
+            if (_værktøjsFacade == null)
             {
-                _søgningsFacade = new SøgningsFacade();
+                _værktøjsFacade = new VærktøjsFacade();
             }
-            return _søgningsFacade;
+            return _værktøjsFacade;
         }
         public bool Søg(bool bøger, bool lokaler, bool brætspil, bool udstyr, string søgning, out List<Bog> bogResult, out List<Lokale> lokaleResult, out List<Brætspil> brætspilResult, out List<Udstyr> udstyrResult)
         {

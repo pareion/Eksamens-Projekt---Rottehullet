@@ -27,7 +27,7 @@ namespace Unit_Testing_Sprint_1
 
             //liste med bøger
             List<Bog> aktiver = new List<Bog>();
-            bool resultat = UIFacade.HentUIFacade().HentSøgningsFacade().Søg("Hello", out aktiver);
+            bool resultat = UIFacade.HentUIFacade().HentVærktøjsFacade().Søg("Hello", out aktiver);
 
             //Tjekker resultatet. Resultatet burde være at der findes bogen med id´et 1 på listen.
             if (aktiver.Count > 0)
@@ -58,7 +58,7 @@ namespace Unit_Testing_Sprint_1
             DBRamFacade.HentDbRamFacade().GemBrætSpil(aktiv3);
 
             List<Brætspil> aktiver = new List<Brætspil>();
-            bool resultat = UIFacade.HentUIFacade().HentSøgningsFacade().Søg("World", out aktiver);
+            bool resultat = UIFacade.HentUIFacade().HentVærktøjsFacade().Søg("World", out aktiver);
 
             if (aktiver.Count > 0)
             {
@@ -82,7 +82,7 @@ namespace Unit_Testing_Sprint_1
             DBRamFacade.HentDbRamFacade().GemLokale(aktiv3);
 
             List<Lokale> aktiver = new List<Lokale>();
-            bool resultat = UIFacade.HentUIFacade().HentSøgningsFacade().Søg("Code", out aktiver);
+            bool resultat = UIFacade.HentUIFacade().HentVærktøjsFacade().Søg("Code", out aktiver);
 
             if (aktiver.Count > 0)
             {
@@ -106,7 +106,7 @@ namespace Unit_Testing_Sprint_1
             DBRamFacade.HentDbRamFacade().GemUdstyr(aktiv3);
 
             List<Udstyr> aktiver = new List<Udstyr>();
-            bool resultat = UIFacade.HentUIFacade().HentSøgningsFacade().Søg("Code", out aktiver);
+            bool resultat = UIFacade.HentUIFacade().HentVærktøjsFacade().Søg("Code", out aktiver);
 
             if (aktiver.Count > 0)
             {
