@@ -20,7 +20,9 @@ namespace RotteHullet.Værktøjs
             return _søgning;
         }
 
-        public bool Søg(bool bøger, bool lokaler, bool brætspil, bool udstyr, string søgning, out List<Bog> bogResult, out List<Lokale> lokaleResult, out List<Brætspil> brætspilResult, out List<Udstyr> udstyrResult)
+        public bool Søg(bool bøger, bool lokaler, bool brætspil, bool udstyr, string søgning, 
+            out List<Bog> bogResult, out List<Lokale> lokaleResult, 
+            out List<Brætspil> brætspilResult, out List<Udstyr> udstyrResult)
         {
             bogResult = new List<Bog>();
             lokaleResult = new List<Lokale>();

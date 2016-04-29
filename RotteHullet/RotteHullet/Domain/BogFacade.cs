@@ -31,18 +31,18 @@ namespace RotteHullet.Domain
             return DBSQLFacade.HentDBSQLFacade().ÆndreBog(id, bog) ? "Bog blev ændret" : "Bog blev ikke ændret";
         }
 
-        public string HentBog(int id)
+        public string HentBog(int id, int position)
         {
 
-            return DBRamFacade.HentDbRamFacade().HentBog(id).ToString();
+            return DBRamFacade.HentDbRamFacade().HentBog(id).ToString(position);
         }
 
-        public List<string> HentAlleBøger()
+        public List<string> HentAlleBøger(int position)
         {
             List<string> bøgerListe = new List<string>();
             foreach (var item in DBRamFacade.HentDbRamFacade().HentAlleBøger())
             {
-                bøgerListe.Add(item.ToString());
+                bøgerListe.Add(item.ToString(position));
             }
             return bøgerListe;
         }

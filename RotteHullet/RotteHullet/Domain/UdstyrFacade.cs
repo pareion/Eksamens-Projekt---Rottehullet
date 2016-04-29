@@ -38,16 +38,16 @@ namespace RotteHullet.Domain
             }
             return "Udstyret blev ikke ændret";
         }
-        public string HentUdstyr(int id)
+        public string HentUdstyr(int id, int position)
         {
-            return DBSQLFacade.HentDBSQLFacade().HentUdstyr(id).ToString();
+            return DBSQLFacade.HentDBSQLFacade().HentUdstyr(id).ToString(position);
         }
-        public List<string> HentAlleUdstyr()
+        public List<string> HentAlleUdstyr(int position)
         {
             List<string> nytUdstyr = new List<string>();
             foreach (var item in DBSQLFacade.HentDBSQLFacade().HentAlleUdstyr())
             {
-                nytUdstyr.Add(item.ToString());
+                nytUdstyr.Add(item.ToString(position));
             }
             return nytUdstyr;
         }
