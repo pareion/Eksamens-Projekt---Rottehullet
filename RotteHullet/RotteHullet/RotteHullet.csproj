@@ -55,7 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Domain\SøgningsFacade.cs" />
     <Compile Include="UI\Navigator.cs" />
+    <Compile Include="Værktøjs\Søgning.cs" />
     <Page Include="UI\AdminPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -34,5 +34,9 @@ namespace RotteHullet.Domain
         {
             return UdstyrFacade.HentUdstyrFacade();
         }
+        public SøgningsFacade HentSøgningsFacade()
+        {
+            return SøgningsFacade.GetSøgningsFacade();
+        }
     }
 }
