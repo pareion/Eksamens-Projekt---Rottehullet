@@ -47,10 +47,20 @@ namespace RotteHullet.Domain
             return bøgerListe;
         }
 
-        public List<object> FindAlleBøger()
+        public List<object> FindAlleBøger(string søgord = null)
         {
-            List<Bog> bøgerListe = DBRamFacade.HentDbRamFacade().HentAlleBøger();
+            List<Bog> bøgerListe = new List<Bog>();
             List<object> dataListe = new List<object>();
+
+            if(søgord == null)
+            {
+                bøgerListe = DBRamFacade.HentDbRamFacade().HentAlleBøger();
+            }
+            else
+            {
+                Værktøjs.Søgning.GetSøgning().Søg(søgord, out bøgerListe);
+            }
+
             foreach (Bog item in bøgerListe)
             {
                 dataListe.Add(item);
