@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RotteHullet"
         mc:Ignorable="d"
-        Title="Rottehullet" Height="300" Width="400" ResizeMode="NoResize">
+        Title="Rottehullet" Height="300" Width="400" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
         <TextBox x:Name="tb_Brugernavn" HorizontalAlignment="Left" Height="23" Margin="103,79,0,0" TextWrapping="Wrap" Text="admin" VerticalAlignment="Top" Width="185"/>
         <PasswordBox x:Name="tb_Kodeord" HorizontalAlignment="Left" Height="23" Margin="103,140,0,0" Password="admin"  VerticalAlignment="Top" Width="185"/>

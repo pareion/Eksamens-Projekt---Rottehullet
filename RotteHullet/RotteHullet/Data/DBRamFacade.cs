@@ -815,7 +815,7 @@ namespace RotteHullet.Data
         }
         private void randomUdstyr()
         {
-
+            
         }
         #endregion
 
