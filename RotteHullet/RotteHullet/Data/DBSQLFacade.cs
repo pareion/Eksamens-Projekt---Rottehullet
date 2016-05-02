@@ -152,7 +152,7 @@ Databasenavn: ejl51_db
 
                 SqlDataReader sdr = kommando.ExecuteReader();
 
-                while (sdr.Read())
+                if (sdr.Read())
                 {
 
                     int bogid = Convert.ToInt32(sdr["bogid"]);
@@ -204,6 +204,45 @@ Databasenavn: ejl51_db
 
             return resultat;
 
+        }
+
+
+        public List<Bog> HentAlleBøger() {
+            List<Bog> bogListe = new List<Bog>();
+
+            try
+            {
+                SqlConnection forb = hentForbindelse();
+                SqlCommand kommando = new SqlCommand("HentAlleBøger", forb);
+                kommando.CommandType = System.Data.CommandType.StoredProcedure;
+
+                SqlDataReader reader = kommando.ExecuteReader();
+
+
+                while (reader.Read())
+                {
+                    int bogid = Convert.ToInt32(reader["bogid"]);
+                    string titel = Convert.ToString(reader["titel"]);
+                    string forfatter = Convert.ToString(reader["forfatter"]);
+                    string genre = Convert.ToString(reader["genre"]);
+                    string subkategori = Convert.ToString(reader["subkategori"]);
+                    string familie = Convert.ToString(reader["familie"]);
+                    string forlag = Convert.ToString(reader["forlag"]);
+                    string kommentar = Convert.ToString(reader["kommentar"]);
+
+                    Bog bog = AktivFactory.HentAktivFactory().SkabNyBog(bogid, titel, forfatter, genre, subkategori, familie, forlag);
+                    bogListe.Add(bog);
+                }
+
+            }
+            catch (Exception)
+            {
+
+                bogListe = null;
+            }
+
+            
+            return bogListe;
         }
 
                 // DONE     +GemBog(Bog: bog): bool
