@@ -67,18 +67,7 @@ Databasenavn: ejl51_db
     */
 
 
-        /*
-
-        -_bogid: int
--_titel: string
--_forfatter: string
--_genre: string
--_subkategori: string
--_familie: string
--_forlag: string
--_kommentar: string
-
-*/
+  
 
         public bool GemBog(Bog bog) {
             try
@@ -88,7 +77,7 @@ Databasenavn: ejl51_db
                 SqlCommand kommando = new SqlCommand("GemBog", forb);
                 kommando.CommandType = System.Data.CommandType.StoredProcedure;
 
-                //  kommando.Parameters.Add(new SqlParameter("@BogID", bog. getID()));
+               
                 kommando.Parameters.Add(new SqlParameter("@titel", bog.Titel));
                 kommando.Parameters.Add(new SqlParameter("@forfatter", bog.Forfatter));
                 kommando.Parameters.Add(new SqlParameter("@genre", bog.Genre));
@@ -148,48 +137,83 @@ Databasenavn: ejl51_db
         }
 
 
-/*
+
         public Bog HentBog(int id)
         {
             Bog resultat = null;
-
-            SqlConnection conn = hentForbindelse();
-            //TODO lav en stored procedore der henter hele quality testen
-            SqlCommand command = new SqlCommand("HentBog", conn);
-            command.CommandType = System.Data.CommandType.StoredProcedure;
-
-            command.Parameters.Add(new SqlParameter("@QualityTestID", ID));
-
-            SqlDataReader sdr = command.ExecuteReader();
-
-            while (sdr.Read())
+            try
             {
-                DateTime date = Convert.ToDateTime(sdr["CheckedDate"]);
-                string qualityTestActivities = Convert.ToString(sdr["QualityTestActivities"]);
-                string expectedR = Convert.ToString(sdr["expectedResult"]);
-                string employee = Convert.ToString(sdr["employee"]);
-                string comment = Convert.ToString(sdr["comment"]);
-                string results = Convert.ToString(sdr["result"]);
-                bool done = (bool)sdr["done"];
-                bool approved = (bool)sdr["approved"]; ;
+                SqlConnection forb = hentForbindelse();
+                
+                SqlCommand kommando = new SqlCommand("ÆndreBog", forb);
+                kommando.CommandType = System.Data.CommandType.StoredProcedure;
 
-                result = Factory.GetFactory().GetQTF().CreateQualityTest(ID, date, qualityTestActivities, expectedR, employee, comment, results, approved, done);
+                kommando.Parameters.Add(new SqlParameter("@bogid", id));
+
+                SqlDataReader sdr = kommando.ExecuteReader();
+
+                while (sdr.Read())
+                {
+
+                    int bogid = Convert.ToInt32(sdr["bogid"]);
+                    string titel = Convert.ToString(sdr["titel"]);
+                    string forfatter = Convert.ToString(sdr["forfatter"]);
+                    string genre = Convert.ToString(sdr["genre"]);
+                    string subkategori = Convert.ToString(sdr["subkategori"]);
+                    string familie = Convert.ToString(sdr["familie"]);
+                    string forlag = Convert.ToString(sdr["forlag"]);
+                    string kommentar = Convert.ToString(sdr["kommentar"]);
+
+                    resultat = AktivFactory.HentAktivFactory().SkabNyBog(bogid, titel, forfatter, genre, subkategori, familie, forlag);
+                }
+                forb.Close();
+                forb.Dispose();
             }
-            conn.Close();
-            conn.Dispose();
-            return result;
+            catch (Exception)
+            {
+
+                resultat = null;
+            }
+            
+            return resultat;
         }
 
+        public bool SletBog(int id)
+        {
+            bool resultat = false;
+
+            try
+            {
+                SqlConnection forb = hentForbindelse();
+                SqlCommand kommando = new SqlCommand("SletBog", forb);
+                kommando.CommandType = System.Data.CommandType.StoredProcedure;
+
+                kommando.Parameters.Add(new SqlParameter("@bogid", id));
+                kommando.ExecuteNonQuery();
+                forb.Close();
+                forb.Dispose();
+                resultat = true;
+
+            }
+            catch (Exception)
+            {
+
+                resultat = false;
+
+            }
+
+            return resultat;
+
+        }
+
+                // DONE     +GemBog(Bog: bog): bool
+
+                /*
+                + DONE ÆndreBog(int: gammeltID, Bog: bog): bool
+        + DONE HentBog(int: id): Bog
+        +HentAlleBøger(): List<Bog>
+        +Sletbog(int: id): bool
         */
 
-        // DONE     +GemBog(Bog: bog): bool
-
-        /*
-        + DONE ÆndreBog(int: gammeltID, Bog: bog): bool
-+HentBog(int: id): Bog
-+HentAlleBøger(): List<Bog>
-+Sletbog(int: id): bool
-*/
-
-    }
+            }
 }
