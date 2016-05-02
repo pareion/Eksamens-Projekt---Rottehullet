@@ -27,6 +27,7 @@ namespace RotteHullet
         private object _aktivInfo = null;
         private Dictionary<string, string> _originalInfo = new Dictionary<string, string>();
         private IndexTab faneIndeks = IndexTab.Bog;
+        private bool erOpret { get; set; }
 
         private void AktivSlettet() {
             MessageBox.Show("Aktivet du forsøger at ændre, er blevet slettet af en anden bruger");
@@ -38,6 +39,7 @@ namespace RotteHullet
         {
             InitializeComponent();
             windowTitel();
+            erOpret = true;
         }
         /// <summary>
         /// Oprettelse Aktiv Constructor
@@ -46,6 +48,7 @@ namespace RotteHullet
         public OpretÆndreAktiv(int index)
         {
             InitializeComponent();
+            erOpret = true;
             windowTitel(index);
             tilladTab();
             skiftTab(index);
@@ -58,6 +61,7 @@ namespace RotteHullet
         public OpretÆndreAktiv(int index, object data)
         {
             InitializeComponent();
+            erOpret = false;
             // Frigiver en fane & Instantiere aktiv info
             tilladTab(index);
             _aktivInfo = data;
@@ -92,101 +96,103 @@ namespace RotteHullet
 
         private void tekstRedigering(object sender, TextChangedEventArgs e)
         {
-
-            if (faneIndeks == IndexTab.Bog)
+            if (!erOpret)
             {
-                if (tb_Titel.Text != _originalInfo["Titel"] && tb_Titel.Text != string.Empty)
+                if (faneIndeks == IndexTab.Bog)
                 {
-                    btn_GemBog.IsEnabled = true;
+                    if (tb_Titel.Text != _originalInfo["Titel"] && tb_Titel.Text != string.Empty)
+                    {
+                        btn_GemBog.IsEnabled = true;
+                    }
+                    else if (tb_Forfatter.Text != _originalInfo["Forfatter"] && tb_Forfatter.Text != string.Empty)
+                    {
+                        btn_GemBog.IsEnabled = true;
+                    }
+                    else if (tb_Genre.Text != _originalInfo["Genre"] && tb_Genre.Text != string.Empty)
+                    {
+                        btn_GemBog.IsEnabled = true;
+                    }
+                    else if (tb_Subkategori.Text != _originalInfo["Subkategori"] && tb_Subkategori.Text != string.Empty)
+                    {
+                        btn_GemBog.IsEnabled = true;
+                    }
+                    else if (tb_Familie.Text != _originalInfo["Familie"] && tb_Familie.Text != string.Empty)
+                    {
+                        btn_GemBog.IsEnabled = true;
+                    }
+                    else if (tb_Forlag.Text != _originalInfo["Forlag"] && tb_Forlag.Text != string.Empty)
+                    {
+                        btn_GemBog.IsEnabled = true;
+                    }
+                    else if (tb_Kommentar.Text != _originalInfo["Kommentar"] && tb_Kommentar.Text != string.Empty)
+                    {
+                        btn_GemBog.IsEnabled = true;
+                    }
+                    else
+                    {
+                        btn_GemBog.IsEnabled = false;
+                    }
                 }
-                else if (tb_Forfatter.Text != _originalInfo["Forfatter"] && tb_Forfatter.Text != string.Empty)
+                else if (faneIndeks == IndexTab.Brætspil)
                 {
-                    btn_GemBog.IsEnabled = true;
+                    if (tb_Brætspilnavn.Text != _originalInfo["Brætspilnavn"] && tb_Brætspilnavn.Text != string.Empty)
+                    {
+                        btn_GemBrætspil.IsEnabled = true;
+                    }
+                    else if (tb_BrætspilUdgiver.Text != _originalInfo["BrætspilUdgiver"] && tb_BrætspilUdgiver.Text != string.Empty)
+                    {
+                        btn_GemBrætspil.IsEnabled = true;
+                    }
+                    else if (tb_BrætspilKommentar.Text != _originalInfo["BrætspilKommentar"] && tb_BrætspilKommentar.Text != string.Empty)
+                    {
+                        btn_GemUdstyr.IsEnabled = true;
+                    }
+                    else
+                    {
+                        btn_GemBrætspil.IsEnabled = false;
+                    }
                 }
-                else if (tb_Genre.Text != _originalInfo["Genre"] && tb_Genre.Text != string.Empty)
+                else if (faneIndeks == IndexTab.Udstyr)
                 {
-                    btn_GemBog.IsEnabled = true;
+                    if (tb_Udstyrnavn.Text != _originalInfo["Udstyrnavn"] && tb_Udstyrnavn.Text != string.Empty)
+                    {
+                        btn_GemUdstyr.IsEnabled = true;
+                    }
+                    else if (tb_UdstyrKategori.Text != _originalInfo["UdstyrKategori"] && tb_UdstyrKategori.Text != string.Empty)
+                    {
+                        btn_GemUdstyr.IsEnabled = true;
+                    }
+                    else if (tb_UdstyrKommentar.Text != _originalInfo["LokaleKommentar"] && tb_UdstyrKommentar.Text != string.Empty)
+                    {
+                        btn_GemUdstyr.IsEnabled = true;
+                    }
+                    else
+                    {
+                        btn_GemUdstyr.IsEnabled = false;
+                    }
                 }
-                else if (tb_Subkategori.Text != _originalInfo["Subkategori"] && tb_Subkategori.Text != string.Empty)
+                else if (faneIndeks == IndexTab.Lokale)
                 {
-                    btn_GemBog.IsEnabled = true;
-                }
-                else if (tb_Familie.Text != _originalInfo["Familie"] && tb_Familie.Text != string.Empty)
-                {
-                    btn_GemBog.IsEnabled = true;
-                }
-                else if (tb_Forlag.Text != _originalInfo["Forlag"] && tb_Forlag.Text != string.Empty)
-                {
-                    btn_GemBog.IsEnabled = true;
-                }
-                else if (tb_Kommentar.Text != _originalInfo["Kommentar"] && tb_Kommentar.Text != string.Empty)
-                {
-                    btn_GemBog.IsEnabled = true;
-                }
-                else
-                {
-                    btn_GemBog.IsEnabled = false;
-                }
-            }
-            else if (faneIndeks == IndexTab.Brætspil)
-            {
-                if (tb_Brætspilnavn.Text != _originalInfo["Brætspilnavn"] && tb_Brætspilnavn.Text != string.Empty)
-                {
-                    btn_GemBrætspil.IsEnabled = true;
-                }
-                else if (tb_BrætspilUdgiver.Text != _originalInfo["BrætspilUdgiver"] && tb_BrætspilUdgiver.Text != string.Empty)
-                {
-                    btn_GemBrætspil.IsEnabled = true;
-                }
-                else if (tb_BrætspilKommentar.Text != _originalInfo["BrætspilKommentar"] && tb_BrætspilKommentar.Text != string.Empty)
-                {
-                    btn_GemUdstyr.IsEnabled = true;
-                }
-                else
-                {
-                    btn_GemBrætspil.IsEnabled = false;
-                }
-            }
-            else if (faneIndeks == IndexTab.Udstyr)
-            {
-                if (tb_Udstyrnavn.Text != _originalInfo["Udstyrnavn"] && tb_Udstyrnavn.Text != string.Empty)
-                {
-                    btn_GemUdstyr.IsEnabled = true;
-                }
-                else if (tb_UdstyrKategori.Text != _originalInfo["UdstyrKategori"] && tb_UdstyrKategori.Text != string.Empty)
-                {
-                    btn_GemUdstyr.IsEnabled = true;
-                }
-                else if (tb_UdstyrKommentar.Text != _originalInfo["LokaleKommentar"] && tb_UdstyrKommentar.Text != string.Empty)
-                {
-                    btn_GemUdstyr.IsEnabled = true;
-                }
-                else
-                {
-                    btn_GemUdstyr.IsEnabled = false;
-                }
-            }
-            else if (faneIndeks == IndexTab.Lokale)
-            {
-                if (tb_Lokalenavn.Text != _originalInfo["Lokalenavn"] && tb_Lokalenavn.Text != string.Empty)
-                {
-                    btn_GemLokale.IsEnabled = true;
-                }
-                else if (tb_Lokation.Text != _originalInfo["Lokation"] && tb_Lokation.Text != string.Empty)
-                {
-                    btn_GemLokale.IsEnabled = true;
-                }
-                else if (tb_LokaleMøbler.Text != _originalInfo["LokaleMøbler"] && tb_LokaleMøbler.Text != string.Empty)
-                {
-                    btn_GemLokale.IsEnabled = true;
-                }
-                else if (tb_LokaleKommentar.Text != _originalInfo["LokaleKommentar"] && tb_LokaleKommentar.Text != string.Empty)
-                {
-                    btn_GemLokale.IsEnabled = true;
-                }
-                else
-                {
-                    btn_GemLokale.IsEnabled = false;
+                    if (tb_Lokalenavn.Text != _originalInfo["Lokalenavn"] && tb_Lokalenavn.Text != string.Empty)
+                    {
+                        btn_GemLokale.IsEnabled = true;
+                    }
+                    else if (tb_Lokation.Text != _originalInfo["Lokation"] && tb_Lokation.Text != string.Empty)
+                    {
+                        btn_GemLokale.IsEnabled = true;
+                    }
+                    else if (tb_LokaleMøbler.Text != _originalInfo["LokaleMøbler"] && tb_LokaleMøbler.Text != string.Empty)
+                    {
+                        btn_GemLokale.IsEnabled = true;
+                    }
+                    else if (tb_LokaleKommentar.Text != _originalInfo["LokaleKommentar"] && tb_LokaleKommentar.Text != string.Empty)
+                    {
+                        btn_GemLokale.IsEnabled = true;
+                    }
+                    else
+                    {
+                        btn_GemLokale.IsEnabled = false;
+                    }
                 }
             }
         }
