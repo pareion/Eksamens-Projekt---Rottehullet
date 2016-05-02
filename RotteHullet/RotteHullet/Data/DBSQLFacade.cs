@@ -23,7 +23,7 @@ namespace RotteHullet.Data
         }
         #region forbindelse
         private SqlConnection hentForbindelse() {
-            SqlConnection forb = new SqlConnection("Server=ealdb1.eal.local;Database=ejl51_db; User ID = ejl51_usr; Password = Baz1nga51");
+            SqlConnection forb = new SqlConnection("Server=ealdb1.eal.local;Database=ejl52_db; User ID = ejl52_usr; Password = Baz1nga52");
             forb.Open();
             return forb;
         }
@@ -203,13 +203,8 @@ namespace RotteHullet.Data
         #endregion
         #region Brætspil
 
-        /*
-        -_brætspilid : int
--_brætspilsnavn: string
--_udgiver: string
--_kommentar: string
-
-    */
+    
+  
 
         public bool GemBrætSpil( Brætspil bs)
         {
@@ -255,6 +250,7 @@ namespace RotteHullet.Data
                 SqlCommand kommando = new SqlCommand("ÆndreBog", forb);
                 kommando.CommandType = System.Data.CommandType.StoredProcedure;
 
+                kommando.Parameters.Add(new SqlParameter("@brætspilid", gammeltID));
                 kommando.Parameters.Add(new SqlParameter("@brætspilsnavn", bs.BrætspilsNavn));
                 kommando.Parameters.Add(new SqlParameter("@udgiver", bs.Udgiver));
                 kommando.Parameters.Add(new SqlParameter("@kommentar", bs.Kommentar));
@@ -345,14 +341,382 @@ namespace RotteHullet.Data
 
         public bool SletBrætSpil(int id)
         {
-            return false;
+            bool resultat = false;
+
+            try
+            {
+                SqlConnection forb = hentForbindelse();
+                SqlCommand kommando = new SqlCommand("SletBrætSpil", forb);
+                kommando.CommandType = System.Data.CommandType.StoredProcedure;
+
+                kommando.Parameters.Add(new SqlParameter("@brætspilid", id));
+                kommando.ExecuteNonQuery();
+                forb.Close();
+                forb.Dispose();
+                resultat = true;
+
+            }
+            catch (Exception)
+            {
+
+                resultat = false;
+
+            }
+
+            return resultat;
+
+            
         }
         #endregion
+   
+    
+
         #region Udstyr
         public bool GemUdstyr(Udstyr udstyr)
         {
-            return false;
+            bool resultat = false;
+            try
+            {
+                SqlConnection forb = hentForbindelse();
+
+                SqlCommand kommando = new SqlCommand("GemUdstyr", forb);
+                kommando.CommandType = System.Data.CommandType.StoredProcedure;
+
+
+                kommando.Parameters.Add(new SqlParameter("@navn", udstyr.UdstyrsNavn));
+                kommando.Parameters.Add(new SqlParameter("@kategori", udstyr.Kategori));
+                kommando.Parameters.Add(new SqlParameter("@kommentar", udstyr.Kommentar));
+
+                kommando.ExecuteNonQuery();
+
+                forb.Close();
+                forb.Dispose();
+
+                resultat = true;
+            }
+            catch (Exception)
+            {
+
+                resultat = false;
+            }
+
+
+            return resultat;
         }
+
+        public bool ÆndreUdstyr(int gammeltid, Udstyr udstyr) {
+            bool resultat = false;
+
+            try
+            {
+                SqlConnection forb = hentForbindelse();
+
+                SqlCommand kommando = new SqlCommand("ÆndreUdstyr", forb);
+                kommando.CommandType = System.Data.CommandType.StoredProcedure;
+
+                kommando.Parameters.Add(new SqlParameter("@udstyrid", gammeltid));
+                kommando.Parameters.Add(new SqlParameter("@navn", udstyr.UdstyrsNavn));
+                kommando.Parameters.Add(new SqlParameter("@kategori", udstyr.Kategori));
+                kommando.Parameters.Add(new SqlParameter("@kommentar", udstyr.Kommentar));
+
+                kommando.ExecuteNonQuery();
+
+                forb.Close();
+                forb.Dispose();
+
+
+                resultat = true;
+            }
+            catch (Exception)
+            {
+
+                resultat = false;
+            }
+            return resultat;
+
+
+         
+
+        }
+
+        public Udstyr HentUdstyr(int id) {
+            Udstyr resultat = null;
+            try
+            {
+                SqlConnection forb = hentForbindelse();
+
+                SqlCommand kommando = new SqlCommand("HentUdstyr", forb);
+                kommando.CommandType = System.Data.CommandType.StoredProcedure;
+
+                kommando.Parameters.Add(new SqlParameter("@udstyrid", id));
+
+                SqlDataReader sdr = kommando.ExecuteReader();
+
+                if (sdr.Read())
+                {
+
+                    string udstyrnavn= Convert.ToString(sdr["navn"]);
+                    string kategori = Convert.ToString(sdr["kategori"]);
+                    string kommentar = Convert.ToString(sdr["kommentar"]);
+
+
+                    resultat = AktivFactory.HentAktivFactory().SkabNytUdstyr(id, udstyrnavn, kategori, kommentar);
+                }
+                forb.Close();
+                forb.Dispose();
+            }
+            catch (Exception)
+            {
+
+                resultat = null;
+            }
+
+
+            return resultat;
+
+           
+        }
+
+        public List<Udstyr> HentALtUdstyr() {
+            List<Udstyr> resultat = new List<Udstyr>();
+            try
+            {
+                SqlConnection forb = hentForbindelse();
+
+                SqlCommand kommando = new SqlCommand("HentAltUdstyr", forb);
+                kommando.CommandType = System.Data.CommandType.StoredProcedure;
+
+                SqlDataReader sdr = kommando.ExecuteReader();
+
+                while (sdr.Read())
+                {
+                    int udstyrid = Convert.ToInt32(sdr["udstyrid"]);
+                    string udstyrnavn = Convert.ToString(sdr["navn"]);
+                    string kategori = Convert.ToString(sdr["kategori"]);
+                    string kommentar = Convert.ToString(sdr["kommentar"]);
+                    resultat.Add(AktivFactory.HentAktivFactory().SkabNytUdstyr(udstyrid, udstyrnavn, kategori, kommentar));
+                }
+                forb.Close();
+                forb.Dispose();
+            }
+            catch (Exception)
+            {
+
+                resultat = null;
+            }
+
+            return resultat;
+
+
+           
+        }
+
+        public bool SletUdstyr(int id) {
+
+            bool resultat = false;
+
+            try
+            {
+                SqlConnection forb = hentForbindelse();
+                SqlCommand kommando = new SqlCommand("SletUdstyr", forb);
+                kommando.CommandType = System.Data.CommandType.StoredProcedure;
+
+                kommando.Parameters.Add(new SqlParameter("@udstyrid", id));
+                kommando.ExecuteNonQuery();
+                forb.Close();
+                forb.Dispose();
+                resultat = true;
+
+            }
+            catch (Exception)
+            {
+
+                resultat = false;
+
+            }
+
+            return resultat;
+        }
+
         #endregion
+
+        #region Lokale
+
+        public Lokale HentLokale(int id)
+        {
+
+            Lokale resultat = null;
+            try
+            {
+                SqlConnection forb = hentForbindelse();
+
+                SqlCommand kommando = new SqlCommand("HentLokale", forb);
+                kommando.CommandType = System.Data.CommandType.StoredProcedure;
+
+                kommando.Parameters.Add(new SqlParameter("@lokaleid", id));
+
+                SqlDataReader sdr = kommando.ExecuteReader();
+
+                if (sdr.Read())
+                {
+
+                    string lokalenavn = Convert.ToString(sdr["lokalenavn"]);
+                    string møbler = Convert.ToString(sdr["møbler"]);
+                    string lokation = Convert.ToString(sdr["lokation"]);
+                    string kommentar = Convert.ToString(sdr["kommentar"]);
+
+
+                    resultat = AktivFactory.HentAktivFactory().SkabNytLokale(id, lokalenavn, lokation, kommentar, møbler);
+                }
+                forb.Close();
+                forb.Dispose();
+            }
+            catch (Exception)
+            {
+
+                resultat = null;
+            }
+
+
+            return resultat;
+
+
+        }
+
+        public List<Lokale> HentAlleLokaler() {
+            List<Lokale> resultat = new List<Lokale>();
+            try
+            {
+                SqlConnection forb = hentForbindelse();
+
+                SqlCommand kommando = new SqlCommand("HentAlleLokaler", forb);
+                kommando.CommandType = System.Data.CommandType.StoredProcedure;
+
+                SqlDataReader sdr = kommando.ExecuteReader();
+
+                while (sdr.Read())
+                {
+                    int lokaleid = Convert.ToInt32(sdr["lokaleid"]);
+                    string lokalenavn = Convert.ToString(sdr["lokalenavn"]);
+                    string møbler = Convert.ToString(sdr["møbler"]);
+                    string lokation = Convert.ToString(sdr["lokation"]);
+                    string kommentar = Convert.ToString(sdr["kommentar"]);
+                    resultat.Add(AktivFactory.HentAktivFactory().SkabNytLokale(lokaleid, lokalenavn, lokation, kommentar, møbler));
+                }
+                forb.Close();
+                forb.Dispose();
+            }
+            catch (Exception)
+            {
+
+                resultat = null;
+            }
+
+            return resultat;
+        }
+
+        public bool GemLokale(Lokale lokale)
+        {
+
+            bool resultat = false;
+            try
+            {
+                SqlConnection forb = hentForbindelse();
+
+                SqlCommand kommando = new SqlCommand("GemLokale", forb);
+                kommando.CommandType = System.Data.CommandType.StoredProcedure;
+
+
+                kommando.Parameters.Add(new SqlParameter("@lokalenavn", lokale.LokaleNavn));
+                kommando.Parameters.Add(new SqlParameter("@lokation", lokale.Lokation));
+                kommando.Parameters.Add(new SqlParameter("@kommentar", lokale.Kommentar));
+                kommando.Parameters.Add(new SqlParameter("@møbler", lokale.Møbler));
+
+                kommando.ExecuteNonQuery();
+
+                forb.Close();
+                forb.Dispose();
+
+                resultat = true;
+            }
+            catch (Exception)
+            {
+
+                resultat = false;
+            }
+
+
+            return resultat;
+        }
+
+        public bool ÆndreLokale(int gammeltid, Lokale lokale) {
+            bool resultat = false;
+
+            try
+            {
+                SqlConnection forb = hentForbindelse();
+
+                SqlCommand kommando = new SqlCommand("ÆndreLokale", forb);
+                kommando.CommandType = System.Data.CommandType.StoredProcedure;
+
+                kommando.Parameters.Add(new SqlParameter("@lokaleid", gammeltid));
+                kommando.Parameters.Add(new SqlParameter("@lokalenavn", lokale.LokaleNavn));
+                kommando.Parameters.Add(new SqlParameter("@kategori", lokale.Lokation));
+                kommando.Parameters.Add(new SqlParameter("@kommentar", lokale.Kommentar));
+                kommando.Parameters.Add(new SqlParameter("@møbler", lokale.Møbler));
+
+                kommando.ExecuteNonQuery();
+
+                forb.Close();
+                forb.Dispose();
+
+
+                resultat = true;
+            }
+            catch (Exception)
+            {
+
+                resultat = false;
+            }
+            return resultat;
+
+
+
+        }
+
+        public bool SletLokale(int id) {
+
+            bool resultat = false;
+
+            try
+            {
+                SqlConnection forb = hentForbindelse();
+                SqlCommand kommando = new SqlCommand("SletLokale", forb);
+                kommando.CommandType = System.Data.CommandType.StoredProcedure;
+
+                kommando.Parameters.Add(new SqlParameter("@lokaleid", id));
+                kommando.ExecuteNonQuery();
+                forb.Close();
+                forb.Dispose();
+                resultat = true;
+
+            }
+            catch (Exception)
+            {
+
+                resultat = false;
+
+            }
+
+            return resultat;
+
+
+        }
+
+        #endregion
+
+
+
+
     }
 }
