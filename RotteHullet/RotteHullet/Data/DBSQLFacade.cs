@@ -28,20 +28,7 @@ namespace RotteHullet.Data
             return forb;
         }
         #endregion
-        /*
-
-
-+ÆndreUdstyr(int: gammeltID, Udstyr: udstyr): bool
-+HentUdstyr(int: id): Udstyr
-+HentAlleUdstyr(): List<Udstyr>
-+SletUdstyr(int: id): bool
-
-+GemLokale(Lokale: lokale): bool
-+ÆndreLokale(int: gammeltID, Lokale: lokale): bool
-+HentLokale(int: id): Lokale
-+HentAlleLokaler(): List<Lokale>
-+SletLokale(int: id): bool
-    */
+  
         #region Bog
         public bool GemBog(Bog bog) {
             try
@@ -75,7 +62,7 @@ namespace RotteHullet.Data
             }
 
         }
-        public bool ÆndreBog(Bog bog)
+        public bool ÆndreBog(int gammeltIDBog, Bog bog)
         {
             try
             {
@@ -84,7 +71,7 @@ namespace RotteHullet.Data
                 SqlCommand kommando = new SqlCommand("ÆndreBog", forb);
                 kommando.CommandType = System.Data.CommandType.StoredProcedure;
 
-                kommando.Parameters.Add(new SqlParameter("@BogID", bog.Id));
+                kommando.Parameters.Add(new SqlParameter("@bogid", gammeltIDBog));
                 kommando.Parameters.Add(new SqlParameter("@titel", bog.Titel));
                 kommando.Parameters.Add(new SqlParameter("@forfatter", bog.Forfatter));
                 kommando.Parameters.Add(new SqlParameter("@genre", bog.Genre));
@@ -200,6 +187,8 @@ namespace RotteHullet.Data
                     Bog bog = AktivFactory.HentAktivFactory().SkabNyBog(bogid, titel, forfatter, genre, subkategori, familie, forlag);
                     bogListe.Add(bog);
                 }
+                forb.Close();
+                forb.Dispose();
 
             }
             catch (Exception)
@@ -213,26 +202,147 @@ namespace RotteHullet.Data
         }
         #endregion
         #region Brætspil
-        public bool GemBrætSpil(Brætspil bs)
-        {
 
-            return false;
+        /*
+        -_brætspilid : int
+-_brætspilsnavn: string
+-_udgiver: string
+-_kommentar: string
+
+    */
+
+        public bool GemBrætSpil( Brætspil bs)
+        {
+            bool resultat = false;
+            try
+            {
+                SqlConnection forb = hentForbindelse();
+
+                SqlCommand kommando = new SqlCommand("GemBrætSpil", forb);
+                kommando.CommandType = System.Data.CommandType.StoredProcedure;
+
+
+                kommando.Parameters.Add(new SqlParameter("@brætspilsnavn", bs.BrætspilsNavn));
+                kommando.Parameters.Add(new SqlParameter("@udgiver", bs.Udgiver));
+                kommando.Parameters.Add(new SqlParameter("@kommentar", bs.Kommentar));
+
+                kommando.ExecuteNonQuery();
+
+                forb.Close();
+                forb.Dispose();
+
+                resultat = true;
+            }
+            catch (Exception)
+            {
+
+                resultat = false;
+            }
+
+
+            return resultat;
         }
+
+
         public bool ÆndreBrætSpil(int gammeltID, Brætspil bs)
         {
+            bool resultat = false;
 
-            return false;
+            try
+            {
+                SqlConnection forb = hentForbindelse();
+
+                SqlCommand kommando = new SqlCommand("ÆndreBog", forb);
+                kommando.CommandType = System.Data.CommandType.StoredProcedure;
+
+                kommando.Parameters.Add(new SqlParameter("@brætspilsnavn", bs.BrætspilsNavn));
+                kommando.Parameters.Add(new SqlParameter("@udgiver", bs.Udgiver));
+                kommando.Parameters.Add(new SqlParameter("@kommentar", bs.Kommentar));
+
+                kommando.ExecuteNonQuery();
+
+                forb.Close();
+                forb.Dispose();
+
+
+                resultat = true;
+            }
+            catch (Exception)
+            {
+
+                resultat = false;
+            }
+            return resultat;
         }
         public Brætspil HentBrætSpil(int id)
         {
+            Brætspil resultat = null;
+            try
+            {
+                SqlConnection forb = hentForbindelse();
 
-            return null;
+                SqlCommand kommando = new SqlCommand("HentBrætSpil", forb);
+                kommando.CommandType = System.Data.CommandType.StoredProcedure;
+
+                kommando.Parameters.Add(new SqlParameter("@brætspilid", id));
+
+                SqlDataReader sdr = kommando.ExecuteReader();
+
+                if (sdr.Read())
+                {
+
+                    string brætspilnavn = Convert.ToString(sdr["titel"]);
+                    string udgiver = Convert.ToString(sdr["udgiver"]);
+                    string kommentar = Convert.ToString(sdr["kommentar"]);
+
+
+                    resultat = AktivFactory.HentAktivFactory().SkabNyBrætspil(id, brætspilnavn, udgiver, kommentar);
+                }
+                forb.Close();
+                forb.Dispose();
+            }
+            catch (Exception)
+            {
+
+                resultat = null;
+            }
+
+
+            return resultat;
+            
         }
         public List<Brætspil> HentAlleBrætSpil()
         {
+            List<Brætspil> resultat = new List<Brætspil>(); 
+            try
+            {
+                SqlConnection forb = hentForbindelse();
 
-            return null;
+                SqlCommand kommando = new SqlCommand("HentAlleBrætSpil", forb);
+                kommando.CommandType = System.Data.CommandType.StoredProcedure;
+
+                SqlDataReader sdr = kommando.ExecuteReader();
+
+                while (sdr.Read())
+                {
+                    int brætspilid = Convert.ToInt32(sdr["brætspilid"]);
+                    string brætspilnavn = Convert.ToString(sdr["titel"]);
+                    string udgiver = Convert.ToString(sdr["udgiver"]);
+                    string kommentar = Convert.ToString(sdr["kommentar"]);
+                    resultat.Add(AktivFactory.HentAktivFactory().SkabNyBrætspil(brætspilid, brætspilnavn, udgiver, kommentar));
+                }
+                forb.Close();
+                forb.Dispose();
+            }
+            catch (Exception)
+            {
+
+                resultat = null;
+            }
+
+            return resultat;
         }
+
         public bool SletBrætSpil(int id)
         {
             return false;

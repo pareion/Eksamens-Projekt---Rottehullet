@@ -40,20 +40,43 @@ namespace RotteHullet
 
         private void btn_LogPå_Click(object sender, RoutedEventArgs e)
         {
-            if (MedlemFacade.TjekLogind(tb_Brugernavn.Text, tb_Kodeord.Password))
+            logind();
+        }
+
+        private void logind()
+        {
+            if (tb_Brugernavn.Text != string.Empty && tb_Kodeord.Password != string.Empty)
             {
-                advarelse(false);
-                AdminPanel panel = new AdminPanel();
-                panel.Show();
-                panel.Activate();
-                this.Close();
+                if (UIFacade.HentUIFacade().HentMedlemFacade().TjekLogind(tb_Brugernavn.Text, tb_Kodeord.Password))
+                {
+                    // Fjern advarelse
+                    advarelse(false);
+
+                    // Tjekker på bruger typer
+                    Window panel;
+                    if (UIFacade.HentUIFacade().HentMedlemFacade().ErAdmin)
+                    {
+                        panel = new AdminPanel();
+                    }
+                    else
+                    {
+                        panel = new BrugerPanel();
+                    }
+
+                    panel.Show();
+                    panel.Activate();
+                    this.Close();
+                }
+                else
+                {
+                    advarelse(true);
+                }
             }
             else
             {
                 advarelse(true);
             }
         }
-
         private void advarelse(bool status = true)
         {
             if (status)
@@ -80,6 +103,14 @@ namespace RotteHullet
             Label textKnap = sender as Label;
             textKnap.Foreground = Brushes.Black;
             textKnap.Cursor = Cursors.Arrow;
+        }
+
+        private void Logpå_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                logind();
+            }
         }
     }
 }
