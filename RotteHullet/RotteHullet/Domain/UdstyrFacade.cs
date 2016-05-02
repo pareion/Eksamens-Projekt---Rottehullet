@@ -51,6 +51,16 @@ namespace RotteHullet.Domain
             }
             return nytUdstyr;
         }
+        public List<object> FindAlleUdstyr()
+        {
+            List<Udstyr> aktiver = DBRamFacade.HentDbRamFacade().HentAlleUdstyr();
+            List<object> dataListe = new List<object>();
+            foreach (Udstyr item in aktiver)
+            {
+                dataListe.Add(item);
+            }
+            return dataListe;
+        }
         public string SletUdstyr(int id)
         {
             if (DBSQLFacade.HentDBSQLFacade().SletUdstyr(id))

@@ -42,14 +42,23 @@ namespace RotteHullet
         internal void IndlæsData()
         {
             // Rydder lister op 
-            rydderLister();
+            fjernLister();
 
             // Indlæser nye data
             _bogData = UIFacade.HentUIFacade().HentBogFacade().FindAlleBøger();
             _bogData.ForEach(x => lv_bøger.Items.Add(x));
+
+            _brætspilData = UIFacade.HentUIFacade().HentBrætSpilFacade().FindAlleBrætspil();
+            _brætspilData.ForEach(x => lv_brætspil.Items.Add(x));
+
+            _udstyrData = UIFacade.HentUIFacade().HentUdstyrFacade().FindAlleUdstyr();
+            _udstyrData.ForEach(x => lv_udstyr.Items.Add(x));
+
+            _lokaleData = UIFacade.HentUIFacade().HentLokaleFacade().FindAlleLokaler();
+            _lokaleData.ForEach(x => lv_lokal.Items.Add(x));
         }
 
-        private void rydderLister()
+        private void fjernLister()
         {
             lv_bøger.Items.Clear();
             lv_brætspil.Items.Clear();

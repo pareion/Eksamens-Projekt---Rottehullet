@@ -55,7 +55,8 @@
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="ID" Width="Auto" DisplayMemberBinding="{Binding Id}"/>
-                                <GridViewColumn Header="Udstyr" Width="400" DisplayMemberBinding="{Binding UdstyrsNavn}"/>
+                                <GridViewColumn Header="Udstyr" Width="300" DisplayMemberBinding="{Binding UdstyrsNavn}"/>
+                                <GridViewColumn Header="Kategori" Width="180" DisplayMemberBinding="{Binding Kategori}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>

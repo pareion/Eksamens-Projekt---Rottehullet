@@ -51,6 +51,16 @@ namespace RotteHullet.Domain
             }
             return nyeLokaler;
         }
+        public List<object> FindAlleLokaler()
+        {
+            List<Lokale> aktiver = DBRamFacade.HentDbRamFacade().HentAlleLokaler();
+            List<object> dataListe = new List<object>();
+            foreach (Lokale item in aktiver)
+            {
+                dataListe.Add(item);
+            }
+            return dataListe;
+        }
         public string SletLokale(int id)
         {
             if (DBSQLFacade.HentDBSQLFacade().SletBrætSpil(id))

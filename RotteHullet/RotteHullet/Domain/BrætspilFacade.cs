@@ -58,9 +58,9 @@ namespace RotteHullet.Domain
         }
         public List<object> FindAlleBrætspil()
         {
-            List<Bog> bøgerListe = DBRamFacade.HentDbRamFacade().HentAlleBøger();
+            List<Brætspil> aktiver = DBRamFacade.HentDbRamFacade().HentAlleBrætSpil();
             List<object> dataListe = new List<object>();
-            foreach (Bog item in bøgerListe)
+            foreach (Brætspil item in aktiver)
             {
                 dataListe.Add(item);
             }

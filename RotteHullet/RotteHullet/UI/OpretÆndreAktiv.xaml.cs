@@ -135,7 +135,7 @@ namespace RotteHullet
                 }
                 else if (faneIndeks == IndexTab.Brætspil)
                 {
-                    if (tb_Brætspilnavn.Text != _originalInfo["Brætspilnavn"] && tb_Brætspilnavn.Text != string.Empty)
+                    if (tb_Brætspilnavn.Text != _originalInfo["BrætspilsNavn"] && tb_Brætspilnavn.Text != string.Empty)
                     {
                         btn_GemBrætspil.IsEnabled = true;
                     }
@@ -154,7 +154,7 @@ namespace RotteHullet
                 }
                 else if (faneIndeks == IndexTab.Udstyr)
                 {
-                    if (tb_Udstyrnavn.Text != _originalInfo["Udstyrnavn"] && tb_Udstyrnavn.Text != string.Empty)
+                    if (tb_Udstyrnavn.Text != _originalInfo["UdstyrsNavn"] && tb_Udstyrnavn.Text != string.Empty)
                     {
                         btn_GemUdstyr.IsEnabled = true;
                     }
@@ -162,7 +162,7 @@ namespace RotteHullet
                     {
                         btn_GemUdstyr.IsEnabled = true;
                     }
-                    else if (tb_UdstyrKommentar.Text != _originalInfo["LokaleKommentar"] && tb_UdstyrKommentar.Text != string.Empty)
+                    else if (tb_UdstyrKommentar.Text != _originalInfo["UdstyrKommentar"] && tb_UdstyrKommentar.Text != string.Empty)
                     {
                         btn_GemUdstyr.IsEnabled = true;
                     }
@@ -173,7 +173,7 @@ namespace RotteHullet
                 }
                 else if (faneIndeks == IndexTab.Lokale)
                 {
-                    if (tb_Lokalenavn.Text != _originalInfo["Lokalenavn"] && tb_Lokalenavn.Text != string.Empty)
+                    if (tb_Lokalenavn.Text != _originalInfo["LokaleNavn"] && tb_Lokalenavn.Text != string.Empty)
                     {
                         btn_GemLokale.IsEnabled = true;
                     }
@@ -368,6 +368,7 @@ namespace RotteHullet
         }
         private void tilladTab(int index)
         {
+            faneIndeks = (IndexTab)index;
             TabItem item = maintab.Items[index] as TabItem;
             item.IsEnabled = true;
             skiftTab(index);

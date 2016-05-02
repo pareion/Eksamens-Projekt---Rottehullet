@@ -15,6 +15,7 @@ namespace RotteHullet.Data
         private List<Brætspil> _brætspilsListe;
         private List<Udstyr> _udstyrsListe;
         private List<Lokale> _lokaleListe;
+        private Random random = new Random();
 
         #region Constructor
         public DBRamFacade()
@@ -247,7 +248,9 @@ namespace RotteHullet.Data
         private void dataListe()
         {
             randomBøger();
+            randomBrætspil();
             randomUdstyr();
+            randomLokale();
         }
         private void randomBøger()
         {
@@ -804,19 +807,147 @@ namespace RotteHullet.Data
             };
             #endregion
 
-            Random rand = new Random();
             int count = 1;
             foreach(string navn in titel)
             {
-                Bog bog = AktivFactory.HentAktivFactory().SkabNyBog(count, navn, fornavn.ElementAt(rand.Next(0,fornavn.Count - 1))+ " " + fornavn.ElementAt(rand.Next(0, fornavn.Count - 1)) + "sen", genre.ElementAt(rand.Next(0, genre.Count - 1)), "Subkategori", "RPG X", "Data");
+                Bog bog = AktivFactory.HentAktivFactory().SkabNyBog(count, navn, hentFornavn() + " " + hentFornavn() + "sen", genre.ElementAt(random.Next(0, genre.Count - 1)), "Subkategori", "RPG X", "Data");
                 _bogListe.Add(bog);
                 count++;
             }
         }
+        private void randomBrætspil()
+        {
+            for (int i = 0; i < 100; i++)
+            {
+                Brætspil aktiv = AktivFactory.HentAktivFactory().SkabNyBrætspil(i + 1, hentFornavn(i), "Menneske", null);
+                _brætspilsListe.Add(aktiv);
+            }
+        }
         private void randomUdstyr()
         {
-            
+            for (int i = 0; i < 100; i++)
+            {
+                Udstyr udstyr = AktivFactory.HentAktivFactory().SkabNytUdstyr(i + 1, hentFornavn(i), "Menneske", null);
+                _udstyrsListe.Add(udstyr);
+            }
         }
+        private void randomLokale()
+        {
+            for (int i = 0; i < 100; i++)
+            {
+                Lokale aktiv = AktivFactory.HentAktivFactory().SkabNytLokale(i + 1, hentFornavn(i), hentFornavn(i) + "vej", null, null);
+                _lokaleListe.Add(aktiv);
+            }
+        }
+
+        private string hentFornavn(int index = -1)
+        {
+            List<string> navn = new List<string> {
+                "Sofia",
+                "Willia",
+                "Alma",
+                "Luca",
+                "Freja",
+                "Malth",
+                "Anna",
+                "Noa",
+                "Ella",
+                "Emi",
+                "Emma",
+                "Victo",
+                "Laura",
+                "Osca",
+                "Clara",
+                "Alfre",
+                "Maja",
+                "Olive",
+                "Alberte",
+                "Frederi",
+                "Ida",
+                "Car",
+                "Agnes",
+                "Elia",
+                "Liva",
+                "Villad",
+                "Isabella",
+                "Magnu",
+                "Josefine",
+                "Anto",
+                "Karla",
+                "Christia",
+                "Mathilde",
+                "Alexande",
+                "Emilie",
+                "Augus",
+                "Victoria",
+                "Mikke",
+                "Olivia",
+                "Lia",
+                "Caroline",
+                "Valdema",
+                "Lærke",
+                "Noh",
+                "Sofie",
+                "Feli",
+                "Frida",
+                "Mad",
+                "Sara",
+                "Akse",
+                "Emily",
+                "Joha",
+                "Lily",
+                "Stor",
+                "Mille",
+                "Alber",
+                "Ellen",
+                "Benjami",
+                "Marie",
+                "Theodo",
+                "Astrid",
+                "Ada",
+                "Naja",
+                "Mathia",
+                "Esther",
+                "Arthu",
+                "Luna",
+                "Marcu",
+                "Nora",
+                "Tobia",
+                "Aya",
+                "Phili",
+                "Rosa",
+                "Vigg",
+                "Lea",
+                "Jaco",
+                "Johanne",
+                "The",
+                "Asta",
+                "Ellio",
+                "Vigga",
+                "Sebastia",
+                "Liv",
+                "Mariu",
+                "Nanna",
+                "Tho",
+                "Celina",
+                "Laug",
+                "Merle",
+                "Sande",
+                "Vilma",
+                "Laurit",
+                "Silje",
+                "Villu",
+                "Filippa",
+                "Jona",
+                "Julie",
+                "Ott",
+                "Signe",
+                "Silas"
+            };
+
+            return index > -1 ? navn[index] : navn[random.Next(0, navn.Count - 1)];
+        }
+
         #endregion
 
     }//Klasse
