@@ -11,7 +11,7 @@ namespace RotteHullet.Værktøjs
     {
         private static Søgning _søgning;
 
-        public static Søgning GetSøgning()
+        public static Søgning HentSøgning()
         {
             if (_søgning == null)
             {

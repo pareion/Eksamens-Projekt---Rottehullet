@@ -22,23 +22,23 @@ namespace RotteHullet.Domain
         }
         public bool Søg(bool bøger, bool lokaler, bool brætspil, bool udstyr, string søgning, out List<Bog> bogResult, out List<Lokale> lokaleResult, out List<Brætspil> brætspilResult, out List<Udstyr> udstyrResult)
         {
-            return Søgning.GetSøgning().Søg(bøger, lokaler, brætspil, udstyr, søgning, out bogResult, out lokaleResult, out brætspilResult, out udstyrResult);
+            return Søgning.HentSøgning().Søg(bøger, lokaler, brætspil, udstyr, søgning, out bogResult, out lokaleResult, out brætspilResult, out udstyrResult);
         }
         public bool Søg(string søgord, out List<Lokale> lokaler)
         {
-            return Søgning.GetSøgning().Søg(søgord,out lokaler);
+            return Søgning.HentSøgning().Søg(søgord,out lokaler);
         }
         public bool Søg(string søgord, out List<Bog> bøger)
         {
-            return Søgning.GetSøgning().Søg(søgord, out bøger);
+            return Søgning.HentSøgning().Søg(søgord, out bøger);
         }
         public bool Søg(string søgord, out List<Udstyr> udstyr)
         {
-            return Søgning.GetSøgning().Søg(søgord, out udstyr);
+            return Søgning.HentSøgning().Søg(søgord, out udstyr);
         }
         public bool Søg(string søgord, out List<Brætspil> brætspil)
         {
-            return Søgning.GetSøgning().Søg(søgord, out brætspil);
+            return Søgning.HentSøgning().Søg(søgord, out brætspil);
         }
     }
 }

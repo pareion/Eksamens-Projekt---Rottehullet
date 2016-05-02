@@ -24,7 +24,7 @@ namespace RotteHullet
     {
         private int _selectionID;
 
-        private List<Bog> _bogListe = new List<Bog>(); 
+        private List<string> _bogListe = new List<string>(); 
     
 
         public AdminPanel()
@@ -55,13 +55,18 @@ namespace RotteHullet
 
         private void indlæsData()
         {
-            Bog bog1 = new Bog(1, "hello", "world", "action", "rpg", "app", "Nothing");
+            /*Bog bog1 = new Bog(1, "hello", "world", "action", "rpg", "app", "Nothing");
             Bog bog2 = new Bog(2, "hello2", "world2", "action", "rpg", "app", "Nothing");
             Bog bog3 = new Bog(3, "hello3", "world3", "action", "rpg", "app", "Nothing");
 
             lv_bøger.Items.Add(bog1);
             lv_bøger.Items.Add(bog2);
-            lv_bøger.Items.Add(bog3);
+            lv_bøger.Items.Add(bog3);*/
+            _bogListe = UIFacade.HentUIFacade().HentBogFacade().HentAlleBøger();
+            foreach (var group in _bogListe)
+            {
+                lv_bøger.Items.Add(group);
+            }
         }
 
         private void opret_Click(object sender, RoutedEventArgs e)
