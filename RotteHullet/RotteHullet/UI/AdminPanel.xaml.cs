@@ -294,7 +294,7 @@ namespace RotteHullet
                 if (e.Key == Key.Enter)
                 {
                     // Sætter ListView objekt for bøger og søg resultater til opdatere ListView list
-                    opdatereList(lv_bøger, Søgning.GetSøgning().Find(boks.Text.ToLower(), Søgning.AktivType.Bog));
+                    opdatereList(lv_bøger, Søgning.HentSøgning().Find(boks.Text.ToLower(), Søgning.AktivType.Bog));
                 }
                 else if (e.Key == Key.Escape)
                 {
@@ -325,7 +325,7 @@ namespace RotteHullet
                 if (e.Key == Key.Enter)
                 {
                     // Sætter ListView objekt for bøger og søg resultater til opdatere ListView list
-                    opdatereList(lv_brætspil, Søgning.GetSøgning().Find(boks.Text.ToLower(), Søgning.AktivType.Brætspil));
+                    opdatereList(lv_brætspil, Søgning.HentSøgning().Find(boks.Text.ToLower(), Søgning.AktivType.Brætspil));
                 }
                 else if (e.Key == Key.Escape)
                 {
@@ -356,7 +356,7 @@ namespace RotteHullet
                 if (e.Key == Key.Enter)
                 {
                     // Sætter ListView objekt for bøger og søg resultater til opdatere ListView list
-                    opdatereList(lv_udstyr, Søgning.GetSøgning().Find(boks.Text.ToLower(), Søgning.AktivType.Udstyr));
+                    opdatereList(lv_udstyr, Søgning.HentSøgning().Find(boks.Text.ToLower(), Søgning.AktivType.Udstyr));
                 }
                 else if (e.Key == Key.Escape)
                 {
@@ -387,7 +387,7 @@ namespace RotteHullet
                 if (e.Key == Key.Enter)
                 {
                     // Sætter ListView objekt for bøger og søg resultater til opdatere ListView list
-                    opdatereList(lv_lokal, Søgning.GetSøgning().Find(boks.Text.ToLower(), Søgning.AktivType.Lokale));
+                    opdatereList(lv_lokal, Søgning.HentSøgning().Find(boks.Text.ToLower(), Søgning.AktivType.Lokale));
                 }
                 else if (e.Key == Key.Escape)
                 {

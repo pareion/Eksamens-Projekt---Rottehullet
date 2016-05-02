@@ -58,7 +58,7 @@ namespace RotteHullet.Domain
             }
             else
             {
-                Værktøjs.Søgning.GetSøgning().Søg(søgord, out bøgerListe);
+                Værktøjs.Søgning.HentSøgning().Søg(søgord, out bøgerListe);
             }
 
             foreach (Bog item in bøgerListe)
