@@ -15,6 +15,7 @@ namespace RotteHullet.Data
         private List<Brætspil> _brætspilsListe;
         private List<Udstyr> _udstyrsListe;
         private List<Lokale> _lokaleListe;
+        private List<Medlem> _medlemListe = new List<Medlem>();
         private Random random = new Random();
 
         #region Constructor
@@ -244,9 +245,33 @@ namespace RotteHullet.Data
         }
         #endregion
 
+        #region Medlem
+
+        public Medlem HentMedlem(string brugernavn)
+        {
+            return _medlemListe.Find(x => x.Brugernavn == brugernavn);
+        }
+        /// <summary>
+        /// Hent medlem med password validering
+        /// </summary>
+        /// <param name="brugernavn"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        public Medlem HentMedlem(string brugernavn, string password)
+        {
+            return _medlemListe.Find(x => x.Brugernavn == brugernavn && x.Password == password);
+        }
+        public List<Medlem> HentAlleMedlem()
+        {
+            return _medlemListe;
+        }
+
+        #endregion
+
         #region Selv definerer data
         private void dataListe()
         {
+            testBruger();
             randomBøger();
             randomBrætspil();
             randomUdstyr();
@@ -838,6 +863,15 @@ namespace RotteHullet.Data
                 Lokale aktiv = AktivFactory.HentAktivFactory().SkabNytLokale(i + 1, hentFornavn(i), hentFornavn(i) + "vej", null, null);
                 _lokaleListe.Add(aktiv);
             }
+        }
+
+        private void testBruger()
+        {
+            Medlem admin = new Medlem(1, "Admin", "Adminsen", "admin", "admin", "admin@admin.com", Medlem.MedlemType.Bestyrelse);
+            Medlem bruger = new Medlem(2, "Medlem", "Medlemsen", "medlem", "medlem", "medlem@medlem.dk", Medlem.MedlemType.Bruger);
+
+            _medlemListe.Add(admin);
+            _medlemListe.Add(bruger);
         }
 
         private string hentFornavn(int index = -1)
