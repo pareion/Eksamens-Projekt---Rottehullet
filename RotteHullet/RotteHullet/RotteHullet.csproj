@@ -57,6 +57,7 @@
     </ApplicationDefinition>
     <Compile Include="Domain\VærktøjsFacade.cs" />
     <Compile Include="Værktøjs\Søgning.cs" />
+    <Compile Include="Værktøjs\Vedligeholdelse.cs" />
     <Page Include="UI\AdminPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
