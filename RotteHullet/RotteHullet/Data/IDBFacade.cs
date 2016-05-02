@@ -38,6 +38,6 @@ namespace RotteHullet.Data
         bool SletLokale(int id);
         #endregion
 
-        void checkLister();
+        void checkLister(int medlemsid, List<Udstyr> udstyr);
     }
 }

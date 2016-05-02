@@ -3,35 +3,29 @@
     udstyrid    INT NULL
 );
 
-CREATE TYPE intList AS TABLE (
+CREATE TYPE listen AS TABLE (
     [tal] INT NULL
 );
 
 CREATE PROCEDURE deleteUdstyr
-	@list intList READONLY,
+	@list listen READONLY,
 	@memberid int
 
 AS
 DECLARE a CURSOR FAST_FORWARD FOR
-	SELECT udstyrid FROM Udstyr 
-
-	DECLARE @id int
+	SELECT tal FROM @list
+	
 	DECLARE @listid int
 
-	FETCH NEXT FROM a INTO @id
+	FETCH NEXT FROM @list INTO @listid
 	WHILE(@@FETCH_STATUS = 0)
 	BEGIN
-		FETCH NEXT FROM @list INTO @listid
-		WHILE(@@FETCH_STATUS = 0)
-		BEGIN
-		IF @id != @listid
+		IF EXISTS(SELECT * FROM Udstyr WHERE udstyrid != @listid)
 		BEGIN
 			INSERT INTO UdstyrTabelTemporary VALUES (@memberid,@listid)
 		END
-		ELSE
 		FETCH NEXT FROM @list INTO @listid
-		END
-	FETCH NEXT FROM a INTO @id
 	END
+	
 	SELECT * FROM UdstyrTabelTemporary WHERE memberid = @memberid
 RETURN

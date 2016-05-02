@@ -982,9 +982,6 @@ namespace RotteHullet.Data
             return index > -1 ? navn[index] : navn[random.Next(0, navn.Count - 1)];
         }
         #endregion
-        public void checkLister()
-        {
-            
-        }
+
     }//Klasse
 }//Namespace

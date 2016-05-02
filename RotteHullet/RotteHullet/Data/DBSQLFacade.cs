@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using RotteHullet.Domain.BusinessLogic;
+using System.Data;
 
 namespace RotteHullet.Data
 {
@@ -716,7 +717,33 @@ namespace RotteHullet.Data
         #endregion
 
 
+        public void checkListe(int medlemsid, List<Udstyr> udstyr)
+        {
+            using (var con = hentForbindelse())
+            {
+                using (SqlCommand cmd = new SqlCommand("deleteUdstyr", con))
+                {
+                    var table = new DataTable();
+                    table.Columns.Add("Tal", typeof(int));
 
+                    for (int i = 0; i < udstyr.Count; i++)
+                        table.Rows.Add("Tal " + udstyr[i].Id);
+
+                    var pList = new SqlParameter("@list", SqlDbType.Structured);
+                    pList.TypeName = "listen";
+                    pList.Value = table;
+
+                    cmd.Parameters.Add(pList);
+                    cmd.Parameters.Add(medlemsid);
+
+                    using (var dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                            Console.WriteLine(dr["memberid"].ToString());
+                    }
+                }
+            }
+        }
 
     }
 }
