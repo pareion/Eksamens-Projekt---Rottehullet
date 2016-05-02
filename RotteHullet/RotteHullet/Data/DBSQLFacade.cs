@@ -21,39 +21,16 @@ namespace RotteHullet.Data
             }
             return _dbsqlFacade;
         }
-
-
+        #region forbindelse
         private SqlConnection hentForbindelse() {
-            /*
-            Servernavn: ealdb1.eal.local
-Brugernavn: ejl51_usr
-kodeord: Baz1nga51
-Databasenavn: ejl51_db
-
-    */
             SqlConnection forb = new SqlConnection("Server=ealdb1.eal.local;Database=ejl51_db; User ID = ejl51_usr; Password = Baz1nga51");
             forb.Open();
             return forb;
         }
-
-
+        #endregion
         /*
 
 
-
-        +GemBrætSpil(BrætSpil: bs): bool
-+ÆndreBrætSpil(int: gammeltID, BrætSpil: bs): bool
-+HentBrætSpil(int: id): BrætSpil
-+HentAlleBrætSpil(): List<BrætSpil>
-+SletBrætSpil(int: id): bool
-
-+GemBog(Bog: bog): bool
-+ÆndreBog(int: gammeltID, Bog: bog): bool
-+HentBog(int: id): Bog
-+HentAlleBøger(): List<Bog>
-+Sletbog(int: id): bool
-
-+GemUdstyr(Udstyr: udstyr): bool
 +ÆndreUdstyr(int: gammeltID, Udstyr: udstyr): bool
 +HentUdstyr(int: id): Udstyr
 +HentAlleUdstyr(): List<Udstyr>
@@ -65,10 +42,7 @@ Databasenavn: ejl51_db
 +HentAlleLokaler(): List<Lokale>
 +SletLokale(int: id): bool
     */
-
-
-  
-
+        #region Bog
         public bool GemBog(Bog bog) {
             try
             {
@@ -101,7 +75,6 @@ Databasenavn: ejl51_db
             }
 
         }
-
         public bool ÆndreBog(Bog bog)
         {
             try
@@ -135,9 +108,6 @@ Databasenavn: ejl51_db
             }
 
         }
-
-
-
         public Bog HentBog(int id)
         {
             Bog resultat = null;
@@ -177,7 +147,6 @@ Databasenavn: ejl51_db
             
             return resultat;
         }
-
         public bool SletBog(int id)
         {
             bool resultat = false;
@@ -205,8 +174,6 @@ Databasenavn: ejl51_db
             return resultat;
 
         }
-
-
         public List<Bog> HentAlleBøger() {
             List<Bog> bogListe = new List<Bog>();
 
@@ -244,15 +211,38 @@ Databasenavn: ejl51_db
             
             return bogListe;
         }
+        #endregion
+        #region Brætspil
+        public bool GemBrætSpil(Brætspil bs)
+        {
 
-                // DONE     +GemBog(Bog: bog): bool
+            return false;
+        }
+        public bool ÆndreBrætSpil(int gammeltID, Brætspil bs)
+        {
 
-                /*
-                + DONE ÆndreBog(int: gammeltID, Bog: bog): bool
-        + DONE HentBog(int: id): Bog
-        +HentAlleBøger(): List<Bog>
-        +Sletbog(int: id): bool
-        */
+            return false;
+        }
+        public Brætspil HentBrætSpil(int id)
+        {
 
-            }
+            return null;
+        }
+        public List<Brætspil> HentAlleBrætSpil()
+        {
+
+            return null;
+        }
+        public bool SletBrætSpil(int id)
+        {
+            return false;
+        }
+        #endregion
+        #region Udstyr
+        public bool GemUdstyr(Udstyr udstyr)
+        {
+            return false;
+        }
+        #endregion
+    }
 }
