@@ -5,21 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RotteHullet"
         mc:Ignorable="d"
-        Title="AdminPanel" Height="700" Width="680">
+        Title="AdminPanel" Height="700" Width="680" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <TabControl x:Name="adminTab" HorizontalAlignment="Left" Height="650" Margin="10,10,0,0" VerticalAlignment="Top" Width="652">
             <TabItem Header="Bøger">
                 <Grid>
-                    <TextBox x:Name="tb_søgBøger" HorizontalAlignment="Left" Height="23" Margin="80,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="519"/>
+                    <TextBox x:Name="tb_søgBøger" HorizontalAlignment="Left" Height="23" Margin="80,20,0,0" Padding="2,0,30,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="519" KeyUp="søgbøger_KeyUp"/>
+                    <Label x:Name="l_søgBøger" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="577,18,0,0" Foreground="LightGray" Content="🔎"/>
                     <Button x:Name="b_opretBog" Content="Opret" HorizontalAlignment="Left" Height="25" Margin="80,72,0,0" VerticalAlignment="Top" Width="81" Click="opret_Click"/>
-                    <Button x:Name="b_redigereBog" Content="Redigere" HorizontalAlignment="Left" Height="25" Margin="430,72,0,0" VerticalAlignment="Top" Width="81" Foreground="SkyBlue" IsEnabled="False" />
-                    <Button x:Name="b_sletBog" Content="Slet" HorizontalAlignment="Left" Height="25" Margin="518,72,0,0" VerticalAlignment="Top" Width="81" Foreground="Red" IsEnabled="False" />
-                    <ListView x:Name="lv_bøger" HorizontalAlignment="Left" Height="470" Margin="80,138,0,0" VerticalAlignment="Top" Width="519" SelectionChanged="lv_bøger_SelectionChanged">
+                    <Button x:Name="b_redigereBog" Content="Redigere" Click="redigere_Click" HorizontalAlignment="Left" Height="25" Margin="430,72,0,0" VerticalAlignment="Top" Width="81" Foreground="SkyBlue" IsEnabled="False" />
+                    <Button x:Name="b_sletBog" Content="Slet" HorizontalAlignment="Left" Height="25" Margin="518,72,0,0" VerticalAlignment="Top" Width="81" Foreground="Red" IsEnabled="False" Click="slet_Click" />
+                    <ListView SelectionMode="Single" x:Name="lv_bøger" HorizontalAlignment="Left" Height="470" Margin="80,138,0,0" VerticalAlignment="Top" Width="519" SelectionChanged="lv_bøger_SelectionChanged" MouseDoubleClick="lv_bøger_DoubleClick">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="ID" Width="Auto" DisplayMemberBinding="{Binding Id}"/>
-                                <GridViewColumn Header="Familie" Width="200" DisplayMemberBinding="{Binding Familie}"/>
+                                <GridViewColumn Header="ID" Width="40" DisplayMemberBinding="{Binding Id}"/>
                                 <GridViewColumn Header="Titel" Width="290" DisplayMemberBinding="{Binding Titel}"/>
+                                <GridViewColumn Header="Familie" Width="200" DisplayMemberBinding="{Binding Familie}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
@@ -27,16 +28,17 @@
             </TabItem>
             <TabItem Header="Brætspil">
                 <Grid>
-                    <TextBox x:Name="tb_søgBrætspil" HorizontalAlignment="Left" Height="23" Margin="80,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="519"/>
+                    <TextBox x:Name="tb_søgBrætspil" HorizontalAlignment="Left" Height="23" Margin="80,20,0,0" Padding="2,0,30,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="519" KeyUp="søgBrætspil_KeyUp"/>
+                    <Label x:Name="l_søgBrætspil" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="577,18,0,0" Foreground="LightGray" Content="🔎"/>
                     <Button x:Name="b_opretBrætspil" Content="Opret" HorizontalAlignment="Left" Height="25" Margin="80,72,0,0" VerticalAlignment="Top" Width="81" Click="opret_Click"/>
-                    <Button x:Name="b_redigereBrætspil" Content="Redigere" HorizontalAlignment="Left" Height="25" Margin="430,72,0,0" VerticalAlignment="Top" Width="81" Foreground="SkyBlue" IsEnabled="False" />
-                    <Button x:Name="b_sletBrætspil" Content="Slet" HorizontalAlignment="Left" Height="25" Margin="518,72,0,0" VerticalAlignment="Top" Width="81" Foreground="Red" IsEnabled="False" />
-                    <ListView x:Name="lv_brætspil" HorizontalAlignment="Left" Height="470" Margin="80,138,0,0" VerticalAlignment="Top" Width="519" SelectionChanged="lv_brætspil_SelectionChanged">
+                    <Button x:Name="b_redigereBrætspil" Content="Redigere" Click="redigere_Click" HorizontalAlignment="Left" Height="25" Margin="430,72,0,0" VerticalAlignment="Top" Width="81" Foreground="SkyBlue" IsEnabled="False" />
+                    <Button x:Name="b_sletBrætspil" Content="Slet" HorizontalAlignment="Left" Height="25" Margin="518,72,0,0" VerticalAlignment="Top" Width="81" Foreground="Red" IsEnabled="False" Click="slet_Click" />
+                    <ListView SelectionMode="Single" x:Name="lv_brætspil" HorizontalAlignment="Left" Height="470" Margin="80,138,0,0" VerticalAlignment="Top" Width="519" SelectionChanged="lv_brætspil_SelectionChanged" MouseDoubleClick="lv_brætspil_DoubleClick">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="ID" Width="Auto" DisplayMemberBinding="{Binding Id}"/>
-                                <GridViewColumn Header="Udgiver" Width="180" DisplayMemberBinding="{Binding Udgiver}"/>
                                 <GridViewColumn Header="Navn" Width="300" DisplayMemberBinding="{Binding BrætspilsNavn}"/>
+                                <GridViewColumn Header="Udgiver" Width="180" DisplayMemberBinding="{Binding Udgiver}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
@@ -44,11 +46,12 @@
             </TabItem>
             <TabItem Header="Udstyr">
                 <Grid>
-                    <TextBox x:Name="tb_søgUdstyr" HorizontalAlignment="Left" Height="23" Margin="80,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="519"/>
+                    <TextBox x:Name="tb_søgUdstyr" HorizontalAlignment="Left" Height="23" Margin="80,20,0,0" Padding="2,0,30,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="519" KeyUp="søgUdstyr_KeyUp"/>
+                    <Label x:Name="l_søgUdstyr" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="577,18,0,0" Foreground="LightGray" Content="🔎"/>
                     <Button x:Name="b_opretUdstyr" Content="Opret" HorizontalAlignment="Left" Height="25" Margin="80,72,0,0" VerticalAlignment="Top" Width="81" Click="opret_Click" />
-                    <Button x:Name="b_redigereUdstyr" Content="Redigere" HorizontalAlignment="Left" Height="25" Margin="430,72,0,0" VerticalAlignment="Top" Width="81" Foreground="SkyBlue" IsEnabled="False" />
-                    <Button x:Name="b_sletUdstyr" Content="Slet" HorizontalAlignment="Left" Height="25" Margin="518,72,0,0" VerticalAlignment="Top" Width="81" Foreground="Red" IsEnabled="False" />
-                    <ListView x:Name="lv_udstyr" HorizontalAlignment="Left" Height="470" Margin="80,138,0,0" VerticalAlignment="Top" Width="519" SelectionChanged="lv_udstyr_SelectionChanged">
+                    <Button x:Name="b_redigereUdstyr" Content="Redigere" Click="redigere_Click" HorizontalAlignment="Left" Height="25" Margin="430,72,0,0" VerticalAlignment="Top" Width="81" Foreground="SkyBlue" IsEnabled="False" />
+                    <Button x:Name="b_sletUdstyr" Content="Slet" HorizontalAlignment="Left" Height="25" Margin="518,72,0,0" VerticalAlignment="Top" Width="81" Foreground="Red" IsEnabled="False" Click="slet_Click" />
+                    <ListView SelectionMode="Single" x:Name="lv_udstyr" HorizontalAlignment="Left" Height="470" Margin="80,138,0,0" VerticalAlignment="Top" Width="519" SelectionChanged="lv_udstyr_SelectionChanged" MouseDoubleClick="lv_udstyr_DoubleClick">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="ID" Width="Auto" DisplayMemberBinding="{Binding Id}"/>
@@ -60,11 +63,12 @@
             </TabItem>
             <TabItem Header="Lokaler">
                 <Grid>
-                    <TextBox x:Name="tb_søgLokal" HorizontalAlignment="Left" Height="23" Margin="80,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="519"/>
+                    <TextBox x:Name="tb_søgLokale" HorizontalAlignment="Left" Height="23" Margin="80,20,0,0" Padding="2,0,30,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="519" KeyUp="søgLokale_KeyUp"/>
+                    <Label x:Name="l_søgLokale" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="577,18,0,0" Foreground="LightGray" Content="🔎"/>
                     <Button x:Name="b_opretLokal" Content="Opret" HorizontalAlignment="Left" Height="25" Margin="80,72,0,0" VerticalAlignment="Top" Width="81" Click="opret_Click"/>
-                    <Button x:Name="b_redigereLokal" Content="Redigere" HorizontalAlignment="Left" Height="25" Margin="430,72,0,0" VerticalAlignment="Top" Foreground="SkyBlue" Width="81" IsEnabled="False" />
-                    <Button x:Name="b_sletLokal" Content="Slet" HorizontalAlignment="Left" Height="25" Margin="518,72,0,0" VerticalAlignment="Top" Foreground="Red" Width="81" IsEnabled="False" />
-                    <ListView x:Name="lv_lokal" HorizontalAlignment="Left" Height="470" Margin="80,138,0,0" VerticalAlignment="Top" Width="519" SelectionChanged="lv_lokal_SelectionChanged">
+                    <Button x:Name="b_redigereLokal" Content="Redigere" Click="redigere_Click" HorizontalAlignment="Left" Height="25" Margin="430,72,0,0" VerticalAlignment="Top" Foreground="SkyBlue" Width="81" IsEnabled="False" />
+                    <Button x:Name="b_sletLokal" Content="Slet" HorizontalAlignment="Left" Height="25" Margin="518,72,0,0" VerticalAlignment="Top" Foreground="Red" Width="81" IsEnabled="False" Click="slet_Click" />
+                    <ListView SelectionMode="Single" x:Name="lv_lokal" HorizontalAlignment="Left" Height="470" Margin="80,138,0,0" VerticalAlignment="Top" Width="519" SelectionChanged="lv_lokal_SelectionChanged" MouseDoubleClick="lv_lokale_DoubleClick">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="ID" Width="Auto" DisplayMemberBinding="{Binding Id}"/>

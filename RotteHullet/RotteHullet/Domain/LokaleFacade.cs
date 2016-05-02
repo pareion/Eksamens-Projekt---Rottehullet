@@ -38,16 +38,16 @@ namespace RotteHullet.Domain
             }
             return "Lokalet ikke blevet ændret";
         }
-        public string HentLokale(int id)
+        public string HentLokale(int id, int position)
         {
-            return DBSQLFacade.HentDBSQLFacade().HentLokale(id).ToString();
+            return DBSQLFacade.HentDBSQLFacade().HentLokale(id).ToString(position);
         }
-        public List<string> HentAlleLokaler()
+        public List<string> HentAlleLokaler(int position)
         {
             List<string> nyeLokaler = new List<string>();
             foreach (var item in DBSQLFacade.HentDBSQLFacade().HentAlleLokaler())
             {
-                nyeLokaler.Add(item.ToString());
+                nyeLokaler.Add(item.ToString(position));
             }
             return nyeLokaler;
         }

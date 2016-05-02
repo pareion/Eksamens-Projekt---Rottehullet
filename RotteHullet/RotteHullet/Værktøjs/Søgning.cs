@@ -9,6 +9,8 @@ namespace RotteHullet.Værktøjs
 {
     class Søgning
     {
+        public enum AktivType { Bog, Brætspil, Udstyr, Lokale }
+
         private static Søgning _søgning;
 
         public static Søgning HentSøgning()
@@ -20,7 +22,9 @@ namespace RotteHullet.Værktøjs
             return _søgning;
         }
 
-        public bool Søg(bool bøger, bool lokaler, bool brætspil, bool udstyr, string søgning, out List<Bog> bogResult, out List<Lokale> lokaleResult, out List<Brætspil> brætspilResult, out List<Udstyr> udstyrResult)
+        public bool Søg(bool bøger, bool lokaler, bool brætspil, bool udstyr, string søgning, 
+            out List<Bog> bogResult, out List<Lokale> lokaleResult, 
+            out List<Brætspil> brætspilResult, out List<Udstyr> udstyrResult)
         {
             bogResult = new List<Bog>();
             lokaleResult = new List<Lokale>();
@@ -113,6 +117,53 @@ namespace RotteHullet.Værktøjs
             brætspil = Data.DBRamFacade.HentDbRamFacade().HentAlleBrætSpil().FindAll(x => x.BrætspilsNavn.Contains(søgord));
 
             return brætspil.Count != 0;
+        }
+
+        /// <summary>
+        /// Ingen binding søgning
+        /// </summary>
+        /// <param name="søgord"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public List<object> Find(string søgord, AktivType type)
+        {
+            List<object> data = new List<object>();
+
+            switch (type)
+            {
+                case AktivType.Bog:
+                    List<Bog> bogListe = Data.DBRamFacade.HentDbRamFacade().HentAlleBøger().FindAll(x => x.Titel.ToLower().Contains(søgord));
+                    foreach (Bog aktiv in bogListe)
+                    {
+                        data.Add(aktiv);
+                    }
+                    break;
+                case AktivType.Brætspil:
+                    List<Brætspil> spilListe = Data.DBRamFacade.HentDbRamFacade().HentAlleBrætSpil().FindAll(x => x.BrætspilsNavn.ToLower().Contains(søgord));
+                    foreach (Brætspil aktiv in spilListe)
+                    {
+                        data.Add(aktiv);
+                    }
+                    break;
+                case AktivType.Udstyr:
+                    List<Udstyr> udstyrListe = Data.DBRamFacade.HentDbRamFacade().HentAlleUdstyr().FindAll(x => x.UdstyrsNavn.ToLower().Contains(søgord));
+                    foreach (Udstyr aktiv in udstyrListe)
+                    {
+                        data.Add(aktiv);
+                    }
+                    break;
+                case AktivType.Lokale:
+                    List<Lokale> lokaleListe = Data.DBRamFacade.HentDbRamFacade().HentAlleLokaler().FindAll(x => x.LokaleNavn.ToLower().Contains(søgord) || x.Lokation.ToLower().Contains(søgord));
+                    foreach (Lokale aktiv in lokaleListe)
+                    {
+                        data.Add(aktiv);
+                    }
+                    break;
+                default:
+                    break;
+            }
+
+            return data;
         }
     }
 }

@@ -14,7 +14,7 @@ namespace RotteHullet.Domain
             {
                 return true;
             }
-            else if (brugernavn == "admin" && password == "admin")
+            else if (brugernavn == "medlem" && password == "medlem")
             {
                 return true;
             }
