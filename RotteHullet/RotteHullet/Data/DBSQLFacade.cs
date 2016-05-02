@@ -108,7 +108,7 @@ Databasenavn: ejl51_db
             {
                 SqlConnection forb = hentForbindelse();
 
-                SqlCommand kommando = new SqlCommand("GemBog", forb);
+                SqlCommand kommando = new SqlCommand("ÆndreBog", forb);
                 kommando.CommandType = System.Data.CommandType.StoredProcedure;
 
                 kommando.Parameters.Add(new SqlParameter("@BogID", bog.Id));
@@ -145,7 +145,7 @@ Databasenavn: ejl51_db
             {
                 SqlConnection forb = hentForbindelse();
                 
-                SqlCommand kommando = new SqlCommand("ÆndreBog", forb);
+                SqlCommand kommando = new SqlCommand("HentBog", forb);
                 kommando.CommandType = System.Data.CommandType.StoredProcedure;
 
                 kommando.Parameters.Add(new SqlParameter("@bogid", id));
