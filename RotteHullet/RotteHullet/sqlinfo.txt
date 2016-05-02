@@ -1,0 +1,37 @@
+﻿CREATE TABLE UdstyrTabelTemporary (
+	memberid    INT NULL,
+    udstyrid    INT NULL
+);
+
+CREATE TYPE intList AS TABLE (
+    [tal] INT NULL
+);
+
+CREATE PROCEDURE deleteUdstyr
+	@list intList READONLY,
+	@memberid int
+
+AS
+DECLARE a CURSOR FAST_FORWARD FOR
+	SELECT udstyrid FROM Udstyr 
+
+	DECLARE @id int
+	DECLARE @listid int
+
+	FETCH NEXT FROM a INTO @id
+	WHILE(@@FETCH_STATUS = 0)
+	BEGIN
+		FETCH NEXT FROM @list INTO @listid
+		WHILE(@@FETCH_STATUS = 0)
+		BEGIN
+		IF @id != @listid
+		BEGIN
+			INSERT INTO UdstyrTabelTemporary VALUES (@memberid,@listid)
+		END
+		ELSE
+		FETCH NEXT FROM @list INTO @listid
+		END
+	FETCH NEXT FROM a INTO @id
+	END
+	SELECT * FROM UdstyrTabelTemporary WHERE memberid = @memberid
+RETURN
