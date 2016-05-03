@@ -11,6 +11,7 @@ namespace RotteHullet.Domain.BusinessLogic
         private int _id;
         private string _brætspilsNavn;
         private string _udgiver;
+        private string _kategori;
         private bool _udlånes;
         private string _kommentar;
 
@@ -53,6 +54,18 @@ namespace RotteHullet.Domain.BusinessLogic
                 _udgiver = value;
             }
         }
+        public string Kategori
+        {
+            get
+            {
+                return _kategori;
+            }
+
+            private set
+            {
+                _kategori = value;
+            }
+        }
         public bool Udlånes
         {
             get
@@ -80,18 +93,19 @@ namespace RotteHullet.Domain.BusinessLogic
         }
         #endregion
 
-        public Brætspil(int id, string brætspilsNavn, string udgiver,bool udlånes, string kommentar)
+        public Brætspil(int id, string brætspilsNavn, string udgiver,bool udlånes, string kommentar, string kategori = null)
         {
             _id = id;
             _brætspilsNavn = brætspilsNavn;
             _udgiver = udgiver;
             _udlånes = udlånes;
             _kommentar = kommentar;
+            _kategori = kategori;
         }
 
         public override string ToString()
         {
-            return "ID: " + _id + " Brætspilsnavn: " + _brætspilsNavn + " Udgiver: " + _udgiver + " Udlånes: " + _udlånes + " Kommentar: " + _kommentar;
+            return "ID: " + _id + " Brætspilsnavn: " + _brætspilsNavn + " Udgiver: " + _udgiver + " Udlånes: " + _udlånes + " Kommentar: " + _kommentar + " Kategori: " + _kategori;
         }
 
         public string ToString(int position)
@@ -108,6 +122,8 @@ namespace RotteHullet.Domain.BusinessLogic
                     return _udlånes.ToString();
                 case 4:
                     return _kommentar;
+                case 5:
+                    return _kategori;
                 default:
                     return ToString();
             }
