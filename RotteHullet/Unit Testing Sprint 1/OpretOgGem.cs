@@ -28,7 +28,7 @@ namespace Unit_Testing_Sprint_1
                 "Abernes Planet", "Gyldendal", "Stand: Ødelagt. Må ikke udlånes.");
 
             //Hent bog
-            string bogHentet = UIFacade.HentUIFacade().HentBogFacade().HentBog(0);
+            string bogHentet = UIFacade.HentUIFacade().HentBogFacade().HentBog(0,0);
 
             //Sammenlign om den gemte er identisk med den som er hentet ud
             Assert.AreEqual(bog.ToString(), bogHentet);
@@ -44,7 +44,7 @@ namespace Unit_Testing_Sprint_1
             UIFacade.HentUIFacade().HentBogFacade().SkabBog("Test", "Test", "Test", "Test", "Test", "Test", null);
 
             //Hent bog uden kommentar
-            string bogHentet = UIFacade.HentUIFacade().HentBogFacade().HentBog(0);
+            string bogHentet = UIFacade.HentUIFacade().HentBogFacade().HentBog(0,0);
 
             //Sammenlign om den gemte ikke er identisk med den som er hentet ud
             Assert.AreNotEqual(bog.ToString(), bogHentet);
@@ -60,7 +60,7 @@ namespace Unit_Testing_Sprint_1
             UIFacade.HentUIFacade().HentBogFacade().SkabBog("Test", "Test", "Test", "Test", "Test", "Test", "Test");
 
             //Hent liste med bøger
-            List<string> bogListe = UIFacade.HentUIFacade().HentBogFacade().HentAlleBøger();
+            List<string> bogListe = UIFacade.HentUIFacade().HentBogFacade().HentAlleBøger(5);
 
             //Sammenlign om den gemte ikke er identisk med den som er hentet ud
             Assert.AreEqual(bogListe.Count, 4);

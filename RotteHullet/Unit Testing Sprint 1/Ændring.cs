@@ -22,7 +22,7 @@ namespace Unit_Testing_Sprint_1
             UIFacade.HentUIFacade().HentBogFacade().ÆndreBog(0, "test1", "test2", "test3", "test4", "test5", "test6", "test7");
 
             //Hent bog
-            string bogHentet = UIFacade.HentUIFacade().HentBogFacade().HentBog(0);
+            string bogHentet = UIFacade.HentUIFacade().HentBogFacade().HentBog(0,0);
 
             //Sammenlign om den gemte er identisk med den som er hentet ud
             Assert.AreEqual(bog.ToString(), bogHentet);
@@ -41,7 +41,7 @@ namespace Unit_Testing_Sprint_1
             UIFacade.HentUIFacade().HentUdstyrFacade().ÆndreUdstyr(0, 1, "test2", "test3", "test4");
 
             //Hent udstyr
-            string udstyrhentet = UIFacade.HentUIFacade().HentUdstyrFacade().HentUdstyr(1);
+            string udstyrhentet = UIFacade.HentUIFacade().HentUdstyrFacade().HentUdstyr(0,0);
 
             //Sammenlign om den gemte er identisk med den som er hentet ud
             Assert.AreEqual(uds.ToString(),udstyrhentet);
@@ -59,7 +59,7 @@ namespace Unit_Testing_Sprint_1
             UIFacade.HentUIFacade().HentLokaleFacade().ÆndreLokale(0, 1, "test2", "test3", "test4", "test5");
 
             //Hent lokale
-            string lokhentet = UIFacade.HentUIFacade().HentLokaleFacade().HentLokale(1);
+            string lokhentet = UIFacade.HentUIFacade().HentLokaleFacade().HentLokale(0,0);
 
             //Sammenlign om den gemte er identisk med den som er hentet ud
             Assert.AreEqual(lok.ToString(), lokhentet);
@@ -77,7 +77,7 @@ namespace Unit_Testing_Sprint_1
             UIFacade.HentUIFacade().HentBrætSpilFacade().ÆndreBrætSpil(0, 1, "test2", "test3", "test4");
 
             //Hent brætspil
-            string bsHentet = UIFacade.HentUIFacade().HentBrætSpilFacade().HentBrætSpil(1);
+            string bsHentet = UIFacade.HentUIFacade().HentBrætSpilFacade().HentBrætSpil(0,0);
 
             //Sammenlign om den gemte er identisk med den som er hentet ud
             Assert.AreEqual(bs.ToString(), bsHentet);
