@@ -444,5 +444,13 @@ namespace RotteHullet
         }
 
         #endregion
+
+        private void slet_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Delete)
+            {
+                sletAktiv();
+            }
+        }
     }
 }

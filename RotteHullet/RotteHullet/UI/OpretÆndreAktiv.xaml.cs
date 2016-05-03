@@ -247,16 +247,16 @@ namespace RotteHullet
             switch (index)
             {
                 case IndexTab.Bog:
-                    UIFacade.HentUIFacade().HentBogFacade().SkabBog(tb_Titel.Text, tb_Forfatter.Text, tb_Genre.Text, tb_Subkategori.Text, tb_Familie.Text, tb_Familie.Text, tb_Kommentar.Text);
+                    UIFacade.HentUIFacade().HentBogFacade().SkabBog(tb_Titel.Text, tb_Forfatter.Text, tb_Genre.Text, tb_Subkategori.Text, tb_Familie.Text, tb_Familie.Text, cb_BogUdlån.IsChecked == true ? true : false, tb_Kommentar.Text);
                     break;
                 case IndexTab.Brætspil:
-                    UIFacade.HentUIFacade().HentBrætSpilFacade().SkabBrætSpil(0, tb_Brætspilnavn.Text, tb_BrætspilUdgiver.Text, tb_BrætspilKommentar.Text);
+                    UIFacade.HentUIFacade().HentBrætSpilFacade().SkabBrætSpil(0, tb_Brætspilnavn.Text, tb_BrætspilUdgiver.Text, cb_BrætspilUdlån.IsChecked == true ? true : false, tb_BrætspilKommentar.Text);
                     break;
                 case IndexTab.Udstyr:
-                    UIFacade.HentUIFacade().HentUdstyrFacade().SkabUdstyr(0, tb_Udstyrnavn.Text, tb_UdstyrKategori.Text, tb_UdstyrKommentar.Text);
+                    UIFacade.HentUIFacade().HentUdstyrFacade().SkabUdstyr(0, tb_Udstyrnavn.Text, tb_UdstyrKategori.Text, cb_UdstyrUdlån.IsChecked == true ? true : false, tb_UdstyrKommentar.Text);
                     break;
                 case IndexTab.Lokale:
-                    UIFacade.HentUIFacade().HentLokaleFacade().SkabLokale(0, tb_Lokalenavn.Text, tb_Lokation.Text, tb_LokaleKommentar.Text, tb_LokaleMøbler.Text);
+                    UIFacade.HentUIFacade().HentLokaleFacade().SkabLokale(0, tb_Lokalenavn.Text, tb_Lokation.Text, cb_LokaleUdlån.IsChecked == true ? true : false, tb_LokaleKommentar.Text,  tb_LokaleMøbler.Text);
                     break;
                 default:
                     throw new Exception("Denne fane fines ikke");
@@ -268,16 +268,16 @@ namespace RotteHullet
             switch (index)
             {
                 case IndexTab.Bog:
-                    UIFacade.HentUIFacade().HentBogFacade().ÆndreBog(_aktivId, tb_Titel.Text, tb_Forfatter.Text, tb_Genre.Text, tb_Subkategori.Text, tb_Familie.Text, tb_Familie.Text, tb_Kommentar.Text);
+                    UIFacade.HentUIFacade().HentBogFacade().ÆndreBog(_aktivId, tb_Titel.Text, tb_Forfatter.Text, tb_Genre.Text, tb_Subkategori.Text, tb_Familie.Text, tb_Familie.Text, cb_BogUdlån.IsChecked == true ? true : false, tb_Kommentar.Text);
                     break;
                 case IndexTab.Brætspil:
-                    UIFacade.HentUIFacade().HentBrætSpilFacade().ÆndreBrætSpil(_aktivId, _aktivId, tb_Brætspilnavn.Text, tb_BrætspilUdgiver.Text, tb_BrætspilKommentar.Text);
+                    UIFacade.HentUIFacade().HentBrætSpilFacade().ÆndreBrætSpil(_aktivId, _aktivId, tb_Brætspilnavn.Text, tb_BrætspilUdgiver.Text, cb_BrætspilUdlån.IsChecked == true ? true : false, tb_BrætspilKommentar.Text);
                     break;
                 case IndexTab.Udstyr:
-                    UIFacade.HentUIFacade().HentUdstyrFacade().ÆndreUdstyr(_aktivId, _aktivId, tb_Udstyrnavn.Text, tb_UdstyrKategori.Text, tb_UdstyrKommentar.Text);
+                    UIFacade.HentUIFacade().HentUdstyrFacade().ÆndreUdstyr(_aktivId, _aktivId, tb_Udstyrnavn.Text, tb_UdstyrKategori.Text, cb_UdstyrUdlån.IsChecked == true ? true : false, tb_UdstyrKommentar.Text);
                     break;
                 case IndexTab.Lokale:
-                    UIFacade.HentUIFacade().HentLokaleFacade().ÆndreLokale(_aktivId, _aktivId, tb_Lokalenavn.Text, tb_Lokation.Text, tb_LokaleKommentar.Text, tb_LokaleMøbler.Text);
+                    UIFacade.HentUIFacade().HentLokaleFacade().ÆndreLokale(_aktivId, _aktivId, tb_Lokalenavn.Text, tb_Lokation.Text, cb_LokaleUdlån.IsChecked == true ? true : false, tb_LokaleKommentar.Text, tb_LokaleMøbler.Text);
                     break;
                 default:
                     throw new Exception("Denne fane fines ikke");
