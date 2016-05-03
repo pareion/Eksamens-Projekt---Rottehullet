@@ -25,6 +25,9 @@ namespace RotteHullet
     {
         public MainWindow()
         {
+            InitializeComponent();
+
+            /*
             List<Udstyr> udstyr = new List<Udstyr>();
             Udstyr s = new Udstyr(1, "sko", "lol", "lol");
             Udstyr s2 = new Udstyr(0, "sko", "lol", "lol");
@@ -38,10 +41,9 @@ namespace RotteHullet
             udstyr.Add(s4);
             udstyr.Add(s5);
             udstyr.Add(s6);
-            DBSQLFacade.HentDBSQLFacade().checkLister(0,udstyr);
-            InitializeComponent();
+            DBSQLFacade.HentDBSQLFacade().checkLister(0, udstyr);
+            */
         }
-
 
         private void TilmeldEvent(object sender, MouseButtonEventArgs e)
         {

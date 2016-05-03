@@ -10,9 +10,7 @@ namespace RotteHullet.Domain
 {
     class MedlemFacade
     {
-        private static Medlem sessionBruger { get; set; }
-        private static MedlemFacade _medlemFacade = null;
-
+        #region Egenskaber
         public bool ErAdmin
         {
             get
@@ -21,6 +19,12 @@ namespace RotteHullet.Domain
             }
         }
 
+        private static Medlem sessionBruger { get; set; }
+        private static MedlemFacade _medlemFacade = null;
+
+        #endregion
+
+        #region Metoder
         public static MedlemFacade HentMedlemFacade()
         {
             if (_medlemFacade == null)
@@ -28,6 +32,24 @@ namespace RotteHullet.Domain
                 _medlemFacade = new MedlemFacade();
             }
             return _medlemFacade;
+        }
+
+        public void GemMedlem(string brugernavn, string password, string fornavn, string efternavn, string email, Medlem.MedlemType medlemtype = Medlem.MedlemType.Bruger)
+        {
+            // Do something
+
+        }
+
+        public void ÆndreMedlem(int id, string brugernavn, string password, string fornavn, string efternavn, string email, Medlem.MedlemType medlemtype = Medlem.MedlemType.Bruger)
+        {
+            // Do something
+
+        }
+
+        public void SletMedlem(int id)
+        {
+            // Do something
+
         }
 
         public Medlem SessionBruger()
@@ -49,5 +71,7 @@ namespace RotteHullet.Domain
                 return false;
             }
         }
+
+        #endregion 
     }
 }
