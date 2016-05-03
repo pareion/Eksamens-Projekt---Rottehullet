@@ -41,6 +41,7 @@ namespace RotteHullet
             windowTitel();
             erOpret = true;
         }
+
         /// <summary>
         /// Oprettelse Aktiv Constructor
         /// </summary>

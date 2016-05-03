@@ -12,6 +12,13 @@ namespace RotteHullet.Data
     {
         private static IDBFacade _dbsqlFacade;
 
+        private List<Bog> _bogListe;
+        private List<Brætspil> _brætspilsListe;
+        private List<Udstyr> _udstyrsListe;
+        private List<Lokale> _lokaleListe;
+        private List<Medlem> _medlemListe = new List<Medlem>();
+
+
         public static IDBFacade HentDBSQLFacade()
         {
             if (_dbsqlFacade == null)
