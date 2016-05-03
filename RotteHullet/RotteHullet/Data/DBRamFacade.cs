@@ -835,7 +835,7 @@ namespace RotteHullet.Data
             int count = 1;
             foreach(string navn in titel)
             {
-                Bog bog = AktivFactory.HentAktivFactory().SkabNyBog(count, navn, hentFornavn() + " " + hentFornavn() + "sen", genre.ElementAt(random.Next(0, genre.Count - 1)), "Subkategori", "RPG X", "Data");
+                Bog bog = AktivFactory.HentAktivFactory().SkabNyBog(count, navn, hentFornavn() + " " + hentFornavn() + "sen", genre.ElementAt(random.Next(0, genre.Count - 1)), "Subkategori", "RPG X", "Data",true);
                 _bogListe.Add(bog);
                 count++;
             }
@@ -844,7 +844,7 @@ namespace RotteHullet.Data
         {
             for (int i = 0; i < 100; i++)
             {
-                Brætspil aktiv = AktivFactory.HentAktivFactory().SkabNyBrætspil(i + 1, hentFornavn(i), "Menneske", null);
+                Brætspil aktiv = AktivFactory.HentAktivFactory().SkabNyBrætspil(i + 1, hentFornavn(i), "Menneske",true, null);
                 _brætspilsListe.Add(aktiv);
             }
         }
@@ -852,7 +852,7 @@ namespace RotteHullet.Data
         {
             for (int i = 0; i < 100; i++)
             {
-                Udstyr udstyr = AktivFactory.HentAktivFactory().SkabNytUdstyr(i + 1, hentFornavn(i), "Menneske", null);
+                Udstyr udstyr = AktivFactory.HentAktivFactory().SkabNytUdstyr(i + 1, hentFornavn(i), "Menneske",true, null);
                 _udstyrsListe.Add(udstyr);
             }
         }
@@ -860,7 +860,7 @@ namespace RotteHullet.Data
         {
             for (int i = 0; i < 100; i++)
             {
-                Lokale aktiv = AktivFactory.HentAktivFactory().SkabNytLokale(i + 1, hentFornavn(i), hentFornavn(i) + "vej", null, null);
+                Lokale aktiv = AktivFactory.HentAktivFactory().SkabNytLokale(i + 1, hentFornavn(i), hentFornavn(i) + "vej",true, null, null);
                 _lokaleListe.Add(aktiv);
             }
         }

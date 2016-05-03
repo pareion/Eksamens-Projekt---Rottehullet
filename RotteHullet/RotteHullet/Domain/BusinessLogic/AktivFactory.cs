@@ -18,21 +18,21 @@ namespace RotteHullet.Domain.BusinessLogic
             }
             return _aktivFactory;
         }
-        public Brætspil SkabNyBrætspil(int id, string navn, string udgiver, string kommentar)
+        public Brætspil SkabNyBrætspil(int id, string navn, string udgiver, bool udlånes, string kommentar)
         {
-            return new Brætspil(id, navn,udgiver,kommentar);
+            return new Brætspil(id, navn,udgiver, udlånes, kommentar);
         }
-        public Udstyr SkabNytUdstyr(int id, string navn, string kategori, string kommentar)
+        public Udstyr SkabNytUdstyr(int id, string navn, string kategori, bool udlånes, string kommentar)
         {
-            return new Udstyr(id, navn, kategori, kommentar);
+            return new Udstyr(id, navn, kategori, udlånes, kommentar);
         }
-        public Bog SkabNyBog(int id, string titel, string forfatter, string genre, string subkategori, string familie, string forlag, string kommentar = null)
+        public Bog SkabNyBog(int id, string titel, string forfatter, string genre, string subkategori, string familie, string forlag, bool udlånes, string kommentar = null)
         {
-            return new Bog(id, titel, forfatter, genre, subkategori, familie, forlag, kommentar);
+            return new Bog(id, titel, forfatter, genre, subkategori, familie, forlag, udlånes, kommentar);
         }
-        public Lokale SkabNytLokale(int id, string navn, string lokation, string kommentar, string møbler)
+        public Lokale SkabNytLokale(int id, string navn, string lokation, bool udlånes, string kommentar, string møbler)
         {
-            return new Lokale(id, navn, lokation, kommentar, møbler);
+            return new Lokale(id, navn, lokation, udlånes, kommentar, møbler);
         }
     }
 }

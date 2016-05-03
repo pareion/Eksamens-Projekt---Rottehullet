@@ -20,18 +20,18 @@ namespace RotteHullet.Domain
             }
             return _udstyrFacade;
         }
-        public string SkabUdstyr(int id, string navn, string kategori, string kommentar)
+        public string SkabUdstyr(int id, string navn, string kategori, bool udlånes, string kommentar)
         {
-            Udstyr uds = AktivFactory.HentAktivFactory().SkabNytUdstyr(id, navn, kategori, kommentar);
+            Udstyr uds = AktivFactory.HentAktivFactory().SkabNytUdstyr(id, navn, kategori, udlånes, kommentar);
             if (DBSQLFacade.HentDBSQLFacade().GemUdstyr(uds))
             {
                 return "Udstyret er skabt";
             }
             return "Udstyret blev ikke skabt";
         }
-        public string ÆndreUdstyr(int gammeltID, int nytid, string navn, string kategori, string kommentar)
+        public string ÆndreUdstyr(int gammeltID, int nytid, string navn, string kategori, bool udlånes, string kommentar)
         {
-            Udstyr uds = AktivFactory.HentAktivFactory().SkabNytUdstyr(nytid, navn, kategori, kommentar);
+            Udstyr uds = AktivFactory.HentAktivFactory().SkabNytUdstyr(nytid, navn, kategori, udlånes, kommentar);
             if (DBSQLFacade.HentDBSQLFacade().ÆndreUdstyr(gammeltID, uds))
             {
                 return "Udstyret er ændret";

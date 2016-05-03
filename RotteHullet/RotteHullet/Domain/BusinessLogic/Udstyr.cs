@@ -12,6 +12,7 @@ namespace RotteHullet.Domain.BusinessLogic
         private string _udstyrsNavn;
         private string _kategori;
         private string _kommentar;
+        private bool _udlånes;
 
         #region properties
         public int Id
@@ -52,6 +53,18 @@ namespace RotteHullet.Domain.BusinessLogic
                 _kategori = value;
             }
         }
+        public bool Udlånes
+        {
+            get
+            {
+                return _udlånes;
+            }
+
+            private set
+            {
+                _udlånes = value;
+            }
+        }
 
         public string Kommentar
         {
@@ -67,16 +80,17 @@ namespace RotteHullet.Domain.BusinessLogic
         }
         #endregion
 
-        public Udstyr(int id, string udstyrsNavn, string kategori, string kommentar)
+        public Udstyr(int id, string udstyrsNavn, string kategori,bool udlånes, string kommentar)
         {
             _id = id;
             _udstyrsNavn = udstyrsNavn;
             _kategori = kategori;
+            _udlånes = udlånes;
             Kommentar = kommentar;
         }
         public override string ToString()
         {
-            return "ID: " + _id + " Udstyrsnavn: " + _udstyrsNavn + " Kategori: " + _kategori 
+            return "ID: " + _id + " Udstyrsnavn: " + _udstyrsNavn + " Kategori: " + _kategori + " Udlånes: " + _udlånes
                 + " Kommentar: " + _kommentar;
         }
 
@@ -91,6 +105,8 @@ namespace RotteHullet.Domain.BusinessLogic
                 case 2:
                     return _kategori;
                 case 3:
+                    return _udlånes.ToString();
+                case 4:
                     return _kommentar;
                 default:
                     return ToString();

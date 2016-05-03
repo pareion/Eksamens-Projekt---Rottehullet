@@ -15,6 +15,7 @@ namespace RotteHullet.Domain.BusinessLogic
         private string _subkategori;
         private string _familie;
         private string _forlag;
+        private bool _udlånes;
         private string _kommentar;
 
         #region properties
@@ -109,6 +110,19 @@ namespace RotteHullet.Domain.BusinessLogic
             }
         }
 
+        public bool Udlånes
+        {
+            get
+            {
+                return _udlånes;
+            }
+
+            private set
+            {
+                _udlånes = value;
+            }
+        }
+
         public string Kommentar
         {
             get
@@ -124,7 +138,7 @@ namespace RotteHullet.Domain.BusinessLogic
         #endregion
 
         public Bog(int id, string titel, string forfatter, string genre, string subkategori,
-            string familie, string forlag, string kommentar = null)
+            string familie, string forlag,bool udlånes, string kommentar = null)
         {
             _id = id;
             _titel = titel;
@@ -133,13 +147,14 @@ namespace RotteHullet.Domain.BusinessLogic
             _subkategori = subkategori;
             _familie = familie;
             _forlag = forlag;
+            _udlånes = udlånes;
             _kommentar = kommentar;
         }
 
         public override string ToString()
         {
             return "ID: " + _id + " Titel: " + _titel + " Forfatter: " + _forfatter + " Genre: " + _genre
-                   + " Subkategori: " + _subkategori + " Familie: " + _familie + " Forlag: " + _forlag
+                   + " Subkategori: " + _subkategori + " Familie: " + _familie + " Forlag: " + _forlag + " Udlånes: " + _udlånes
                    + " Kommentar: " + _kommentar;
         }
 
@@ -162,6 +177,8 @@ namespace RotteHullet.Domain.BusinessLogic
                 case 6:
                     return _forlag;
                 case 7:
+                    return _udlånes.ToString();
+                case 8:
                     return _kommentar;
                 default:
                     return ToString();

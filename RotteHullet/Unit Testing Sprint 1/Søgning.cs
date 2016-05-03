@@ -16,9 +16,9 @@ namespace Unit_Testing_Sprint_1
         public void TestSøgBog()
         {
             //Skab 3 bog objekter
-            Bog aktiv1 = new Bog(1, "Hello world", "Forfatter1", "Genre1", "Subkategori1", "Greeting", "Forlag1", "Kommentar1");
-            Bog aktiv2 = new Bog(2, "The World is a big place", "Forfatter2", "Genre2", "Subkategori2", "Geography", "Forlag2", "Kommentar2");
-            Bog aktiv3 = new Bog(3, "The Code 3", "Forfatter3", "Genre3", "Subkategori3", "PRogramming", "Forlag3", "Kommentar3");
+            Bog aktiv1 = new Bog(1, "Hello world", "Forfatter1", "Genre1", "Subkategori1", "Greeting", "Forlag1",true , "Kommentar1");
+            Bog aktiv2 = new Bog(2, "The World is a big place", "Forfatter2", "Genre2", "Subkategori2", "Geography", "Forlag2",true, "Kommentar2");
+            Bog aktiv3 = new Bog(3, "The Code 3", "Forfatter3", "Genre3", "Subkategori3", "PRogramming", "Forlag3",true,  "Kommentar3");
 
             //Gem bog objekterne
             DBRamFacade.HentDbRamFacade().GemBog(aktiv1);

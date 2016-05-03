@@ -52,6 +52,7 @@ namespace RotteHullet.Data
                 kommando.Parameters.Add(new SqlParameter("@subkategori", bog.Subkategori));
                 kommando.Parameters.Add(new SqlParameter("@familie", bog.Familie));
                 kommando.Parameters.Add(new SqlParameter("@forlag", bog.Forlag));
+                kommando.Parameters.Add(new SqlParameter("@udlånes", bog.Udlånes));
                 kommando.Parameters.Add(new SqlParameter("@kommentar", bog.Kommentar));
 
                 kommando.ExecuteNonQuery();
@@ -85,6 +86,7 @@ namespace RotteHullet.Data
                 kommando.Parameters.Add(new SqlParameter("@subkategori", bog.Subkategori));
                 kommando.Parameters.Add(new SqlParameter("@familie", bog.Familie));
                 kommando.Parameters.Add(new SqlParameter("@forlag", bog.Forlag));
+                kommando.Parameters.Add(new SqlParameter("@udlånes", bog.Udlånes));
                 kommando.Parameters.Add(new SqlParameter("@kommentar", bog.Kommentar));
 
                 kommando.ExecuteNonQuery();
@@ -126,9 +128,10 @@ namespace RotteHullet.Data
                     string subkategori = Convert.ToString(sdr["subkategori"]);
                     string familie = Convert.ToString(sdr["familie"]);
                     string forlag = Convert.ToString(sdr["forlag"]);
+                    bool udlånes = Convert.ToBoolean(sdr["udlånes"]);
                     string kommentar = Convert.ToString(sdr["kommentar"]);
 
-                    resultat = AktivFactory.HentAktivFactory().SkabNyBog(bogid, titel, forfatter, genre, subkategori, familie, forlag);
+                    resultat = AktivFactory.HentAktivFactory().SkabNyBog(bogid, titel, forfatter, genre, subkategori, familie, forlag, udlånes, kommentar);
                 }
                 forb.Close();
                 forb.Dispose();
@@ -189,9 +192,10 @@ namespace RotteHullet.Data
                     string subkategori = Convert.ToString(reader["subkategori"]);
                     string familie = Convert.ToString(reader["familie"]);
                     string forlag = Convert.ToString(reader["forlag"]);
+                    bool udlånes = Convert.ToBoolean(reader["udlånes"]);
                     string kommentar = Convert.ToString(reader["kommentar"]);
 
-                    Bog bog = AktivFactory.HentAktivFactory().SkabNyBog(bogid, titel, forfatter, genre, subkategori, familie, forlag);
+                    Bog bog = AktivFactory.HentAktivFactory().SkabNyBog(bogid, titel, forfatter, genre, subkategori, familie, forlag,udlånes, kommentar);
                     bogListe.Add(bog);
                 }
                 forb.Close();
@@ -226,6 +230,8 @@ namespace RotteHullet.Data
 
                 kommando.Parameters.Add(new SqlParameter("@brætspilsnavn", bs.BrætspilsNavn));
                 kommando.Parameters.Add(new SqlParameter("@udgiver", bs.Udgiver));
+                kommando.Parameters.Add(new SqlParameter("@udlånes", bs.Udlånes));
+
                 kommando.Parameters.Add(new SqlParameter("@kommentar", bs.Kommentar));
 
                 kommando.ExecuteNonQuery();
@@ -260,6 +266,7 @@ namespace RotteHullet.Data
                 kommando.Parameters.Add(new SqlParameter("@brætspilid", gammeltID));
                 kommando.Parameters.Add(new SqlParameter("@brætspilsnavn", bs.BrætspilsNavn));
                 kommando.Parameters.Add(new SqlParameter("@udgiver", bs.Udgiver));
+                kommando.Parameters.Add(new SqlParameter("@udlånes", bs.Udlånes));
                 kommando.Parameters.Add(new SqlParameter("@kommentar", bs.Kommentar));
 
                 kommando.ExecuteNonQuery();
@@ -296,10 +303,11 @@ namespace RotteHullet.Data
 
                     string brætspilnavn = Convert.ToString(sdr["titel"]);
                     string udgiver = Convert.ToString(sdr["udgiver"]);
+                    bool udlånes = Convert.ToBoolean(sdr["udlånes"]);
                     string kommentar = Convert.ToString(sdr["kommentar"]);
 
 
-                    resultat = AktivFactory.HentAktivFactory().SkabNyBrætspil(id, brætspilnavn, udgiver, kommentar);
+                    resultat = AktivFactory.HentAktivFactory().SkabNyBrætspil(id, brætspilnavn, udgiver, udlånes, kommentar);
                 }
                 forb.Close();
                 forb.Dispose();
@@ -331,8 +339,9 @@ namespace RotteHullet.Data
                     int brætspilid = Convert.ToInt32(sdr["brætspilid"]);
                     string brætspilnavn = Convert.ToString(sdr["titel"]);
                     string udgiver = Convert.ToString(sdr["udgiver"]);
+                    bool udlånes = Convert.ToBoolean(sdr["udlånes"]);
                     string kommentar = Convert.ToString(sdr["kommentar"]);
-                    resultat.Add(AktivFactory.HentAktivFactory().SkabNyBrætspil(brætspilid, brætspilnavn, udgiver, kommentar));
+                    resultat.Add(AktivFactory.HentAktivFactory().SkabNyBrætspil(brætspilid, brætspilnavn, udgiver,udlånes, kommentar));
                 }
                 forb.Close();
                 forb.Dispose();
@@ -392,6 +401,7 @@ namespace RotteHullet.Data
 
                 kommando.Parameters.Add(new SqlParameter("@navn", udstyr.UdstyrsNavn));
                 kommando.Parameters.Add(new SqlParameter("@kategori", udstyr.Kategori));
+                kommando.Parameters.Add(new SqlParameter("@udlånes",udstyr.Udlånes));
                 kommando.Parameters.Add(new SqlParameter("@kommentar", udstyr.Kommentar));
 
                 kommando.ExecuteNonQuery();
@@ -424,6 +434,7 @@ namespace RotteHullet.Data
                 kommando.Parameters.Add(new SqlParameter("@udstyrid", gammeltid));
                 kommando.Parameters.Add(new SqlParameter("@navn", udstyr.UdstyrsNavn));
                 kommando.Parameters.Add(new SqlParameter("@kategori", udstyr.Kategori));
+                kommando.Parameters.Add(new SqlParameter("@udlånes", udstyr.Udlånes));
                 kommando.Parameters.Add(new SqlParameter("@kommentar", udstyr.Kommentar));
 
                 kommando.ExecuteNonQuery();
@@ -464,10 +475,11 @@ namespace RotteHullet.Data
 
                     string udstyrnavn= Convert.ToString(sdr["navn"]);
                     string kategori = Convert.ToString(sdr["kategori"]);
+                    bool udlånes = Convert.ToBoolean(sdr["udlånes"]);
                     string kommentar = Convert.ToString(sdr["kommentar"]);
 
 
-                    resultat = AktivFactory.HentAktivFactory().SkabNytUdstyr(id, udstyrnavn, kategori, kommentar);
+                    resultat = AktivFactory.HentAktivFactory().SkabNytUdstyr(id, udstyrnavn, kategori, udlånes, kommentar);
                 }
                 forb.Close();
                 forb.Dispose();
@@ -500,8 +512,9 @@ namespace RotteHullet.Data
                     int udstyrid = Convert.ToInt32(sdr["udstyrid"]);
                     string udstyrnavn = Convert.ToString(sdr["navn"]);
                     string kategori = Convert.ToString(sdr["kategori"]);
+                    bool udlånes = Convert.ToBoolean(sdr["udlånes"]);
                     string kommentar = Convert.ToString(sdr["kommentar"]);
-                    resultat.Add(AktivFactory.HentAktivFactory().SkabNytUdstyr(udstyrid, udstyrnavn, kategori, kommentar));
+                    resultat.Add(AktivFactory.HentAktivFactory().SkabNytUdstyr(udstyrid, udstyrnavn, kategori, udlånes, kommentar));
                 }
                 forb.Close();
                 forb.Dispose();
@@ -568,12 +581,13 @@ namespace RotteHullet.Data
                 {
 
                     string lokalenavn = Convert.ToString(sdr["lokalenavn"]);
-                    string møbler = Convert.ToString(sdr["møbler"]);
                     string lokation = Convert.ToString(sdr["lokation"]);
+                    bool udlånes = Convert.ToBoolean(sdr["udlånes"]);
                     string kommentar = Convert.ToString(sdr["kommentar"]);
+                    string møbler = Convert.ToString(sdr["møbler"]);
 
 
-                    resultat = AktivFactory.HentAktivFactory().SkabNytLokale(id, lokalenavn, lokation, kommentar, møbler);
+                    resultat = AktivFactory.HentAktivFactory().SkabNytLokale(id, lokalenavn, lokation, udlånes, kommentar, møbler);
                 }
                 forb.Close();
                 forb.Dispose();
@@ -605,10 +619,12 @@ namespace RotteHullet.Data
                 {
                     int lokaleid = Convert.ToInt32(sdr["lokaleid"]);
                     string lokalenavn = Convert.ToString(sdr["lokalenavn"]);
-                    string møbler = Convert.ToString(sdr["møbler"]);
                     string lokation = Convert.ToString(sdr["lokation"]);
+                    bool udlånes = Convert.ToBoolean(sdr["udlånes"]);
                     string kommentar = Convert.ToString(sdr["kommentar"]);
-                    resultat.Add(AktivFactory.HentAktivFactory().SkabNytLokale(lokaleid, lokalenavn, lokation, kommentar, møbler));
+                    string møbler = Convert.ToString(sdr["møbler"]);
+
+                    resultat.Add(AktivFactory.HentAktivFactory().SkabNytLokale(lokaleid, lokalenavn, lokation, udlånes, kommentar, møbler));
                 }
                 forb.Close();
                 forb.Dispose();
@@ -636,6 +652,7 @@ namespace RotteHullet.Data
 
                 kommando.Parameters.Add(new SqlParameter("@lokalenavn", lokale.LokaleNavn));
                 kommando.Parameters.Add(new SqlParameter("@lokation", lokale.Lokation));
+                kommando.Parameters.Add(new SqlParameter("@udlånes", lokale.Udlånes));
                 kommando.Parameters.Add(new SqlParameter("@kommentar", lokale.Kommentar));
                 kommando.Parameters.Add(new SqlParameter("@møbler", lokale.Møbler));
 
@@ -669,6 +686,7 @@ namespace RotteHullet.Data
                 kommando.Parameters.Add(new SqlParameter("@lokaleid", gammeltid));
                 kommando.Parameters.Add(new SqlParameter("@lokalenavn", lokale.LokaleNavn));
                 kommando.Parameters.Add(new SqlParameter("@kategori", lokale.Lokation));
+                kommando.Parameters.Add(new SqlParameter("@udlånes", lokale.Udlånes));
                 kommando.Parameters.Add(new SqlParameter("@kommentar", lokale.Kommentar));
                 kommando.Parameters.Add(new SqlParameter("@møbler", lokale.Møbler));
 
