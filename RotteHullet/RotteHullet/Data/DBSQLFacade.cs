@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using RotteHullet.Domain.BusinessLogic;
+using System.Data;
 
 namespace RotteHullet.Data
 {
@@ -739,9 +740,6 @@ namespace RotteHullet.Data
         }
 
         #endregion
-
-
-
 
     }
 }

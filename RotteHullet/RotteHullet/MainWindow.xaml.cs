@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using RotteHullet.Domain;
 using RotteHullet.Data;
+using RotteHullet.Domain.BusinessLogic;
 
 namespace RotteHullet
 {
@@ -25,8 +26,24 @@ namespace RotteHullet
         public MainWindow()
         {
             InitializeComponent();
-        }
 
+            /*
+            List<Udstyr> udstyr = new List<Udstyr>();
+            Udstyr s = new Udstyr(1, "sko", "lol", "lol");
+            Udstyr s2 = new Udstyr(0, "sko", "lol", "lol");
+            Udstyr s3 = new Udstyr(3, "sko", "lol", "lol");
+            Udstyr s4 = new Udstyr(0, "sko", "lol", "lol");
+            Udstyr s5 = new Udstyr(0, "sko", "lol", "lol");
+            Udstyr s6 = new Udstyr(0, "sko", "lol", "lol");
+            udstyr.Add(s);
+            udstyr.Add(s2);
+            udstyr.Add(s3);
+            udstyr.Add(s4);
+            udstyr.Add(s5);
+            udstyr.Add(s6);
+            DBSQLFacade.HentDBSQLFacade().checkLister(0, udstyr);
+            */
+        }
 
         private void TilmeldEvent(object sender, MouseButtonEventArgs e)
         {

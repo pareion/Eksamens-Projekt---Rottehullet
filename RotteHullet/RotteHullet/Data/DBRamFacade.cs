@@ -42,6 +42,8 @@ namespace RotteHullet.Data
             return _dbRamFacade;
         }
 
+        
+
         #region Brætspil
         public bool GemBrætSpil(Brætspil bs)
         {
@@ -981,10 +983,13 @@ namespace RotteHullet.Data
 
             return index > -1 ? navn[index] : navn[random.Next(0, navn.Count - 1)];
         }
+
         #endregion
-        public void checkLister()
+
+        public void checkLister(int medlemsid, List<Udstyr> udstyr)
         {
-            
+            throw new NotImplementedException();
         }
+
     }//Klasse
 }//Namespace

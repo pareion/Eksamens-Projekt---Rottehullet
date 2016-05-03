@@ -21,7 +21,6 @@ namespace RotteHullet.Værktøjs
             }
             return _søgning;
         }
-
         public bool Søg(bool bøger, bool lokaler, bool brætspil, bool udstyr, string søgning, 
             out List<Bog> bogResult, out List<Lokale> lokaleResult, 
             out List<Brætspil> brætspilResult, out List<Udstyr> udstyrResult)
@@ -86,7 +85,6 @@ namespace RotteHullet.Værktøjs
 
             return result;
         }
-
         public bool Søg(string søgord, out List<Bog> bøger)
         {
             bøger = new List<Bog>();
@@ -94,7 +92,6 @@ namespace RotteHullet.Værktøjs
 
             return bøger.Count != 0;
         }
-
         public bool Søg(string søgord, out List<Lokale> lokaler)
         {
             lokaler = new List<Lokale>();
@@ -102,7 +99,6 @@ namespace RotteHullet.Værktøjs
 
             return lokaler.Count != 0;
         }
-
         public bool Søg(string søgord, out List<Udstyr> udstyr)
         {
             udstyr = new List<Udstyr>();
@@ -110,7 +106,6 @@ namespace RotteHullet.Værktøjs
 
             return udstyr.Count != 0;
         }
-
         public bool Søg(string søgord, out List<Brætspil> brætspil)
         {
             brætspil = new List<Brætspil>();
@@ -118,7 +113,6 @@ namespace RotteHullet.Værktøjs
 
             return brætspil.Count != 0;
         }
-
         /// <summary>
         /// Ingen binding søgning
         /// </summary>

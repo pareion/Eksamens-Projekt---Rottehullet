@@ -37,7 +37,5 @@ namespace RotteHullet.Data
         List<Lokale> HentAlleLokaler();
         bool SletLokale(int id);
         #endregion
-
-        void checkLister();
     }
 }
