@@ -56,7 +56,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Data\DBFacade.cs" />
-    <Compile Include="Domain\Utility.cs" />
     <Compile Include="UI\BrugerPanel.xaml.cs">
       <DependentUpon>BrugerPanel.xaml</DependentUpon>
     </Compile>

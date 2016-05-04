@@ -28,15 +28,19 @@ namespace RotteHullet.Data
             }
             return _dbsqlfacade;
         }
+
         #region forbindelse
-        private SqlConnection hentForbindelse() {
+        private SqlConnection hentForbindelse()
+        {
             SqlConnection forb = new SqlConnection("Server=ealdb1.eal.local;Database=ejl52_db; User ID = ejl52_usr; Password = Baz1nga52");
             forb.Open();
             return forb;
         }
         #endregion
+
         #region Bog
-        public bool GemBog(Bog bog) {
+        public bool GemBog(Bog bog)
+        {
             try
             {
                 SqlConnection forb = hentForbindelse();
@@ -44,7 +48,6 @@ namespace RotteHullet.Data
                 SqlCommand kommando = new SqlCommand("GemBog", forb);
                 kommando.CommandType = System.Data.CommandType.StoredProcedure;
 
-               
                 kommando.Parameters.Add(new SqlParameter("@titel", bog.Titel));
                 kommando.Parameters.Add(new SqlParameter("@forfatter", bog.Forfatter));
                 kommando.Parameters.Add(new SqlParameter("@genre", bog.Genre));
@@ -59,15 +62,12 @@ namespace RotteHullet.Data
                 forb.Close();
                 forb.Dispose();
 
-
                 return true;
             }
             catch (Exception)
             {
-
                 return false;
             }
-
         }
         public bool ÆndreBog(int gammeltIDBog, Bog bog)
         {
@@ -93,15 +93,12 @@ namespace RotteHullet.Data
                 forb.Close();
                 forb.Dispose();
 
-
                 return true;
             }
             catch (Exception)
             {
-
                 return false;
             }
-
         }
         public Bog HentBog(int id)
         {
@@ -109,7 +106,6 @@ namespace RotteHullet.Data
             try
             {
                 SqlConnection forb = hentForbindelse();
-                
                 SqlCommand kommando = new SqlCommand("HentBog", forb);
                 kommando.CommandType = System.Data.CommandType.StoredProcedure;
 
@@ -119,7 +115,6 @@ namespace RotteHullet.Data
 
                 if (sdr.Read())
                 {
-
                     int bogid = Convert.ToInt32(sdr["bogid"]);
                     string titel = Convert.ToString(sdr["titel"]);
                     string forfatter = Convert.ToString(sdr["forfatter"]);
@@ -137,12 +132,11 @@ namespace RotteHullet.Data
             }
             catch (Exception)
             {
-
                 resultat = null;
             }
-            
             return resultat;
         }
+
         public bool SletBog(int id)
         {
             bool resultat = false;
@@ -154,33 +148,31 @@ namespace RotteHullet.Data
                 kommando.CommandType = System.Data.CommandType.StoredProcedure;
 
                 kommando.Parameters.Add(new SqlParameter("@bogid", id));
+
                 kommando.ExecuteNonQuery();
+
                 forb.Close();
                 forb.Dispose();
                 resultat = true;
-
             }
             catch (Exception)
             {
-
                 resultat = false;
-
             }
-
             return resultat;
-
         }
-        public List<Bog> HentAlleBøger() {
+        public List<Bog> HentAlleBøger()
+        {
             List<Bog> bogListe = new List<Bog>();
 
             try
             {
                 SqlConnection forb = hentForbindelse();
                 SqlCommand kommando = new SqlCommand("HentAlleBøger", forb);
+
                 kommando.CommandType = System.Data.CommandType.StoredProcedure;
 
                 SqlDataReader reader = kommando.ExecuteReader();
-
 
                 while (reader.Read())
                 {
@@ -194,29 +186,22 @@ namespace RotteHullet.Data
                     bool udlånes = Convert.ToBoolean(reader["udlånes"]);
                     string kommentar = Convert.ToString(reader["kommentar"]);
 
-                    Bog bog = AktivFactory.HentAktivFactory().SkabNyBog(bogid, titel, forfatter, genre, subkategori, familie, forlag,udlånes, kommentar);
+                    Bog bog = AktivFactory.HentAktivFactory().SkabNyBog(bogid, titel, forfatter, genre, subkategori, familie, forlag, udlånes, kommentar);
                     bogListe.Add(bog);
                 }
                 forb.Close();
                 forb.Dispose();
-
             }
             catch (Exception)
             {
-
                 bogListe = null;
             }
-
-            
             return bogListe;
         }
         #endregion
+
         #region Brætspil
-
-    
-  
-
-        public bool GemBrætSpil( Brætspil bs)
+        public bool GemBrætSpil(Brætspil bs)
         {
             bool resultat = false;
             try
@@ -226,14 +211,11 @@ namespace RotteHullet.Data
                 SqlCommand kommando = new SqlCommand("GemBrætSpil", forb);
                 kommando.CommandType = System.Data.CommandType.StoredProcedure;
 
-
                 kommando.Parameters.Add(new SqlParameter("@brætspilsnavn", bs.BrætspilsNavn));
                 kommando.Parameters.Add(new SqlParameter("@udgiver", bs.Udgiver));
                 kommando.Parameters.Add(new SqlParameter("@udlånes", bs.Udlånes));
-
                 kommando.Parameters.Add(new SqlParameter("@kommentar", bs.Kommentar));
                 kommando.Parameters.Add(new SqlParameter("@kategori", bs.Kategori));
-
 
                 kommando.ExecuteNonQuery();
 
@@ -244,14 +226,10 @@ namespace RotteHullet.Data
             }
             catch (Exception)
             {
-
                 resultat = false;
             }
-
-
             return resultat;
         }
-
 
         public bool ÆndreBrætSpil(int gammeltID, Brætspil bs)
         {
@@ -276,16 +254,15 @@ namespace RotteHullet.Data
                 forb.Close();
                 forb.Dispose();
 
-
                 resultat = true;
             }
             catch (Exception)
             {
-
                 resultat = false;
             }
             return resultat;
         }
+
         public Brætspil HentBrætSpil(int id)
         {
             Brætspil resultat = null;
@@ -302,13 +279,11 @@ namespace RotteHullet.Data
 
                 if (sdr.Read())
                 {
-
                     string brætspilnavn = Convert.ToString(sdr["titel"]);
                     string udgiver = Convert.ToString(sdr["udgiver"]);
                     bool udlånes = Convert.ToBoolean(sdr["udlånes"]);
                     string kommentar = Convert.ToString(sdr["kommentar"]);
                     string kategori = Convert.ToString(sdr["kategori"]);
-
 
                     resultat = AktivFactory.HentAktivFactory().SkabNyBrætspil(id, brætspilnavn, udgiver, udlånes, kommentar, kategori);
                 }
@@ -317,17 +292,14 @@ namespace RotteHullet.Data
             }
             catch (Exception)
             {
-
                 resultat = null;
             }
-
-
             return resultat;
-            
         }
+
         public List<Brætspil> HentAlleBrætSpil()
         {
-            List<Brætspil> resultat = new List<Brætspil>(); 
+            List<Brætspil> resultat = new List<Brætspil>();
             try
             {
                 SqlConnection forb = hentForbindelse();
@@ -345,17 +317,15 @@ namespace RotteHullet.Data
                     bool udlånes = Convert.ToBoolean(sdr["udlånes"]);
                     string kommentar = Convert.ToString(sdr["kommentar"]);
                     string kategori = Convert.ToString(sdr["kategori"]);
-                    resultat.Add(AktivFactory.HentAktivFactory().SkabNyBrætspil(brætspilid, brætspilnavn, udgiver,udlånes, kommentar,kategori));
+                    resultat.Add(AktivFactory.HentAktivFactory().SkabNyBrætspil(brætspilid, brætspilnavn, udgiver, udlånes, kommentar, kategori));
                 }
                 forb.Close();
                 forb.Dispose();
             }
             catch (Exception)
             {
-
                 resultat = null;
             }
-
             return resultat;
         }
 
@@ -374,20 +344,15 @@ namespace RotteHullet.Data
                 forb.Close();
                 forb.Dispose();
                 resultat = true;
-
             }
             catch (Exception)
             {
-
                 resultat = false;
-
             }
-
             return resultat;
-
-            
         }
         #endregion
+
         #region Udstyr
         public bool GemUdstyr(Udstyr udstyr)
         {
@@ -399,10 +364,9 @@ namespace RotteHullet.Data
                 SqlCommand kommando = new SqlCommand("GemUdstyr", forb);
                 kommando.CommandType = System.Data.CommandType.StoredProcedure;
 
-
                 kommando.Parameters.Add(new SqlParameter("@navn", udstyr.UdstyrsNavn));
                 kommando.Parameters.Add(new SqlParameter("@kategori", udstyr.Kategori));
-                kommando.Parameters.Add(new SqlParameter("@udlånes",udstyr.Udlånes));
+                kommando.Parameters.Add(new SqlParameter("@udlånes", udstyr.Udlånes));
                 kommando.Parameters.Add(new SqlParameter("@kommentar", udstyr.Kommentar));
 
                 kommando.ExecuteNonQuery();
@@ -414,15 +378,13 @@ namespace RotteHullet.Data
             }
             catch (Exception)
             {
-
                 resultat = false;
             }
-
-
             return resultat;
         }
 
-        public bool ÆndreUdstyr(int gammeltid, Udstyr udstyr) {
+        public bool ÆndreUdstyr(int gammeltid, Udstyr udstyr)
+        {
             bool resultat = false;
 
             try
@@ -443,22 +405,17 @@ namespace RotteHullet.Data
                 forb.Close();
                 forb.Dispose();
 
-
                 resultat = true;
             }
             catch (Exception)
             {
-
                 resultat = false;
             }
             return resultat;
-
-
-         
-
         }
 
-        public Udstyr HentUdstyr(int id) {
+        public Udstyr HentUdstyr(int id)
+        {
             Udstyr resultat = null;
             try
             {
@@ -473,12 +430,10 @@ namespace RotteHullet.Data
 
                 if (sdr.Read())
                 {
-
-                    string udstyrnavn= Convert.ToString(sdr["navn"]);
+                    string udstyrnavn = Convert.ToString(sdr["navn"]);
                     string kategori = Convert.ToString(sdr["kategori"]);
                     bool udlånes = Convert.ToBoolean(sdr["udlånes"]);
                     string kommentar = Convert.ToString(sdr["kommentar"]);
-
 
                     resultat = AktivFactory.HentAktivFactory().SkabNytUdstyr(id, udstyrnavn, kategori, udlånes, kommentar);
                 }
@@ -487,17 +442,13 @@ namespace RotteHullet.Data
             }
             catch (Exception)
             {
-
                 resultat = null;
             }
-
-
             return resultat;
-
-           
         }
 
-        public List<Udstyr> HentALtUdstyr() {
+        public List<Udstyr> HentALtUdstyr()
+        {
             List<Udstyr> resultat = new List<Udstyr>();
             try
             {
@@ -522,18 +473,13 @@ namespace RotteHullet.Data
             }
             catch (Exception)
             {
-
                 resultat = null;
             }
-
             return resultat;
-
-
-           
         }
 
-        public bool SletUdstyr(int id) {
-
+        public bool SletUdstyr(int id)
+        {
             bool resultat = false;
 
             try
@@ -547,25 +493,20 @@ namespace RotteHullet.Data
                 forb.Close();
                 forb.Dispose();
                 resultat = true;
-
             }
             catch (Exception)
             {
-
                 resultat = false;
-
             }
-
             return resultat;
         }
-
         #endregion
-        #region Lokale
 
+        #region Lokale
         public Lokale HentLokale(int id)
         {
-
             Lokale resultat = null;
+
             try
             {
                 SqlConnection forb = hentForbindelse();
@@ -579,13 +520,11 @@ namespace RotteHullet.Data
 
                 if (sdr.Read())
                 {
-
                     string lokalenavn = Convert.ToString(sdr["lokalenavn"]);
                     string lokation = Convert.ToString(sdr["lokation"]);
                     bool udlånes = Convert.ToBoolean(sdr["udlånes"]);
                     string kommentar = Convert.ToString(sdr["kommentar"]);
                     string møbler = Convert.ToString(sdr["møbler"]);
-
 
                     resultat = AktivFactory.HentAktivFactory().SkabNytLokale(id, lokalenavn, lokation, udlånes, kommentar, møbler);
                 }
@@ -594,17 +533,13 @@ namespace RotteHullet.Data
             }
             catch (Exception)
             {
-
                 resultat = null;
             }
-
-
             return resultat;
-
-
         }
 
-        public List<Lokale> HentAlleLokaler() {
+        public List<Lokale> HentAlleLokaler()
+        {
             List<Lokale> resultat = new List<Lokale>();
             try
             {
@@ -631,16 +566,13 @@ namespace RotteHullet.Data
             }
             catch (Exception)
             {
-
                 resultat = null;
-            }
-
+            }  
             return resultat;
         }
 
         public bool GemLokale(Lokale lokale)
         {
-
             bool resultat = false;
             try
             {
@@ -648,7 +580,6 @@ namespace RotteHullet.Data
 
                 SqlCommand kommando = new SqlCommand("GemLokale", forb);
                 kommando.CommandType = System.Data.CommandType.StoredProcedure;
-
 
                 kommando.Parameters.Add(new SqlParameter("@lokalenavn", lokale.LokaleNavn));
                 kommando.Parameters.Add(new SqlParameter("@lokation", lokale.Lokation));
@@ -665,15 +596,13 @@ namespace RotteHullet.Data
             }
             catch (Exception)
             {
-
                 resultat = false;
             }
-
-
             return resultat;
         }
 
-        public bool ÆndreLokale(int gammeltid, Lokale lokale) {
+        public bool ÆndreLokale(int gammeltid, Lokale lokale)
+        {
             bool resultat = false;
 
             try
@@ -695,22 +624,17 @@ namespace RotteHullet.Data
                 forb.Close();
                 forb.Dispose();
 
-
                 resultat = true;
             }
             catch (Exception)
             {
-
                 resultat = false;
             }
             return resultat;
-
-
-
         }
 
-        public bool SletLokale(int id) {
-
+        public bool SletLokale(int id)
+        {
             bool resultat = false;
 
             try
@@ -724,20 +648,13 @@ namespace RotteHullet.Data
                 forb.Close();
                 forb.Dispose();
                 resultat = true;
-
             }
             catch (Exception)
             {
-
                 resultat = false;
-
             }
-
             return resultat;
-
-
         }
-
         #endregion
 
         #region Udlån
