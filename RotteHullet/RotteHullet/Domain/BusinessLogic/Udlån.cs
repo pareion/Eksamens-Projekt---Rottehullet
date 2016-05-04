@@ -25,9 +25,22 @@ namespace RotteHullet.Domain.BusinessLogic
                 return _id;
             }
 
-            private set
+            set
             {
                 _id = value;
+            }
+        }
+
+        public int Medlemsid
+        {
+            get
+            {
+                return _medlemsid;
+            }
+
+            set
+            {
+                _medlemsid = value;
             }
         }
 
@@ -38,7 +51,7 @@ namespace RotteHullet.Domain.BusinessLogic
                 return _adminId;
             }
 
-            private set
+            set
             {
                 _adminId = value;
             }
@@ -51,7 +64,7 @@ namespace RotteHullet.Domain.BusinessLogic
                 return _udlåningsdato;
             }
 
-            private set
+            set
             {
                 _udlåningsdato = value;
             }
@@ -64,9 +77,22 @@ namespace RotteHullet.Domain.BusinessLogic
                 return _afleveringsdato;
             }
 
-            private set
+            set
             {
                 _afleveringsdato = value;
+            }
+        }
+
+        public DateTime? Reelleafleveringsdato
+        {
+            get
+            {
+                return _reelleafleveringsdato;
+            }
+
+            set
+            {
+                _reelleafleveringsdato = value;
             }
         }
 
@@ -77,7 +103,7 @@ namespace RotteHullet.Domain.BusinessLogic
                 return _godkendt;
             }
 
-            private set
+            set
             {
                 _godkendt = value;
             }
@@ -90,15 +116,15 @@ namespace RotteHullet.Domain.BusinessLogic
                 return _aktiver;
             }
 
-            private set
+            set
             {
                 _aktiver = value;
             }
         }
         #endregion
 
-        public Udlån(int id, int medlemsid, int adminId, DateTime udlåningsdato, DateTime afleveringsdato, DateTime? reelleafleveringsdato, 
-            bool godkendt, List<IAktiv> aktiver)
+        public Udlån(int id, int medlemsid, int adminId, DateTime udlåningsdato, 
+            DateTime afleveringsdato, DateTime? reelleafleveringsdato, bool godkendt, List<IAktiv> aktiver)
         {
             _id = id;
             _medlemsid = medlemsid;

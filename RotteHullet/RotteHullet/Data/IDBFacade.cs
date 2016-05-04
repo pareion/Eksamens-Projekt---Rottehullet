@@ -16,6 +16,7 @@ namespace RotteHullet.Data
         List<Brætspil> HentAlleBrætSpil();
         bool SletBrætSpil(int id);
         #endregion
+
         #region Bog
         bool GemBog(Bog bog);
         bool ÆndreBog(int gammeltID, Bog bog);
@@ -23,6 +24,7 @@ namespace RotteHullet.Data
         List<Bog> HentAlleBøger();
         bool SletBog(int id);
         #endregion
+
         #region Udstyr
         bool GemUdstyr(Udstyr udstyr);
         bool ÆndreUdstyr(int gammeltID, Udstyr udstyr);
@@ -30,6 +32,7 @@ namespace RotteHullet.Data
         List<Udstyr> HentALtUdstyr();
         bool SletUdstyr(int id);
         #endregion
+
         #region Lokale
         bool GemLokale(Lokale lokale);
         bool ÆndreLokale(int gammeltID, Lokale lokale);
@@ -37,11 +40,10 @@ namespace RotteHullet.Data
         List<Lokale> HentAlleLokaler();
         bool SletLokale(int id);
         Medlem HentMedlem(string brugernavn, string password);
-
-
         #endregion
+
         #region udlån
-        string GemUdlån(Udlån udl);
+        bool GemUdlån(Udlån udl);
         #endregion
     }
 }

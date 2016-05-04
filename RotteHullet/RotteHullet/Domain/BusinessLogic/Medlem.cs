@@ -112,7 +112,8 @@ namespace RotteHullet.Domain.BusinessLogic
         }
         #endregion
 
-        public Medlem(int id, string fornavn, string efternavn, string brugernavn, string password, string email, MedlemType status)
+        public Medlem(int id, string fornavn, string efternavn, string brugernavn, 
+            string password, string email, MedlemType status)
         {
             _id = id;
             _fornavn = fornavn;

@@ -30,10 +30,6 @@ namespace RotteHullet.Data
         }
         #endregion
 
-        /// <summary>
-        /// Statisk metode som returner den instans af facaden. Laver en ny, hvis den ikke eksisterer.
-        /// </summary>
-        /// <returns></returns>
         public static DBRamFacade HentDbRamFacade()
         {
             if (_dbRamFacade == null)
@@ -43,9 +39,7 @@ namespace RotteHullet.Data
             }
             return _dbRamFacade;
         }
-
-        
-
+      
         #region Brætspil
         public bool GemBrætSpil(Brætspil bs)
         {
@@ -987,8 +981,9 @@ namespace RotteHullet.Data
         }
 
         #endregion
+
         #region udlån
-        public string GemUdlån(Udlån udl)
+        public bool GemUdlån(Udlån udl)
         {
             throw new NotImplementedException();
         }

@@ -105,7 +105,8 @@ namespace RotteHullet.Domain.BusinessLogic
 
         public override string ToString()
         {
-            return "ID: " + _id + " Brætspilsnavn: " + _brætspilsNavn + " Udgiver: " + _udgiver + " Udlånes: " + _udlånes + " Kommentar: " + _kommentar + " Kategori: " + _kategori;
+            return "ID: " + _id + " Brætspilsnavn: " + _brætspilsNavn + " Udgiver: " + _udgiver + 
+                " Udlånes: " + _udlånes + " Kommentar: " + _kommentar + " Kategori: " + _kategori;
         }
 
         public string ToString(int position)

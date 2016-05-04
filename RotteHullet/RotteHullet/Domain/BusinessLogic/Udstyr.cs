@@ -88,6 +88,7 @@ namespace RotteHullet.Domain.BusinessLogic
             _udlånes = udlånes;
             Kommentar = kommentar;
         }
+
         public override string ToString()
         {
             return "ID: " + _id + " Udstyrsnavn: " + _udstyrsNavn + " Kategori: " + _kategori + " Udlånes: " + _udlånes

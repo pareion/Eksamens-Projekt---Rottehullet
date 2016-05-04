@@ -20,6 +20,7 @@ namespace RotteHullet.Domain
             }
             return _udstyrFacade;
         }
+
         public string SkabUdstyr(int id, string navn, string kategori, bool udlånes, string kommentar)
         {
             Udstyr uds = AktivFactory.HentAktivFactory().SkabNytUdstyr(id, navn, kategori, udlånes, kommentar);
@@ -29,6 +30,7 @@ namespace RotteHullet.Domain
             }
             return "Udstyret blev ikke skabt";
         }
+
         public string ÆndreUdstyr(int gammeltID, int nytid, string navn, string kategori, bool udlånes, string kommentar)
         {
             Udstyr uds = AktivFactory.HentAktivFactory().SkabNytUdstyr(nytid, navn, kategori, udlånes, kommentar);
@@ -38,20 +40,8 @@ namespace RotteHullet.Domain
             }
             return "Udstyret blev ikke ændret";
         }
-        public string HentUdstyr(int id, int position)
-        {
-            return DBFacade.HentDatabaseFacade().HentUdstyr(id).ToString(position);
-        }
-        public List<string> HentAlleUdstyr(int position)
-        {
-            List<string> nytUdstyr = new List<string>();
-            foreach (var item in DBFacade.HentDatabaseFacade().HentALtUdstyr())
-            {
-                nytUdstyr.Add(item.ToString(position));
-            }
-            return nytUdstyr;
-        }
-        public List<object> FindAlleUdstyr()
+
+        public List<object> FindAlleUdstyr() //Mangler Søgning
         {
             List<Udstyr> aktiver = DBFacade.HentDatabaseFacade().HentALtUdstyr();
             List<object> dataListe = new List<object>();
@@ -61,6 +51,7 @@ namespace RotteHullet.Domain
             }
             return dataListe;
         }
+
         public string SletUdstyr(int id)
         {
             if (DBSQLFacade.HentDBSQLFacade().SletUdstyr(id))
@@ -69,5 +60,22 @@ namespace RotteHullet.Domain
             }
             return "Udstyret blev ikke slettet";
         }
+
+        #region Gamle HentUdstyr metoder som bruger ToString() på objekterne
+        public string HentUdstyr(int id, int position)
+        {
+            return DBFacade.HentDatabaseFacade().HentUdstyr(id).ToString(position);
+        }
+
+        public List<string> HentAlleUdstyr(int position)
+        {
+            List<string> nytUdstyr = new List<string>();
+            foreach (var item in DBFacade.HentDatabaseFacade().HentALtUdstyr())
+            {
+                nytUdstyr.Add(item.ToString(position));
+            }
+            return nytUdstyr;
+        }
+        #endregion
     }
 }

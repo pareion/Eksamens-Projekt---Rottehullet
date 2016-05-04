@@ -21,6 +21,8 @@ namespace RotteHullet.Værktøjs
             }
             return _søgning;
         }
+
+        //Søg Alt - Bruges ikke
         public bool Søg(bool bøger, bool lokaler, bool brætspil, bool udstyr, string søgning, 
             out List<Bog> bogResult, out List<Lokale> lokaleResult, 
             out List<Brætspil> brætspilResult, out List<Udstyr> udstyrResult)
@@ -85,6 +87,7 @@ namespace RotteHullet.Værktøjs
 
             return result;
         }
+
         public bool Søg(string søgord, out List<Bog> bøger)
         {
             bøger = new List<Bog>();
@@ -113,6 +116,7 @@ namespace RotteHullet.Værktøjs
 
             return brætspil.Count != 0;
         }
+
         /// <summary>
         /// Ingen binding søgning
         /// </summary>
@@ -156,7 +160,6 @@ namespace RotteHullet.Værktøjs
                 default:
                     break;
             }
-
             return data;
         }
     }

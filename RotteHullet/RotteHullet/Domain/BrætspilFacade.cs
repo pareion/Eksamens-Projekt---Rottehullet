@@ -20,6 +20,7 @@ namespace RotteHullet.Domain
             }
             return _brætSpilFacade;
         }
+
         public string SkabBrætSpil(int id, string navn, string udgiver, bool udlånes, string kommentar, string kategori)
         {
             Brætspil bs = AktivFactory.HentAktivFactory().SkabNyBrætspil(id, navn, udgiver, udlånes, kommentar, kategori);
@@ -29,34 +30,19 @@ namespace RotteHullet.Domain
             }
             return "Brætspillet blev ikke skabt";
         }
-        public string ÆndreBrætSpil(int gammeltID, int nytid, string navn, string udgiver,bool udlånes, string kommentar, string kategori)
+
+        public string ÆndreBrætSpil(int gammeltID, int nytid, string navn, string udgiver, bool udlånes,
+            string kommentar, string kategori)
         {
-            Brætspil bs = AktivFactory.HentAktivFactory().SkabNyBrætspil(nytid, navn, udgiver,udlånes, kommentar, kategori);
+            Brætspil bs = AktivFactory.HentAktivFactory().SkabNyBrætspil(nytid, navn, udgiver, udlånes, kommentar, kategori);
             if (DBFacade.HentDatabaseFacade().ÆndreBrætSpil(gammeltID, bs))
             {
                 return "Brætspillet er ændret";
             }
             return "Brætspillet blev ikke ændret";
         }
-        public string HentBrætSpil(int id, int position)
-        {
-            return DBFacade.HentDatabaseFacade().HentBrætSpil(id).ToString(position);
-        }
-        public List<string> HentAlleBrætspil(int position)
-        {
-            List<string> nyeBrætspil = new List<string>();
-            foreach (var item in DBFacade.HentDatabaseFacade().HentAlleBrætSpil())
-            {
-                nyeBrætspil.Add(item.ToString(position));
-            }
-            return nyeBrætspil;
-        }
 
-        public object FindBrætspil()
-        {
-            return null;
-        }
-        public List<object> FindAlleBrætspil()
+        public List<object> FindAlleBrætspil() //Mangler søgning
         {
             List<Brætspil> aktiver = DBFacade.HentDatabaseFacade().HentAlleBrætSpil();
             List<object> dataListe = new List<object>();
@@ -75,5 +61,22 @@ namespace RotteHullet.Domain
             }
             return "Brætspillet blev ikke slettet";
         }
+
+        #region Gamle HentBrætSpilMetoder som bruger ToString() på objekterne
+        public string HentBrætSpil(int id, int position)
+        {
+            return DBFacade.HentDatabaseFacade().HentBrætSpil(id).ToString(position);
+        }
+
+        public List<string> HentAlleBrætspil(int position)
+        {
+            List<string> nyeBrætspil = new List<string>();
+            foreach (var item in DBFacade.HentDatabaseFacade().HentAlleBrætSpil())
+            {
+                nyeBrætspil.Add(item.ToString(position));
+            }
+            return nyeBrætspil;
+        }
+        #endregion
     }
 }
