@@ -9,10 +9,10 @@ using System.Data;
 
 namespace RotteHullet.Data
 {
-    class DBSQLFacade
+    class DBSQLFacade : IDBFacade
     {
-        private static IDBFacade _dbsqlFacade;
         //Disse glemmer vi lidt at bruge... PLease advice JA
+        private static DBSQLFacade _dbsqlfacade;
         private List<Bog> _bogListe;
         private List<Brætspil> _brætspilsListe;
         private List<Udstyr> _udstyrsListe;
@@ -22,12 +22,11 @@ namespace RotteHullet.Data
 
         public static IDBFacade HentDBSQLFacade()
         {
-            if (_dbsqlFacade == null)
+            if (_dbsqlfacade == null)
             {
-                
-                _dbsqlFacade = DBSQLFacade.HentDBSQLFacade();
+                _dbsqlfacade = new DBSQLFacade();
             }
-            return _dbsqlFacade;
+            return _dbsqlfacade;
         }
         #region forbindelse
         private SqlConnection hentForbindelse() {
@@ -36,7 +35,6 @@ namespace RotteHullet.Data
             return forb;
         }
         #endregion
-  
         #region Bog
         public bool GemBog(Bog bog) {
             try
@@ -385,9 +383,6 @@ namespace RotteHullet.Data
             
         }
         #endregion
-   
-    
-
         #region Udstyr
         public bool GemUdstyr(Udstyr udstyr)
         {
@@ -560,7 +555,6 @@ namespace RotteHullet.Data
         }
 
         #endregion
-
         #region Lokale
 
         public Lokale HentLokale(int id)
@@ -737,6 +731,14 @@ namespace RotteHullet.Data
             return resultat;
 
 
+        }
+
+        #endregion
+
+        #region Udlån
+        public string GemUdlån(Udlån udl)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion

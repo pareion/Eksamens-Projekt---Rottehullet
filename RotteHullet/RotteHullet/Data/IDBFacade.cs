@@ -27,7 +27,7 @@ namespace RotteHullet.Data
         bool GemUdstyr(Udstyr udstyr);
         bool ÆndreUdstyr(int gammeltID, Udstyr udstyr);
         Udstyr HentUdstyr(int id);
-        List<Udstyr> HentAlleUdstyr();
+        List<Udstyr> HentALtUdstyr();
         bool SletUdstyr(int id);
         #endregion
         #region Lokale
@@ -38,6 +38,10 @@ namespace RotteHullet.Data
         bool SletLokale(int id);
         Medlem HentMedlem(string brugernavn, string password);
 
+
+        #endregion
+        #region udlån
+        string GemUdlån(Udlån udl);
         #endregion
     }
 }

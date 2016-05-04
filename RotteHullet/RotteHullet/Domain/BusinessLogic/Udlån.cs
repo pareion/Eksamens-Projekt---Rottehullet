@@ -9,9 +9,11 @@ namespace RotteHullet.Domain.BusinessLogic
     class Udlån
     {
         private int _id;
+        private int _medlemsid;
         private int _adminId;
         private DateTime _udlåningsdato;
         private DateTime _afleveringsdato;
+        private DateTime? _reelleafleveringsdato;
         private bool _godkendt;
         private List<IAktiv> _aktiver;
 
@@ -95,13 +97,15 @@ namespace RotteHullet.Domain.BusinessLogic
         }
         #endregion
 
-        public Udlån(int id, int adminId, DateTime udlåningsdato, DateTime afleveringsdato, 
+        public Udlån(int id, int medlemsid, int adminId, DateTime udlåningsdato, DateTime afleveringsdato, DateTime? reelleafleveringsdato, 
             bool godkendt, List<IAktiv> aktiver)
         {
             _id = id;
+            _medlemsid = medlemsid;
             _adminId = adminId;
             _udlåningsdato = udlåningsdato;
             _afleveringsdato = afleveringsdato;
+            _reelleafleveringsdato = reelleafleveringsdato;
             _godkendt = godkendt;
             _aktiver = aktiver;
         }

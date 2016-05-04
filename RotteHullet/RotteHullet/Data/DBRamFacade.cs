@@ -16,6 +16,7 @@ namespace RotteHullet.Data
         private List<Udstyr> _udstyrsListe;
         private List<Lokale> _lokaleListe;
         private List<Medlem> _medlemListe = new List<Medlem>();
+        private List<Udlån> _udlånListe;
         private Random random = new Random();
 
         #region Constructor
@@ -25,6 +26,7 @@ namespace RotteHullet.Data
             _brætspilsListe = new List<Brætspil>();
             _udstyrsListe = new List<Udstyr>();
             _lokaleListe = new List<Lokale>();
+            _udlånListe = new List<Udlån>();
         }
         #endregion
 
@@ -986,10 +988,9 @@ namespace RotteHullet.Data
 
         #endregion
 
-        public void checkLister(int medlemsid, List<Udstyr> udstyr)
+        public string GemUdlån(Udlån udl)
         {
             throw new NotImplementedException();
         }
-
     }//Klasse
 }//Namespace

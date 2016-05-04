@@ -26,6 +26,12 @@ namespace RotteHullet.Domain.BusinessLogic
         {
             return new Udstyr(id, navn, kategori, udlånes, kommentar);
         }
+
+        public Udlån SkabNytUdlån(int id, int medlemsid, int adminid, DateTime udlåningsdato, DateTime afleveringsdato, DateTime? reelleafleveringsdato, bool godkendelse, List<IAktiv> aktivider)
+        {
+            return new Udlån(id, medlemsid, adminid, udlåningsdato, afleveringsdato, reelleafleveringsdato, godkendelse, aktivider);
+        }
+
         public Bog SkabNyBog(int id, string titel, string forfatter, string genre, string subkategori, string familie, string forlag, bool udlånes, string kommentar = null)
         {
             return new Bog(id, titel, forfatter, genre, subkategori, familie, forlag, udlånes, kommentar);

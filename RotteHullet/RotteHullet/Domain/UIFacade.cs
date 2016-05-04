@@ -42,5 +42,10 @@ namespace RotteHullet.Domain
         {
             return VærktøjsFacade.HentVærktøjsFacade();
         }
+
+        public UdlånFacade HentUdlåningsFacade()
+        {
+
+        }
     }
 }

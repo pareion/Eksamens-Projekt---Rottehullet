@@ -10,8 +10,6 @@ namespace RotteHullet.Data
     {
 
         private static volatile IDBFacade idbf = null;
-
-        
         internal static void AngivDatabaseFacade(DatabaseType databaseType) {
             switch (databaseType)
             {
@@ -25,14 +23,10 @@ namespace RotteHullet.Data
                 default:
                     break;
             }
-
-
         }
 
         internal static IDBFacade HentDatabaseFacade() {
             return idbf;
         }
-
-
     }
 }
