@@ -68,13 +68,13 @@ namespace Unit_Testing_Sprint_1
         public void TestÆndringAfBrætspil()
         {
             //Opret brætspil
-            Brætspil bs = new Brætspil(1, "test2", "test3", "test4");
+          //  Brætspil bs = new Brætspil(1, "test2", "test3", "test4");
 
             //Gem brætspil
-            UIFacade.HentUIFacade().HentBrætSpilFacade().SkabBrætSpil(0, "test1", "test2", "test3");
+          //  UIFacade.HentUIFacade().HentBrætSpilFacade().SkabBrætSpil(0, "test1", "test2", "test3");
 
             //Ændre brætspil
-            UIFacade.HentUIFacade().HentBrætSpilFacade().ÆndreBrætSpil(0, 1, "test2", "test3", "test4");
+           // UIFacade.HentUIFacade().HentBrætSpilFacade().ÆndreBrætSpil(0, 1, "test2", "test3", "test4");
 
             //Hent brætspil
             string bsHentet = UIFacade.HentUIFacade().HentBrætSpilFacade().HentBrætSpil(0,0);

@@ -9,17 +9,17 @@ namespace RotteHullet.Data
     class DBFacade
     {
 
-        private static volatile IDBFacade idbf = null;
+        private static volatile IDBFacade _idbf = null;
 
         
         internal static void AngivDatabaseFacade(DatabaseType databaseType) {
             switch (databaseType)
             {
                 case DatabaseType.RamDatabase:
-                    idbf = DBRamFacade.HentDbRamFacade();
+                    _idbf = DBRamFacade.HentDbRamFacade();
                     break;
                 case DatabaseType.SqlDatabase:
-                    idbf = DBSQLFacade.HentDBSQLFacade();
+                    _idbf = DBSQLFacade.HentDBSQLFacade();
                     break;
 
                 default:
@@ -30,7 +30,7 @@ namespace RotteHullet.Data
         }
 
         internal static IDBFacade HentDatabaseFacade() {
-            return idbf;
+            return _idbf;
         }
 
 
