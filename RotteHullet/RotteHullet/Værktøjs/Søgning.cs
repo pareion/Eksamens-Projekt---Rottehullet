@@ -73,7 +73,7 @@ namespace RotteHullet.Værktøjs
             //Søger alle udstyr igennem og finder de relevante 
             if (udstyr == true)
             {
-                foreach (Udstyr item in Data.DBFacade.HentDatabaseFacade().HentAlleUdstyr())
+                foreach (Udstyr item in Data.DBFacade.HentDatabaseFacade().HentALtUdstyr())
                 {
                     if (item.UdstyrsNavn.Contains(søgning) || item.Kategori.Contains(søgning))
                     {
@@ -102,7 +102,7 @@ namespace RotteHullet.Værktøjs
         public bool Søg(string søgord, out List<Udstyr> udstyr)
         {
             udstyr = new List<Udstyr>();
-            udstyr = Data.DBFacade.HentDatabaseFacade().HentAlleUdstyr().FindAll(x => x.UdstyrsNavn.Contains(søgord));
+            udstyr = Data.DBFacade.HentDatabaseFacade().HentALtUdstyr().FindAll(x => x.UdstyrsNavn.Contains(søgord));
 
             return udstyr.Count != 0;
         }
@@ -140,7 +140,7 @@ namespace RotteHullet.Værktøjs
                     }
                     break;
                 case AktivType.Udstyr:
-                    List<Udstyr> udstyrListe = Data.DBFacade.HentDatabaseFacade().HentAlleUdstyr().FindAll(x => x.UdstyrsNavn.ToLower().Contains(søgord));
+                    List<Udstyr> udstyrListe = Data.DBFacade.HentDatabaseFacade().HentALtUdstyr().FindAll(x => x.UdstyrsNavn.ToLower().Contains(søgord));
                     foreach (Udstyr aktiv in udstyrListe)
                     {
                         data.Add(aktiv);

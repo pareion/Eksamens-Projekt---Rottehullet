@@ -21,11 +21,11 @@ namespace Unit_Testing_Sprint_1
         {
             //Opret bog
             Bog bog = new Bog(0, "Abernes Verden", "Abe Far", "Gys", "Komedie",
-                "Abernes Planet", "Gyldendal", "Stand: Ødelagt. Må ikke udlånes.");
+                "Abernes Planet", "Gyldendal", false, "Stand: Ødelagt. Må ikke udlånes.");
 
             //Gem bog
             UIFacade.HentUIFacade().HentBogFacade().SkabBog("Abernes Verden", "Abe Far", "Gys", "Komedie",
-                "Abernes Planet", "Gyldendal", "Stand: Ødelagt. Må ikke udlånes.");
+                "Abernes Planet", "Gyldendal", false, "Stand: Ødelagt. Må ikke udlånes.");
 
             //Hent bog
             string bogHentet = UIFacade.HentUIFacade().HentBogFacade().HentBog(0,0);
@@ -38,10 +38,10 @@ namespace Unit_Testing_Sprint_1
         public void TestOpretGemBogIkkeIdentisk()
         {
             //Opret bog med kommentar  
-            Bog bog = new Bog(0, "Test", "Test", "Test", "Test", "Test", "Test", "TestKommentar");
+            Bog bog = new Bog(0, "Test", "Test", "Test", "Test", "Test", "Test", false, "TestKommentar");
             
             //Gem bog uden kommentar
-            UIFacade.HentUIFacade().HentBogFacade().SkabBog("Test", "Test", "Test", "Test", "Test", "Test", null);
+            UIFacade.HentUIFacade().HentBogFacade().SkabBog("Test", "Test", "Test", "Test", "Test", "Test", false, null);
 
             //Hent bog uden kommentar
             string bogHentet = UIFacade.HentUIFacade().HentBogFacade().HentBog(0,0);
@@ -54,10 +54,10 @@ namespace Unit_Testing_Sprint_1
         public void TestOpretGemFlereBøger()
         {
             //Gem 4 bøger.
-            UIFacade.HentUIFacade().HentBogFacade().SkabBog("Test", "Test", "Test", "Test", "Test", "Test", "Test");
-            UIFacade.HentUIFacade().HentBogFacade().SkabBog("Test", "Test", "Test", "Test", "Test", "Test", "Test");
-            UIFacade.HentUIFacade().HentBogFacade().SkabBog("Test", "Test", "Test", "Test", "Test", "Test", "Test");
-            UIFacade.HentUIFacade().HentBogFacade().SkabBog("Test", "Test", "Test", "Test", "Test", "Test", "Test");
+            UIFacade.HentUIFacade().HentBogFacade().SkabBog("Test", "Test", "Test", "Test", "Test", "Test", false, "Test");
+            UIFacade.HentUIFacade().HentBogFacade().SkabBog("Test", "Test", "Test", "Test", "Test", "Test", false, "Test");
+            UIFacade.HentUIFacade().HentBogFacade().SkabBog("Test", "Test", "Test", "Test", "Test", "Test", false, "Test");
+            UIFacade.HentUIFacade().HentBogFacade().SkabBog("Test", "Test", "Test", "Test", "Test", "Test", false, "Test");
 
             //Hent liste med bøger
             List<string> bogListe = UIFacade.HentUIFacade().HentBogFacade().HentAlleBøger(5);

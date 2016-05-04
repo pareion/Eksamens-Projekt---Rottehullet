@@ -45,7 +45,7 @@ namespace RotteHullet.Domain
         public List<string> HentAlleUdstyr(int position)
         {
             List<string> nytUdstyr = new List<string>();
-            foreach (var item in DBFacade.HentDatabaseFacade().HentAlleUdstyr())
+            foreach (var item in DBFacade.HentDatabaseFacade().HentALtUdstyr())
             {
                 nytUdstyr.Add(item.ToString(position));
             }
@@ -53,7 +53,7 @@ namespace RotteHullet.Domain
         }
         public List<object> FindAlleUdstyr()
         {
-            List<Udstyr> aktiver = DBFacade.HentDatabaseFacade().HentAlleUdstyr();
+            List<Udstyr> aktiver = DBFacade.HentDatabaseFacade().HentALtUdstyr();
             List<object> dataListe = new List<object>();
             foreach (Udstyr item in aktiver)
             {

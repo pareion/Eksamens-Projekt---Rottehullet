@@ -179,7 +179,7 @@ namespace RotteHullet.Data
             return null;
         }
 
-        public List<Udstyr> HentAlleUdstyr()
+        public List<Udstyr> HentALtUdstyr()
         {
             return _udstyrsListe;
         }
@@ -848,7 +848,7 @@ namespace RotteHullet.Data
         {
             for (int i = 0; i < 100; i++)
             {
-                Brætspil aktiv = AktivFactory.HentAktivFactory().SkabNyBrætspil(i + 1, hentFornavn(i), "Menneske",true, null);
+                Brætspil aktiv = AktivFactory.HentAktivFactory().SkabNyBrætspil(i + 1, hentFornavn(i), "Menneske",true,"det her er en kommentar", null);
                 _brætspilsListe.Add(aktiv);
             }
         }
@@ -987,10 +987,11 @@ namespace RotteHullet.Data
         }
 
         #endregion
-
+        #region udlån
         public string GemUdlån(Udlån udl)
         {
             throw new NotImplementedException();
         }
+        #endregion
     }//Klasse
 }//Namespace

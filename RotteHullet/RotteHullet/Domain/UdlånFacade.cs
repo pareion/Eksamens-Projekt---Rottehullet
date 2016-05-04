@@ -11,7 +11,7 @@ namespace RotteHullet.Domain
     class UdlånFacade
     {
         private static UdlånFacade _udlåningsFacade;
-        public UdlånFacade HentUdlåningsFacade()
+        public static UdlånFacade HentUdlåningsFacade()
         {
             if (_udlåningsFacade == null)
             {

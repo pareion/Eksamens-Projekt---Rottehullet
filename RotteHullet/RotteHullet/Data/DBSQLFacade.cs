@@ -745,8 +745,13 @@ namespace RotteHullet.Data
         {
             throw new NotImplementedException();
         }
-
         #endregion
 
+        #region medlem
+        public Medlem HentMedlem(string brugernavn, string password)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
     }
 }

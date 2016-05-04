@@ -48,9 +48,9 @@ namespace Unit_Testing_Sprint_1
         public void TestSøgBrætspil()
         {
            
-            Brætspil aktiv1 = new Brætspil(1, "Hello world", "Forfatter1", "Greeting");
-            Brætspil aktiv2 = new Brætspil(2, "The World is a big place", "Forfatter2", "Greeting");
-            Brætspil aktiv3 = new Brætspil(3, "The Code 3", "Forfatter3", "Kommentar3");
+            Brætspil aktiv1 = new Brætspil(1, "Hello world", "udgiver",false, "Forfatter1", "Greeting");
+            Brætspil aktiv2 = new Brætspil(2, "The World is a big place", "udgiver", false, "Forfatter2", "Greeting");
+            Brætspil aktiv3 = new Brætspil(3, "The Code 3", "udgiver", false, "Forfatter3", "Kommentar3");
 
 
 
@@ -74,9 +74,9 @@ namespace Unit_Testing_Sprint_1
         [TestMethod]
         public void TestSøgLokale()
         {
-            Lokale aktiv1 = new Lokale(1, "Hello world", "Forfatter1", "Greeting", "Test");
-            Lokale aktiv2 = new Lokale(2, "The World is a big place", "Forfatter2", "Greeting", "Test");
-            Lokale aktiv3 = new Lokale(3, "The Code 3", "Forfatter3", "Kommentar3", "Test");
+            Lokale aktiv1 = new Lokale(1, "Hello world", "Forfatter1", false, "Greeting", "Test");
+            Lokale aktiv2 = new Lokale(2, "The World is a big place", "Forfatter2", false, "Greeting", "Test");
+            Lokale aktiv3 = new Lokale(3, "The Code 3", "Forfatter3", false, "Kommentar3", "Test");
 
             DBRamFacade.HentDbRamFacade().GemLokale(aktiv1);
             DBRamFacade.HentDbRamFacade().GemLokale(aktiv2);
@@ -98,9 +98,9 @@ namespace Unit_Testing_Sprint_1
         [TestMethod]
         public void TestSøgUdstyr()
         {
-            Udstyr aktiv1 = new Udstyr(1, "Hello world", "Forfatter1", "Greeting");
-            Udstyr aktiv2 = new Udstyr(2, "The World is a big place", "Forfatter2", "Greeting");
-            Udstyr aktiv3 = new Udstyr(3, "The Code 3", "Forfatter3", "Kommentar3");
+            Udstyr aktiv1 = new Udstyr(1, "Hello world", "Forfatter1", false, "Greeting");
+            Udstyr aktiv2 = new Udstyr(2, "The World is a big place", "Forfatter2", false, "Greeting");
+            Udstyr aktiv3 = new Udstyr(3, "The Code 3", "Forfatter3", false, "Kommentar3");
 
             DBRamFacade.HentDbRamFacade().GemUdstyr(aktiv1);
             DBRamFacade.HentDbRamFacade().GemUdstyr(aktiv2);
