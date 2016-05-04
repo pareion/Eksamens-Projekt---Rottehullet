@@ -251,7 +251,7 @@ namespace RotteHullet
                     UIFacade.HentUIFacade().HentBogFacade().SkabBog(tb_Titel.Text, tb_Forfatter.Text, tb_Genre.Text, tb_Subkategori.Text, tb_Familie.Text, tb_Familie.Text, cb_BogUdlån.IsChecked == true ? true : false, tb_Kommentar.Text);
                     break;
                 case IndexTab.Brætspil:
-                    UIFacade.HentUIFacade().HentBrætSpilFacade().SkabBrætSpil(0, tb_Brætspilnavn.Text, tb_BrætspilUdgiver.Text, cb_BrætspilUdlån.IsChecked == true ? true : false, tb_BrætspilKommentar.Text);
+                    UIFacade.HentUIFacade().HentBrætSpilFacade().SkabBrætSpil(0, tb_Brætspilnavn.Text, tb_BrætspilUdgiver.Text, cb_BrætspilUdlån.IsChecked == true ? true : false, tb_BrætspilKommentar.Text, tb_BrætspilKategori.Text);
                     break;
                 case IndexTab.Udstyr:
                     UIFacade.HentUIFacade().HentUdstyrFacade().SkabUdstyr(0, tb_Udstyrnavn.Text, tb_UdstyrKategori.Text, cb_UdstyrUdlån.IsChecked == true ? true : false, tb_UdstyrKommentar.Text);
@@ -272,7 +272,7 @@ namespace RotteHullet
                     UIFacade.HentUIFacade().HentBogFacade().ÆndreBog(_aktivId, tb_Titel.Text, tb_Forfatter.Text, tb_Genre.Text, tb_Subkategori.Text, tb_Familie.Text, tb_Familie.Text, cb_BogUdlån.IsChecked == true ? true : false, tb_Kommentar.Text);
                     break;
                 case IndexTab.Brætspil:
-                    UIFacade.HentUIFacade().HentBrætSpilFacade().ÆndreBrætSpil(_aktivId, _aktivId, tb_Brætspilnavn.Text, tb_BrætspilUdgiver.Text, cb_BrætspilUdlån.IsChecked == true ? true : false, tb_BrætspilKommentar.Text);
+                    UIFacade.HentUIFacade().HentBrætSpilFacade().ÆndreBrætSpil(_aktivId, _aktivId, tb_Brætspilnavn.Text, tb_BrætspilUdgiver.Text, cb_BrætspilUdlån.IsChecked == true ? true : false, tb_BrætspilKommentar.Text, tb_BrætspilKategori.Text);
                     break;
                 case IndexTab.Udstyr:
                     UIFacade.HentUIFacade().HentUdstyrFacade().ÆndreUdstyr(_aktivId, _aktivId, tb_Udstyrnavn.Text, tb_UdstyrKategori.Text, cb_UdstyrUdlån.IsChecked == true ? true : false, tb_UdstyrKommentar.Text);

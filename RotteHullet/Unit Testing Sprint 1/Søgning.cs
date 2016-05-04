@@ -47,6 +47,7 @@ namespace Unit_Testing_Sprint_1
         [TestMethod]
         public void TestSøgBrætspil()
         {
+           
             Brætspil aktiv1 = new Brætspil(1, "Hello world", "Forfatter1", "Greeting");
             Brætspil aktiv2 = new Brætspil(2, "The World is a big place", "Forfatter2", "Greeting");
             Brætspil aktiv3 = new Brætspil(3, "The Code 3", "Forfatter3", "Kommentar3");
@@ -56,7 +57,7 @@ namespace Unit_Testing_Sprint_1
             DBRamFacade.HentDbRamFacade().GemBrætSpil(aktiv1);
             DBRamFacade.HentDbRamFacade().GemBrætSpil(aktiv2);
             DBRamFacade.HentDbRamFacade().GemBrætSpil(aktiv3);
-
+            
             List<Brætspil> aktiver = new List<Brætspil>();
             bool resultat = UIFacade.HentUIFacade().HentVærktøjsFacade().Søg("World", out aktiver);
 

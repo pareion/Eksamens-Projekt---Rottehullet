@@ -20,18 +20,18 @@ namespace RotteHullet.Domain
             }
             return _brætSpilFacade;
         }
-        public string SkabBrætSpil(int id, string navn, string udgiver, bool udlånes, string kommentar)
+        public string SkabBrætSpil(int id, string navn, string udgiver, bool udlånes, string kommentar, string kategori)
         {
-            Brætspil bs = AktivFactory.HentAktivFactory().SkabNyBrætspil(id, navn, udgiver, udlånes, kommentar);
+            Brætspil bs = AktivFactory.HentAktivFactory().SkabNyBrætspil(id, navn, udgiver, udlånes, kommentar, kategori);
             if (DBFacade.HentDatabaseFacade().GemBrætSpil(bs))
             {
                 return "Brætspillet er skabt";
             }
             return "Brætspillet blev ikke skabt";
         }
-        public string ÆndreBrætSpil(int gammeltID, int nytid, string navn, string udgiver,bool udlånes, string kommentar)
+        public string ÆndreBrætSpil(int gammeltID, int nytid, string navn, string udgiver,bool udlånes, string kommentar, string kategori)
         {
-            Brætspil bs = AktivFactory.HentAktivFactory().SkabNyBrætspil(nytid, navn, udgiver,udlånes, kommentar);
+            Brætspil bs = AktivFactory.HentAktivFactory().SkabNyBrætspil(nytid, navn, udgiver,udlånes, kommentar, kategori);
             if (DBFacade.HentDatabaseFacade().ÆndreBrætSpil(gammeltID, bs))
             {
                 return "Brætspillet er ændret";

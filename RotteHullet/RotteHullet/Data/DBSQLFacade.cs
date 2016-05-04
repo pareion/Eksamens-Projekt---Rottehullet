@@ -232,6 +232,8 @@ namespace RotteHullet.Data
                 kommando.Parameters.Add(new SqlParameter("@udlånes", bs.Udlånes));
 
                 kommando.Parameters.Add(new SqlParameter("@kommentar", bs.Kommentar));
+                kommando.Parameters.Add(new SqlParameter("@kategori", bs.Kategori));
+
 
                 kommando.ExecuteNonQuery();
 
@@ -267,6 +269,7 @@ namespace RotteHullet.Data
                 kommando.Parameters.Add(new SqlParameter("@udgiver", bs.Udgiver));
                 kommando.Parameters.Add(new SqlParameter("@udlånes", bs.Udlånes));
                 kommando.Parameters.Add(new SqlParameter("@kommentar", bs.Kommentar));
+                kommando.Parameters.Add(new SqlParameter("@kategori", bs.Kategori));
 
                 kommando.ExecuteNonQuery();
 
@@ -304,9 +307,10 @@ namespace RotteHullet.Data
                     string udgiver = Convert.ToString(sdr["udgiver"]);
                     bool udlånes = Convert.ToBoolean(sdr["udlånes"]);
                     string kommentar = Convert.ToString(sdr["kommentar"]);
+                    string kategori = Convert.ToString(sdr["kategori"]);
 
 
-                    resultat = AktivFactory.HentAktivFactory().SkabNyBrætspil(id, brætspilnavn, udgiver, udlånes, kommentar);
+                    resultat = AktivFactory.HentAktivFactory().SkabNyBrætspil(id, brætspilnavn, udgiver, udlånes, kommentar, kategori);
                 }
                 forb.Close();
                 forb.Dispose();
@@ -340,7 +344,8 @@ namespace RotteHullet.Data
                     string udgiver = Convert.ToString(sdr["udgiver"]);
                     bool udlånes = Convert.ToBoolean(sdr["udlånes"]);
                     string kommentar = Convert.ToString(sdr["kommentar"]);
-                    resultat.Add(AktivFactory.HentAktivFactory().SkabNyBrætspil(brætspilid, brætspilnavn, udgiver,udlånes, kommentar));
+                    string kategori = Convert.ToString(sdr["kategori"]);
+                    resultat.Add(AktivFactory.HentAktivFactory().SkabNyBrætspil(brætspilid, brætspilnavn, udgiver,udlånes, kommentar,kategori));
                 }
                 forb.Close();
                 forb.Dispose();
