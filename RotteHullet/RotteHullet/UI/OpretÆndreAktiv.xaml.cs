@@ -260,7 +260,7 @@ namespace RotteHullet
                     UIFacade.HentUIFacade().HentLokaleFacade().SkabLokale(0, tb_Lokalenavn.Text, tb_Lokation.Text, cb_LokaleUdlån.IsChecked == true ? true : false, tb_LokaleKommentar.Text, tb_LokaleMøbler.Text);
                     break;
                 default:
-                    throw new Exception("Denne fane fines ikke");
+                    throw new Exception("Denne fane findes ikke");
             }
         }
 
@@ -281,7 +281,7 @@ namespace RotteHullet
                     UIFacade.HentUIFacade().HentLokaleFacade().ÆndreLokale(_aktivId, _aktivId, tb_Lokalenavn.Text, tb_Lokation.Text, cb_LokaleUdlån.IsChecked == true ? true : false, tb_LokaleKommentar.Text, tb_LokaleMøbler.Text);
                     break;
                 default:
-                    throw new Exception("Denne fane fines ikke");
+                    throw new Exception("Denne fane findes ikke");
             }
         }
 

@@ -37,8 +37,10 @@
                     <TextBox x:Name="tb_Brætspilnavn" HorizontalAlignment="Left" Margin="87,34,0,0" TextWrapping="NoWrap" MaxLines="1" VerticalAlignment="Top" Width="230" Padding="2,5" TextChanged="tekstRedigering"/>
                     <Label x:Name="l_BrætspilUdgiver" Content="Udgiver" HorizontalAlignment="Left" Margin="31,69,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.398,0.444"/>
                     <TextBox x:Name="tb_BrætspilUdgiver" HorizontalAlignment="Left" Margin="87,69,0,0" TextWrapping="NoWrap" MaxLines="1" VerticalAlignment="Top" Width="230" Padding="2,5" TextChanged="tekstRedigering"/>
-                    <Label x:Name="l_BrætspilKommentar" Content="Kommentar" HorizontalAlignment="Left" Margin="10,104,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="tb_BrætspilKommentar" HorizontalAlignment="Left" Height="260" Margin="87,104,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Padding="2,5" TextChanged="tekstRedigering"/>
+                    <Label x:Name="l_BrætspilKommentar" Content="Kommentar" HorizontalAlignment="Left" Margin="10,153,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.604,2.123"/>
+                    <Label x:Name="l_BrætspilKategori" Content="Kategori" HorizontalAlignment="Left" Margin="26,108,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.604,2.123"/>
+                    <TextBox x:Name="tb_BrætspilKategori" HorizontalAlignment="Left" Margin="87,109,0,0" TextWrapping="NoWrap" MaxLines="1" VerticalAlignment="Top" Width="230" Padding="2,5" TextChanged="tekstRedigering"/>
+                    <TextBox x:Name="tb_BrætspilKommentar" HorizontalAlignment="Left" Height="205" Margin="87,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Padding="2,5" TextChanged="tekstRedigering"/>
                     <Button x:Name="btn_GemBrætspil" Content="Gem" Height="30" Margin="87,408,199,30" Click="btn_GemBrætspil_Click"/>
                     <Button x:Name="btn_AnnullerBrætspil" Content="Annuller" Height="30" Margin="243,408,43,30" Click="annullereProces"/>
                 </Grid>
