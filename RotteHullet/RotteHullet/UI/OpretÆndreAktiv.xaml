@@ -10,6 +10,7 @@
         <TabControl x:Name="maintab" HorizontalAlignment="Left" Height="500" Margin="10,10,0,0" VerticalAlignment="Top" Width="370">
             <TabItem Header="Bog" IsEnabled="False">
                 <Grid>
+                    <CheckBox x:Name="cb_BogUdlån" Content="Giv tilladelse til udlåning" IsChecked="True"  HorizontalAlignment="Left" Margin="87,13,0,0" VerticalAlignment="Top"/>
                     <Label x:Name="l_Titel" Content="Titel" HorizontalAlignment="Left" Margin="50,34,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="tb_Titel" HorizontalAlignment="Left" Margin="87,34,0,0" TextWrapping="NoWrap" MaxLines="1" VerticalAlignment="Top" Width="230" Padding="2,5" TextChanged="tekstRedigering"/>
                     <Label x:Name="l_Genre" Content="Genre" HorizontalAlignment="Left" Margin="40,69,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.511,0.665"/>
@@ -24,13 +25,14 @@
                     <TextBox x:Name="tb_Forlag" HorizontalAlignment="Left" Margin="87,209,0,0" TextWrapping="NoWrap" MaxLines="1" VerticalAlignment="Top" Width="230" Padding="2,5" TextChanged="tekstRedigering"/>
                     <Label x:Name="l_Kommentar" Content="Kommentar" HorizontalAlignment="Left" Margin="10,244,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="tb_Kommentar" HorizontalAlignment="Left" Height="144" Margin="87,244,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Padding="2,5" TextChanged="tekstRedigering"/>
-                    <Button x:Name="btn_GemBog" Content="Gem" Height="30" Margin="87,408,199,30" Click="btn_GemBog_Click"/>
-                    <Button x:Name="btn_AnnullerBog" Content="Annuller" Height="30" Margin="243,408,43,30" Click="annullereProces"/>
 
+                    <Button x:Name="btn_GemBog" Content="Gem" Height="30" Margin="87,418,199,20" Click="btn_GemBog_Click"/>
+                    <Button x:Name="btn_AnnullerBog" Content="Annuller" Height="30" Margin="243,418,43,20" Click="annullereProces"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Brætspil" IsEnabled="False">
                 <Grid>
+                    <CheckBox x:Name="cb_BrætspilUdlån" Content="Giv tilladelse til udlåning" IsChecked="True"  HorizontalAlignment="Left" Margin="87,13,0,0" VerticalAlignment="Top"/>
                     <Label x:Name="l_BrætspilNavn" Content="Navn" HorizontalAlignment="Left" Margin="44,34,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="tb_Brætspilnavn" HorizontalAlignment="Left" Margin="87,34,0,0" TextWrapping="NoWrap" MaxLines="1" VerticalAlignment="Top" Width="230" Padding="2,5" TextChanged="tekstRedigering"/>
                     <Label x:Name="l_BrætspilUdgiver" Content="Udgiver" HorizontalAlignment="Left" Margin="31,69,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.398,0.444"/>
@@ -43,6 +45,7 @@
             </TabItem>
             <TabItem Header="Udstyr" IsEnabled="False">
                 <Grid>
+                    <CheckBox x:Name="cb_UdstyrUdlån" Content="Giv tilladelse til udlåning" IsChecked="True"  HorizontalAlignment="Left" Margin="87,13,0,0" VerticalAlignment="Top"/>
                     <Label x:Name="l_Udstyrnavn" Content="Navn" HorizontalAlignment="Left" Margin="44,34,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="tb_Udstyrnavn" HorizontalAlignment="Left" Margin="87,34,0,0" TextWrapping="NoWrap" MaxLines="1" VerticalAlignment="Top" Width="230" Padding="2,5" TextChanged="tekstRedigering"/>
                     <Label x:Name="l_UdstyrKategori" Content="Kategori" HorizontalAlignment="Left" Margin="27,69,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.398,0.444"/>
@@ -56,17 +59,17 @@
             </TabItem>
             <TabItem Header="Lokale" IsEnabled="False">
                 <Grid>
-
+                    <CheckBox x:Name="cb_LokaleUdlån" Content="Giv tilladelse til udlåning" IsChecked="True"  HorizontalAlignment="Left" Margin="87,13,0,0" VerticalAlignment="Top"/>
                     <Label x:Name="l_Lokalenavn" Content="Lokalenavn" HorizontalAlignment="Left" Margin="13,34,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="tb_Lokalenavn" HorizontalAlignment="Left" Margin="87,34,0,0" TextWrapping="NoWrap" MaxLines="1" VerticalAlignment="Top" Width="230" Padding="2,5" TextChanged="tekstRedigering"/>
                     <Label x:Name="l_Lokation" Content="Lokation" HorizontalAlignment="Left" Margin="26,69,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.398,0.444"/>
                     <TextBox x:Name="tb_Lokation" HorizontalAlignment="Left" Margin="87,69,0,0" TextWrapping="NoWrap" MaxLines="1" VerticalAlignment="Top" Width="230" Padding="2,5" TextChanged="tekstRedigering"/>
                     <Label x:Name="l_LokaleMøbler" Content="Møbler" HorizontalAlignment="Left" Margin="34,104,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.398,0.444"/>
                     <TextBox x:Name="tb_LokaleMøbler" HorizontalAlignment="Left" Margin="87,104,0,0" TextWrapping="NoWrap" MaxLines="1" VerticalAlignment="Top" Width="230" Padding="2,5" TextChanged="tekstRedigering"/>
-                    <Button x:Name="btn_GemLokale" Content="Gem" Height="30" Margin="87,408,199,30" Click="btn_GemLokale_Click"/>
                     <Label x:Name="l_LokaleKommentar" Content="Kommentar" HorizontalAlignment="Left" Margin="10,139,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="tb_LokaleKommentar" HorizontalAlignment="Left" Height="145" Margin="87,139,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Padding="2,5" TextChanged="tekstRedigering"/>
 
+                    <Button x:Name="btn_GemLokale" Content="Gem" Height="30" Margin="87,408,199,30" Click="btn_GemLokale_Click"/>
                     <Button x:Name="btn_AnnullerLokale" Content="Annuller" Height="30" Margin="243,408,43,30" Click="annullereProces"/>
                 </Grid>
             </TabItem>

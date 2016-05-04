@@ -29,9 +29,10 @@ namespace RotteHullet
         private IndexTab faneIndeks = IndexTab.Bog;
         private bool erOpret { get; set; }
 
-        private void AktivSlettet() {
+        private void AktivSlettet()
+        {
             MessageBox.Show("Aktivet du forsøger at ændre, er blevet slettet af en anden bruger");
-            
+
         }
 
         #region Constructor
@@ -256,7 +257,7 @@ namespace RotteHullet
                     UIFacade.HentUIFacade().HentUdstyrFacade().SkabUdstyr(0, tb_Udstyrnavn.Text, tb_UdstyrKategori.Text, cb_UdstyrUdlån.IsChecked == true ? true : false, tb_UdstyrKommentar.Text);
                     break;
                 case IndexTab.Lokale:
-                    UIFacade.HentUIFacade().HentLokaleFacade().SkabLokale(0, tb_Lokalenavn.Text, tb_Lokation.Text, cb_LokaleUdlån.IsChecked == true ? true : false, tb_LokaleKommentar.Text,  tb_LokaleMøbler.Text);
+                    UIFacade.HentUIFacade().HentLokaleFacade().SkabLokale(0, tb_Lokalenavn.Text, tb_Lokation.Text, cb_LokaleUdlån.IsChecked == true ? true : false, tb_LokaleKommentar.Text, tb_LokaleMøbler.Text);
                     break;
                 default:
                     throw new Exception("Denne fane fines ikke");
@@ -386,7 +387,7 @@ namespace RotteHullet
         }
 
         #endregion
-        
+
 
     }
 }
