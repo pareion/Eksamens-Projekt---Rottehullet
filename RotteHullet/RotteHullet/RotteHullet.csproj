@@ -61,6 +61,9 @@
       <DependentUpon>BrugerPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="Domain\VærktøjsFacade.cs" />
+    <Compile Include="UI\ReservationListe.xaml.cs">
+      <DependentUpon>ReservationListe.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Værktøjs\Søgning.cs" />
     <Page Include="UI\BrugerPanel.xaml">
       <SubType>Designer</SubType>
@@ -106,6 +109,10 @@
     <Page Include="UI\OpretÆndreAktiv.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\ReservationListe.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>

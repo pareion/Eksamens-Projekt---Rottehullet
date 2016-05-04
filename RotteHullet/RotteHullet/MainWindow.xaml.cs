@@ -27,23 +27,6 @@ namespace RotteHullet
         {
             DBFacade.AngivDatabaseFacade(DatabaseType.SqlDatabase);
             InitializeComponent();
-
-            /*
-            List<Udstyr> udstyr = new List<Udstyr>();
-            Udstyr s = new Udstyr(1, "sko", "lol", "lol");
-            Udstyr s2 = new Udstyr(0, "sko", "lol", "lol");
-            Udstyr s3 = new Udstyr(3, "sko", "lol", "lol");
-            Udstyr s4 = new Udstyr(0, "sko", "lol", "lol");
-            Udstyr s5 = new Udstyr(0, "sko", "lol", "lol");
-            Udstyr s6 = new Udstyr(0, "sko", "lol", "lol");
-            udstyr.Add(s);
-            udstyr.Add(s2);
-            udstyr.Add(s3);
-            udstyr.Add(s4);
-            udstyr.Add(s5);
-            udstyr.Add(s6);
-            DBSQLFacade.HentDBSQLFacade().checkLister(0, udstyr);
-            */
         }
 
         private void TilmeldEvent(object sender, MouseButtonEventArgs e)
@@ -58,41 +41,68 @@ namespace RotteHullet
 
         private void btn_LogPå_Click(object sender, RoutedEventArgs e)
         {
-            logind();
+            logind(true);
         }
 
-        private void logind()
+        private void logind(bool demo = false)
         {
-            if (tb_Brugernavn.Text != string.Empty && tb_Kodeord.Password != string.Empty)
+            if (demo == false)
             {
-                if (UIFacade.HentUIFacade().HentMedlemFacade().TjekLogind(tb_Brugernavn.Text, tb_Kodeord.Password))
+                try
                 {
-                    // Fjern advarelse
-                    advarelse(false);
-
-                    // Tjekker på bruger typer
-                    Window panel;
-                    if (UIFacade.HentUIFacade().HentMedlemFacade().ErAdmin)
+                    if (tb_Brugernavn.Text != string.Empty && tb_Kodeord.Password != string.Empty)
                     {
-                        panel = new AdminPanel();
+                        if (UIFacade.HentUIFacade().HentMedlemFacade().TjekLogind(tb_Brugernavn.Text, tb_Kodeord.Password))
+                        {
+                            // Fjern advarelse
+                            advarelse(false);
+
+                            // Tjekker på bruger typer
+                            Window panel;
+                            if (UIFacade.HentUIFacade().HentMedlemFacade().ErAdmin)
+                            {
+                                panel = new AdminPanel();
+                            }
+                            else
+                            {
+                                panel = new BrugerPanel();
+                            }
+
+                            panel.Show();
+                            panel.Activate();
+                            this.Close();
+                        }
+                        else
+                        {
+                            advarelse(true);
+                        }
                     }
                     else
                     {
-                        panel = new BrugerPanel();
+                        advarelse(true);
                     }
-
-                    panel.Show();
-                    panel.Activate();
-                    this.Close();
                 }
-                else
+                catch
                 {
-                    advarelse(true);
+                    MessageBox.Show("Kan ikke få forbindelse til server, prøv igen senere");
                 }
             }
             else
             {
-                advarelse(true);
+                Window panel;
+
+                if (tb_Brugernavn.Text == "admin")
+                {
+                    panel = new AdminPanel();
+                }
+                else
+                {
+                    panel = new BrugerPanel();
+                }
+
+                panel.Show();
+                panel.Activate();
+                this.Close();
             }
         }
         private void advarelse(bool status = true)

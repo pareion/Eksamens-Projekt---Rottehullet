@@ -5,8 +5,43 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RotteHullet"
         mc:Ignorable="d"
-        Title="Rottehullet system" Height="700" Width="680">
+        Title="Rottehullet system" Height="700" Width="680" FocusManager.FocusedElement="{Binding ElementName=t_Søgboks}">
     <Grid>
-        
+        <!-- Top level -->
+        <Button x:Name="btn_ReservationVisning" Content="Tilføjet liste" HorizontalAlignment="Stretch" Margin="560,10,10,630" VerticalAlignment="Top" Width="80" Padding="2"  Background="{x:Null}"/>
+
+        <Label Content="Hvad leder du efter?" HorizontalAlignment="Center" VerticalAlignment="Stretch"  Width="230" Height="Auto"  Margin="0,72,0,551" FontSize="24"/>
+        <TextBox x:Name="t_Søgboks" HorizontalAlignment="Center" Width="440" Height="36" Margin="0,124,0,0" FontSize="18" Padding="2,4,35,0" TextWrapping="NoWrap" VerticalAlignment="Top" />
+        <Label x:Name="btn_Søg" Content="🔎" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="410,124,0,0" FontSize="18" Foreground="Gray" Panel.ZIndex="3" />
+        <Expander x:Name="ex_" Header="Filter" HorizontalAlignment="Stretch" ExpandDirection="Down"  Margin="120,165,120,0" VerticalAlignment="Top" Width="Auto" IsExpanded="True" >
+            <Grid>
+                <StackPanel Orientation="Horizontal" Margin="5,5,5,0">
+                    <StackPanel Margin="0,0,10,0">
+                        <RadioButton GroupName="OptionValgt" Content="Bøger" IsChecked="True" />
+                    </StackPanel>
+                    <StackPanel Margin="0,0,10,0">
+                        <RadioButton GroupName="OptionValgt" Content="Brætspil" />
+                    </StackPanel>
+                    <StackPanel Margin="0,0,10,0">
+                        <RadioButton GroupName="OptionValgt" Content="Udstyr" />
+                    </StackPanel>
+                    <StackPanel>
+                        <RadioButton GroupName="OptionValgt" Content="Lokaler" />
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Expander>
+        <StackPanel x:Name="panelIndhold">
+            <ListView x:Name="lv_Aktiver" HorizontalAlignment="Stretch" Height="430" Margin="60,230,60,0" VerticalAlignment="Top" Width="Auto">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Titel" DisplayMemberBinding="{Binding Titel}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
+
+        <!-- Content level -->
+        <!-- Bottom level -->
     </Grid>
 </Window>

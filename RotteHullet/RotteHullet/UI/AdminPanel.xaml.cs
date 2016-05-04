@@ -44,18 +44,27 @@ namespace RotteHullet
             // Rydder lister op 
             fjernLister();
 
-            // Indlæser nye data
-            _bogData = UIFacade.HentUIFacade().HentBogFacade().FindAlleBøger();
-            _bogData.ForEach(x => lv_bøger.Items.Add(x));
+            try
+            {
+                // Indlæser nye data
+                _bogData = UIFacade.HentUIFacade().HentBogFacade().FindAlleBøger();
+                _bogData.ForEach(x => lv_bøger.Items.Add(x));
 
-            _brætspilData = UIFacade.HentUIFacade().HentBrætSpilFacade().FindAlleBrætspil();
-            _brætspilData.ForEach(x => lv_brætspil.Items.Add(x));
+                _brætspilData = UIFacade.HentUIFacade().HentBrætSpilFacade().FindAlleBrætspil();
+                _brætspilData.ForEach(x => lv_brætspil.Items.Add(x));
 
-            _udstyrData = UIFacade.HentUIFacade().HentUdstyrFacade().FindAlleUdstyr();
-            _udstyrData.ForEach(x => lv_udstyr.Items.Add(x));
+                _udstyrData = UIFacade.HentUIFacade().HentUdstyrFacade().FindAlleUdstyr();
+                _udstyrData.ForEach(x => lv_udstyr.Items.Add(x));
 
-            _lokaleData = UIFacade.HentUIFacade().HentLokaleFacade().FindAlleLokaler();
-            _lokaleData.ForEach(x => lv_lokal.Items.Add(x));
+                _lokaleData = UIFacade.HentUIFacade().HentLokaleFacade().FindAlleLokaler();
+                _lokaleData.ForEach(x => lv_lokal.Items.Add(x));
+            }
+            catch
+            {
+                MessageBox.Show("Kan ikke få forbindelse til database");
+            }
+
+            
         }
 
         private void fjernLister()
