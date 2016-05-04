@@ -15,13 +15,12 @@ namespace RotteHullet.Domain
         {
             get
             {
-                return sessionBruger != null && sessionBruger.Status == Medlem.MedlemType.Bestyrelse;
+                return _sessionBruger != null && _sessionBruger.Status == Medlem.MedlemType.Bestyrelse;
             }
         }
 
-        private static Medlem sessionBruger { get; set; }
+        private static Medlem _sessionBruger;
         private static MedlemFacade _medlemFacade = null;
-
         #endregion
 
         #region Metoder
@@ -37,24 +36,21 @@ namespace RotteHullet.Domain
         public void GemMedlem(string brugernavn, string password, string fornavn, string efternavn, string email, Medlem.MedlemType medlemtype = Medlem.MedlemType.Bruger)
         {
             // Do something
-
         }
 
         public void ÆndreMedlem(int id, string brugernavn, string password, string fornavn, string efternavn, string email, Medlem.MedlemType medlemtype = Medlem.MedlemType.Bruger)
         {
             // Do something
-
         }
 
         public void SletMedlem(int id)
         {
             // Do something
-
         }
 
         public Medlem SessionBruger()
         {
-            return sessionBruger;
+            return _sessionBruger;
         }
 
         public bool TjekLogind(string brugernavn, string password)
@@ -63,7 +59,7 @@ namespace RotteHullet.Domain
 
             if (bruger != null)
             {
-                sessionBruger = bruger;
+                _sessionBruger = bruger;
                 return true;
             }
             else

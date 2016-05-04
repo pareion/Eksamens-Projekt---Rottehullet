@@ -983,7 +983,7 @@ namespace RotteHullet.Data
         #endregion
 
         #region udlån
-        public string GemUdlån(Udlån udl)
+        public bool GemUdlån(Udlån udl)
         {
             throw new NotImplementedException();
         }

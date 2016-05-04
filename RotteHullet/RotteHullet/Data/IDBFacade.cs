@@ -43,7 +43,7 @@ namespace RotteHullet.Data
         #endregion
 
         #region udlån
-        string GemUdlån(Udlån udl);
+        bool GemUdlån(Udlån udl);
         #endregion
     }
 }

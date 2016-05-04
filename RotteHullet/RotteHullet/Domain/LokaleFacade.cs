@@ -20,16 +20,17 @@ namespace RotteHullet.Domain
             }
             return _lokaleFacade;
         }
-        public string SkabLokale(int id, string navn, string lokation,bool udlånes, string kommentar, string møbler)
+
+        public string SkabLokale(int id, string navn, string lokation, bool udlånes, string kommentar, string møbler)
         {
-            Lokale lok = AktivFactory.HentAktivFactory().SkabNytLokale(id, navn, lokation, udlånes ,kommentar, møbler);
+            Lokale lok = AktivFactory.HentAktivFactory().SkabNytLokale(id, navn, lokation, udlånes, kommentar, møbler);
             if (DBFacade.HentDatabaseFacade().GemLokale(lok))
             {
                 return "Lokalet er skabt";
             }
             return "Lokalet blev ikke skabt";
         }
-        public string ÆndreLokale(int gammeltID, int id, string navn, string lokation,bool udlånes, string kommentar, string møbler)
+        public string ÆndreLokale(int gammeltID, int id, string navn, string lokation, bool udlånes, string kommentar, string møbler)
         {
             Lokale lok = AktivFactory.HentAktivFactory().SkabNytLokale(id, navn, lokation, udlånes, kommentar, møbler);
             if (DBFacade.HentDatabaseFacade().ÆndreLokale(gammeltID, lok))
@@ -38,20 +39,8 @@ namespace RotteHullet.Domain
             }
             return "Lokalet ikke blevet ændret";
         }
-        public string HentLokale(int id, int position)
-        {
-            return DBFacade.HentDatabaseFacade().HentLokale(id).ToString(position);
-        }
-        public List<string> HentAlleLokaler(int position)
-        {
-            List<string> nyeLokaler = new List<string>();
-            foreach (var item in DBFacade.HentDatabaseFacade().HentAlleLokaler())
-            {
-                nyeLokaler.Add(item.ToString(position));
-            }
-            return nyeLokaler;
-        }
-        public List<object> FindAlleLokaler()
+
+        public List<object> FindAlleLokaler() //Mangler søgning
         {
             List<Lokale> aktiver = DBFacade.HentDatabaseFacade().HentAlleLokaler();
             List<object> dataListe = new List<object>();
@@ -61,6 +50,7 @@ namespace RotteHullet.Domain
             }
             return dataListe;
         }
+
         public string SletLokale(int id)
         {
             if (DBFacade.HentDatabaseFacade().SletBrætSpil(id))
@@ -69,5 +59,22 @@ namespace RotteHullet.Domain
             }
             return "Lokalet er ikke blevet slettet";
         }
+
+        #region Gamle metoder som bruger ToString() på objekterne
+        public string HentLokale(int id, int position)
+        {
+            return DBFacade.HentDatabaseFacade().HentLokale(id).ToString(position);
+        }
+
+        public List<string> HentAlleLokaler(int position)
+        {
+            List<string> nyeLokaler = new List<string>();
+            foreach (var item in DBFacade.HentDatabaseFacade().HentAlleLokaler())
+            {
+                nyeLokaler.Add(item.ToString(position));
+            }
+            return nyeLokaler;
+        }
+        #endregion
     }
 }

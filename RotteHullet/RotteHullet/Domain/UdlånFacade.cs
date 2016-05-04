@@ -26,46 +26,55 @@ namespace RotteHullet.Domain
         /// <param name="udlåningsdato"></param>
         /// <param name="afleveringsdato"></param>
         /// <param name="aktivType"></param>
-        /// <param name="aktivider"></param>
+        /// <param name="aktivIDer"></param>
         /// <returns></returns>
-        public string SkabNyUdlån(int medlemsid, DateTime udlåningsdato, DateTime afleveringsdato, int aktivType, List<int> aktivider)
+        public string SkabNyUdlån(int medlemsid, DateTime udlåningsdato, DateTime afleveringsdato, int aktivType, List<int> aktivIDer)
         {
             Udlån udl = AktivFactory.HentAktivFactory().SkabNytUdlån(0,medlemsid,0,udlåningsdato,afleveringsdato,null,false,null);
 
-            string result = "";
+            string resultat = "";
             switch (aktivType)
             {
                 case 0:
-                    foreach (var item in aktivider)
+                    foreach (var id in aktivIDer)
                     {
-                        udl.Aktiver.Add(DBFacade.HentDatabaseFacade().HentUdstyr(item));
+                        udl.Aktiver.Add(DBFacade.HentDatabaseFacade().HentUdstyr(id));
                     }
                     break;
                 case 1:
-                    foreach (var item in aktivider)
+                    foreach (var id in aktivIDer)
                     {
-                        udl.Aktiver.Add(DBFacade.HentDatabaseFacade().HentBog(item));
+                        udl.Aktiver.Add(DBFacade.HentDatabaseFacade().HentBog(id));
                     }
                     break;
                 case 2:
-                    foreach (var item in aktivider)
+                    foreach (var id in aktivIDer)
                     {
-                        udl.Aktiver.Add(DBFacade.HentDatabaseFacade().HentBrætSpil(item));
+                        udl.Aktiver.Add(DBFacade.HentDatabaseFacade().HentBrætSpil(id));
                     }
                     break;
                 case 3:
-                    foreach (var item in aktivider)
+                    foreach (var id in aktivIDer)
                     {
-                        udl.Aktiver.Add(DBFacade.HentDatabaseFacade().HentLokale(item));
+                        udl.Aktiver.Add(DBFacade.HentDatabaseFacade().HentLokale(id));
                     }
                     break;
                 default:
-                    result = "There is no such type";
+                    resultat = "Aktiv Type findes ikke";
                     goto finish;
             }
-            result = DBFacade.HentDatabaseFacade().GemUdlån(udl);
+
+            if (DBFacade.HentDatabaseFacade().GemUdlån(udl))
+            {
+                resultat = "Udlån er skabt";
+            }
+            else
+            {
+                resultat = "Udlån er ikke skabt";
+            }
+
             finish:
-            return result;
+            return resultat;
         }
     }
 }
