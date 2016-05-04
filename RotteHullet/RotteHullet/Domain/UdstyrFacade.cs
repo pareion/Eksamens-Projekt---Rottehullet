@@ -23,7 +23,7 @@ namespace RotteHullet.Domain
         public string SkabUdstyr(int id, string navn, string kategori, bool udlånes, string kommentar)
         {
             Udstyr uds = AktivFactory.HentAktivFactory().SkabNytUdstyr(id, navn, kategori, udlånes, kommentar);
-            if (DBSQLFacade.HentDBSQLFacade().GemUdstyr(uds))
+            if (DBFacade.HentDatabaseFacade().GemUdstyr(uds))
             {
                 return "Udstyret er skabt";
             }
@@ -32,7 +32,7 @@ namespace RotteHullet.Domain
         public string ÆndreUdstyr(int gammeltID, int nytid, string navn, string kategori, bool udlånes, string kommentar)
         {
             Udstyr uds = AktivFactory.HentAktivFactory().SkabNytUdstyr(nytid, navn, kategori, udlånes, kommentar);
-            if (DBSQLFacade.HentDBSQLFacade().ÆndreUdstyr(gammeltID, uds))
+            if (DBFacade.HentDatabaseFacade().ÆndreUdstyr(gammeltID, uds))
             {
                 return "Udstyret er ændret";
             }
@@ -40,12 +40,12 @@ namespace RotteHullet.Domain
         }
         public string HentUdstyr(int id, int position)
         {
-            return DBSQLFacade.HentDBSQLFacade().HentUdstyr(id).ToString(position);
+            return DBFacade.HentDatabaseFacade().HentUdstyr(id).ToString(position);
         }
         public List<string> HentAlleUdstyr(int position)
         {
             List<string> nytUdstyr = new List<string>();
-            foreach (var item in DBSQLFacade.HentDBSQLFacade().HentAlleUdstyr())
+            foreach (var item in DBFacade.HentDatabaseFacade().HentAlleUdstyr())
             {
                 nytUdstyr.Add(item.ToString(position));
             }
@@ -53,7 +53,7 @@ namespace RotteHullet.Domain
         }
         public List<object> FindAlleUdstyr()
         {
-            List<Udstyr> aktiver = DBRamFacade.HentDbRamFacade().HentAlleUdstyr();
+            List<Udstyr> aktiver = DBFacade.HentDatabaseFacade().HentAlleUdstyr();
             List<object> dataListe = new List<object>();
             foreach (Udstyr item in aktiver)
             {

@@ -23,7 +23,7 @@ namespace RotteHullet.Domain
         public string SkabLokale(int id, string navn, string lokation,bool udlånes, string kommentar, string møbler)
         {
             Lokale lok = AktivFactory.HentAktivFactory().SkabNytLokale(id, navn, lokation, udlånes ,kommentar, møbler);
-            if (DBSQLFacade.HentDBSQLFacade().GemLokale(lok))
+            if (DBFacade.HentDatabaseFacade().GemLokale(lok))
             {
                 return "Lokalet er skabt";
             }
@@ -32,7 +32,7 @@ namespace RotteHullet.Domain
         public string ÆndreLokale(int gammeltID, int id, string navn, string lokation,bool udlånes, string kommentar, string møbler)
         {
             Lokale lok = AktivFactory.HentAktivFactory().SkabNytLokale(id, navn, lokation, udlånes, kommentar, møbler);
-            if (DBSQLFacade.HentDBSQLFacade().ÆndreLokale(gammeltID, lok))
+            if (DBFacade.HentDatabaseFacade().ÆndreLokale(gammeltID, lok))
             {
                 return "Lokalet er blevet ændret";
             }
@@ -40,12 +40,12 @@ namespace RotteHullet.Domain
         }
         public string HentLokale(int id, int position)
         {
-            return DBSQLFacade.HentDBSQLFacade().HentLokale(id).ToString(position);
+            return DBFacade.HentDatabaseFacade().HentLokale(id).ToString(position);
         }
         public List<string> HentAlleLokaler(int position)
         {
             List<string> nyeLokaler = new List<string>();
-            foreach (var item in DBSQLFacade.HentDBSQLFacade().HentAlleLokaler())
+            foreach (var item in DBFacade.HentDatabaseFacade().HentAlleLokaler())
             {
                 nyeLokaler.Add(item.ToString(position));
             }
@@ -53,7 +53,7 @@ namespace RotteHullet.Domain
         }
         public List<object> FindAlleLokaler()
         {
-            List<Lokale> aktiver = DBRamFacade.HentDbRamFacade().HentAlleLokaler();
+            List<Lokale> aktiver = DBFacade.HentDatabaseFacade().HentAlleLokaler();
             List<object> dataListe = new List<object>();
             foreach (Lokale item in aktiver)
             {
@@ -63,7 +63,7 @@ namespace RotteHullet.Domain
         }
         public string SletLokale(int id)
         {
-            if (DBSQLFacade.HentDBSQLFacade().SletBrætSpil(id))
+            if (DBFacade.HentDatabaseFacade().SletBrætSpil(id))
             {
                 return "Lokalet er blevet slettet";
             }

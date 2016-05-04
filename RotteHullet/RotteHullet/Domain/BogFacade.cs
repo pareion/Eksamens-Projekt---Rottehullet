@@ -22,25 +22,25 @@ namespace RotteHullet.Domain
         public string SkabBog(string bognavn, string forfatter, string genre, string subkategori, string familie, string forlag, bool udlånes, string kommentar)
         {
             Bog bog = AktivFactory.HentAktivFactory().SkabNyBog(0, bognavn, forfatter, genre, subkategori, familie, forlag, udlånes, kommentar);
-            return DBSQLFacade.HentDBSQLFacade().GemBog(bog) ? "Bog er oprettet" : "Bog blev ikke oprettetS";
+            return DBFacade.HentDatabaseFacade().GemBog(bog) ? "Bog er oprettet" : "Bog blev ikke oprettetS";
         }
 
         public string ÆndreBog(int id, string bognavn, string forfatter, string genre, string subkategori, string familie, string forlag,bool udlånes, string kommentar)
         {
             Bog bog = AktivFactory.HentAktivFactory().SkabNyBog(id, bognavn, forfatter, genre, subkategori, familie, forlag, udlånes, kommentar);
-            return DBSQLFacade.HentDBSQLFacade().ÆndreBog(id, bog) ? "Bog blev ændret" : "Bog blev ikke ændret";
+            return DBFacade.HentDatabaseFacade().ÆndreBog(id, bog) ? "Bog blev ændret" : "Bog blev ikke ændret";
         }
 
         public string HentBog(int id, int position)
         {
 
-            return DBRamFacade.HentDbRamFacade().HentBog(id).ToString(position);
+            return DBFacade.HentDatabaseFacade().HentBog(id).ToString(position);
         }
 
         public List<string> HentAlleBøger(int position)
         {
             List<string> bøgerListe = new List<string>();
-            foreach (var item in DBRamFacade.HentDbRamFacade().HentAlleBøger())
+            foreach (var item in DBFacade.HentDatabaseFacade().HentAlleBøger())
             {
                 bøgerListe.Add(item.ToString(position));
             }
@@ -54,7 +54,7 @@ namespace RotteHullet.Domain
 
             if(søgord == null)
             {
-                bøgerListe = DBRamFacade.HentDbRamFacade().HentAlleBøger();
+                bøgerListe = DBFacade.HentDatabaseFacade().HentAlleBøger();
             }
             else
             {
@@ -70,7 +70,7 @@ namespace RotteHullet.Domain
 
         public string SletBog(int id)
         {
-            return DBSQLFacade.HentDBSQLFacade().SletBog(id) ? "Bog blev slettet" : "Kan ikke slet bog";
+            return DBFacade.HentDatabaseFacade().SletBog(id) ? "Bog blev slettet" : "Kan ikke slet bog";
         }
     }
 }

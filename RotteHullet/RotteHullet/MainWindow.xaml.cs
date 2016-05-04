@@ -25,6 +25,7 @@ namespace RotteHullet
     {
         public MainWindow()
         {
+            DBFacade.AngivDatabaseFacade(DatabaseType.SqlDatabase);
             InitializeComponent();
 
             /*

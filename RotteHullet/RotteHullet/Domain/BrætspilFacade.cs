@@ -23,7 +23,7 @@ namespace RotteHullet.Domain
         public string SkabBrætSpil(int id, string navn, string udgiver, bool udlånes, string kommentar)
         {
             Brætspil bs = AktivFactory.HentAktivFactory().SkabNyBrætspil(id, navn, udgiver, udlånes, kommentar);
-            if (DBSQLFacade.HentDBSQLFacade().GemBrætSpil(bs))
+            if (DBFacade.HentDatabaseFacade().GemBrætSpil(bs))
             {
                 return "Brætspillet er skabt";
             }
@@ -32,7 +32,7 @@ namespace RotteHullet.Domain
         public string ÆndreBrætSpil(int gammeltID, int nytid, string navn, string udgiver,bool udlånes, string kommentar)
         {
             Brætspil bs = AktivFactory.HentAktivFactory().SkabNyBrætspil(nytid, navn, udgiver,udlånes, kommentar);
-            if (DBSQLFacade.HentDBSQLFacade().ÆndreBrætSpil(gammeltID, bs))
+            if (DBFacade.HentDatabaseFacade().ÆndreBrætSpil(gammeltID, bs))
             {
                 return "Brætspillet er ændret";
             }
@@ -40,12 +40,12 @@ namespace RotteHullet.Domain
         }
         public string HentBrætSpil(int id, int position)
         {
-            return DBSQLFacade.HentDBSQLFacade().HentBrætSpil(id).ToString(position);
+            return DBFacade.HentDatabaseFacade().HentBrætSpil(id).ToString(position);
         }
         public List<string> HentAlleBrætspil(int position)
         {
             List<string> nyeBrætspil = new List<string>();
-            foreach (var item in DBSQLFacade.HentDBSQLFacade().HentAlleBrætSpil())
+            foreach (var item in DBFacade.HentDatabaseFacade().HentAlleBrætSpil())
             {
                 nyeBrætspil.Add(item.ToString(position));
             }
@@ -58,7 +58,7 @@ namespace RotteHullet.Domain
         }
         public List<object> FindAlleBrætspil()
         {
-            List<Brætspil> aktiver = DBRamFacade.HentDbRamFacade().HentAlleBrætSpil();
+            List<Brætspil> aktiver = DBFacade.HentDatabaseFacade().HentAlleBrætSpil();
             List<object> dataListe = new List<object>();
             foreach (Brætspil item in aktiver)
             {
@@ -69,7 +69,7 @@ namespace RotteHullet.Domain
 
         public string SletBrætSpil(int id)
         {
-            if (DBSQLFacade.HentDBSQLFacade().SletBrætSpil(id))
+            if (DBFacade.HentDatabaseFacade().SletBrætSpil(id))
             {
                 return "Brætspillet er slettet";
             }

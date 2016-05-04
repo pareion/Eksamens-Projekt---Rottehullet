@@ -34,7 +34,7 @@ namespace RotteHullet.Værktøjs
             //Søger alle bøger igennem og finder de relevante 
             if (bøger == true)
             {
-                foreach (Bog item in Data.DBRamFacade.HentDbRamFacade().HentAlleBøger())
+                foreach (Bog item in Data.DBFacade.HentDatabaseFacade().HentAlleBøger())
                 {
                     if (item.Titel.Contains(søgning) || item.Genre.Contains(søgning))
                     {
@@ -47,7 +47,7 @@ namespace RotteHullet.Værktøjs
             //Søger alle lokaler igennem og finder de relevante 
             if (lokaler == true)
             {
-                foreach (Lokale item in Data.DBRamFacade.HentDbRamFacade().HentAlleLokaler())
+                foreach (Lokale item in Data.DBFacade.HentDatabaseFacade().HentAlleLokaler())
                 {
                     if (item.LokaleNavn.Contains(søgning) || item.Møbler.Contains(søgning))
                     {
@@ -60,7 +60,7 @@ namespace RotteHullet.Værktøjs
             //Søger alle brætspil igennem og finder de relevante 
             if (brætspil == true)
             {
-                foreach (Brætspil item in Data.DBRamFacade.HentDbRamFacade().HentAlleBrætSpil())
+                foreach (Brætspil item in Data.DBFacade.HentDatabaseFacade().HentAlleBrætSpil())
                 {
                     if (item.BrætspilsNavn.Contains(søgning) || item.Udgiver.Contains(søgning))
                     {
@@ -73,7 +73,7 @@ namespace RotteHullet.Værktøjs
             //Søger alle udstyr igennem og finder de relevante 
             if (udstyr == true)
             {
-                foreach (Udstyr item in Data.DBRamFacade.HentDbRamFacade().HentAlleUdstyr())
+                foreach (Udstyr item in Data.DBFacade.HentDatabaseFacade().HentAlleUdstyr())
                 {
                     if (item.UdstyrsNavn.Contains(søgning) || item.Kategori.Contains(søgning))
                     {
@@ -88,28 +88,28 @@ namespace RotteHullet.Værktøjs
         public bool Søg(string søgord, out List<Bog> bøger)
         {
             bøger = new List<Bog>();
-            bøger = Data.DBRamFacade.HentDbRamFacade().HentAlleBøger().FindAll(x => x.Titel.Contains(søgord) || x.Familie.Contains(søgord) || x.Forfatter.Contains(søgord) || x.Genre.Contains(søgord));
+            bøger = Data.DBFacade.HentDatabaseFacade().HentAlleBøger().FindAll(x => x.Titel.Contains(søgord) || x.Familie.Contains(søgord) || x.Forfatter.Contains(søgord) || x.Genre.Contains(søgord));
 
             return bøger.Count != 0;
         }
         public bool Søg(string søgord, out List<Lokale> lokaler)
         {
             lokaler = new List<Lokale>();
-            lokaler = Data.DBRamFacade.HentDbRamFacade().HentAlleLokaler().FindAll(x => x.LokaleNavn.Contains(søgord));
+            lokaler = Data.DBFacade.HentDatabaseFacade().HentAlleLokaler().FindAll(x => x.LokaleNavn.Contains(søgord));
 
             return lokaler.Count != 0;
         }
         public bool Søg(string søgord, out List<Udstyr> udstyr)
         {
             udstyr = new List<Udstyr>();
-            udstyr = Data.DBRamFacade.HentDbRamFacade().HentAlleUdstyr().FindAll(x => x.UdstyrsNavn.Contains(søgord));
+            udstyr = Data.DBFacade.HentDatabaseFacade().HentAlleUdstyr().FindAll(x => x.UdstyrsNavn.Contains(søgord));
 
             return udstyr.Count != 0;
         }
         public bool Søg(string søgord, out List<Brætspil> brætspil)
         {
             brætspil = new List<Brætspil>();
-            brætspil = Data.DBRamFacade.HentDbRamFacade().HentAlleBrætSpil().FindAll(x => x.BrætspilsNavn.Contains(søgord));
+            brætspil = Data.DBFacade.HentDatabaseFacade().HentAlleBrætSpil().FindAll(x => x.BrætspilsNavn.Contains(søgord));
 
             return brætspil.Count != 0;
         }
@@ -126,28 +126,28 @@ namespace RotteHullet.Værktøjs
             switch (type)
             {
                 case AktivType.Bog:
-                    List<Bog> bogListe = Data.DBRamFacade.HentDbRamFacade().HentAlleBøger().FindAll(x => x.Titel.ToLower().Contains(søgord));
+                    List<Bog> bogListe = Data.DBFacade.HentDatabaseFacade().HentAlleBøger().FindAll(x => x.Titel.ToLower().Contains(søgord));
                     foreach (Bog aktiv in bogListe)
                     {
                         data.Add(aktiv);
                     }
                     break;
                 case AktivType.Brætspil:
-                    List<Brætspil> spilListe = Data.DBRamFacade.HentDbRamFacade().HentAlleBrætSpil().FindAll(x => x.BrætspilsNavn.ToLower().Contains(søgord));
+                    List<Brætspil> spilListe = Data.DBFacade.HentDatabaseFacade().HentAlleBrætSpil().FindAll(x => x.BrætspilsNavn.ToLower().Contains(søgord));
                     foreach (Brætspil aktiv in spilListe)
                     {
                         data.Add(aktiv);
                     }
                     break;
                 case AktivType.Udstyr:
-                    List<Udstyr> udstyrListe = Data.DBRamFacade.HentDbRamFacade().HentAlleUdstyr().FindAll(x => x.UdstyrsNavn.ToLower().Contains(søgord));
+                    List<Udstyr> udstyrListe = Data.DBFacade.HentDatabaseFacade().HentAlleUdstyr().FindAll(x => x.UdstyrsNavn.ToLower().Contains(søgord));
                     foreach (Udstyr aktiv in udstyrListe)
                     {
                         data.Add(aktiv);
                     }
                     break;
                 case AktivType.Lokale:
-                    List<Lokale> lokaleListe = Data.DBRamFacade.HentDbRamFacade().HentAlleLokaler().FindAll(x => x.LokaleNavn.ToLower().Contains(søgord) || x.Lokation.ToLower().Contains(søgord));
+                    List<Lokale> lokaleListe = Data.DBFacade.HentDatabaseFacade().HentAlleLokaler().FindAll(x => x.LokaleNavn.ToLower().Contains(søgord) || x.Lokation.ToLower().Contains(søgord));
                     foreach (Lokale aktiv in lokaleListe)
                     {
                         data.Add(aktiv);

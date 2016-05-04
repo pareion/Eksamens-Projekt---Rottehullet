@@ -36,6 +36,8 @@ namespace RotteHullet.Data
         Lokale HentLokale(int id);
         List<Lokale> HentAlleLokaler();
         bool SletLokale(int id);
+        Medlem HentMedlem(string brugernavn, string password);
+
         #endregion
     }
 }

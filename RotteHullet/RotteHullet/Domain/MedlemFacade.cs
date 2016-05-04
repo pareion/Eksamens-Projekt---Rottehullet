@@ -59,7 +59,7 @@ namespace RotteHullet.Domain
 
         public bool TjekLogind(string brugernavn, string password)
         {
-            Medlem bruger = DBRamFacade.HentDbRamFacade().HentMedlem(brugernavn, password);
+            Medlem bruger = DBFacade.HentDatabaseFacade().HentMedlem(brugernavn, password);
 
             if (bruger != null)
             {

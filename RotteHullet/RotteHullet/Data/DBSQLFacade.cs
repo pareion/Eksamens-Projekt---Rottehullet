@@ -12,7 +12,7 @@ namespace RotteHullet.Data
     class DBSQLFacade
     {
         private static IDBFacade _dbsqlFacade;
-
+        //Disse glemmer vi lidt at bruge... PLease advice JA
         private List<Bog> _bogListe;
         private List<Brætspil> _brætspilsListe;
         private List<Udstyr> _udstyrsListe;
@@ -24,8 +24,8 @@ namespace RotteHullet.Data
         {
             if (_dbsqlFacade == null)
             {
-                // Skal ændres til DBSQLFacade når vi bruger en rigtig database
-                _dbsqlFacade = DBRamFacade.HentDbRamFacade();
+                
+                _dbsqlFacade = DBSQLFacade.HentDBSQLFacade();
             }
             return _dbsqlFacade;
         }
