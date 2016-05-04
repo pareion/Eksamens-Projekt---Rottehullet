@@ -17,6 +17,7 @@
         </ListView>
         <Button x:Name="btn_Fjern" Content="Fjern" HorizontalAlignment="Right" Margin="0,21,70,0" VerticalAlignment="Top" Padding="5,2" Click="Fjern_Click"/>
         <Button x:Name="btn_FjernAlle" Content="Slet alle" HorizontalAlignment="Right" Margin="0,21,10,0" VerticalAlignment="Top" Padding="5,2" Click="SletAlle_Click"/>
+        <Button x:Name="btn_Reservere" Content="Reservere" HorizontalAlignment="Right" Margin="0,21,317,0" VerticalAlignment="Top" Padding="5,2" Click="Reservere_Click"/>
 
     </Grid>
 </Window>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,15 +23,108 @@ namespace RotteHullet
         private ListView _bogView, _brætspilView, _udstyrView, _lokaleView;
         private enum AktivType { Bog, Brætspil, Udstyr, Lokale }
 
+
+        private GridViewColumnHeader listeSortCol = null;
+
+
+        private ReservationListe reservation = null;
+        
+
+        private class Test
+        {
+            public string Titel { get; set; }
+            public string Forfatter { get; set; }
+            public string Genre { get; set; }
+            public string Subkategori { get; set; }
+        }
+
         public BrugerPanel()
         {
             InitializeComponent();
+            lv_Aktiver.Items.Add(new Test { Titel = "Hello world", Forfatter = "Programmer", Genre = "Code", Subkategori = "Amature" });
+            lv_Aktiver.Items.Add(new Test { Titel = "The tiny Earth", Forfatter = "Unknow", Genre = "General", Subkategori = "Experienced" });
+            lv_Aktiver.Items.Add(new Test { Titel = "Universe War", Forfatter = "X person", Genre = "Strategy", Subkategori = "Expert" });
+            lv_Aktiver.Items.Add(new Test { Titel = "Information Research", Forfatter = "Matter", Genre = "Sci-fi", Subkategori = "Master" });
+        }
+
+        #region ListView Sortering
+        private void Sortering_Click(object sender, RoutedEventArgs e)
+        {
+            GridViewColumnHeader column = sender as GridViewColumnHeader;
+            
+
+            //Console.WriteLine(dock.Parent.GetType().Name);
+
+            //Console.WriteLine(column.Parent.GetType().Name);
+
+            string sortOrd = column.Tag.ToString();
+
+            ListSortDirection dir = ListSortDirection.Ascending;
+            if (listeSortCol == column)
+            {
+                dir = ListSortDirection.Descending;
+            }
+
+            listeSortCol = column;
+            lv_Aktiver.Items.SortDescriptions.Add(new SortDescription(sortOrd, dir));
+        }
+
+
+
+        private class SortAdorner : Adorner
+        {
+            private static Geometry ascGeo = Geometry.Parse("M 0 4 L 3.5 0 L 7 4 Z");
+            private static Geometry descGeo = Geometry.Parse("M 0 0 L 3.5 4 L 7 0 Z");
+
+            public ListSortDirection Retning { get; private set; }
+
+            public SortAdorner(UIElement element, ListSortDirection dir) : base(element)
+            {
+                Retning = dir;
+            }
+
+            protected override void OnRender(DrawingContext drawContext)
+            {
+                base.OnRender(drawContext);
+                if (AdornedElement.RenderSize.Width < 20)
+                {
+                    return;
+                }
+                TranslateTransform form = new TranslateTransform(AdornedElement.RenderSize.Width - 15, (AdornedElement.RenderSize.Height - 5) / 2);
+
+                drawContext.PushTransform(form);
+                Geometry geometry = ascGeo;
+                if (Retning == ListSortDirection.Descending)
+                {
+                    geometry = descGeo;
+                }
+                drawContext.DrawGeometry(Brushes.Black, null, geometry);
+                drawContext.Pop();
+            }
+        }
+
+        #endregion
+
+        #region ListView danner
+
+        private void danneListe()
+        {
             
         }
 
-        #region ListView danner
-        private void danneListe()
+        private void VisReservation_Click(object sender, RoutedEventArgs e)
         {
+            if (reservation == null)
+            {
+                reservation = new ReservationListe();
+                reservation.Owner = this;
+                reservation.ShowDialog();
+            }
+            else
+            {
+                reservation.Visibility = Visibility.Visible;
+            }
+
             
         }
 
@@ -46,8 +140,8 @@ namespace RotteHullet
             liste.HorizontalAlignment = HorizontalAlignment.Stretch;
             liste.VerticalAlignment = VerticalAlignment.Top;
             liste.Margin = new Thickness(60, 230, 60, 0);
-            liste.Width = double.NaN;
-            liste.Height = double.NaN;
+            //liste.Width = double.NaN;
+            //liste.Height = double.NaN;
 
             GridView view = new GridView();
             
@@ -57,15 +151,22 @@ namespace RotteHullet
         private void bygBogListe(ListView liste)
         {
             GridView view = new GridView();
-            view.Columns.Add(bygColumn("Titel"));
-            view.Columns.Add(bygColumn("Forfatter"));
-            view.Columns.Add(bygColumn("Genre"));
-            view.Columns.Add(bygColumn("Subkategori"));
+            view.Columns.Add(bygColumn("Titel", null, 220));
+            view.Columns.Add(bygColumn("Forfatter", null, 180));
+            view.Columns.Add(bygColumn("Genre", null, 80));
+            view.Columns.Add(bygColumn("Subkategori", null, 100));
+
         }
 
-        private GridViewColumn bygColumn(string header, string bind = null)
+        private GridViewColumn bygColumn(string header, string bind = null, double width = 0)
         {
-            return new GridViewColumn { Header = header, DisplayMemberBinding = new Binding(bind == null ? header : bind) };
+            GridViewColumn col = new GridViewColumn { Header = header, DisplayMemberBinding = new Binding(bind == null ? header : bind) };
+            
+            if (width != 0)
+            {
+                col.Width = width;
+            }
+            return col;
         }
 
         #endregion

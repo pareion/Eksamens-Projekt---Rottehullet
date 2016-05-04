@@ -137,7 +137,7 @@ namespace RotteHullet
         {
             if (e.Key == Key.Enter)
             {
-                logind();
+                logind(true);
             }
         }
     }

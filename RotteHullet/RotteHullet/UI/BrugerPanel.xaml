@@ -8,12 +8,12 @@
         Title="Rottehullet system" Height="700" Width="680" FocusManager.FocusedElement="{Binding ElementName=t_Søgboks}">
     <Grid>
         <!-- Top level -->
-        <Button x:Name="btn_ReservationVisning" Content="Tilføjet liste" HorizontalAlignment="Stretch" Margin="560,10,10,630" VerticalAlignment="Top" Width="80" Padding="2"  Background="{x:Null}"/>
+        <Button x:Name="btn_ReservationVisning" Content="Tilføjet liste" HorizontalAlignment="Stretch" Margin="560,10,10,630" VerticalAlignment="Top" Width="80" Padding="2"  Background="{x:Null}" Click="VisReservation_Click" />
 
         <Label Content="Hvad leder du efter?" HorizontalAlignment="Center" VerticalAlignment="Stretch"  Width="230" Height="Auto"  Margin="0,72,0,551" FontSize="24"/>
         <TextBox x:Name="t_Søgboks" HorizontalAlignment="Center" Width="440" Height="36" Margin="0,124,0,0" FontSize="18" Padding="2,4,35,0" TextWrapping="NoWrap" VerticalAlignment="Top" />
         <Label x:Name="btn_Søg" Content="🔎" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="410,124,0,0" FontSize="18" Foreground="Gray" Panel.ZIndex="3" />
-        <Expander x:Name="ex_" Header="Filter" HorizontalAlignment="Stretch" ExpandDirection="Down"  Margin="120,165,120,0" VerticalAlignment="Top" Width="Auto" IsExpanded="True" >
+        <Expander x:Name="ex_" Header="Filter" HorizontalAlignment="Center" ExpandDirection="Down" Width="440" Margin="0,165,0,0" VerticalAlignment="Top" IsExpanded="False" >
             <Grid>
                 <StackPanel Orientation="Horizontal" Margin="5,5,5,0">
                     <StackPanel Margin="0,0,10,0">
@@ -33,9 +33,33 @@
         </Expander>
         <StackPanel x:Name="panelIndhold">
             <ListView x:Name="lv_Aktiver" HorizontalAlignment="Stretch" Height="430" Margin="60,230,60,0" VerticalAlignment="Top" Width="Auto">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Titel" DisplayMemberBinding="{Binding Titel}"/>
+                        <GridViewColumn Width="200"  DisplayMemberBinding="{Binding Titel}">
+                            <GridViewColumn.Header>
+                                <GridViewColumnHeader Tag="Titel" Click="Sortering_Click">Titel</GridViewColumnHeader>
+                            </GridViewColumn.Header>
+                        </GridViewColumn>
+                        <GridViewColumn Width="150" DisplayMemberBinding="{Binding Forfatter}">
+                            <GridViewColumn.Header>
+                                <GridViewColumnHeader Tag="Forfatter" Click="Sortering_Click">Forfatter</GridViewColumnHeader>
+                            </GridViewColumn.Header>
+                        </GridViewColumn>
+                        <GridViewColumn Width="100" DisplayMemberBinding="{Binding Genre}">
+                            <GridViewColumn.Header>
+                                <GridViewColumnHeader Tag="Genre" Click="Sortering_Click">Genre</GridViewColumnHeader>
+                            </GridViewColumn.Header>
+                        </GridViewColumn>
+                        <GridViewColumn Width="100" DisplayMemberBinding="{Binding Subkategori}">
+                            <GridViewColumn.Header>
+                                <GridViewColumnHeader Tag="Subkategori" Click="Sortering_Click">Kategori</GridViewColumnHeader>
+                            </GridViewColumn.Header>
+                        </GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>

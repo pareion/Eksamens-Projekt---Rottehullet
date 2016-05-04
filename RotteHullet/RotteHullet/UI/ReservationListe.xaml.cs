@@ -51,7 +51,12 @@ namespace RotteHullet
         }
 
         #region Klik event
-
+        private void Reservere_Click(object sender, RoutedEventArgs e)
+        {
+            UdlånPopup popup = new UdlånPopup();
+            popup.Owner = this;
+            popup.ShowDialog();
+        }
         private void Fjern_Click(object sender, RoutedEventArgs e)
         {
 
