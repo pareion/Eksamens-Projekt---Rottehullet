@@ -94,15 +94,21 @@ namespace RotteHullet
                 if (tb_Brugernavn.Text == "admin")
                 {
                     panel = new AdminPanel();
+                    panel.Show();
+                    panel.Activate();
+                    this.Close();
+                }
+                else if (tb_Brugernavn.Text == "medlem")
+                {
+                    panel = new BrugerPanel();
+                    panel.Show();
+                    panel.Activate();
+                    this.Close();
                 }
                 else
                 {
-                    panel = new BrugerPanel();
+                    advarelse(true);
                 }
-
-                panel.Show();
-                panel.Activate();
-                this.Close();
             }
         }
         private void advarelse(bool status = true)

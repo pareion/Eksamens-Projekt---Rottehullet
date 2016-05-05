@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RotteHullet"
         mc:Ignorable="d"
-        Title="Rottehullet" Height="300" Width="400" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="Rottehullet" Height="300" Width="400" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" FocusManager.FocusedElement="{Binding ElementName=tb_Brugernavn}">
     <Grid>
-        <TextBox x:Name="tb_Brugernavn" HorizontalAlignment="Left" Height="23" Margin="103,79,0,0" TextWrapping="Wrap" Text="medlem" VerticalAlignment="Top" Width="185" KeyDown="Logpå_KeyDown"/>
+        <TextBox x:Name="tb_Brugernavn" HorizontalAlignment="Left" Height="23" Margin="103,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="185" KeyDown="Logpå_KeyDown"/>
         <PasswordBox x:Name="tb_Kodeord" HorizontalAlignment="Left" Height="23" Margin="103,140,0,0" Password=""  VerticalAlignment="Top" Width="185" KeyDown="Logpå_KeyDown"/>
         <Label x:Name="l_Overskrift" Content="Rottehullet" HorizontalAlignment="Left" Margin="131,10,0,0" VerticalAlignment="Top" Width="120" FontSize="21.333"/>
         <Button x:Name="btn_LogPå" Content="Log på" HorizontalAlignment="Left" Margin="228,168,0,0" VerticalAlignment="Top" Padding="10,5" Click="btn_LogPå_Click"/>

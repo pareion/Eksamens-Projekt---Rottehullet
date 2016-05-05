@@ -72,6 +72,7 @@ namespace RotteHullet
             // Udfylder aktiv info til alle felter
             opfylderAktivInfo(index);
             faneIndeks = (IndexTab)index;
+            redigereLytter();
         }
         #endregion
 
