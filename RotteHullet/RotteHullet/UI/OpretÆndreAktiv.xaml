@@ -32,7 +32,7 @@
             </TabItem>
             <TabItem Header="Brætspil" IsEnabled="False">
                 <Grid>
-                    <CheckBox x:Name="cb_BrætspilUdlån" Content="Giv tilladelse til udlåning" IsChecked="True"  HorizontalAlignment="Left" Margin="87,13,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="cb_BrætspilUdlån" Content="Giv tilladelse til udlåning" HorizontalAlignment="Left" IsChecked="True" Margin="87,13,0,0" VerticalAlignment="Top"/>
                     <Label x:Name="l_BrætspilNavn" Content="Navn" HorizontalAlignment="Left" Margin="44,34,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="tb_Brætspilnavn" HorizontalAlignment="Left" Margin="87,34,0,0" TextWrapping="NoWrap" MaxLines="1" VerticalAlignment="Top" Width="230" Padding="2,5" TextChanged="tekstRedigering"/>
                     <Label x:Name="l_BrætspilUdgiver" Content="Udgiver" HorizontalAlignment="Left" Margin="31,69,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.398,0.444"/>

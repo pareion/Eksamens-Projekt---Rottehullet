@@ -313,9 +313,9 @@ namespace RotteHullet.Data
                 while (sdr.Read())
                 {
                     int brætspilid = Convert.ToInt32(sdr["brætspilid"]);
-                    string brætspilnavn = Convert.ToString(sdr["titel"]);
+                    string brætspilnavn = Convert.ToString(sdr["brætspilnavn"]);
                     string udgiver = Convert.ToString(sdr["udgiver"]);
-                    bool udlånes = Convert.ToBoolean(sdr["udlånes"]);
+                    bool udlånes =  (bool) sdr["udlånes"];
                     string kommentar = Convert.ToString(sdr["kommentar"]);
                     string kategori = Convert.ToString(sdr["kategori"]);
                     resultat.Add(AktivFactory.HentAktivFactory().SkabNyBrætspil(brætspilid, brætspilnavn, udgiver, udlånes, kommentar, kategori));
