@@ -10,7 +10,7 @@
         <TabControl x:Name="maintab" HorizontalAlignment="Left" Height="500" Margin="10,10,0,0" VerticalAlignment="Top" Width="370">
             <TabItem Header="Bog" IsEnabled="False">
                 <Grid>
-                    <CheckBox x:Name="cb_BogUdlån" Content="Giv tilladelse til udlåning" IsChecked="True"  HorizontalAlignment="Left" Margin="87,13,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="cb_BogUdlån" Content="Giv tilladelse til udlåning" IsChecked="True"  HorizontalAlignment="Left" Margin="87,13,0,0" VerticalAlignment="Top" Click="Tilladelse_Checked"/>
                     <Label x:Name="l_Titel" Content="Titel" HorizontalAlignment="Left" Margin="50,34,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="tb_Titel" HorizontalAlignment="Left" Margin="87,34,0,0" TextWrapping="NoWrap" MaxLines="1" VerticalAlignment="Top" Width="230" Padding="2,5" TextChanged="tekstRedigering"/>
                     <Label x:Name="l_Genre" Content="Genre" HorizontalAlignment="Left" Margin="40,69,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.511,0.665"/>
@@ -32,7 +32,7 @@
             </TabItem>
             <TabItem Header="Brætspil" IsEnabled="False">
                 <Grid>
-                    <CheckBox x:Name="cb_BrætspilUdlån" Content="Giv tilladelse til udlåning" HorizontalAlignment="Left" IsChecked="True" Margin="87,13,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="cb_BrætspilUdlån" Content="Giv tilladelse til udlåning" HorizontalAlignment="Left" IsChecked="True" Margin="87,13,0,0" VerticalAlignment="Top" Click="Tilladelse_Checked"/>
                     <Label x:Name="l_BrætspilNavn" Content="Navn" HorizontalAlignment="Left" Margin="44,34,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="tb_Brætspilnavn" HorizontalAlignment="Left" Margin="87,34,0,0" TextWrapping="NoWrap" MaxLines="1" VerticalAlignment="Top" Width="230" Padding="2,5" TextChanged="tekstRedigering"/>
                     <Label x:Name="l_BrætspilUdgiver" Content="Udgiver" HorizontalAlignment="Left" Margin="31,69,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.398,0.444"/>
@@ -47,7 +47,7 @@
             </TabItem>
             <TabItem Header="Udstyr" IsEnabled="False">
                 <Grid>
-                    <CheckBox x:Name="cb_UdstyrUdlån" Content="Giv tilladelse til udlåning" IsChecked="True"  HorizontalAlignment="Left" Margin="87,13,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="cb_UdstyrUdlån" Content="Giv tilladelse til udlåning" IsChecked="True"  HorizontalAlignment="Left" Margin="87,13,0,0" VerticalAlignment="Top" Click="Tilladelse_Checked"/>
                     <Label x:Name="l_Udstyrnavn" Content="Navn" HorizontalAlignment="Left" Margin="44,34,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="tb_Udstyrnavn" HorizontalAlignment="Left" Margin="87,34,0,0" TextWrapping="NoWrap" MaxLines="1" VerticalAlignment="Top" Width="230" Padding="2,5" TextChanged="tekstRedigering"/>
                     <Label x:Name="l_UdstyrKategori" Content="Kategori" HorizontalAlignment="Left" Margin="27,69,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.398,0.444"/>
@@ -61,7 +61,7 @@
             </TabItem>
             <TabItem Header="Lokale" IsEnabled="False">
                 <Grid>
-                    <CheckBox x:Name="cb_LokaleUdlån" Content="Giv tilladelse til udlåning" IsChecked="True"  HorizontalAlignment="Left" Margin="87,13,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="cb_LokaleUdlån" Content="Giv tilladelse til udlåning" IsChecked="True"  HorizontalAlignment="Left" Margin="87,13,0,0" VerticalAlignment="Top" Click="Tilladelse_Checked"/>
                     <Label x:Name="l_Lokalenavn" Content="Lokalenavn" HorizontalAlignment="Left" Margin="13,34,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="tb_Lokalenavn" HorizontalAlignment="Left" Margin="87,34,0,0" TextWrapping="NoWrap" MaxLines="1" VerticalAlignment="Top" Width="230" Padding="2,5" TextChanged="tekstRedigering"/>
                     <Label x:Name="l_Lokation" Content="Lokation" HorizontalAlignment="Left" Margin="26,69,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.398,0.444"/>
