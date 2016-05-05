@@ -248,7 +248,7 @@ namespace RotteHullet
             switch (index)
             {
                 case IndexTab.Bog:
-                    UIFacade.HentUIFacade().HentBogFacade().SkabBog(tb_Titel.Text, tb_Forfatter.Text, tb_Genre.Text, tb_Subkategori.Text, tb_Familie.Text, tb_Familie.Text, cb_BogUdlån.IsChecked == true ? true : false, tb_Kommentar.Text);
+                    UIFacade.HentUIFacade().HentBogFacade().SkabBog(tb_Titel.Text, tb_Forfatter.Text, tb_Genre.Text, tb_Subkategori.Text, tb_Familie.Text, tb_Forlag.Text, cb_BogUdlån.IsChecked == true ? true : false, tb_Kommentar.Text);
                     break;
                 case IndexTab.Brætspil:
                     UIFacade.HentUIFacade().HentBrætSpilFacade().SkabBrætSpil(0, tb_Brætspilnavn.Text, tb_BrætspilUdgiver.Text, cb_BrætspilUdlån.IsChecked == true ? true : false, tb_BrætspilKommentar.Text, tb_BrætspilKategori.Text);
