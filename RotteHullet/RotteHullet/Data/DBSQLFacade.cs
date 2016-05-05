@@ -616,7 +616,7 @@ namespace RotteHullet.Data
 
                 kommando.Parameters.Add(new SqlParameter("@lokaleid", gammeltid));
                 kommando.Parameters.Add(new SqlParameter("@lokalenavn", lokale.LokaleNavn));
-                kommando.Parameters.Add(new SqlParameter("@kategori", lokale.Lokation));
+                kommando.Parameters.Add(new SqlParameter("@lokation", lokale.Lokation));
                 kommando.Parameters.Add(new SqlParameter("@udlånes", lokale.Udlånes));
                 kommando.Parameters.Add(new SqlParameter("@kommentar", lokale.Kommentar));
                 kommando.Parameters.Add(new SqlParameter("@møbler", lokale.Møbler));
