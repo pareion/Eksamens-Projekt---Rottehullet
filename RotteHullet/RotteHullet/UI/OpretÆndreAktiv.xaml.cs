@@ -25,6 +25,7 @@ namespace RotteHullet
         // variabler for redigering
         private int _aktivId = 0;
         private object _aktivInfo = null;
+        private bool _tilladelse = false;
         private Dictionary<string, string> _originalInfo = new Dictionary<string, string>();
         private IndexTab faneIndeks = IndexTab.Bog;
         private bool erOpret { get; set; }
@@ -301,6 +302,7 @@ namespace RotteHullet
                     _originalInfo.Add("Familie", (string)type.GetProperty("Familie").GetValue(_aktivInfo, null));
                     _originalInfo.Add("Forlag", (string)type.GetProperty("Forlag").GetValue(_aktivInfo, null));
                     _originalInfo.Add("Kommentar", (string)type.GetProperty("Kommentar").GetValue(_aktivInfo, null));
+                    _tilladelse = (bool)type.GetProperty("Udlånes").GetValue(_aktivInfo, null);
 
                     tb_Titel.Text = _originalInfo["Titel"];
                     tb_Forfatter.Text = _originalInfo["Forfatter"];
@@ -309,6 +311,7 @@ namespace RotteHullet
                     tb_Familie.Text = _originalInfo["Familie"];
                     tb_Forlag.Text = _originalInfo["Forlag"];
                     tb_Kommentar.Text = _originalInfo["Kommentar"];
+                    cb_BogUdlån.IsChecked = _tilladelse;
 
                     btn_GemBog.IsEnabled = false;
                     break;
@@ -319,10 +322,14 @@ namespace RotteHullet
                     _originalInfo.Add("BrætspilsNavn", (string)type.GetProperty("BrætspilsNavn").GetValue(_aktivInfo, null));
                     _originalInfo.Add("BrætspilUdgiver", (string)type.GetProperty("Udgiver").GetValue(_aktivInfo, null));
                     _originalInfo.Add("BrætspilKommentar", (string)type.GetProperty("Kommentar").GetValue(_aktivInfo, null));
+                    _originalInfo.Add("BrætspilKategori", (string)type.GetProperty("Kategori").GetValue(_aktivInfo, null));
+                    _tilladelse  = (bool)type.GetProperty("Udlånes").GetValue(_aktivInfo, null);
 
                     tb_Brætspilnavn.Text = _originalInfo["BrætspilsNavn"];
                     tb_BrætspilUdgiver.Text = _originalInfo["BrætspilUdgiver"];
                     tb_BrætspilKommentar.Text = _originalInfo["BrætspilKommentar"];
+                    tb_BrætspilKategori.Text = _originalInfo["BrætspilKategori"];
+                    cb_BrætspilUdlån.IsChecked = _tilladelse;
 
                     btn_GemBog.IsEnabled = false;
                     break;
@@ -333,10 +340,12 @@ namespace RotteHullet
                     _originalInfo.Add("UdstyrsNavn", (string)type.GetProperty("UdstyrsNavn").GetValue(_aktivInfo, null));
                     _originalInfo.Add("UdstyrKategori", (string)type.GetProperty("Kategori").GetValue(_aktivInfo, null));
                     _originalInfo.Add("UdstyrKommentar", (string)type.GetProperty("Kommentar").GetValue(_aktivInfo, null));
+                    _tilladelse = (bool)type.GetProperty("Udlånes").GetValue(_aktivInfo, null);
 
                     tb_Udstyrnavn.Text = _originalInfo["UdstyrsNavn"];
                     tb_UdstyrKategori.Text = _originalInfo["UdstyrKategori"];
                     tb_UdstyrKommentar.Text = _originalInfo["UdstyrKommentar"];
+                    cb_UdstyrUdlån.IsChecked = _tilladelse;
 
                     btn_GemBog.IsEnabled = false;
                     break;
@@ -348,11 +357,13 @@ namespace RotteHullet
                     _originalInfo.Add("Lokation", (string)type.GetProperty("Lokation").GetValue(_aktivInfo, null));
                     _originalInfo.Add("LokaleMøbler", (string)type.GetProperty("Møbler").GetValue(_aktivInfo, null));
                     _originalInfo.Add("LokaleKommentar", (string)type.GetProperty("Kommentar").GetValue(_aktivInfo, null));
+                    _tilladelse = (bool)type.GetProperty("Udlånes").GetValue(_aktivInfo, null);
 
                     tb_Lokalenavn.Text = _originalInfo["LokaleNavn"];
                     tb_Lokation.Text = _originalInfo["Lokation"];
                     tb_LokaleMøbler.Text = _originalInfo["LokaleMøbler"];
                     tb_LokaleKommentar.Text = _originalInfo["LokaleKommentar"];
+                    cb_UdstyrUdlån.IsChecked = _tilladelse;
 
                     btn_GemBog.IsEnabled = false;
                     break;
