@@ -65,7 +65,7 @@
     <Compile Include="UI\UdlånPopup.xaml.cs">
       <DependentUpon>UdlånPopup.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Værktøjs\Søgning.cs" />
+    <Compile Include="Domain\BusinessLogic\Søgning.cs" />
     <Page Include="UI\BrugerPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
