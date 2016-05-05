@@ -240,7 +240,7 @@ namespace RotteHullet.Data
             {
                 SqlConnection forb = hentForbindelse();
 
-                SqlCommand kommando = new SqlCommand("ÆndreBog", forb);
+                SqlCommand kommando = new SqlCommand("ÆndreBrætSpil", forb);
                 kommando.CommandType = System.Data.CommandType.StoredProcedure;
 
                 kommando.Parameters.Add(new SqlParameter("@brætspilid", gammeltID));
@@ -257,8 +257,9 @@ namespace RotteHullet.Data
 
                 resultat = true;
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Console.WriteLine("Fejl: "+e.Message);
                 resultat = false;
             }
             return resultat;
