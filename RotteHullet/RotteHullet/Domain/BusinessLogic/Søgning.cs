@@ -22,72 +22,6 @@ namespace RotteHullet.Domain.BusinessLogic
             return _søgning;
         }
 
-        //Søg Alt - Bruges ikke
-        public bool Søg(bool bøger, bool lokaler, bool brætspil, bool udstyr, string søgning, 
-            out List<Bog> bogResult, out List<Lokale> lokaleResult, 
-            out List<Brætspil> brætspilResult, out List<Udstyr> udstyrResult)
-        {
-            bogResult = new List<Bog>();
-            lokaleResult = new List<Lokale>();
-            brætspilResult = new List<Brætspil>();
-            udstyrResult = new List<Udstyr>();
-
-            bool result = false;
-            //Søger alle bøger igennem og finder de relevante 
-            if (bøger == true)
-            {
-                foreach (Bog item in Data.DBFacade.HentDatabaseFacade().HentAlleBøger())
-                {
-                    if (item.Titel.Contains(søgning) || item.Genre.Contains(søgning))
-                    {
-                        bogResult.Add(item);
-                        result = true;
-                    }
-                }
-            }
-
-            //Søger alle lokaler igennem og finder de relevante 
-            if (lokaler == true)
-            {
-                foreach (Lokale item in Data.DBFacade.HentDatabaseFacade().HentAlleLokaler())
-                {
-                    if (item.LokaleNavn.Contains(søgning) || item.Møbler.Contains(søgning))
-                    {
-                        lokaleResult.Add(item);
-                        result = true;
-                    }
-                }
-            }
-
-            //Søger alle brætspil igennem og finder de relevante 
-            if (brætspil == true)
-            {
-                foreach (Brætspil item in Data.DBFacade.HentDatabaseFacade().HentAlleBrætSpil())
-                {
-                    if (item.BrætspilsNavn.Contains(søgning) || item.Udgiver.Contains(søgning))
-                    {
-                        brætspilResult.Add(item);
-                        result = true;
-                    }
-                }
-            }
-
-            //Søger alle udstyr igennem og finder de relevante 
-            if (udstyr == true)
-            {
-                foreach (Udstyr item in Data.DBFacade.HentDatabaseFacade().HentALtUdstyr())
-                {
-                    if (item.UdstyrsNavn.Contains(søgning) || item.Kategori.Contains(søgning))
-                    {
-                        udstyrResult.Add(item);
-                        result = true;
-                    }
-                }
-            }
-
-            return result;
-        }
-
         public bool Søg(string søgord, out List<Bog> bøger)
         {
             bøger = new List<Bog>();
@@ -95,6 +29,7 @@ namespace RotteHullet.Domain.BusinessLogic
 
             return bøger.Count != 0;
         }
+
         public bool Søg(string søgord, out List<Lokale> lokaler)
         {
             lokaler = new List<Lokale>();
@@ -102,6 +37,7 @@ namespace RotteHullet.Domain.BusinessLogic
 
             return lokaler.Count != 0;
         }
+
         public bool Søg(string søgord, out List<Udstyr> udstyr)
         {
             udstyr = new List<Udstyr>();
@@ -109,6 +45,7 @@ namespace RotteHullet.Domain.BusinessLogic
 
             return udstyr.Count != 0;
         }
+
         public bool Søg(string søgord, out List<Brætspil> brætspil)
         {
             brætspil = new List<Brætspil>();
