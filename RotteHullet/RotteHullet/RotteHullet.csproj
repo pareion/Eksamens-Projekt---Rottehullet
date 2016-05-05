@@ -59,7 +59,6 @@
     <Compile Include="UI\BrugerPanel.xaml.cs">
       <DependentUpon>BrugerPanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Domain\VærktøjsFacade.cs" />
     <Compile Include="UI\ReservationListe.xaml.cs">
       <DependentUpon>ReservationListe.xaml</DependentUpon>
     </Compile>
@@ -86,7 +85,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data\DBRamFacade.cs" />
     <Compile Include="Data\DBSQLFacade.cs" />
     <Compile Include="Data\IDBFacade.cs" />
     <Compile Include="Domain\BogFacade.cs" />

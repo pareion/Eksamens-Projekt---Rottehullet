@@ -13,13 +13,6 @@ namespace RotteHullet.Data
     {
         //Disse glemmer vi lidt at bruge... PLease advice JA
         private static DBSQLFacade _dbsqlfacade;
-        private List<Bog> _bogListe;
-        private List<Brætspil> _brætspilsListe;
-        private List<Udstyr> _udstyrsListe;
-        private List<Lokale> _lokaleListe;
-        private List<Medlem> _medlemListe = new List<Medlem>();
-
-
         public static IDBFacade HentDBSQLFacade()
         {
             if (_dbsqlfacade == null)
@@ -37,7 +30,6 @@ namespace RotteHullet.Data
             return forb;
         }
         #endregion
-
         #region Bog
         public bool GemBog(Bog bog)
         {
@@ -136,7 +128,6 @@ namespace RotteHullet.Data
             }
             return resultat;
         }
-
         public bool SletBog(int id)
         {
             bool resultat = false;
@@ -199,7 +190,6 @@ namespace RotteHullet.Data
             return bogListe;
         }
         #endregion
-
         #region Brætspil
         public bool GemBrætSpil(Brætspil bs)
         {
@@ -231,7 +221,6 @@ namespace RotteHullet.Data
             }
             return resultat;
         }
-
         public bool ÆndreBrætSpil(Brætspil bs)
         {
             bool resultat = false;
@@ -264,7 +253,6 @@ namespace RotteHullet.Data
             }
             return resultat;
         }
-
         public Brætspil HentBrætSpil(int id)
         {
             Brætspil resultat = null;
@@ -298,7 +286,6 @@ namespace RotteHullet.Data
             }
             return resultat;
         }
-
         public List<Brætspil> HentAlleBrætSpil()
         {
             List<Brætspil> resultat = new List<Brætspil>();
@@ -330,7 +317,6 @@ namespace RotteHullet.Data
             }
             return resultat;
         }
-
         public bool SletBrætSpil(int id)
         {
             bool resultat = false;
@@ -354,7 +340,6 @@ namespace RotteHullet.Data
             return resultat;
         }
         #endregion
-
         #region Udstyr
         public bool GemUdstyr(Udstyr udstyr)
         {
@@ -384,7 +369,6 @@ namespace RotteHullet.Data
             }
             return resultat;
         }
-
         public bool ÆndreUdstyr(Udstyr udstyr)
         {
             bool resultat = false;
@@ -415,7 +399,6 @@ namespace RotteHullet.Data
             }
             return resultat;
         }
-
         public Udstyr HentUdstyr(int id)
         {
             Udstyr resultat = null;
@@ -448,7 +431,6 @@ namespace RotteHullet.Data
             }
             return resultat;
         }
-
         public List<Udstyr> HentALtUdstyr()
         {
             List<Udstyr> resultat = new List<Udstyr>();
@@ -479,7 +461,6 @@ namespace RotteHullet.Data
             }
             return resultat;
         }
-
         public bool SletUdstyr(int id)
         {
             bool resultat = false;
@@ -503,7 +484,6 @@ namespace RotteHullet.Data
             return resultat;
         }
         #endregion
-
         #region Lokale
         public Lokale HentLokale(int id)
         {
@@ -539,7 +519,6 @@ namespace RotteHullet.Data
             }
             return resultat;
         }
-
         public List<Lokale> HentAlleLokaler()
         {
             List<Lokale> resultat = new List<Lokale>();
@@ -572,7 +551,6 @@ namespace RotteHullet.Data
             }  
             return resultat;
         }
-
         public bool GemLokale(Lokale lokale)
         {
             bool resultat = false;
@@ -602,7 +580,6 @@ namespace RotteHullet.Data
             }
             return resultat;
         }
-
         public bool ÆndreLokale(Lokale lokale)
         {
             bool resultat = false;
@@ -634,7 +611,6 @@ namespace RotteHullet.Data
             }
             return resultat;
         }
-
         public bool SletLokale(int id)
         {
             bool resultat = false;
@@ -658,14 +634,12 @@ namespace RotteHullet.Data
             return resultat;
         }
         #endregion
-
         #region Udlån
         public bool GemUdlån(Udlån udl)
         {
             throw new NotImplementedException();
         }
         #endregion
-
         #region medlem
         public Medlem HentMedlem(string brugernavn, string password)
         {

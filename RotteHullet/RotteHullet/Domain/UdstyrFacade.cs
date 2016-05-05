@@ -60,22 +60,5 @@ namespace RotteHullet.Domain
             }
             return "Udstyret blev ikke slettet";
         }
-
-        #region Gamle HentUdstyr metoder som bruger ToString() på objekterne
-        public string HentUdstyr(int id, int position)
-        {
-            return DBFacade.HentDatabaseFacade().HentUdstyr(id).ToString(position);
-        }
-
-        public List<string> HentAlleUdstyr(int position)
-        {
-            List<string> nytUdstyr = new List<string>();
-            foreach (var item in DBFacade.HentDatabaseFacade().HentALtUdstyr())
-            {
-                nytUdstyr.Add(item.ToString(position));
-            }
-            return nytUdstyr;
-        }
-        #endregion
     }
 }

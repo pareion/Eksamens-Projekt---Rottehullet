@@ -61,22 +61,5 @@ namespace RotteHullet.Domain
             }
             return "Brætspillet blev ikke slettet";
         }
-
-        #region Gamle HentBrætSpilMetoder som bruger ToString() på objekterne
-        public string HentBrætSpil(int id, int position)
-        {
-            return DBFacade.HentDatabaseFacade().HentBrætSpil(id).ToString(position);
-        }
-
-        public List<string> HentAlleBrætspil(int position)
-        {
-            List<string> nyeBrætspil = new List<string>();
-            foreach (var item in DBFacade.HentDatabaseFacade().HentAlleBrætSpil())
-            {
-                nyeBrætspil.Add(item.ToString(position));
-            }
-            return nyeBrætspil;
-        }
-        #endregion
     }
 }

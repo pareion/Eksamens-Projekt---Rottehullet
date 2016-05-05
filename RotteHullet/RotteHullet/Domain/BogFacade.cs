@@ -64,22 +64,5 @@ namespace RotteHullet.Domain
         {
             return DBFacade.HentDatabaseFacade().SletBog(id) ? "Bog blev slettet" : "Kan ikke slet bog";
         }
-
-        #region Gamle HentBøger Metoder som benytter ToString() på objekterne
-        public string HentBog(int id, int position)
-        {
-            return DBFacade.HentDatabaseFacade().HentBog(id).ToString(position);
-        }
-
-        public List<string> HentAlleBøger(int position)
-        {
-            List<string> bøgerListe = new List<string>();
-            foreach (var item in DBFacade.HentDatabaseFacade().HentAlleBøger())
-            {
-                bøgerListe.Add(item.ToString(position));
-            }
-            return bøgerListe;
-        }
-        #endregion
     }
 }

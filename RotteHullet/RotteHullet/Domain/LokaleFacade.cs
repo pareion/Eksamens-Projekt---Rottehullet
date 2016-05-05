@@ -59,22 +59,5 @@ namespace RotteHullet.Domain
             }
             return "Lokalet er ikke blevet slettet";
         }
-
-        #region Gamle metoder som bruger ToString() på objekterne
-        public string HentLokale(int id, int position)
-        {
-            return DBFacade.HentDatabaseFacade().HentLokale(id).ToString(position);
-        }
-
-        public List<string> HentAlleLokaler(int position)
-        {
-            List<string> nyeLokaler = new List<string>();
-            foreach (var item in DBFacade.HentDatabaseFacade().HentAlleLokaler())
-            {
-                nyeLokaler.Add(item.ToString(position));
-            }
-            return nyeLokaler;
-        }
-        #endregion
     }
 }

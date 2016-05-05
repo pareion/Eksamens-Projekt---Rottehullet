@@ -10,20 +10,15 @@ namespace RotteHullet.Data
     {
         public enum DatabaseType
         {
-            RamDatabase,
             SqlDatabase
         }
 
-        private static volatile IDBFacade idbf = null;
         private static volatile IDBFacade _idbf = null;
       
         internal static void AngivDatabaseFacade(DatabaseType databaseType)
         {
             switch (databaseType)
             {
-                case DatabaseType.RamDatabase:
-                    _idbf = DBRamFacade.HentDbRamFacade();
-                    break;
                 case DatabaseType.SqlDatabase:
                     _idbf = DBSQLFacade.HentDBSQLFacade();
                     break;
