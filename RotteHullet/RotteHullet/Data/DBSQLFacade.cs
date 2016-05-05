@@ -224,8 +224,9 @@ namespace RotteHullet.Data
 
                 resultat = true;
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Console.WriteLine("Fejl: "+e.Message);
                 resultat = false;
             }
             return resultat;

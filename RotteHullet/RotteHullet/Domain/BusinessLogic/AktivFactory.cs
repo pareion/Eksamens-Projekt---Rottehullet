@@ -34,7 +34,7 @@ namespace RotteHullet.Domain.BusinessLogic
         //Brætspil
         public Brætspil SkabNyBrætspil(int id, string navn, string udgiver, bool udlånes, string kommentar, string kategori)
         {
-            return new Brætspil(id, navn,udgiver, udlånes, kommentar);
+            return new Brætspil(id, navn,udgiver, udlånes, kommentar, kategori);
         }
 
         //Udstyr
