@@ -12,7 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using RotteHullet.Domain;
-using RotteHullet.Værktøjs;
 
 namespace RotteHullet
 {
@@ -286,6 +285,23 @@ namespace RotteHullet
         private void opdatereList(ListView dataListe, List<object> data)
         {
             dataListe.Items.Clear();
+
+            switch(data.GetType().Name)
+            {
+                case "Bog":
+                    _bogData = data;
+                    break;
+                case "Brætspil":
+                    _brætspilData = data;
+                    break;
+                case "Udstyr":
+                    _udstyrData = data;
+                    break;
+                case "Lokale":
+                    _lokaleData = data;
+                    break;
+            }
+
             foreach (object item in data)
             {
                 dataListe.Items.Add(item);
@@ -303,7 +319,7 @@ namespace RotteHullet
                 if (e.Key == Key.Enter)
                 {
                     // Sætter ListView objekt for bøger og søg resultater til opdatere ListView list
-                    opdatereList(lv_bøger, Søgning.HentSøgning().Find(boks.Text.ToLower(), Søgning.AktivType.Bog));
+                    opdatereList(lv_bøger, UIFacade.HentUIFacade().HentBogFacade().FindAlleBøger(boks.Text.ToLower()));
                 }
                 else if (e.Key == Key.Escape)
                 {
@@ -317,7 +333,7 @@ namespace RotteHullet
                 // Effektiv data oprydning
                 if (boks.Text.Length == 0 && _bogData.Count != lv_bøger.Items.Count)
                 {
-                    opdatereList(lv_bøger, _bogData);
+                    opdatereList(lv_bøger, UIFacade.HentUIFacade().HentBogFacade().FindAlleBøger());
                 }
                 l_søgBøger.Foreground = Brushes.LightGray;
             }
@@ -334,13 +350,13 @@ namespace RotteHullet
                 if (e.Key == Key.Enter)
                 {
                     // Sætter ListView objekt for bøger og søg resultater til opdatere ListView list
-                    opdatereList(lv_brætspil, Søgning.HentSøgning().Find(boks.Text.ToLower(), Søgning.AktivType.Brætspil));
+                    opdatereList(lv_brætspil, UIFacade.HentUIFacade().HentBrætSpilFacade().FindAlleBrætspil(boks.Text.ToLower()));
                 }
                 else if (e.Key == Key.Escape)
                 {
                     l_søgBrætspil.Foreground = Brushes.LightGray;
                     boks.Text = "";
-                    opdatereList(lv_brætspil, _brætspilData);
+                    opdatereList(lv_brætspil, UIFacade.HentUIFacade().HentBrætSpilFacade().FindAlleBrætspil());
                 }
             }
             else
@@ -365,13 +381,13 @@ namespace RotteHullet
                 if (e.Key == Key.Enter)
                 {
                     // Sætter ListView objekt for bøger og søg resultater til opdatere ListView list
-                    opdatereList(lv_udstyr, Søgning.HentSøgning().Find(boks.Text.ToLower(), Søgning.AktivType.Udstyr));
+                    opdatereList(lv_udstyr, UIFacade.HentUIFacade().HentUdstyrFacade().FindAlleUdstyr(boks.Text.ToLower()));
                 }
                 else if (e.Key == Key.Escape)
                 {
                     l_søgUdstyr.Foreground = Brushes.LightGray;
                     boks.Text = "";
-                    opdatereList(lv_udstyr, _udstyrData);
+                    opdatereList(lv_udstyr, UIFacade.HentUIFacade().HentUdstyrFacade().FindAlleUdstyr());
                 }
             }
             else
@@ -396,13 +412,13 @@ namespace RotteHullet
                 if (e.Key == Key.Enter)
                 {
                     // Sætter ListView objekt for bøger og søg resultater til opdatere ListView list
-                    opdatereList(lv_lokal, Søgning.HentSøgning().Find(boks.Text.ToLower(), Søgning.AktivType.Lokale));
+                    opdatereList(lv_lokal, UIFacade.HentUIFacade().HentLokaleFacade().FindAlleLokaler(boks.Text.ToLower()));
                 }
                 else if (e.Key == Key.Escape)
                 {
                     l_søgLokale.Foreground = Brushes.LightGray;
                     boks.Text = "";
-                    opdatereList(lv_lokal, _lokaleData);
+                    opdatereList(lv_lokal, UIFacade.HentUIFacade().HentLokaleFacade().FindAlleLokaler());
                 }
             }
             else
