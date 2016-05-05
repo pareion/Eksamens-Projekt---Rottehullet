@@ -42,10 +42,20 @@ namespace RotteHullet.Domain
             return "Brætspillet blev ikke ændret";
         }
 
-        public List<object> FindAlleBrætspil() //Mangler søgning
+        public List<object> FindAlleBrætspil(string søgeord = null) //Mangler søgning
         {
             List<Brætspil> aktiver = DBFacade.HentDatabaseFacade().HentAlleBrætSpil();
             List<object> dataListe = new List<object>();
+
+            if (søgeord == null)
+            {
+                aktiver = DBFacade.HentDatabaseFacade().HentAlleBrætSpil();
+            }
+            else
+            {
+                Søgning.HentSøgning().Søg(søgeord, out aktiver);
+            }
+
             foreach (Brætspil item in aktiver)
             {
                 dataListe.Add(item);

@@ -40,10 +40,20 @@ namespace RotteHullet.Domain
             return "Lokalet ikke blevet ændret";
         }
 
-        public List<object> FindAlleLokaler() //Mangler søgning
+        public List<object> FindAlleLokaler(string søgeord = null)
         {
             List<Lokale> aktiver = DBFacade.HentDatabaseFacade().HentAlleLokaler();
             List<object> dataListe = new List<object>();
+
+            if (søgeord == null)
+            {
+                aktiver = DBFacade.HentDatabaseFacade().HentAlleLokaler();
+            }
+            else
+            {
+                Søgning.HentSøgning().Søg(søgeord, out aktiver);
+            }
+
             foreach (Lokale item in aktiver)
             {
                 dataListe.Add(item);

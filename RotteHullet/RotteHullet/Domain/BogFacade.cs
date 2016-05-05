@@ -39,21 +39,21 @@ namespace RotteHullet.Domain
             return DBFacade.HentDatabaseFacade().ÆndreBog(bog) ? "Bog blev ændret" : "Bog blev ikke ændret";
         }
 
-        public List<object> FindAlleBøger(string søgord = null) //Skal bruge søgning gennem facaden?
+        public List<object> FindAlleBøger(string søgeord = null)
         {
-            List<Bog> bøgerListe = new List<Bog>();
+            List<Bog> aktiver = new List<Bog>();
             List<object> dataListe = new List<object>();
 
-            if(søgord == null)
+            if(søgeord == null)
             {
-                bøgerListe = DBFacade.HentDatabaseFacade().HentAlleBøger();
+                aktiver = DBFacade.HentDatabaseFacade().HentAlleBøger();
             }
             else
             {
-                Værktøjs.Søgning.HentSøgning().Søg(søgord, out bøgerListe);
+                Søgning.HentSøgning().Søg(søgeord, out aktiver);
             }
 
-            foreach (Bog item in bøgerListe)
+            foreach (Bog item in aktiver)
             {
                 dataListe.Add(item);
             }

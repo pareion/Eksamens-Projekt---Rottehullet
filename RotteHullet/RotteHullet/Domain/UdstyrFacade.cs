@@ -41,10 +41,20 @@ namespace RotteHullet.Domain
             return "Udstyret blev ikke ændret";
         }
 
-        public List<object> FindAlleUdstyr() //Mangler Søgning
+        public List<object> FindAlleUdstyr(string søgeord = null)
         {
             List<Udstyr> aktiver = DBFacade.HentDatabaseFacade().HentALtUdstyr();
             List<object> dataListe = new List<object>();
+
+            if (søgeord == null)
+            {
+                aktiver = DBFacade.HentDatabaseFacade().HentALtUdstyr();
+            }
+            else
+            {
+                Søgning.HentSøgning().Søg(søgeord, out aktiver);
+            }
+
             foreach (Udstyr item in aktiver)
             {
                 dataListe.Add(item);

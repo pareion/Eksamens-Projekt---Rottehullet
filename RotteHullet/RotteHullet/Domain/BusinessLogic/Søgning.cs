@@ -116,51 +116,5 @@ namespace RotteHullet.Domain.BusinessLogic
 
             return brætspil.Count != 0;
         }
-
-        /// <summary>
-        /// Ingen binding søgning
-        /// </summary>
-        /// <param name="søgord"></param>
-        /// <param name="type"></param>
-        /// <returns></returns>
-        public List<object> Find(string søgord, AktivType type)
-        {
-            List<object> data = new List<object>();
-
-            switch (type)
-            {
-                case AktivType.Bog:
-                    List<Bog> bogListe = Data.DBFacade.HentDatabaseFacade().HentAlleBøger().FindAll(x => x.Titel.ToLower().Contains(søgord));
-                    foreach (Bog aktiv in bogListe)
-                    {
-                        data.Add(aktiv);
-                    }
-                    break;
-                case AktivType.Brætspil:
-                    List<Brætspil> spilListe = Data.DBFacade.HentDatabaseFacade().HentAlleBrætSpil().FindAll(x => x.BrætspilsNavn.ToLower().Contains(søgord));
-                    foreach (Brætspil aktiv in spilListe)
-                    {
-                        data.Add(aktiv);
-                    }
-                    break;
-                case AktivType.Udstyr:
-                    List<Udstyr> udstyrListe = Data.DBFacade.HentDatabaseFacade().HentALtUdstyr().FindAll(x => x.UdstyrsNavn.ToLower().Contains(søgord));
-                    foreach (Udstyr aktiv in udstyrListe)
-                    {
-                        data.Add(aktiv);
-                    }
-                    break;
-                case AktivType.Lokale:
-                    List<Lokale> lokaleListe = Data.DBFacade.HentDatabaseFacade().HentAlleLokaler().FindAll(x => x.LokaleNavn.ToLower().Contains(søgord) || x.Lokation.ToLower().Contains(søgord));
-                    foreach (Lokale aktiv in lokaleListe)
-                    {
-                        data.Add(aktiv);
-                    }
-                    break;
-                default:
-                    break;
-            }
-            return data;
-        }
     }
 }
