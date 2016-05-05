@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RotteHullet.Værktøjs
+namespace RotteHullet.Domain.BusinessLogic
 {
     class Søgning
     {
