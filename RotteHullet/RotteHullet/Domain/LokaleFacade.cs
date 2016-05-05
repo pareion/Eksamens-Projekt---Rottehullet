@@ -30,10 +30,10 @@ namespace RotteHullet.Domain
             }
             return "Lokalet blev ikke skabt";
         }
-        public string ÆndreLokale(int gammeltID, int id, string navn, string lokation, bool udlånes, string kommentar, string møbler)
+        public string ÆndreLokale(int id, string navn, string lokation, bool udlånes, string kommentar, string møbler)
         {
             Lokale lok = AktivFactory.HentAktivFactory().SkabNytLokale(id, navn, lokation, udlånes, kommentar, møbler);
-            if (DBFacade.HentDatabaseFacade().ÆndreLokale(gammeltID, lok))
+            if (DBFacade.HentDatabaseFacade().ÆndreLokale(lok))
             {
                 return "Lokalet er blevet ændret";
             }

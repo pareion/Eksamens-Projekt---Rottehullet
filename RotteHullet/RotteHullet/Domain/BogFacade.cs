@@ -36,7 +36,7 @@ namespace RotteHullet.Domain
             Bog bog = AktivFactory.HentAktivFactory().SkabNyBog(id, bognavn, forfatter, genre, subkategori, familie,
                 forlag, udlånes, kommentar);
 
-            return DBFacade.HentDatabaseFacade().ÆndreBog(id, bog) ? "Bog blev ændret" : "Bog blev ikke ændret";
+            return DBFacade.HentDatabaseFacade().ÆndreBog(bog) ? "Bog blev ændret" : "Bog blev ikke ændret";
         }
 
         public List<object> FindAlleBøger(string søgord = null) //Skal bruge søgning gennem facaden?

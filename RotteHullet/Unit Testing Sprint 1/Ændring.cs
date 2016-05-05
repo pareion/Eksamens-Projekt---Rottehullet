@@ -38,7 +38,7 @@ namespace Unit_Testing_Sprint_1
             UIFacade.HentUIFacade().HentUdstyrFacade().SkabUdstyr(0,"test1", "test2", false, "test3");
 
             //Ændre udstyr
-            UIFacade.HentUIFacade().HentUdstyrFacade().ÆndreUdstyr(0, 1, "test2", "test3", false, "test4");
+            UIFacade.HentUIFacade().HentUdstyrFacade().ÆndreUdstyr(1, "test2", "test3", false, "test4");
 
             //Hent udstyr
             string udstyrhentet = UIFacade.HentUIFacade().HentUdstyrFacade().HentUdstyr(0,0);
@@ -56,7 +56,7 @@ namespace Unit_Testing_Sprint_1
             UIFacade.HentUIFacade().HentLokaleFacade().SkabLokale(0, "test1", "test2", false, "test3", "test4");
 
             //Ændre lokale
-            UIFacade.HentUIFacade().HentLokaleFacade().ÆndreLokale(0, 1, "test2", "test3", false, "test4", "test5");
+            UIFacade.HentUIFacade().HentLokaleFacade().ÆndreLokale(1, "test2", "test3", false, "test4", "test5");
 
             //Hent lokale
             string lokhentet = UIFacade.HentUIFacade().HentLokaleFacade().HentLokale(0,0);
@@ -74,7 +74,7 @@ namespace Unit_Testing_Sprint_1
             UIFacade.HentUIFacade().HentBrætSpilFacade().SkabBrætSpil(0, "test1", "udgiver", false, "test2", "test3");
 
             //Ændre brætspil
-            UIFacade.HentUIFacade().HentBrætSpilFacade().ÆndreBrætSpil(0, 1, "test2", "nyudgiver", true, "test3", "test4");
+            UIFacade.HentUIFacade().HentBrætSpilFacade().ÆndreBrætSpil(1, "test2", "nyudgiver", true, "test3", "test4");
 
             //Hent brætspil
             string bsHentet = UIFacade.HentUIFacade().HentBrætSpilFacade().HentBrætSpil(0,0);

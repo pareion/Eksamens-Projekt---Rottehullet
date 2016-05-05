@@ -31,11 +31,11 @@ namespace RotteHullet.Domain
             return "Brætspillet blev ikke skabt";
         }
 
-        public string ÆndreBrætSpil(int gammeltID, int nytid, string navn, string udgiver, bool udlånes,
+        public string ÆndreBrætSpil(int id, string navn, string udgiver, bool udlånes,
             string kommentar, string kategori)
         {
-            Brætspil bs = AktivFactory.HentAktivFactory().SkabNyBrætspil(nytid, navn, udgiver, udlånes, kommentar, kategori);
-            if (DBFacade.HentDatabaseFacade().ÆndreBrætSpil(gammeltID, bs))
+            Brætspil bs = AktivFactory.HentAktivFactory().SkabNyBrætspil(id, navn, udgiver, udlånes, kommentar, kategori);
+            if (DBFacade.HentDatabaseFacade().ÆndreBrætSpil(bs))
             {
                 return "Brætspillet er ændret";
             }

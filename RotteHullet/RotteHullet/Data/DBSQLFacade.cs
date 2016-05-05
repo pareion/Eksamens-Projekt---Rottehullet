@@ -69,7 +69,7 @@ namespace RotteHullet.Data
                 return false;
             }
         }
-        public bool ÆndreBog(int gammeltIDBog, Bog bog)
+        public bool ÆndreBog(Bog bog)
         {
             try
             {
@@ -78,7 +78,7 @@ namespace RotteHullet.Data
                 SqlCommand kommando = new SqlCommand("ÆndreBog", forb);
                 kommando.CommandType = System.Data.CommandType.StoredProcedure;
 
-                kommando.Parameters.Add(new SqlParameter("@bogid", gammeltIDBog));
+                kommando.Parameters.Add(new SqlParameter("@bogid", bog.Id));
                 kommando.Parameters.Add(new SqlParameter("@titel", bog.Titel));
                 kommando.Parameters.Add(new SqlParameter("@forfatter", bog.Forfatter));
                 kommando.Parameters.Add(new SqlParameter("@genre", bog.Genre));
@@ -232,7 +232,7 @@ namespace RotteHullet.Data
             return resultat;
         }
 
-        public bool ÆndreBrætSpil(int gammeltID, Brætspil bs)
+        public bool ÆndreBrætSpil(Brætspil bs)
         {
             bool resultat = false;
 
@@ -243,7 +243,7 @@ namespace RotteHullet.Data
                 SqlCommand kommando = new SqlCommand("ÆndreBrætSpil", forb);
                 kommando.CommandType = System.Data.CommandType.StoredProcedure;
 
-                kommando.Parameters.Add(new SqlParameter("@brætspilid", gammeltID));
+                kommando.Parameters.Add(new SqlParameter("@brætspilid", bs.Id));
                 kommando.Parameters.Add(new SqlParameter("@brætspilsnavn", bs.BrætspilsNavn));
                 kommando.Parameters.Add(new SqlParameter("@udgiver", bs.Udgiver));
                 kommando.Parameters.Add(new SqlParameter("@udlånes", bs.Udlånes));
@@ -385,7 +385,7 @@ namespace RotteHullet.Data
             return resultat;
         }
 
-        public bool ÆndreUdstyr(int gammeltid, Udstyr udstyr)
+        public bool ÆndreUdstyr(Udstyr udstyr)
         {
             bool resultat = false;
 
@@ -396,7 +396,7 @@ namespace RotteHullet.Data
                 SqlCommand kommando = new SqlCommand("ÆndreUdstyr", forb);
                 kommando.CommandType = System.Data.CommandType.StoredProcedure;
 
-                kommando.Parameters.Add(new SqlParameter("@udstyrid", gammeltid));
+                kommando.Parameters.Add(new SqlParameter("@udstyrid", udstyr.Id));
                 kommando.Parameters.Add(new SqlParameter("@navn", udstyr.UdstyrsNavn));
                 kommando.Parameters.Add(new SqlParameter("@kategori", udstyr.Kategori));
                 kommando.Parameters.Add(new SqlParameter("@udlånes", udstyr.Udlånes));
@@ -603,7 +603,7 @@ namespace RotteHullet.Data
             return resultat;
         }
 
-        public bool ÆndreLokale(int gammeltid, Lokale lokale)
+        public bool ÆndreLokale(Lokale lokale)
         {
             bool resultat = false;
 
@@ -614,7 +614,7 @@ namespace RotteHullet.Data
                 SqlCommand kommando = new SqlCommand("ÆndreLokale", forb);
                 kommando.CommandType = System.Data.CommandType.StoredProcedure;
 
-                kommando.Parameters.Add(new SqlParameter("@lokaleid", gammeltid));
+                kommando.Parameters.Add(new SqlParameter("@lokaleid", lokale.Id));
                 kommando.Parameters.Add(new SqlParameter("@lokalenavn", lokale.LokaleNavn));
                 kommando.Parameters.Add(new SqlParameter("@lokation", lokale.Lokation));
                 kommando.Parameters.Add(new SqlParameter("@udlånes", lokale.Udlånes));

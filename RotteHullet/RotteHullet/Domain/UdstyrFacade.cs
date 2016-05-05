@@ -31,10 +31,10 @@ namespace RotteHullet.Domain
             return "Udstyret blev ikke skabt";
         }
 
-        public string ÆndreUdstyr(int gammeltID, int nytid, string navn, string kategori, bool udlånes, string kommentar)
+        public string ÆndreUdstyr(int id, string navn, string kategori, bool udlånes, string kommentar)
         {
-            Udstyr uds = AktivFactory.HentAktivFactory().SkabNytUdstyr(nytid, navn, kategori, udlånes, kommentar);
-            if (DBFacade.HentDatabaseFacade().ÆndreUdstyr(gammeltID, uds))
+            Udstyr uds = AktivFactory.HentAktivFactory().SkabNytUdstyr(id, navn, kategori, udlånes, kommentar);
+            if (DBFacade.HentDatabaseFacade().ÆndreUdstyr(uds))
             {
                 return "Udstyret er ændret";
             }

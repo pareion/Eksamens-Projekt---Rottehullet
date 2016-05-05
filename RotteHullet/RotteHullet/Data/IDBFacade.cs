@@ -11,7 +11,7 @@ namespace RotteHullet.Data
     {
         #region Brætspil
         bool GemBrætSpil(Brætspil bs);
-        bool ÆndreBrætSpil(int gammeltID, Brætspil bs);
+        bool ÆndreBrætSpil(Brætspil bs);
         Brætspil HentBrætSpil(int id);
         List<Brætspil> HentAlleBrætSpil();
         bool SletBrætSpil(int id);
@@ -19,7 +19,7 @@ namespace RotteHullet.Data
 
         #region Bog
         bool GemBog(Bog bog);
-        bool ÆndreBog(int gammeltID, Bog bog);
+        bool ÆndreBog(Bog bog);
         Bog HentBog(int id);
         List<Bog> HentAlleBøger();
         bool SletBog(int id);
@@ -27,7 +27,7 @@ namespace RotteHullet.Data
 
         #region Udstyr
         bool GemUdstyr(Udstyr udstyr);
-        bool ÆndreUdstyr(int gammeltID, Udstyr udstyr);
+        bool ÆndreUdstyr(Udstyr udstyr);
         Udstyr HentUdstyr(int id);
         List<Udstyr> HentALtUdstyr();
         bool SletUdstyr(int id);
@@ -35,7 +35,7 @@ namespace RotteHullet.Data
 
         #region Lokale
         bool GemLokale(Lokale lokale);
-        bool ÆndreLokale(int gammeltID, Lokale lokale);
+        bool ÆndreLokale(Lokale lokale);
         Lokale HentLokale(int id);
         List<Lokale> HentAlleLokaler();
         bool SletLokale(int id);

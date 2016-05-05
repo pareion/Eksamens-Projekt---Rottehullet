@@ -46,11 +46,11 @@ namespace RotteHullet.Data
             _brætspilsListe.Add(bs);
             return true;
         }
-        public bool ÆndreBrætSpil(int gammeltID, Brætspil bs)
+        public bool ÆndreBrætSpil(Brætspil bs)
         {
             for (int i = 0; i < _brætspilsListe.Count; i++)
             {
-                if (_brætspilsListe[i].Id == gammeltID)
+                if (_brætspilsListe[i].Id == bs.Id)
                 {
                     _brætspilsListe[i] = bs;
                     return true;
@@ -97,11 +97,11 @@ namespace RotteHullet.Data
             return true;
         }
 
-        public bool ÆndreBog(int gammeltID, Bog bog)
+        public bool ÆndreBog(Bog bog)
         {
             for (int i = 0; i < _bogListe.Count; i++)
             {
-                if (_bogListe[i].Id == gammeltID)
+                if (_bogListe[i].Id == bog.Id)
                 {
                     _bogListe[i] = bog;
                     return true;
@@ -148,11 +148,11 @@ namespace RotteHullet.Data
             return true;
         }
 
-        public bool ÆndreUdstyr(int gammeltID, Udstyr udstyr)
+        public bool ÆndreUdstyr(Udstyr udstyr)
         {
             for (int i = 0; i < _udstyrsListe.Count; i++)
             {
-                if (_udstyrsListe[i].Id == gammeltID)
+                if (_udstyrsListe[i].Id == udstyr.Id)
                 {
                     _udstyrsListe[i] = udstyr;
                     return true;
@@ -199,11 +199,11 @@ namespace RotteHullet.Data
             return true;
         }
 
-        public bool ÆndreLokale(int gammeltID, Lokale lokale)
+        public bool ÆndreLokale(Lokale lokale)
         {
             for (int i = 0; i < _lokaleListe.Count; i++)
             {
-                if (_lokaleListe[i].Id == gammeltID)
+                if (_lokaleListe[i].Id == lokale.Id)
                 {
                     _lokaleListe[i] = lokale;
                     return true;
