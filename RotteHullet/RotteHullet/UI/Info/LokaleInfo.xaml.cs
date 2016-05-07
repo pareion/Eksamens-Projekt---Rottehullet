@@ -10,18 +10,22 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace RotteHullet
 {
     /// <summary>
-    /// Interaction logic for UdlånPopup.xaml
+    /// Interaction logic for LokaleInfo.xaml
     /// </summary>
-    public partial class UdlånPopup : Window
+    public partial class LokaleInfo : UserControl
     {
-        public UdlånPopup()
+        public object AktivInfo { get; set; }
+
+        public LokaleInfo(object data)
         {
             InitializeComponent();
+            AktivInfo = data;
         }
     }
 }

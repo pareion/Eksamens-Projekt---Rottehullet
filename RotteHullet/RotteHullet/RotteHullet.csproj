@@ -58,17 +58,63 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="UI\AnbefaletAktiver.xaml.cs">
+      <DependentUpon>AnbefaletAktiver.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Info\FejlInfo.xaml.cs">
+      <DependentUpon>FejlInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Info\BogInfo.xaml.cs">
+      <DependentUpon>BogInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Info\BrætspilInfo.xaml.cs">
+      <DependentUpon>BrætspilInfo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Data\DBFacade.cs" />
+    <Compile Include="UI\Info\LokaleInfo.xaml.cs">
+      <DependentUpon>LokaleInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Info\UdstyrInfo.xaml.cs">
+      <DependentUpon>UdstyrInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\InfoPopup.xaml.cs">
+      <DependentUpon>InfoPopup.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\BrugerPanel.xaml.cs">
       <DependentUpon>BrugerPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\ReservationListe.xaml.cs">
       <DependentUpon>ReservationListe.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\UdlånPopup.xaml.cs">
-      <DependentUpon>UdlånPopup.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Domain\BusinessLogic\Søgning.cs" />
+    <Page Include="UI\AnbefaletAktiver.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Info\FejlInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Info\BogInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Info\BrætspilInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Info\LokaleInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Info\UdstyrInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\InfoPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\BrugerPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -117,10 +163,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UI\UdlånPopup.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="UI\OpretÆndreAktiv.xaml.cs">
@@ -155,6 +197,7 @@
   <ItemGroup>
     <Resource Include="logo.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
