@@ -31,16 +31,11 @@
                 </StackPanel>
             </Grid>
         </Expander>
-        <StackPanel x:Name="panelIndhold">
+        <Grid x:Name="Indhold">
             <ListView x:Name="lv_Aktiver" HorizontalAlignment="Stretch" Height="430" Margin="60,230,60,0" VerticalAlignment="Top" Width="Auto">
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                    </Style>
-                </ListView.ItemContainerStyle>
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Width="200"  DisplayMemberBinding="{Binding Titel}">
+                        <GridViewColumn Width="200"  DisplayMemberBinding="{Binding Navn}">
                             <GridViewColumn.Header>
                                 <GridViewColumnHeader Tag="Titel" Click="Sortering_Click">Titel</GridViewColumnHeader>
                             </GridViewColumn.Header>
@@ -55,15 +50,11 @@
                                 <GridViewColumnHeader Tag="Genre" Click="Sortering_Click">Genre</GridViewColumnHeader>
                             </GridViewColumn.Header>
                         </GridViewColumn>
-                        <GridViewColumn Width="100" DisplayMemberBinding="{Binding Subkategori}">
-                            <GridViewColumn.Header>
-                                <GridViewColumnHeader Tag="Subkategori" Click="Sortering_Click">Kategori</GridViewColumnHeader>
-                            </GridViewColumn.Header>
-                        </GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>
-        </StackPanel>
+        </Grid>
+        
 
         <!-- Content level -->
         <!-- Bottom level -->

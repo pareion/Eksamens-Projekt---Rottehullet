@@ -152,10 +152,33 @@ namespace RotteHullet
         {
             GridView view = new GridView();
             view.Columns.Add(bygColumn("Titel", null, 220));
-            view.Columns.Add(bygColumn("Forfatter", null, 180));
-            view.Columns.Add(bygColumn("Genre", null, 80));
-            view.Columns.Add(bygColumn("Subkategori", null, 100));
+            view.Columns.Add(bygColumn("Familie", null, 180));
+            view.Columns.Add(bygColumn("Status", null, 180));
 
+        }
+
+        private void bygBrætspilListe(ListView liste)
+        {
+            GridView view = new GridView();
+            view.Columns.Add(bygColumn("Navn", "BrætspilsNavn", 220));
+            view.Columns.Add(bygColumn("Kategori", null, 180));
+            view.Columns.Add(bygColumn("Status", null, 180));
+        }
+
+        private void bygUdstyrListe(ListView liste)
+        {
+            GridView view = new GridView();
+            view.Columns.Add(bygColumn("Navn", "UdstyrsNavn", 220));
+            view.Columns.Add(bygColumn("Kategori", null, 180));
+            view.Columns.Add(bygColumn("Status", null, 180));
+        }
+
+        private void bygLokaleListe(ListView liste)
+        {
+            GridView view = new GridView();
+            view.Columns.Add(bygColumn("Navn", "LokaleNavn", 220));
+            view.Columns.Add(bygColumn("Adresse", "Lokation", 180));
+            view.Columns.Add(bygColumn("Status", null, 180));
         }
 
         private GridViewColumn bygColumn(string header, string bind = null, double width = 0)
@@ -165,6 +188,10 @@ namespace RotteHullet
             if (width != 0)
             {
                 col.Width = width;
+            }
+            else
+            {
+                col.Width = 50;
             }
             return col;
         }
