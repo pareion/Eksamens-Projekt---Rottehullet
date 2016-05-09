@@ -101,7 +101,7 @@ namespace RotteHullet.Data
                 SqlCommand kommando = new SqlCommand("HentBog", forb);
                 kommando.CommandType = System.Data.CommandType.StoredProcedure;
 
-                kommando.Parameters.Add(new SqlParameter("@bogid", id));
+                kommando.Parameters.Add(new SqlParameter("@BogID", id));
 
                 SqlDataReader sdr = kommando.ExecuteReader();
 
@@ -216,7 +216,7 @@ namespace RotteHullet.Data
             }
             catch (Exception e)
             {
-                Console.WriteLine("Fejl: "+e.Message);
+                Console.WriteLine("Fejl: " + e.Message);
                 resultat = false;
             }
             return resultat;
@@ -248,7 +248,7 @@ namespace RotteHullet.Data
             }
             catch (Exception e)
             {
-                Console.WriteLine("Fejl: "+e.Message);
+                Console.WriteLine("Fejl: " + e.Message);
                 resultat = false;
             }
             return resultat;
@@ -303,7 +303,7 @@ namespace RotteHullet.Data
                     int brætspilid = Convert.ToInt32(sdr["brætspilid"]);
                     string brætspilnavn = Convert.ToString(sdr["brætspilnavn"]);
                     string udgiver = Convert.ToString(sdr["udgiver"]);
-                    bool udlånes =  (bool) sdr["udlånes"];
+                    bool udlånes = (bool)sdr["udlånes"];
                     string kommentar = Convert.ToString(sdr["kommentar"]);
                     string kategori = Convert.ToString(sdr["kategori"]);
                     resultat.Add(AktivFactory.HentAktivFactory().SkabNyBrætspil(brætspilid, brætspilnavn, udgiver, udlånes, kommentar, kategori));
@@ -548,7 +548,7 @@ namespace RotteHullet.Data
             catch (Exception)
             {
                 resultat = null;
-            }  
+            }
             return resultat;
         }
         public bool GemLokale(Lokale lokale)
@@ -740,9 +740,9 @@ namespace RotteHullet.Data
 
             return resultat;
         }
-        public List<object> FindAlleUdlån()
+        public List<Tuple<string, object>> FindAlleUdlån()
         {
-            List<object> udlån = new List<object>();
+            List<Tuple<string, object>> result = new List<Tuple<string, object>>();
 
             try
             {
@@ -755,32 +755,100 @@ namespace RotteHullet.Data
 
                 while (reader.Read())
                 {
-                    int udlånid = Convert.ToInt32(reader["udlånid"]);
-                    int medlemid = Convert.ToInt32(reader["medlemid"]);
-                    int adminid = Convert.ToInt32(reader["adminid"]);
-                    DateTime udldato = Convert.ToDateTime(reader["udlåningsdato"]);
-                    DateTime afldato = Convert.ToDateTime(reader["afleveringsdato"]);
-                    DateTime reldato = Convert.ToDateTime(reader["reeleafleveringsdato"]);
-                    bool godkendt = Convert.ToBoolean(reader["godkendt"]);
+                    object bog = null, udstyr = null, lokale = null, brætspil = null;
+                    string medlem = "";
+                    object a = new object();
+                    try
+                    {
+                        medlem = HentMedlem2(Convert.ToInt32(reader["medlemid"]));
+                    }
+                    catch (Exception e)
+                    {
 
-                    Udlån udl = AktivFactory.HentAktivFactory().SkabNytUdlån(udlånid, medlemid, adminid, udldato, afldato, reldato, godkendt,null);
+                    }
+                    try
+                    {
+                        bog = HentBog(Convert.ToInt32(reader["bogid"]));
+                        result.Add(new Tuple<string, object>(medlem, bog));
+                    }
+                    catch (Exception e)
+                    {
 
-                    udlån.Add(udl);
+                    }
+                    try
+                    {
+                        udstyr = HentUdstyr(Convert.ToInt32(reader["udstyrid"]));
+                        result.Add(new Tuple<string, object>(medlem, udstyr));
+                    }
+                    catch (Exception e)
+                    {
+
+                    }
+                    try
+                    {
+                        lokale = HentLokale(Convert.ToInt32(reader["lokaleid"]));
+                        result.Add(new Tuple<string, object>(medlem, lokale));
+                    }
+                    catch (Exception e)
+                    {
+
+                    }
+                    try
+                    {
+                        brætspil = HentBrætSpil(Convert.ToInt32(reader["brætspilid"]));
+                        result.Add(new Tuple<string, object>(medlem, brætspil));
+                    }
+                    catch (Exception e)
+                    {
+
+                    }
+                    
+
                 }
                 forb.Close();
                 forb.Dispose();
             }
             catch (Exception)
             {
-                udlån = null;
+                result = null;
             }
-            return udlån;
+
+            return result;
         }
         #endregion
         #region medlem
         public Medlem HentMedlem(string brugernavn, string password)
         {
             throw new NotImplementedException();
+        }
+        private string HentMedlem2(int v)
+        {
+            string resultat = "";
+            try
+            {
+                SqlConnection forb = hentForbindelse();
+
+                SqlCommand kommando = new SqlCommand("HentMedlem2", forb);
+                kommando.CommandType = System.Data.CommandType.StoredProcedure;
+
+                kommando.Parameters.Add(new SqlParameter("@id", v));
+
+                SqlDataReader sdr = kommando.ExecuteReader();
+
+                if (sdr.Read())
+                {
+                    string navn = Convert.ToString(sdr["brugernavn"]);
+
+                    resultat = navn;
+                }
+                forb.Close();
+                forb.Dispose();
+            }
+            catch (Exception)
+            {
+                resultat = null;
+            }
+            return resultat;
         }
         #endregion
     }
