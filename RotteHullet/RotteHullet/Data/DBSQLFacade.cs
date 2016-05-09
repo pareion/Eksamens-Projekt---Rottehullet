@@ -637,7 +637,144 @@ namespace RotteHullet.Data
         #region Udlån
         public bool GemUdlån(Udlån udl)
         {
-            throw new NotImplementedException();
+            bool resultat = false;
+            try
+            {
+                SqlConnection forb = hentForbindelse();
+
+                SqlCommand kommando = new SqlCommand("GemUdlån", forb);
+                kommando.CommandType = System.Data.CommandType.StoredProcedure;
+
+                kommando.Parameters.Add(new SqlParameter("@medlemsid", udl.Medlemsid));
+                kommando.Parameters.Add(new SqlParameter("@adminid", udl.AdminId));
+                kommando.Parameters.Add(new SqlParameter("@udlåningsdato", udl.Udlåningsdato));
+                kommando.Parameters.Add(new SqlParameter("@afleveringsdato", udl.Afleveringsdato));
+                kommando.Parameters.Add(new SqlParameter("@reeleafleveringsdato", udl.Reelleafleveringsdato));
+                kommando.Parameters.Add(new SqlParameter("@godkendt", udl.Godkendt));
+
+                SqlDataReader sdr = kommando.ExecuteReader();
+                if (sdr.Read())
+                {
+                    int udlånid = Convert.ToInt32(sdr["udlånid"]);
+                    foreach (IAktiv item in udl.Aktiver)
+                    {
+                        if (item.GetType() == typeof(Bog))
+                        {
+                            SqlConnection forb2 = hentForbindelse();
+
+                            Bog a = (Bog)item;
+
+                            SqlCommand kommando2 = new SqlCommand("GemUdlånBog", forb2);
+                            kommando2.CommandType = System.Data.CommandType.StoredProcedure;
+
+                            kommando2.Parameters.Add(new SqlParameter("@udlånid", udlånid));
+                            kommando2.Parameters.Add(new SqlParameter("@bogid", a.Id));
+
+                            kommando2.ExecuteNonQuery();
+
+                            forb2.Close();
+                            forb2.Dispose();
+                        }
+                        else if (item.GetType() == typeof(Udstyr))
+                        {
+                            SqlConnection forb2 = hentForbindelse();
+
+                            Udstyr a = (Udstyr)item;
+
+                            SqlCommand kommando2 = new SqlCommand("GemUdlånUdstyr", forb2);
+                            kommando2.CommandType = System.Data.CommandType.StoredProcedure;
+
+                            kommando2.Parameters.Add(new SqlParameter("@udlånid", udlånid));
+                            kommando2.Parameters.Add(new SqlParameter("@udstyrid", a.Id));
+
+                            kommando2.ExecuteNonQuery();
+
+                            forb2.Close();
+                            forb2.Dispose();
+                        }
+                        else if (item.GetType() == typeof(Brætspil))
+                        {
+                            SqlConnection forb2 = hentForbindelse();
+
+                            Brætspil a = (Brætspil)item;
+
+                            SqlCommand kommando2 = new SqlCommand("GemUdlånBrætspil", forb2);
+                            kommando2.CommandType = System.Data.CommandType.StoredProcedure;
+
+                            kommando2.Parameters.Add(new SqlParameter("@udlånid", udlånid));
+                            kommando2.Parameters.Add(new SqlParameter("@brætspilid", a.Id));
+
+                            kommando2.ExecuteNonQuery();
+
+                            forb2.Close();
+                            forb2.Dispose();
+                        }
+                        else if (item.GetType() == typeof(Lokale))
+                        {
+                            SqlConnection forb2 = hentForbindelse();
+
+                            Lokale a = (Lokale)item;
+
+                            SqlCommand kommando2 = new SqlCommand("GemUdlånLokale", forb2);
+                            kommando2.CommandType = System.Data.CommandType.StoredProcedure;
+
+                            kommando2.Parameters.Add(new SqlParameter("@udlånid", udlånid));
+                            kommando2.Parameters.Add(new SqlParameter("@lokaleid", a.Id));
+
+                            kommando2.ExecuteNonQuery();
+
+                            forb2.Close();
+                            forb2.Dispose();
+                        }
+                    }
+                }
+                forb.Close();
+                forb.Dispose();
+
+                resultat = true;
+            }
+            catch (Exception)
+            {
+                resultat = false;
+            }
+
+            return resultat;
+        }
+        public List<object> FindAlleUdlån()
+        {
+            List<object> udlån = new List<object>();
+
+            try
+            {
+                SqlConnection forb = hentForbindelse();
+                SqlCommand kommando = new SqlCommand("HentAlleUdlån", forb);
+
+                kommando.CommandType = System.Data.CommandType.StoredProcedure;
+
+                SqlDataReader reader = kommando.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    int udlånid = Convert.ToInt32(reader["udlånid"]);
+                    int medlemid = Convert.ToInt32(reader["medlemid"]);
+                    int adminid = Convert.ToInt32(reader["adminid"]);
+                    DateTime udldato = Convert.ToDateTime(reader["udlåningsdato"]);
+                    DateTime afldato = Convert.ToDateTime(reader["afleveringsdato"]);
+                    DateTime reldato = Convert.ToDateTime(reader["reeleafleveringsdato"]);
+                    bool godkendt = Convert.ToBoolean(reader["godkendt"]);
+
+                    Udlån udl = AktivFactory.HentAktivFactory().SkabNytUdlån(udlånid, medlemid, adminid, udldato, afldato, reldato, godkendt,null);
+
+                    udlån.Add(udl);
+                }
+                forb.Close();
+                forb.Dispose();
+            }
+            catch (Exception)
+            {
+                udlån = null;
+            }
+            return udlån;
         }
         #endregion
         #region medlem

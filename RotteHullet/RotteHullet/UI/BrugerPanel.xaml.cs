@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using RotteHullet.Domain;
 
 namespace RotteHullet
 {
@@ -21,13 +22,37 @@ namespace RotteHullet
     public partial class BrugerPanel : Window
     {
         private ListView _bogView, _brætspilView, _udstyrView, _lokaleView;
-        private enum AktivType { Bog, Brætspil, Udstyr, Lokale }
-
+        public enum AktivType { Bog, Brætspil, Udstyr, Lokale }
 
         private GridViewColumnHeader listeSortCol = null;
-
-
         private ReservationListe reservation = null;
+
+        public AktivType SøgType
+        {
+            get
+            {
+                if (rb_Bog.IsChecked == true)
+                {
+                    return AktivType.Bog;
+                }
+                else if (rb_Brætspil.IsChecked == true)
+                {
+                    return AktivType.Brætspil;
+                }
+                else if (rb_Udstyr.IsChecked == true)
+                {
+                    return AktivType.Udstyr;
+                }
+                else if (rb_Lokale.IsChecked == true)
+                {
+                    return AktivType.Lokale;
+                }
+                else
+                {
+                    return AktivType.Bog;
+                }
+            }
+        } 
         
 
         private class Test
@@ -41,11 +66,67 @@ namespace RotteHullet
         public BrugerPanel()
         {
             InitializeComponent();
+            
             //lv_Aktiver.Items.Add(new Test { Titel = "Hello world", Forfatter = "Programmer", Genre = "Code", Subkategori = "Amature" });
             //lv_Aktiver.Items.Add(new Test { Titel = "The tiny Earth", Forfatter = "Unknow", Genre = "General", Subkategori = "Experienced" });
             //lv_Aktiver.Items.Add(new Test { Titel = "Universe War", Forfatter = "X person", Genre = "Strategy", Subkategori = "Expert" });
             //lv_Aktiver.Items.Add(new Test { Titel = "Information Research", Forfatter = "Matter", Genre = "Sci-fi", Subkategori = "Master" });
         }
+
+        #region Event
+
+        private void Søgning_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                aktivSøgning();
+            }
+        }
+
+        private void Søgning_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            aktivSøgning();
+        }
+
+        #endregion
+
+        #region Funktioner
+
+        private void aktivSøgning()
+        {
+            danneListe();
+            switch (SøgType)
+            {
+                case AktivType.Bog:
+                    ResultatVisning(ref _bogView, UIFacade.HentUIFacade().HentBogFacade().FindAlleBøger(tb_Søgboks.Text));
+                    break;
+                case AktivType.Brætspil:
+                    ResultatVisning(ref _brætspilView, UIFacade.HentUIFacade().HentBrætSpilFacade().FindAlleBrætspil(tb_Søgboks.Text));
+                    break;
+                case AktivType.Udstyr:
+                    ResultatVisning(ref _udstyrView, UIFacade.HentUIFacade().HentUdstyrFacade().FindAlleUdstyr(tb_Søgboks.Text));
+                    break;
+                case AktivType.Lokale:
+                    ResultatVisning(ref _lokaleView, UIFacade.HentUIFacade().HentLokaleFacade().FindAlleLokaler(tb_Søgboks.Text));
+                    break;
+                default:
+                    break;
+            }
+            
+        }
+
+        private void ResultatVisning(ref ListView liste, List<object> resultater)
+        {
+            // Ryd aktiv liste
+            liste.Items.Clear();
+            // Indsæt aktiv info til listview
+            foreach (object item in resultater)
+            {
+                liste.Items.Add(item);
+            }
+        }
+
+        #endregion
 
         #region ListView Sortering
         private void Sortering_Click(object sender, RoutedEventArgs e)
@@ -109,6 +190,34 @@ namespace RotteHullet
 
         private void danneListe()
         {
+            if(_bogView == null)
+            {
+                konfigurereListe();
+            }
+
+            // Fjerner indhold i Grid, for skab og opdatere listen
+            Indhold.Children.Clear();
+
+            // Tjekker på filter udvalgt
+
+            switch (SøgType)
+            {
+                case AktivType.Bog:
+                    Indhold.Children.Add(_bogView);
+                    break;
+                case AktivType.Brætspil:
+                    Indhold.Children.Add(_brætspilView);
+                    break;
+                case AktivType.Udstyr:
+                    Indhold.Children.Add(_udstyrView);
+                    break;
+                case AktivType.Lokale:
+                    Indhold.Children.Add(_lokaleView);
+                    break;
+                default:
+                    Indhold.Children.Add(_bogView);
+                    break;
+            }
             
         }
 
@@ -128,57 +237,86 @@ namespace RotteHullet
             
         }
 
-        private void konfigurereListe(ref ListView liste, AktivType type)
+        private void konfigurereListe()
         {
             // Instantiere ListView objekt
-            if (liste == null)
-            {
-                liste = new ListView();
-            }
+            _bogView = new ListView();
+            _brætspilView = new ListView();
+            _udstyrView = new ListView();
+            _lokaleView = new ListView();
 
+            // Kofigurerer ListView
+            instillKonfig(ref _bogView);
+            instillKonfig(ref _brætspilView);
+            instillKonfig(ref _udstyrView);
+            instillKonfig(ref _lokaleView);
+
+            // Indsæt koloner
+            bygBogListe(ref _bogView);
+            bygBrætspilListe(ref _brætspilView);
+            bygUdstyrListe(ref _udstyrView);
+            bygLokaleListe(ref _lokaleView);
+
+        }
+
+        private void instillKonfig(ref ListView liste)
+        {
             // Position 
             liste.HorizontalAlignment = HorizontalAlignment.Stretch;
-            liste.VerticalAlignment = VerticalAlignment.Top;
-            liste.Margin = new Thickness(60, 230, 60, 0);
+            liste.VerticalAlignment = VerticalAlignment.Stretch;
+            //liste.Margin = new Thickness(60, 230, 60, 0);
             //liste.Width = double.NaN;
             //liste.Height = double.NaN;
 
-            GridView view = new GridView();
+            Style style = new Style();
+            EventSetter setter = new EventSetter();
             
-            liste.View = view;
+            
         }
 
-        private void bygBogListe(ListView liste)
+        private void ListViewItem_DoubleClick(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void bygBogListe(ref ListView liste)
         {
             GridView view = new GridView();
             view.Columns.Add(bygColumn("Titel", null, 220));
             view.Columns.Add(bygColumn("Familie", null, 180));
             view.Columns.Add(bygColumn("Status", null, 180));
 
+            liste.View = view;
         }
 
-        private void bygBrætspilListe(ListView liste)
+        private void bygBrætspilListe(ref ListView liste)
         {
             GridView view = new GridView();
             view.Columns.Add(bygColumn("Navn", "BrætspilsNavn", 220));
             view.Columns.Add(bygColumn("Kategori", null, 180));
             view.Columns.Add(bygColumn("Status", null, 180));
+
+            liste.View = view;
         }
 
-        private void bygUdstyrListe(ListView liste)
+        private void bygUdstyrListe(ref ListView liste)
         {
             GridView view = new GridView();
             view.Columns.Add(bygColumn("Navn", "UdstyrsNavn", 220));
             view.Columns.Add(bygColumn("Kategori", null, 180));
             view.Columns.Add(bygColumn("Status", null, 180));
+
+            liste.View = view;
         }
 
-        private void bygLokaleListe(ListView liste)
+        private void bygLokaleListe(ref ListView liste)
         {
             GridView view = new GridView();
             view.Columns.Add(bygColumn("Navn", "LokaleNavn", 220));
             view.Columns.Add(bygColumn("Adresse", "Lokation", 180));
             view.Columns.Add(bygColumn("Status", null, 180));
+
+            liste.View = view;
         }
 
         private GridViewColumn bygColumn(string header, string bind = null, double width = 0)

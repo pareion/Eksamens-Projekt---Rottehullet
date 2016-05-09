@@ -14,7 +14,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using RotteHullet.Domain;
 using RotteHullet.Data;
-using RotteHullet.Domain.BusinessLogic;
 
 namespace RotteHullet
 {
