@@ -28,7 +28,7 @@ namespace RotteHullet.Domain
         /// <param name="aktivType"></param>
         /// <param name="aktivIDer"></param>
         /// <returns></returns>
-        public string SkabNyUdlån(int medlemsid, DateTime udlåningsdato, DateTime afleveringsdato, int aktivType, List<int> aktivIDer)
+        public string ReserverAktiv(int medlemsid, DateTime udlåningsdato, DateTime afleveringsdato, int aktivType, List<int> aktivIDer)
         {
             Udlån udl = AktivFactory.HentAktivFactory().SkabNytUdlån(0,medlemsid,0,udlåningsdato,afleveringsdato,null,false,null);
 
@@ -123,6 +123,11 @@ namespace RotteHullet.Domain
 
         finish:
             return resultat;
+        }
+
+        public List<object> FindAlleUdlån()
+        {
+            return DBFacade.HentDatabaseFacade().FindAlleUdlån();
         }
     }
 }

@@ -740,6 +740,42 @@ namespace RotteHullet.Data
 
             return resultat;
         }
+        public List<object> FindAlleUdlån()
+        {
+            List<object> udlån = new List<object>();
+
+            try
+            {
+                SqlConnection forb = hentForbindelse();
+                SqlCommand kommando = new SqlCommand("HentAlleUdlån", forb);
+
+                kommando.CommandType = System.Data.CommandType.StoredProcedure;
+
+                SqlDataReader reader = kommando.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    int udlånid = Convert.ToInt32(reader["udlånid"]);
+                    int medlemid = Convert.ToInt32(reader["medlemid"]);
+                    int adminid = Convert.ToInt32(reader["adminid"]);
+                    DateTime udldato = Convert.ToDateTime(reader["udlåningsdato"]);
+                    DateTime afldato = Convert.ToDateTime(reader["afleveringsdato"]);
+                    DateTime reldato = Convert.ToDateTime(reader["reeleafleveringsdato"]);
+                    bool godkendt = Convert.ToBoolean(reader["godkendt"]);
+
+                    Udlån udl = AktivFactory.HentAktivFactory().SkabNytUdlån(udlånid, medlemid, adminid, udldato, afldato, reldato, godkendt,null);
+
+                    udlån.Add(udl);
+                }
+                forb.Close();
+                forb.Dispose();
+            }
+            catch (Exception)
+            {
+                udlån = null;
+            }
+            return udlån;
+        }
         #endregion
         #region medlem
         public Medlem HentMedlem(string brugernavn, string password)
