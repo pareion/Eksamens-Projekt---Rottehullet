@@ -41,10 +41,10 @@ namespace RotteHullet
         public BrugerPanel()
         {
             InitializeComponent();
-            lv_Aktiver.Items.Add(new Test { Titel = "Hello world", Forfatter = "Programmer", Genre = "Code", Subkategori = "Amature" });
-            lv_Aktiver.Items.Add(new Test { Titel = "The tiny Earth", Forfatter = "Unknow", Genre = "General", Subkategori = "Experienced" });
-            lv_Aktiver.Items.Add(new Test { Titel = "Universe War", Forfatter = "X person", Genre = "Strategy", Subkategori = "Expert" });
-            lv_Aktiver.Items.Add(new Test { Titel = "Information Research", Forfatter = "Matter", Genre = "Sci-fi", Subkategori = "Master" });
+            //lv_Aktiver.Items.Add(new Test { Titel = "Hello world", Forfatter = "Programmer", Genre = "Code", Subkategori = "Amature" });
+            //lv_Aktiver.Items.Add(new Test { Titel = "The tiny Earth", Forfatter = "Unknow", Genre = "General", Subkategori = "Experienced" });
+            //lv_Aktiver.Items.Add(new Test { Titel = "Universe War", Forfatter = "X person", Genre = "Strategy", Subkategori = "Expert" });
+            //lv_Aktiver.Items.Add(new Test { Titel = "Information Research", Forfatter = "Matter", Genre = "Sci-fi", Subkategori = "Master" });
         }
 
         #region ListView Sortering
@@ -66,7 +66,7 @@ namespace RotteHullet
             }
 
             listeSortCol = column;
-            lv_Aktiver.Items.SortDescriptions.Add(new SortDescription(sortOrd, dir));
+            //lv_Aktiver.Items.SortDescriptions.Add(new SortDescription(sortOrd, dir));
         }
 
 

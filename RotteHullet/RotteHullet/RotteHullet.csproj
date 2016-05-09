@@ -87,6 +87,9 @@
       <DependentUpon>ReservationListe.xaml</DependentUpon>
     </Compile>
     <Compile Include="Domain\BusinessLogic\Søgning.cs" />
+    <Compile Include="UI\UdlånPopup.xaml.cs">
+      <DependentUpon>UdlånPopup.xaml</DependentUpon>
+    </Compile>
     <Page Include="UI\AnbefaletAktiver.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -162,6 +165,10 @@
     <Page Include="UI\ReservationListe.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\UdlånPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

@@ -13,7 +13,7 @@
         <Label Content="Hvad leder du efter?" HorizontalAlignment="Center" VerticalAlignment="Stretch"  Width="230" Height="Auto"  Margin="0,72,0,551" FontSize="24"/>
         <TextBox x:Name="t_Søgboks" HorizontalAlignment="Center" Width="440" Height="36" Margin="0,124,0,0" FontSize="18" Padding="2,4,35,0" TextWrapping="NoWrap" VerticalAlignment="Top" />
         <Label x:Name="btn_Søg" Content="🔎" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="410,124,0,0" FontSize="18" Foreground="Gray" Panel.ZIndex="3" />
-        <Expander x:Name="ex_" Header="Filter" HorizontalAlignment="Center" ExpandDirection="Down" Width="440" Margin="0,165,0,0" VerticalAlignment="Top" IsExpanded="False" >
+        <Expander x:Name="ex_Filter" Header="Filter" HorizontalAlignment="Center" ExpandDirection="Down" Width="440" Margin="0,165,0,0" VerticalAlignment="Top" IsExpanded="False" >
             <Grid>
                 <StackPanel Orientation="Horizontal" Margin="5,5,5,0">
                     <StackPanel Margin="0,0,10,0">
@@ -31,7 +31,8 @@
                 </StackPanel>
             </Grid>
         </Expander>
-        <Grid x:Name="Indhold">
+        <Grid x:Name="Indhold" >
+            <!--
             <ListView x:Name="lv_Aktiver" HorizontalAlignment="Stretch" Height="430" Margin="60,230,60,0" VerticalAlignment="Top" Width="Auto">
                 <ListView.View>
                     <GridView>
@@ -53,6 +54,7 @@
                     </GridView>
                 </ListView.View>
             </ListView>
+            -->
         </Grid>
         
 
