@@ -24,6 +24,7 @@ namespace RotteHullet
         private List<object> _brætspilData = new List<object>();
         private List<object> _udstyrData = new List<object>();
         private List<object> _lokaleData = new List<object>();
+        private List<object> _udlånData = new List<object>();
 
         private object _selectBog = null;
         private object _selectBrætspil = null;
@@ -57,6 +58,9 @@ namespace RotteHullet
 
                 _lokaleData = UIFacade.HentUIFacade().HentLokaleFacade().FindAlleLokaler();
                 _lokaleData.ForEach(x => lv_lokal.Items.Add(x));
+
+                _udlånData = UIFacade.HentUIFacade().HentUdlåningsFacade().FindAlleUdlån();
+                _udlånData.ForEach(x => lv_udlån.Items.Add(x));
             }
             catch
             {
@@ -72,6 +76,7 @@ namespace RotteHullet
             lv_brætspil.Items.Clear();
             lv_udstyr.Items.Clear();
             lv_lokal.Items.Clear();
+            lv_udlån.Items.Clear();
         }
 
         private void redigereAktiv()
@@ -300,6 +305,9 @@ namespace RotteHullet
                 case "Lokale":
                     _lokaleData = data;
                     break;
+                case "Udlån":
+                    _udlånData = data;
+                    break;
             }
 
             foreach (object item in data)
@@ -307,7 +315,7 @@ namespace RotteHullet
                 dataListe.Items.Add(item);
             }
         }
-
+        
         private void søgbøger_KeyUp(object sender, KeyEventArgs e)
         {
             TextBox boks = sender as TextBox;
@@ -477,5 +485,28 @@ namespace RotteHullet
                 sletAktiv();
             }
         }
+
+        private void btn_Bestillingsinfo_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_Opdater_Click(object sender, RoutedEventArgs e)
+        {
+            IndlæsData();
+        }
+        private void lv_udlån_DoubleClick(object sender, RoutedEventArgs e) {
+            // Gå ind i Udlånet og se dets detaljer
+
+        }
+
+        private void lv_udlån_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            // opdatere det aktive element.
+        }
+
+
+        
+
     }
 }
