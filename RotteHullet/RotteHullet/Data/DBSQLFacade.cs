@@ -637,7 +637,108 @@ namespace RotteHullet.Data
         #region Udlån
         public bool GemUdlån(Udlån udl)
         {
-            throw new NotImplementedException();
+            bool resultat = false;
+            try
+            {
+                SqlConnection forb = hentForbindelse();
+
+                SqlCommand kommando = new SqlCommand("GemUdlån", forb);
+                kommando.CommandType = System.Data.CommandType.StoredProcedure;
+
+                kommando.Parameters.Add(new SqlParameter("@medlemsid", udl.Medlemsid));
+                kommando.Parameters.Add(new SqlParameter("@adminid", udl.AdminId));
+                kommando.Parameters.Add(new SqlParameter("@udlåningsdato", udl.Udlåningsdato));
+                kommando.Parameters.Add(new SqlParameter("@afleveringsdato", udl.Afleveringsdato));
+                kommando.Parameters.Add(new SqlParameter("@reeleafleveringsdato", udl.Reelleafleveringsdato));
+                kommando.Parameters.Add(new SqlParameter("@godkendt", udl.Godkendt));
+
+                SqlDataReader sdr = kommando.ExecuteReader();
+                if (sdr.Read())
+                {
+                    int udlånid = Convert.ToInt32(sdr["udlånid"]);
+                    foreach (IAktiv item in udl.Aktiver)
+                    {
+                        if (item.GetType() == typeof(Bog))
+                        {
+                            SqlConnection forb2 = hentForbindelse();
+
+                            Bog a = (Bog)item;
+
+                            SqlCommand kommando2 = new SqlCommand("GemUdlånBog", forb2);
+                            kommando2.CommandType = System.Data.CommandType.StoredProcedure;
+
+                            kommando2.Parameters.Add(new SqlParameter("@udlånid", udlånid));
+                            kommando2.Parameters.Add(new SqlParameter("@bogid", a.Id));
+
+                            kommando2.ExecuteNonQuery();
+
+                            forb2.Close();
+                            forb2.Dispose();
+                        }
+                        else if (item.GetType() == typeof(Udstyr))
+                        {
+                            SqlConnection forb2 = hentForbindelse();
+
+                            Udstyr a = (Udstyr)item;
+
+                            SqlCommand kommando2 = new SqlCommand("GemUdlånUdstyr", forb2);
+                            kommando2.CommandType = System.Data.CommandType.StoredProcedure;
+
+                            kommando2.Parameters.Add(new SqlParameter("@udlånid", udlånid));
+                            kommando2.Parameters.Add(new SqlParameter("@udstyrid", a.Id));
+
+                            kommando2.ExecuteNonQuery();
+
+                            forb2.Close();
+                            forb2.Dispose();
+                        }
+                        else if (item.GetType() == typeof(Brætspil))
+                        {
+                            SqlConnection forb2 = hentForbindelse();
+
+                            Brætspil a = (Brætspil)item;
+
+                            SqlCommand kommando2 = new SqlCommand("GemUdlånBrætspil", forb2);
+                            kommando2.CommandType = System.Data.CommandType.StoredProcedure;
+
+                            kommando2.Parameters.Add(new SqlParameter("@udlånid", udlånid));
+                            kommando2.Parameters.Add(new SqlParameter("@brætspilid", a.Id));
+
+                            kommando2.ExecuteNonQuery();
+
+                            forb2.Close();
+                            forb2.Dispose();
+                        }
+                        else if (item.GetType() == typeof(Lokale))
+                        {
+                            SqlConnection forb2 = hentForbindelse();
+
+                            Lokale a = (Lokale)item;
+
+                            SqlCommand kommando2 = new SqlCommand("GemUdlånLokale", forb2);
+                            kommando2.CommandType = System.Data.CommandType.StoredProcedure;
+
+                            kommando2.Parameters.Add(new SqlParameter("@udlånid", udlånid));
+                            kommando2.Parameters.Add(new SqlParameter("@lokaleid", a.Id));
+
+                            kommando2.ExecuteNonQuery();
+
+                            forb2.Close();
+                            forb2.Dispose();
+                        }
+                    }
+                }
+                forb.Close();
+                forb.Dispose();
+
+                resultat = true;
+            }
+            catch (Exception)
+            {
+                resultat = false;
+            }
+
+            return resultat;
         }
         #endregion
         #region medlem

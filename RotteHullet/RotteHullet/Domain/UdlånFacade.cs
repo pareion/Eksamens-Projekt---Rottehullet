@@ -76,5 +76,53 @@ namespace RotteHullet.Domain
             finish:
             return resultat;
         }
+
+        public string BesvarReservation(int medlemsid, int adminid, DateTime udlåningsdato, DateTime afleveringsdato, bool godkendelse, int aktivType, List<int> aktivIDer)
+        {
+            Udlån udl = AktivFactory.HentAktivFactory().SkabNytUdlån(0, medlemsid, adminid, udlåningsdato, afleveringsdato, null, godkendelse, null);
+            string resultat = "";
+            switch (aktivType)
+            {
+                case 0:
+                    foreach (var id in aktivIDer)
+                    {
+                        udl.Aktiver.Add(DBFacade.HentDatabaseFacade().HentUdstyr(id));
+                    }
+                    break;
+                case 1:
+                    foreach (var id in aktivIDer)
+                    {
+                        udl.Aktiver.Add(DBFacade.HentDatabaseFacade().HentBog(id));
+                    }
+                    break;
+                case 2:
+                    foreach (var id in aktivIDer)
+                    {
+                        udl.Aktiver.Add(DBFacade.HentDatabaseFacade().HentBrætSpil(id));
+                    }
+                    break;
+                case 3:
+                    foreach (var id in aktivIDer)
+                    {
+                        udl.Aktiver.Add(DBFacade.HentDatabaseFacade().HentLokale(id));
+                    }
+                    break;
+                default:
+                    resultat = "Aktiv Type findes ikke";
+                    goto finish;
+            }
+
+            if (DBFacade.HentDatabaseFacade().GemUdlån(udl))
+            {
+                resultat = "Udlån er skabt";
+            }
+            else
+            {
+                resultat = "Udlån er ikke skabt";
+            }
+
+        finish:
+            return resultat;
+        }
     }
 }
