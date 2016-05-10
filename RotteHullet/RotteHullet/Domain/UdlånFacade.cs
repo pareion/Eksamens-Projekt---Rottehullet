@@ -20,6 +20,7 @@ namespace RotteHullet.Domain
             return _udlåningsFacade;
         }
         /// <summary>
+        /// Kaldes når et medlem skal reservere et aktiv for første gang
         /// aktivType 0 = udstyr, 1 = bøger, 2 = brætspil og 3 = lokaler
         /// </summary>
         /// <param name="medlemsid"></param>
@@ -30,7 +31,7 @@ namespace RotteHullet.Domain
         /// <returns></returns>
         public string ReserverAktiv(int medlemsid, DateTime udlåningsdato, DateTime afleveringsdato, int aktivType, List<int> aktivIDer)
         {
-            Udlån udl = AktivFactory.HentAktivFactory().SkabNytUdlån(0,medlemsid,0,udlåningsdato,afleveringsdato,null,false,null);
+            Udlån udl = AktivFactory.HentAktivFactory().SkabNytUdlån(0,medlemsid,0,udlåningsdato,afleveringsdato,null,false,new List<IAktiv>());
 
             string resultat = "";
             switch (aktivType)
@@ -77,9 +78,21 @@ namespace RotteHullet.Domain
             return resultat;
         }
 
-        public string BesvarReservation(int medlemsid, int adminid, DateTime udlåningsdato, DateTime afleveringsdato, bool godkendelse, int aktivType, List<int> aktivIDer)
+        /// <summary>
+        /// Kaldes når et bestyrelses medlem skal godkende en reservation
+        /// </summary>
+        /// <param name="udlånid"></param>
+        /// <param name="medlemsid"></param>
+        /// <param name="adminid"></param>
+        /// <param name="udlåningsdato"></param>
+        /// <param name="afleveringsdato"></param>
+        /// <param name="godkendelse"></param>
+        /// <param name="aktivType"></param>
+        /// <param name="aktivIDer"></param>
+        /// <returns></returns>
+        public string BesvarReservation(int udlånid, int medlemsid, int adminid, DateTime udlåningsdato, DateTime afleveringsdato, bool godkendelse, int aktivType, List<int> aktivIDer)
         {
-            Udlån udl = AktivFactory.HentAktivFactory().SkabNytUdlån(0, medlemsid, adminid, udlåningsdato, afleveringsdato, null, godkendelse, null);
+            Udlån udl = AktivFactory.HentAktivFactory().SkabNytUdlån(udlånid, medlemsid, adminid, udlåningsdato, afleveringsdato, null, godkendelse, new List<IAktiv>());
             string resultat = "";
             switch (aktivType)
             {
@@ -112,7 +125,7 @@ namespace RotteHullet.Domain
                     goto finish;
             }
 
-            if (DBFacade.HentDatabaseFacade().GemUdlån(udl))
+            if (DBFacade.HentDatabaseFacade().OpdaterUdlån(udl))
             {
                 resultat = "Udlån er skabt";
             }
