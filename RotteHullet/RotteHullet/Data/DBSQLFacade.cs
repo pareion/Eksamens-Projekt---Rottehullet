@@ -635,6 +635,37 @@ namespace RotteHullet.Data
         }
         #endregion
         #region Udlån
+        public bool OpdaterUdlån(Udlån udl)
+        {
+            bool resultat;
+            try
+            {
+                SqlConnection forb = hentForbindelse();
+
+                SqlCommand kommando = new SqlCommand("OpdaterUdlån", forb);
+                kommando.CommandType = System.Data.CommandType.StoredProcedure;
+
+                kommando.Parameters.Add(new SqlParameter("@udlånid", udl.Id));
+                kommando.Parameters.Add(new SqlParameter("@medlemsid", udl.Medlemsid));
+                kommando.Parameters.Add(new SqlParameter("@adminid", udl.AdminId));
+                kommando.Parameters.Add(new SqlParameter("@udlåningsdato", udl.Udlåningsdato));
+                kommando.Parameters.Add(new SqlParameter("@afleveringsdato", udl.Afleveringsdato));
+                kommando.Parameters.Add(new SqlParameter("@reeleafleveringsdato", udl.Reelleafleveringsdato));
+                kommando.Parameters.Add(new SqlParameter("@godkendt", udl.Godkendt));
+
+                kommando.ExecuteNonQuery();
+                
+                forb.Close();
+                forb.Dispose();
+
+                resultat = true;
+            }
+            catch (Exception)
+            {
+                resultat = false;
+            }
+            return resultat;
+        }
         public bool GemUdlån(Udlån udl)
         {
             bool resultat = false;
@@ -649,8 +680,7 @@ namespace RotteHullet.Data
                 kommando.Parameters.Add(new SqlParameter("@adminid", udl.AdminId));
                 kommando.Parameters.Add(new SqlParameter("@udlåningsdato", udl.Udlåningsdato));
                 kommando.Parameters.Add(new SqlParameter("@afleveringsdato", udl.Afleveringsdato));
-                kommando.Parameters.Add(new SqlParameter("@reeleafleveringsdato", udl.Reelleafleveringsdato));
-                kommando.Parameters.Add(new SqlParameter("@godkendt", udl.Godkendt));
+
 
                 SqlDataReader sdr = kommando.ExecuteReader();
                 if (sdr.Read())

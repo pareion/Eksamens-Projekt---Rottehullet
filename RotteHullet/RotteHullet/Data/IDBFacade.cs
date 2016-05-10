@@ -45,6 +45,7 @@ namespace RotteHullet.Data
         #region udlån
         bool GemUdlån(Udlån udl);
         List<Tuple<string, object>> FindAlleUdlån();
+        bool OpdaterUdlån(Udlån udl);
         #endregion
     }
 }
