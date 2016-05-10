@@ -39,7 +39,18 @@ namespace RotteHullet
         }
 
         #region Funktioner
-        
+
+        public class MyItem {
+            public string Medlem;
+            public DateTime Bestillingsdato;
+            public object Reserveret;
+
+            public MyItem(string med, object res) {
+                Medlem = med;
+                Bestillingsdato = new DateTime();
+                Reserveret = res;
+            }
+        }
         internal void IndlæsData()
         {
             // Rydder lister op 
@@ -47,6 +58,8 @@ namespace RotteHullet
 
             try
             {
+                
+
                 // Indlæser nye data
                 _bogData = UIFacade.HentUIFacade().HentBogFacade().FindAlleBøger();
                 _bogData.ForEach(x => lv_bøger.Items.Add(x));
@@ -61,8 +74,20 @@ namespace RotteHullet
                 _lokaleData.ForEach(x => lv_lokal.Items.Add(x));
 
                 _udlånDataTuple = UIFacade.HentUIFacade().HentUdlåningsFacade().FindAlleUdlån();
-                _udlånDataTuple.ForEach(x => lv_udlån.Items.Add(x.Item2));
+                foreach (Tuple<string, object> item in _udlånDataTuple)
+                {
+                    MyItem my = new MyItem(item.Item1,item.Item2);
+                    lv_udlån.Items.Add(my);
+                }
+
+             //   _udlånDataTuple.ForEach(x => lv_udlån.Items.Add(x));
                 
+
+                ListViewItem lvi = new ListViewItem();
+
+            
+
+
             }
             catch
             {
@@ -70,6 +95,10 @@ namespace RotteHullet
             }
 
             
+        }
+
+        private void skabUdlånsliste() {
+
         }
 
         private void fjernLister()
