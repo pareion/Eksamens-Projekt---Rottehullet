@@ -25,7 +25,9 @@ namespace RotteHullet
         public enum AktivType { Bog, Brætspil, Udstyr, Lokale }
 
         private GridViewColumnHeader listeSortCol = null;
-        private ReservationListe reservation = null;
+        private ReservationListe reservationListe = null;
+        private InfoPopup infoSide = null;
+        private bool infoAktive = false;
 
         public AktivType SøgType
         {
@@ -52,25 +54,13 @@ namespace RotteHullet
                     return AktivType.Bog;
                 }
             }
-        } 
-        
-
-        private class Test
-        {
-            public string Titel { get; set; }
-            public string Forfatter { get; set; }
-            public string Genre { get; set; }
-            public string Subkategori { get; set; }
         }
 
         public BrugerPanel()
         {
             InitializeComponent();
             
-            //lv_Aktiver.Items.Add(new Test { Titel = "Hello world", Forfatter = "Programmer", Genre = "Code", Subkategori = "Amature" });
-            //lv_Aktiver.Items.Add(new Test { Titel = "The tiny Earth", Forfatter = "Unknow", Genre = "General", Subkategori = "Experienced" });
-            //lv_Aktiver.Items.Add(new Test { Titel = "Universe War", Forfatter = "X person", Genre = "Strategy", Subkategori = "Expert" });
-            //lv_Aktiver.Items.Add(new Test { Titel = "Information Research", Forfatter = "Matter", Genre = "Sci-fi", Subkategori = "Master" });
+            
         }
 
         #region Event
@@ -79,13 +69,45 @@ namespace RotteHullet
         {
             if (e.Key == Key.Enter)
             {
-                aktivSøgning();
+                try
+                {
+                    aktivSøgning();
+                }
+                catch
+                {
+                    MessageBox.Show("Kan ikke oprette forbindelse til serveren. Prøv igen senere");
+                }
             }
         }
 
         private void Søgning_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            aktivSøgning();
+            try
+            {
+                aktivSøgning();
+            }
+            catch
+            {
+                MessageBox.Show("Kan ikke oprette forbindelse til serveren. Prøv igen senere");
+            }
+        }
+
+        private void AktivListe_DoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ListViewItem data = sender as ListViewItem;
+            infoSide = new InfoPopup(InfoPopup.InfoType.Bog, data.DataContext);
+            
+            infoSide.Owner = this;
+            infoSide.Show();
+        }
+
+        protected override void OnActivated(EventArgs e)
+        {
+            base.OnActivated(e);
+            if (infoSide.IsActive)
+            {
+                MessageBox.Show("Success");
+            }
         }
 
         #endregion
@@ -223,16 +245,6 @@ namespace RotteHullet
 
         private void VisReservation_Click(object sender, RoutedEventArgs e)
         {
-            if (reservation == null)
-            {
-                reservation = new ReservationListe();
-                reservation.Owner = this;
-                reservation.ShowDialog();
-            }
-            else
-            {
-                reservation.Visibility = Visibility.Visible;
-            }
 
             
         }
@@ -268,15 +280,11 @@ namespace RotteHullet
             //liste.Width = double.NaN;
             //liste.Height = double.NaN;
 
+            // Manuelle sætter dobbelt klik event til ListViewItem(er)
+            EventSetter setter = new EventSetter(ListViewItem.MouseDoubleClickEvent, new MouseButtonEventHandler(AktivListe_DoubleClick));
             Style style = new Style();
-            EventSetter setter = new EventSetter();
-            
-            
-        }
-
-        private void ListViewItem_DoubleClick(object sender, RoutedEventArgs e)
-        {
-            
+            style.Setters.Add(setter);
+            liste.ItemContainerStyle = style;
         }
 
         private void bygBogListe(ref ListView liste)

@@ -22,9 +22,16 @@ namespace RotteHullet
         public enum InfoType { Bog, Brætspil, Udstyr, Lokale }
         public InfoType InfoTilstand { get; set; }
 
+        protected bool ErAktiveret = false;
+
         public InfoPopup(InfoType type, object data = null)
         {
             InitializeComponent();
+
+            if(type == InfoType.Bog)
+            {
+                this.Height = 700;
+            }
 
             InfoTilstand = type;
             hentControlVidue(data);
@@ -35,21 +42,32 @@ namespace RotteHullet
             switch (InfoTilstand)
             {
                 case InfoType.Bog:
+                    this.Title = "Bog info";
                     this.Content = new BogInfo(data);
                     break;
                 case InfoType.Brætspil:
-                    this.Content = new BogInfo(data);
+                    this.Title = "Brætspil info";
+                    this.Content = new BrætspilInfo(data);
                     break;
                 case InfoType.Udstyr:
-                    this.Content = new BogInfo(data);
+                    this.Title = "Udstyr info";
+                    this.Content = new UdstyrInfo(data);
                     break;
                 case InfoType.Lokale:
-                    this.Content = new BogInfo(data);
+                    this.Title = "Lokale info";
+                    this.Content = new LokaleInfo(data);
                     break;
                 default:
+                    this.Title = "Fejl meddelse";
                     this.Content = new FejlInfo();
                     break;
             }
         }
+
+        #region Event Listener
+
+
+
+        #endregion
     }
 }

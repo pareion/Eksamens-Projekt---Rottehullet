@@ -5,8 +5,89 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RotteHullet"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="700" d:DesignWidth="400">
     <Grid>
+        <StackPanel Orientation="Vertical" Margin="10,10,0,0">
+            <!-- Titel -->
+            <StackPanel Margin="0,10,0,0">
+                <StackPanel>
+                    <Label Content="Titel"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock x:Name="tb_Titel" Tag="Titel" Margin="15,0,0,0" FontWeight="Normal" FontSize="14" Foreground="#555" Text="Test"/>
+                </StackPanel>
+            </StackPanel>
+            <Border HorizontalAlignment="Stretch" BorderThickness="0,0,0,1" BorderBrush="#CCC" Margin="0,10,10,0"></Border>
             
+            <!-- Forfatter -->
+            <StackPanel Margin="0,10,0,0">
+                <StackPanel>
+                    <Label Content="Forfatter"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock x:Name="tb_Forfatter" Tag="Forfatter" Margin="15,0,0,0" FontWeight="Normal" FontSize="14" Foreground="#555" Text="Forfatter"/>
+                </StackPanel>
+            </StackPanel>
+            <Border HorizontalAlignment="Stretch" BorderThickness="0,0,0,1" BorderBrush="#CCC" Margin="0,10,10,0"></Border>
+            
+            <!-- Forlag -->
+            <StackPanel Margin="0,10,0,0">
+                <StackPanel>
+                    <Label Content="Forlag"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock x:Name="tb_Forlag" Tag="Forlag" Margin="15,0,0,0" FontWeight="Normal" FontSize="14" Foreground="#555" Text="Test"/>
+                </StackPanel>
+            </StackPanel>
+            <Border HorizontalAlignment="Stretch" BorderThickness="0,0,0,1" BorderBrush="#CCC" Margin="0,10,10,0"></Border>
+            
+            <!-- Kategori -->
+            <StackPanel Margin="0,10,0,0">
+                <StackPanel>
+                    <Label Content="Kategori"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock x:Name="tb_Kategori" Tag="Subkategori" Margin="15,0,0,0" FontWeight="Normal" FontSize="14" Foreground="#555" Text="Test"/>
+                </StackPanel>
+            </StackPanel>
+            <Border HorizontalAlignment="Stretch" BorderThickness="0,0,0,1" BorderBrush="#CCC" Margin="0,10,10,0"></Border>
+            <!-- Familie -->
+            <StackPanel Margin="0,10,0,0">
+                <StackPanel>
+                    <Label Content="Familie"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock x:Name="tb_Familie" Tag="Familie" Margin="15,0,0,0" FontWeight="Normal" FontSize="14" Foreground="#555" Text="Test"/>
+                </StackPanel>
+            </StackPanel>
+            <Border HorizontalAlignment="Stretch" BorderThickness="0,0,0,1" BorderBrush="#CCC" Margin="0,10,10,0"></Border>
+            
+            <!-- Forlag -->
+            <StackPanel Margin="0,10,0,0">
+                <StackPanel>
+                    <Label Content="Status"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock  x:Name="tb_Status" Tag="Udlånes" Margin="15,0,0,0" FontWeight="Normal" FontSize="14" Foreground="#555" Text="Tilgængelig"/>
+                </StackPanel>
+            </StackPanel>
+            <Border HorizontalAlignment="Stretch" BorderThickness="0,0,0,1" BorderBrush="#CCC" Margin="0,10,10,0"></Border>
+            
+            <!-- Forlag -->
+            <StackPanel Margin="0,10,0,0">
+                <StackPanel>
+                    <Label Content="Kommentar"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock x:Name="tb_Kommentar" Tag="Kommentar" Margin="15,0,0,0" FontWeight="Normal" FontSize="14" Foreground="#555" Text="Ingen kommentar"/>
+                </StackPanel>
+            </StackPanel>
+            <Border HorizontalAlignment="Stretch" BorderThickness="0,0,0,1" BorderBrush="#CCC" Margin="0,10,10,0"></Border>
+
+        </StackPanel>
+
+        <Button x:Name="btn_Kurv" Content="Læg i kurv" HorizontalAlignment="Center" VerticalAlignment="Bottom" Padding="10,5" Margin="0,0,100,20"/>
+        <Button x:Name="btn_Annulere" Content="Tilbage" HorizontalAlignment="Center" VerticalAlignment="Bottom" Padding="10,5" Margin="100,0,0,20"/>
+
     </Grid>
 </UserControl>

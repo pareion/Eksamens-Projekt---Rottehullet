@@ -7,17 +7,15 @@
         mc:Ignorable="d"
         Title="ReservationListe" Height="500" Width="400">
     <Grid>
-        
-        <ListView x:Name="listView" HorizontalAlignment="Stretch" Margin="10,50,10,10" VerticalAlignment="Stretch" Width="Auto" Height="Auto">
+        <Button x:Name="btn_Fjern" Content="Fjern" HorizontalAlignment="Right" Margin="0,21,70,0" VerticalAlignment="Top" Padding="5,2" Click="Fjern_Click"/>
+        <Button x:Name="btn_FjernAlle" Content="Slet alle" HorizontalAlignment="Right" Margin="0,21,10,0" VerticalAlignment="Top" Padding="5,2" Click="SletAlle_Click"/>
+        <Button x:Name="btn_Reservere" Content="Reservere" HorizontalAlignment="Right" Margin="0,21,317,0" VerticalAlignment="Top" Padding="5,2" Click="Reservere_Click"/>
+        <ListView x:Name="lv_Reservation" HorizontalAlignment="Stretch" Margin="10,50,10,10" VerticalAlignment="Stretch" Width="Auto" Height="Auto">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Type" DisplayMemberBinding="{Binding Type}"/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="btn_Fjern" Content="Fjern" HorizontalAlignment="Right" Margin="0,21,70,0" VerticalAlignment="Top" Padding="5,2" Click="Fjern_Click"/>
-        <Button x:Name="btn_FjernAlle" Content="Slet alle" HorizontalAlignment="Right" Margin="0,21,10,0" VerticalAlignment="Top" Padding="5,2" Click="SletAlle_Click"/>
-        <Button x:Name="btn_Reservere" Content="Reservere" HorizontalAlignment="Right" Margin="0,21,317,0" VerticalAlignment="Top" Padding="5,2" Click="Reservere_Click"/>
-
     </Grid>
 </Window>
