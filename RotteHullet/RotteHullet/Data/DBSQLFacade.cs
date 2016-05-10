@@ -116,8 +116,9 @@ namespace RotteHullet.Data
                     string forlag = Convert.ToString(sdr["forlag"]);
                     bool udlånes = Convert.ToBoolean(sdr["udlånes"]);
                     string kommentar = Convert.ToString(sdr["kommentar"]);
+                    bool kanudlånes = (bool)sdr["udlånt"];
 
-                    resultat = AktivFactory.HentAktivFactory().SkabNyBog(bogid, titel, forfatter, genre, subkategori, familie, forlag, udlånes, kommentar);
+                    resultat = AktivFactory.HentAktivFactory().SkabNyBog(bogid, titel, forfatter, genre, subkategori, familie, forlag, udlånes, kommentar, kanudlånes);
                 }
                 forb.Close();
                 forb.Dispose();
@@ -176,8 +177,8 @@ namespace RotteHullet.Data
                     string forlag = Convert.ToString(reader["forlag"]);
                     bool udlånes = Convert.ToBoolean(reader["udlånes"]);
                     string kommentar = Convert.ToString(reader["kommentar"]);
-
-                    Bog bog = AktivFactory.HentAktivFactory().SkabNyBog(bogid, titel, forfatter, genre, subkategori, familie, forlag, udlånes, kommentar);
+                    bool kanudlånes = (bool)reader["udlånt"];
+                    Bog bog = AktivFactory.HentAktivFactory().SkabNyBog(bogid, titel, forfatter, genre, subkategori, familie, forlag, udlånes, kommentar, kanudlånes);
                     bogListe.Add(bog);
                 }
                 forb.Close();
@@ -274,8 +275,9 @@ namespace RotteHullet.Data
                     bool udlånes = Convert.ToBoolean(sdr["udlånes"]);
                     string kommentar = Convert.ToString(sdr["kommentar"]);
                     string kategori = Convert.ToString(sdr["kategori"]);
+                    bool kanudlånes = (bool)sdr["udlånt"];
 
-                    resultat = AktivFactory.HentAktivFactory().SkabNyBrætspil(id, brætspilnavn, udgiver, udlånes, kommentar, kategori);
+                    resultat = AktivFactory.HentAktivFactory().SkabNyBrætspil(id, brætspilnavn, udgiver, udlånes, kommentar, kategori, kanudlånes);
                 }
                 forb.Close();
                 forb.Dispose();
@@ -306,7 +308,8 @@ namespace RotteHullet.Data
                     bool udlånes = (bool)sdr["udlånes"];
                     string kommentar = Convert.ToString(sdr["kommentar"]);
                     string kategori = Convert.ToString(sdr["kategori"]);
-                    resultat.Add(AktivFactory.HentAktivFactory().SkabNyBrætspil(brætspilid, brætspilnavn, udgiver, udlånes, kommentar, kategori));
+                    bool kanudlånes = (bool)sdr["udlånt"];
+                    resultat.Add(AktivFactory.HentAktivFactory().SkabNyBrætspil(brætspilid, brætspilnavn, udgiver, udlånes, kommentar, kategori, kanudlånes));
                 }
                 forb.Close();
                 forb.Dispose();
@@ -419,8 +422,8 @@ namespace RotteHullet.Data
                     string kategori = Convert.ToString(sdr["kategori"]);
                     bool udlånes = Convert.ToBoolean(sdr["udlånes"]);
                     string kommentar = Convert.ToString(sdr["kommentar"]);
-
-                    resultat = AktivFactory.HentAktivFactory().SkabNytUdstyr(id, udstyrnavn, kategori, udlånes, kommentar);
+                    bool kanudlånes = (bool)sdr["udlånt"];
+                    resultat = AktivFactory.HentAktivFactory().SkabNytUdstyr(id, udstyrnavn, kategori, udlånes, kommentar, kanudlånes);
                 }
                 forb.Close();
                 forb.Dispose();
@@ -450,7 +453,8 @@ namespace RotteHullet.Data
                     string kategori = Convert.ToString(sdr["kategori"]);
                     bool udlånes = Convert.ToBoolean(sdr["udlånes"]);
                     string kommentar = Convert.ToString(sdr["kommentar"]);
-                    resultat.Add(AktivFactory.HentAktivFactory().SkabNytUdstyr(udstyrid, udstyrnavn, kategori, udlånes, kommentar));
+                    bool kanudlånes = (bool)sdr["udlånt"];
+                    resultat.Add(AktivFactory.HentAktivFactory().SkabNytUdstyr(udstyrid, udstyrnavn, kategori, udlånes, kommentar, kanudlånes));
                 }
                 forb.Close();
                 forb.Dispose();
@@ -507,8 +511,8 @@ namespace RotteHullet.Data
                     bool udlånes = Convert.ToBoolean(sdr["udlånes"]);
                     string kommentar = Convert.ToString(sdr["kommentar"]);
                     string møbler = Convert.ToString(sdr["møbler"]);
-
-                    resultat = AktivFactory.HentAktivFactory().SkabNytLokale(id, lokalenavn, lokation, udlånes, kommentar, møbler);
+                    bool kanudlånes = (bool)sdr["udlånt"];
+                    resultat = AktivFactory.HentAktivFactory().SkabNytLokale(id, lokalenavn, lokation, udlånes, kommentar, møbler, kanudlånes);
                 }
                 forb.Close();
                 forb.Dispose();
@@ -539,8 +543,8 @@ namespace RotteHullet.Data
                     bool udlånes = Convert.ToBoolean(sdr["udlånes"]);
                     string kommentar = Convert.ToString(sdr["kommentar"]);
                     string møbler = Convert.ToString(sdr["møbler"]);
-
-                    resultat.Add(AktivFactory.HentAktivFactory().SkabNytLokale(lokaleid, lokalenavn, lokation, udlånes, kommentar, møbler));
+                    bool kanudlånes = (bool)sdr["udlånt"];
+                    resultat.Add(AktivFactory.HentAktivFactory().SkabNytLokale(lokaleid, lokalenavn, lokation, udlånes, kommentar, møbler, kanudlånes));
                 }
                 forb.Close();
                 forb.Dispose();
@@ -654,7 +658,7 @@ namespace RotteHullet.Data
                 kommando.Parameters.Add(new SqlParameter("@godkendt", udl.Godkendt));
 
                 kommando.ExecuteNonQuery();
-                
+
                 forb.Close();
                 forb.Dispose();
 
@@ -779,16 +783,92 @@ namespace RotteHullet.Data
                 SqlCommand kommando = new SqlCommand("HentAlleUdlån", forb);
 
                 kommando.CommandType = System.Data.CommandType.StoredProcedure;
-
+            
                 SqlDataReader reader = kommando.ExecuteReader();
+                #region first result
+                while (reader.Read())
+                {
+                    object bog = null, udstyr = null, lokale = null, brætspil = null;
+                    DateTime afl = new DateTime();
+                    string medlem = "";
+                    try
+                    {
+                        medlem = HentMedlem2(Convert.ToInt32(reader["medlemid"]));
+                    }
+                    catch (Exception e)
+                    {
+
+                    }
+                    try
+                    {
+                        udstyr = HentUdstyr(Convert.ToInt32(reader["udstyrid"]));
+                        afl = Convert.ToDateTime(reader["udlåningsdato"]).AddMonths(1);
+                        if (udstyr != null)
+                        {
+                            result.Add(new Tuple<string, object, DateTime>(medlem, udstyr, afl));
+                        }
+
+
+                    }
+                    catch (Exception e)
+                    {
+
+                    }
+                    try
+                    {
+                        bog = HentBog(Convert.ToInt32(reader["bogid"]));
+                        afl = Convert.ToDateTime(reader["udlåningsdato"]).AddMonths(1);
+                        if (bog != null)
+                        {
+                            result.Add(new Tuple<string, object, DateTime>(medlem, bog, afl));
+                        }
+
+                    }
+                    catch (Exception e)
+                    {
+
+                    }
+                    try
+                    {
+                        lokale = HentLokale(Convert.ToInt32(reader["lokaleid"]));
+                        afl = Convert.ToDateTime(reader["udlåningsdato"]).AddDays(1);
+                        if (lokale != null)
+                        {
+                            result.Add(new Tuple<string, object, DateTime>(medlem, lokale, afl));
+                        }
+
+                    }
+                    catch (Exception e)
+                    {
+
+                    }
+                    try
+                    {
+                        brætspil = HentBrætSpil(Convert.ToInt32(reader["brætspilid"]));
+                        afl = Convert.ToDateTime(reader["udlåningsdato"]).AddDays(7);
+                        if (brætspil != null)
+                        {
+                            result.Add(new Tuple<string, object, DateTime>(medlem, brætspil, afl));
+                        }
+
+                    }
+                    catch (Exception e)
+                    {
+
+                    }
+
+
+                }
+                #endregion
+                #region the rest
                 while (reader.NextResult())
                 {
+                
                     while (reader.Read())
                     {
                         object bog = null, udstyr = null, lokale = null, brætspil = null;
                         DateTime afl = new DateTime();
                         string medlem = "";
-                        object a = new object();
                         try
                         {
                             medlem = HentMedlem2(Convert.ToInt32(reader["medlemid"]));
@@ -815,7 +895,7 @@ namespace RotteHullet.Data
                         try
                         {
                             bog = HentBog(Convert.ToInt32(reader["bogid"]));
-                            afl = Convert.ToDateTime(reader["udlåningsdato"]).AddMonths(3);
+                            afl = Convert.ToDateTime(reader["udlåningsdato"]).AddMonths(1);
                             if (bog != null)
                             {
                                 result.Add(new Tuple<string, object, DateTime>(medlem, bog, afl));
@@ -854,17 +934,19 @@ namespace RotteHullet.Data
                         {
 
                         }
-
-
                     }
                 }
-                
+                #endregion
                 forb.Close();
                 forb.Dispose();
             }
             catch (Exception)
             {
                 result = null;
+            }
+            foreach (var item in result)
+            {
+                Console.WriteLine(item.Item2.GetType() + " " + item.Item3);
             }
             return result;
         }

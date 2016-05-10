@@ -44,10 +44,10 @@ namespace RotteHulletTest
             {
                 return new List<Udstyr>
                 {
-                    new Udstyr(1, "Udstyr 1", "Tøj", true, null),
-                    new Udstyr(1, "Udstyr 2", "Spyd", true, null),
-                    new Udstyr(1, "Udstyr 3", "Sværd", true, null),
-                    new Udstyr(1, "Udstyr 4", "Bukser", true, null)
+                    new Udstyr(1, "Udstyr 1", "Tøj", true, null, false),
+                    new Udstyr(1, "Udstyr 2", "Spyd", true, null, false),
+                    new Udstyr(1, "Udstyr 3", "Sværd", true, null, false),
+                    new Udstyr(1, "Udstyr 4", "Bukser", true, null, false)
                 };
             }
         }

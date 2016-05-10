@@ -14,6 +14,7 @@ namespace RotteHullet.Domain.BusinessLogic
         private string _kategori;
         private bool _udlånes;
         private string _kommentar;
+        private bool _udlånt;
 
         #region Properties
         public int Id
@@ -93,7 +94,7 @@ namespace RotteHullet.Domain.BusinessLogic
         }
         #endregion
 
-        public Brætspil(int id, string brætspilsNavn, string udgiver,bool udlånes, string kommentar, string kategori = null)
+        public Brætspil(int id, string brætspilsNavn, string udgiver,bool udlånes, string kommentar, string kategori = null, bool udlånt = false)
         {
             _id = id;
             _brætspilsNavn = brætspilsNavn;
@@ -101,6 +102,7 @@ namespace RotteHullet.Domain.BusinessLogic
             _udlånes = udlånes;
             _kommentar = kommentar;
             _kategori = kategori;
+            _udlånt = udlånt;
         }
 
         public override string ToString()

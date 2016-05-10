@@ -20,27 +20,27 @@ namespace RotteHullet.Domain.BusinessLogic
         }
 
         //Bog
-        public Bog SkabNyBog(int id, string titel, string forfatter, string genre, string subkategori, string familie, string forlag, bool udlånes, string kommentar = null)
+        public Bog SkabNyBog(int id, string titel, string forfatter, string genre, string subkategori, string familie, string forlag, bool udlånes, string kommentar = null, bool udlånt = false)
         {
-            return new Bog(id, titel, forfatter, genre, subkategori, familie, forlag, udlånes, kommentar);
+            return new Bog(id, titel, forfatter, genre, subkategori, familie, forlag, udlånes, kommentar, udlånt);
         }
 
         //Lokale
-        public Lokale SkabNytLokale(int id, string navn, string lokation, bool udlånes, string kommentar, string møbler)
+        public Lokale SkabNytLokale(int id, string navn, string lokation, bool udlånes, string kommentar, string møbler, bool udlånt = false)
         {
-            return new Lokale(id, navn, lokation, udlånes, kommentar, møbler);
+            return new Lokale(id, navn, lokation, udlånes, kommentar, møbler, udlånt);
         }
 
         //Brætspil
-        public Brætspil SkabNyBrætspil(int id, string navn, string udgiver, bool udlånes, string kommentar, string kategori)
+        public Brætspil SkabNyBrætspil(int id, string navn, string udgiver, bool udlånes, string kommentar, string kategori, bool udlånt = false)
         {
-            return new Brætspil(id, navn,udgiver, udlånes, kommentar, kategori);
+            return new Brætspil(id, navn,udgiver, udlånes, kommentar, kategori, udlånt);
         }
 
         //Udstyr
-        public Udstyr SkabNytUdstyr(int id, string navn, string kategori, bool udlånes, string kommentar)
+        public Udstyr SkabNytUdstyr(int id, string navn, string kategori, bool udlånes, string kommentar, bool udlånt = false)
         {
-            return new Udstyr(id, navn, kategori, udlånes, kommentar);
+            return new Udstyr(id, navn, kategori, udlånes, kommentar, udlånt);
         }
 
         //Udlån

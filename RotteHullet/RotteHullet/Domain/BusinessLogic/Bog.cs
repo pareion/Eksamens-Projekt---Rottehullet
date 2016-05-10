@@ -17,7 +17,7 @@ namespace RotteHullet.Domain.BusinessLogic
         private string _forlag;
         private bool _udlånes;
         private string _kommentar;
-
+        private bool _udlånt;
         #region properties
         public int Id
         {
@@ -138,7 +138,7 @@ namespace RotteHullet.Domain.BusinessLogic
         #endregion
 
         public Bog(int id, string titel, string forfatter, string genre, string subkategori,
-            string familie, string forlag,bool udlånes, string kommentar = null)
+            string familie, string forlag,bool udlånes, string kommentar = null, bool udlånt = false)
         {
             _id = id;
             _titel = titel;
@@ -149,6 +149,7 @@ namespace RotteHullet.Domain.BusinessLogic
             _forlag = forlag;
             _udlånes = udlånes;
             _kommentar = kommentar;
+            _udlånt = udlånt;
         }
 
         public override string ToString()

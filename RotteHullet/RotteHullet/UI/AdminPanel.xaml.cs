@@ -60,8 +60,8 @@ namespace RotteHullet
                 _lokaleData = UIFacade.HentUIFacade().HentLokaleFacade().FindAlleLokaler();
                 _lokaleData.ForEach(x => lv_lokal.Items.Add(x));
 
-                _udlånDataTuple = UIFacade.HentUIFacade().HentUdlåningsFacade().FindAlleUdlån();
-                _udlånDataTuple.ForEach(x => lv_udlån.Items.Add(x.Item2));
+                //_udlånDataTuple = UIFacade.HentUIFacade().HentUdlåningsFacade().FindAlleUdlån();
+                //_udlånDataTuple.ForEach(x => lv_udlån.Items.Add(x.Item2));
                 
             }
             catch
