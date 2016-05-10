@@ -88,8 +88,8 @@
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="Bestillingsdato" Width="100" DisplayMemberBinding="{Binding Udlåningsdato}"/>
-                                <GridViewColumn Header="Medlemsnavn" Width="220" DisplayMemberBinding="{Binding MedlemNavn}"/>
-                                <GridViewColumn Header="Bestilt materiale" Width="220" DisplayMemberBinding="{Binding BestiltMateriale}"/>
+                                <GridViewColumn Header="Medlemsnavn" Width="220" DisplayMemberBinding="{Binding medlem}"/>
+                                <GridViewColumn Header="Bestilt materiale" Width="220" DisplayMemberBinding="{Binding Titel}"/>
                             </GridView>
                         </ListView.View>
 

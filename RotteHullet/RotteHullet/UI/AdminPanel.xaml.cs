@@ -25,6 +25,7 @@ namespace RotteHullet
         private List<object> _udstyrData = new List<object>();
         private List<object> _lokaleData = new List<object>();
         private List<object> _udlånData = new List<object>();
+        private List<Tuple<string, object>> _udlånDataTuple = new List<Tuple<string,object>>();
 
         private object _selectBog = null;
         private object _selectBrætspil = null;
@@ -59,8 +60,9 @@ namespace RotteHullet
                 _lokaleData = UIFacade.HentUIFacade().HentLokaleFacade().FindAlleLokaler();
                 _lokaleData.ForEach(x => lv_lokal.Items.Add(x));
 
-                //_udlånData = UIFacade.HentUIFacade().HentUdlåningsFacade().FindAlleUdlån();
-                //_udlånData.ForEach(x => lv_udlån.Items.Add(x));
+                _udlånDataTuple = UIFacade.HentUIFacade().HentUdlåningsFacade().FindAlleUdlån();
+                _udlånDataTuple.ForEach(x => lv_udlån.Items.Add(x.Item2));
+                
             }
             catch
             {
@@ -122,7 +124,7 @@ namespace RotteHullet
                 if (lv_bøger.SelectedIndex != -1)
                 {
                     string navn = (string)lv_bøger.SelectedItem.GetType().GetProperty("Titel").GetValue(lv_bøger.SelectedItem, null);
-                    string besked = string.Format("Vil du slet \"{0}\"?", forkortTekst(navn));
+                    string besked = string.Format("Vil du slette \"{0}\"?", forkortTekst(navn));
 
                     int id = (int)lv_bøger.SelectedItem.GetType().GetProperty("Id").GetValue(lv_bøger.SelectedItem, null);
 
