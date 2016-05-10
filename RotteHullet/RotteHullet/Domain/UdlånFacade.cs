@@ -31,7 +31,7 @@ namespace RotteHullet.Domain
         /// <returns></returns>
         public string ReserverAktiv(int medlemsid, DateTime udlåningsdato, DateTime afleveringsdato, int aktivType, List<int> aktivIDer)
         {
-            Udlån udl = AktivFactory.HentAktivFactory().SkabNytUdlån(0,medlemsid,0,udlåningsdato,afleveringsdato,null,false,null);
+            Udlån udl = AktivFactory.HentAktivFactory().SkabNytUdlån(0,medlemsid,0,udlåningsdato,afleveringsdato,null,false,new List<IAktiv>());
 
             string resultat = "";
             switch (aktivType)
@@ -92,7 +92,7 @@ namespace RotteHullet.Domain
         /// <returns></returns>
         public string BesvarReservation(int udlånid, int medlemsid, int adminid, DateTime udlåningsdato, DateTime afleveringsdato, bool godkendelse, int aktivType, List<int> aktivIDer)
         {
-            Udlån udl = AktivFactory.HentAktivFactory().SkabNytUdlån(udlånid, medlemsid, adminid, udlåningsdato, afleveringsdato, null, godkendelse, null);
+            Udlån udl = AktivFactory.HentAktivFactory().SkabNytUdlån(udlånid, medlemsid, adminid, udlåningsdato, afleveringsdato, null, godkendelse, new List<IAktiv>());
             string resultat = "";
             switch (aktivType)
             {

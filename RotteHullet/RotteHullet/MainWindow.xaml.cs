@@ -25,7 +25,11 @@ namespace RotteHullet
         public MainWindow()
         {
             DBFacade.AngivDatabaseFacade(DBFacade.DatabaseType.SqlDatabase);
-            DBFacade.HentDatabaseFacade().FindAlleUdlån();
+            /*foreach (var item in UIFacade.HentUIFacade().HentUdlåningsFacade().FindAlleUdlån())
+            {
+                Console.WriteLine(item.Item1+ " lol "+item.Item2);
+            }
+            Console.Read();*/
             InitializeComponent();
         }
 

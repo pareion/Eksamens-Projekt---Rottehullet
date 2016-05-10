@@ -269,7 +269,7 @@ namespace RotteHullet.Data
 
                 if (sdr.Read())
                 {
-                    string brætspilnavn = Convert.ToString(sdr["titel"]);
+                    string brætspilnavn = Convert.ToString(sdr["brætspilnavn"]);
                     string udgiver = Convert.ToString(sdr["udgiver"]);
                     bool udlånes = Convert.ToBoolean(sdr["udlånes"]);
                     string kommentar = Convert.ToString(sdr["kommentar"]);
@@ -677,10 +677,9 @@ namespace RotteHullet.Data
                 kommando.CommandType = System.Data.CommandType.StoredProcedure;
 
                 kommando.Parameters.Add(new SqlParameter("@medlemsid", udl.Medlemsid));
-                kommando.Parameters.Add(new SqlParameter("@adminid", udl.AdminId));
                 kommando.Parameters.Add(new SqlParameter("@udlåningsdato", udl.Udlåningsdato));
                 kommando.Parameters.Add(new SqlParameter("@afleveringsdato", udl.Afleveringsdato));
-
+                
 
                 SqlDataReader sdr = kommando.ExecuteReader();
                 if (sdr.Read())
@@ -763,8 +762,9 @@ namespace RotteHullet.Data
 
                 resultat = true;
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Console.WriteLine(e.Message);
                 resultat = false;
             }
 
@@ -782,59 +782,79 @@ namespace RotteHullet.Data
                 kommando.CommandType = System.Data.CommandType.StoredProcedure;
 
                 SqlDataReader reader = kommando.ExecuteReader();
-
-                while (reader.Read())
+                while (reader.NextResult())
                 {
-                    object bog = null, udstyr = null, lokale = null, brætspil = null;
-                    string medlem = "";
-                    object a = new object();
-                    try
+                    while (reader.Read())
                     {
-                        medlem = HentMedlem2(Convert.ToInt32(reader["medlemid"]));
-                    }
-                    catch (Exception e)
-                    {
+                        object bog = null, udstyr = null, lokale = null, brætspil = null;
+                        string medlem = "";
+                        object a = new object();
+                        try
+                        {
+                            medlem = HentMedlem2(Convert.ToInt32(reader["medlemid"]));
+                        }
+                        catch (Exception e)
+                        {
+
+                        }
+                        try
+                        {
+                            udstyr = HentUdstyr(Convert.ToInt32(reader["udstyrid"]));
+                            if (udstyr != null)
+                            {
+                                result.Add(new Tuple<string, object>(medlem, udstyr));
+                            }
+
+
+                        }
+                        catch (Exception e)
+                        {
+
+                        }
+                        try
+                        {
+                            bog = HentBog(Convert.ToInt32(reader["bogid"]));
+                            if (bog != null)
+                            {
+                                result.Add(new Tuple<string, object>(medlem, bog));
+                            }
+
+                        }
+                        catch (Exception e)
+                        {
+
+                        }
+                        try
+                        {
+                            lokale = HentLokale(Convert.ToInt32(reader["lokaleid"]));
+                            if (lokale != null)
+                            {
+                                result.Add(new Tuple<string, object>(medlem, lokale));
+                            }
+
+                        }
+                        catch (Exception e)
+                        {
+
+                        }
+                        try
+                        {
+                            brætspil = HentBrætSpil(Convert.ToInt32(reader["brætspilid"]));
+                            if (brætspil != null)
+                            {
+                                result.Add(new Tuple<string, object>(medlem, brætspil));
+                            }
+
+                        }
+                        catch (Exception e)
+                        {
+
+                        }
+
 
                     }
-                    try
-                    {
-                        bog = HentBog(Convert.ToInt32(reader["bogid"]));
-                        result.Add(new Tuple<string, object>(medlem, bog));
-                    }
-                    catch (Exception e)
-                    {
-
-                    }
-                    try
-                    {
-                        udstyr = HentUdstyr(Convert.ToInt32(reader["udstyrid"]));
-                        result.Add(new Tuple<string, object>(medlem, udstyr));
-                    }
-                    catch (Exception e)
-                    {
-
-                    }
-                    try
-                    {
-                        lokale = HentLokale(Convert.ToInt32(reader["lokaleid"]));
-                        result.Add(new Tuple<string, object>(medlem, lokale));
-                    }
-                    catch (Exception e)
-                    {
-
-                    }
-                    try
-                    {
-                        brætspil = HentBrætSpil(Convert.ToInt32(reader["brætspilid"]));
-                        result.Add(new Tuple<string, object>(medlem, brætspil));
-                    }
-                    catch (Exception e)
-                    {
-
-                    }
-                    
-
                 }
+                
                 forb.Close();
                 forb.Dispose();
             }
@@ -842,7 +862,11 @@ namespace RotteHullet.Data
             {
                 result = null;
             }
-
+            foreach (var item in result)
+            {
+                Console.WriteLine(item.Item1+" "+item.Item2.GetType());
+            }
+            Console.WriteLine();
             return result;
         }
         #endregion
