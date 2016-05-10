@@ -679,7 +679,6 @@ namespace RotteHullet.Data
                 kommando.Parameters.Add(new SqlParameter("@medlemsid", udl.Medlemsid));
                 kommando.Parameters.Add(new SqlParameter("@udlåningsdato", udl.Udlåningsdato));
                 kommando.Parameters.Add(new SqlParameter("@afleveringsdato", udl.Afleveringsdato));
-                
 
                 SqlDataReader sdr = kommando.ExecuteReader();
                 if (sdr.Read())
@@ -770,9 +769,9 @@ namespace RotteHullet.Data
 
             return resultat;
         }
-        public List<Tuple<string, object>> FindAlleUdlån()
+        public List<Tuple<string, object, DateTime>> FindAlleUdlån()
         {
-            List<Tuple<string, object>> result = new List<Tuple<string, object>>();
+            List<Tuple<string, object, DateTime>> result = new List<Tuple<string, object, DateTime>>();
 
             try
             {
@@ -787,6 +786,7 @@ namespace RotteHullet.Data
                     while (reader.Read())
                     {
                         object bog = null, udstyr = null, lokale = null, brætspil = null;
+                        DateTime afl = new DateTime();
                         string medlem = "";
                         object a = new object();
                         try
@@ -800,9 +800,10 @@ namespace RotteHullet.Data
                         try
                         {
                             udstyr = HentUdstyr(Convert.ToInt32(reader["udstyrid"]));
+                            afl = Convert.ToDateTime(reader["udlåningsdato"]).AddMonths(1);
                             if (udstyr != null)
                             {
-                                result.Add(new Tuple<string, object>(medlem, udstyr));
+                                result.Add(new Tuple<string, object, DateTime>(medlem, udstyr, afl));
                             }
 
 
@@ -814,9 +815,10 @@ namespace RotteHullet.Data
                         try
                         {
                             bog = HentBog(Convert.ToInt32(reader["bogid"]));
+                            afl = Convert.ToDateTime(reader["udlåningsdato"]).AddMonths(3);
                             if (bog != null)
                             {
-                                result.Add(new Tuple<string, object>(medlem, bog));
+                                result.Add(new Tuple<string, object, DateTime>(medlem, bog, afl));
                             }
 
                         }
@@ -827,9 +829,10 @@ namespace RotteHullet.Data
                         try
                         {
                             lokale = HentLokale(Convert.ToInt32(reader["lokaleid"]));
+                            afl = Convert.ToDateTime(reader["udlåningsdato"]).AddDays(1);
                             if (lokale != null)
                             {
-                                result.Add(new Tuple<string, object>(medlem, lokale));
+                                result.Add(new Tuple<string, object, DateTime>(medlem, lokale, afl));
                             }
 
                         }
@@ -840,9 +843,10 @@ namespace RotteHullet.Data
                         try
                         {
                             brætspil = HentBrætSpil(Convert.ToInt32(reader["brætspilid"]));
+                            afl = Convert.ToDateTime(reader["udlåningsdato"]).AddDays(7);
                             if (brætspil != null)
                             {
-                                result.Add(new Tuple<string, object>(medlem, brætspil));
+                                result.Add(new Tuple<string, object, DateTime>(medlem, brætspil, afl));
                             }
 
                         }
@@ -862,11 +866,6 @@ namespace RotteHullet.Data
             {
                 result = null;
             }
-            foreach (var item in result)
-            {
-                Console.WriteLine(item.Item1+" "+item.Item2.GetType());
-            }
-            Console.WriteLine();
             return result;
         }
         #endregion

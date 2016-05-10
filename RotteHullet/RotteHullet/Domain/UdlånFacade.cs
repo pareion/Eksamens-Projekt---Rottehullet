@@ -138,7 +138,7 @@ namespace RotteHullet.Domain
             return resultat;
         }
 
-        public List<Tuple<string, object>> FindAlleUdlån()
+        public List<Tuple<string, object, DateTime>> FindAlleUdlån()
         {
             return DBFacade.HentDatabaseFacade().FindAlleUdlån();
         }
