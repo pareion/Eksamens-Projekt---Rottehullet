@@ -25,8 +25,6 @@ namespace RotteHullet
         private List<object> _udstyrData = new List<object>();
         private List<object> _lokaleData = new List<object>();
         private List<object> _udlånData = new List<object>();
-        private List<Tuple<string, object, DateTime>> _udlånDataTuple = new List<Tuple<string, object, DateTime>>();
-        private List<UdlånData> _reservationData = new List<UdlånData>();
 
         private object _selectBog = null;
         private object _selectBrætspil = null;
@@ -43,28 +41,7 @@ namespace RotteHullet
 
     
 
-        class UdlånData
-        {
-            public string MedlemsNavn { get; private set; }
-            public string BestillingsDato { get; private set; }
-            public string ReservationType { get; private set; }
-
-            private DateTime _dato;
-            private object _aktiv;
-
-            public UdlånData(string navn, object aktiv, DateTime dato)
-            {
-                // Gem original data source
-                _aktiv = aktiv;
-                _dato = dato;
-
-                MedlemsNavn = navn;
-                BestillingsDato = dato.ToString("dd-MM-yyyy HH:mm:ss");
-
-                // Bestemmer selv hvad man vil gerne se i "Reserveret materiale"
-                ReservationType = aktiv.ToString();
-            }
-        }
+       
 
         internal void IndlæsData()
         {
@@ -88,18 +65,8 @@ namespace RotteHullet
                 _lokaleData = UIFacade.HentUIFacade().HentLokaleFacade().FindAlleLokaler();
                 _lokaleData.ForEach(x => lv_lokal.Items.Add(x));
 
-                // Forventer logisk fejl (Logic error)
-                /*_udlånDataTuple = UIFacade.HentUIFacade().HentUdlåningsFacade().FindAlleUdlån();
-                foreach (Tuple<string, object, DateTime> item in _udlånDataTuple)
-                {
-                    _reservationData.Add(new UdlånData(item.Item1, item.Item2, item.Item3));
-                    
-                    //MyItem my = new MyItem(item.Item1,item.Item2);
-                    //lv_udlån.Items.Add(my);
-                }
-                _reservationData.ForEach(x => lv_udlån.Items.Add(x));*/
-
-                //_udlånDataTuple.ForEach(x => lv_udlån.Items.Add(x));
+                _udlånData = UIFacade.HentUIFacade().HentUdlåningsFacade().FindAlleUdlån();
+                _udlånData.ForEach(x=> lv_udlån.Items.Add(x));
                 
 
             }

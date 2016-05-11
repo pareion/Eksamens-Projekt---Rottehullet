@@ -138,9 +138,23 @@ namespace RotteHullet.Domain
             return resultat;
         }
 
-        public List<Udlån> FindAlleUdlån()
+        public List<object> FindAlleUdlån()
         {
-            return DBFacade.HentDatabaseFacade().FindAlleUdlån();
+            List<object> resultater = new List<object>();
+
+            List<Udlån> udlån = DBFacade.HentDatabaseFacade().FindAlleUdlån();
+
+            if (udlån.Count>0)
+            {
+                foreach (Udlån item in udlån)
+                {
+                    resultater.Add((object)item);
+                }
+
+            }
+
+
+            return resultater;
         }
     }
 }
