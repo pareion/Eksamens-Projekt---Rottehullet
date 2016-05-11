@@ -8,13 +8,14 @@ namespace RotteHullet.Domain.BusinessLogic
 {
     class Udlån
     {
+        public enum godkendelse { godkendt = 0, ikketagetstillingtil = 1, ikkegodkendt = 2};
         private int _id;
         private Medlem _medlem;
         private int _adminId;
         private DateTime _udlåningsdato;
         private DateTime _afleveringsdato;
         private DateTime? _reelleafleveringsdato;
-        private bool _godkendt;
+        private godkendelse _godkendt;
         private List<IAktiv> _aktiver;
 
         #region Properties
@@ -96,19 +97,6 @@ namespace RotteHullet.Domain.BusinessLogic
             }
         }
 
-        public bool Godkendt
-        {
-            get
-            {
-                return _godkendt;
-            }
-
-            set
-            {
-                _godkendt = value;
-            }
-        }
-
         internal List<IAktiv> Aktiver
         {
             get
@@ -121,10 +109,23 @@ namespace RotteHullet.Domain.BusinessLogic
                 _aktiver = value;
             }
         }
+
+        public godkendelse Godkendt
+        {
+            get
+            {
+                return _godkendt;
+            }
+
+            set
+            {
+                _godkendt = value;
+            }
+        }
         #endregion
 
         public Udlån(int id, Medlem medlem, int adminId, DateTime udlåningsdato, 
-            DateTime afleveringsdato, DateTime? reelleafleveringsdato, bool godkendt, List<IAktiv> aktiver)
+            DateTime afleveringsdato, DateTime? reelleafleveringsdato, int godkendt, List<IAktiv> aktiver)
         {
             _id = id;
             _medlem = medlem;
@@ -132,7 +133,7 @@ namespace RotteHullet.Domain.BusinessLogic
             _udlåningsdato = udlåningsdato;
             _afleveringsdato = afleveringsdato;
             _reelleafleveringsdato = reelleafleveringsdato;
-            _godkendt = godkendt;
+            Godkendt = (godkendelse)godkendt;
             _aktiver = aktiver;
         }
     }//Klasse

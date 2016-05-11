@@ -31,7 +31,7 @@ namespace RotteHullet.Domain
         /// <returns></returns>
         public string ReserverAktiv(Medlem medlem, DateTime udlåningsdato, DateTime afleveringsdato, int aktivType, List<int> aktivIDer)
         {
-            Udlån udl = AktivFactory.HentAktivFactory().SkabNytUdlån(0,medlem,0,udlåningsdato,afleveringsdato,null,false,new List<IAktiv>());
+            Udlån udl = AktivFactory.HentAktivFactory().SkabNytUdlån(0,medlem,0,udlåningsdato,afleveringsdato,null,1,new List<IAktiv>());
 
             string resultat = "";
             switch (aktivType)
@@ -78,21 +78,9 @@ namespace RotteHullet.Domain
             return resultat;
         }
 
-        /// <summary>
-        /// Kaldes når et bestyrelses medlem skal godkende en reservation
-        /// </summary>
-        /// <param name="udlånid"></param>
-        /// <param name="medlemsid"></param>
-        /// <param name="adminid"></param>
-        /// <param name="udlåningsdato"></param>
-        /// <param name="afleveringsdato"></param>
-        /// <param name="godkendelse"></param>
-        /// <param name="aktivType"></param>
-        /// <param name="aktivIDer"></param>
-        /// <returns></returns>
-        public string BesvarReservation(int udlånid, Medlem medlem, int adminid, DateTime udlåningsdato, DateTime afleveringsdato, bool godkendelse, int aktivType, List<int> aktivIDer)
+        public string BesvarReservation(int udlånid, int medlemid, int adminid, DateTime udlåningsdato, DateTime afleveringsdato, int godkendelse, int aktivType, List<int> aktivIDer)
         {
-            Udlån udl = AktivFactory.HentAktivFactory().SkabNytUdlån(udlånid, medlem, adminid, udlåningsdato, afleveringsdato, null, godkendelse, new List<IAktiv>());
+            Udlån udl = AktivFactory.HentAktivFactory().SkabNytUdlån(udlånid, DBFacade.HentDatabaseFacade().HentMedlem(medlemid), adminid, udlåningsdato, afleveringsdato, null, godkendelse, new List<IAktiv>());
             string resultat = "";
             switch (aktivType)
             {

@@ -47,5 +47,8 @@ namespace RotteHullet.Data
         List<Udlån> FindAlleUdlån();
         bool OpdaterUdlån(Udlån udl);
         #endregion
+        #region medlem
+        Medlem HentMedlem(int id);
+        #endregion
     }
 }

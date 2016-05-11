@@ -655,7 +655,7 @@ namespace RotteHullet.Data
                 kommando.Parameters.Add(new SqlParameter("@udlåningsdato", udl.Udlåningsdato));
                 kommando.Parameters.Add(new SqlParameter("@afleveringsdato", udl.Afleveringsdato));
                 kommando.Parameters.Add(new SqlParameter("@reeleafleveringsdato", udl.Reelleafleveringsdato));
-                kommando.Parameters.Add(new SqlParameter("@godkendt", udl.Godkendt));
+                kommando.Parameters.Add(new SqlParameter("@godkendelse", (int)udl.Godkendt));
 
                 kommando.ExecuteNonQuery();
 
@@ -795,10 +795,11 @@ namespace RotteHullet.Data
                         int medlemid = Convert.ToInt32(reader["medlemid"]);
                         DateTime udldato = Convert.ToDateTime(reader["udlåningsdato"]);
                         DateTime afldato = Convert.ToDateTime(reader["afleveringsdato"]);
+                        int godkendelse = Convert.ToInt32(reader["godkendelse"]);
 
                         Medlem mdl = HentMedlem(medlemid);
 
-                        result.Add(AktivFactory.HentAktivFactory().SkabNytUdlån(udlånid, mdl, 0, udldato, afldato, null, false, new List<IAktiv>()));
+                        result.Add(AktivFactory.HentAktivFactory().SkabNytUdlån(udlånid, mdl, 0, udldato, afldato, null, godkendelse, new List<IAktiv>()));
 
 
                     }
@@ -819,16 +820,6 @@ namespace RotteHullet.Data
                         Lokale lokale = null;
                         Brætspil brætspil = null;
 
-                        DateTime afl = new DateTime();
-                        string medlem = "";
-                        try
-                        {
-                            medlem = HentMedlem2(Convert.ToInt32(reader["medlemid"]));
-                        }
-                        catch (Exception e)
-                        {
-
-                        }
                         try
                         {
                             udstyr = HentUdstyr(Convert.ToInt32(reader["udstyrid"]));
@@ -906,7 +897,7 @@ namespace RotteHullet.Data
             }
             foreach (var item in result)
             {
-                Console.WriteLine(item.Id+" "+item.Medlem);
+               
                 foreach (var item2 in item.Aktiver)
                 {
                     Console.WriteLine(item2.GetType());
@@ -964,35 +955,6 @@ namespace RotteHullet.Data
             }
             return resultat;
 
-        }
-        private string HentMedlem2(int v)
-        {
-            string resultat = "";
-            try
-            {
-                SqlConnection forb = hentForbindelse();
-
-                SqlCommand kommando = new SqlCommand("HentMedlem2", forb);
-                kommando.CommandType = System.Data.CommandType.StoredProcedure;
-
-                kommando.Parameters.Add(new SqlParameter("@id", v));
-
-                SqlDataReader sdr = kommando.ExecuteReader();
-
-                if (sdr.Read())
-                {
-                    string navn = Convert.ToString(sdr["brugernavn"]);
-
-                    resultat = navn;
-                }
-                forb.Close();
-                forb.Dispose();
-            }
-            catch (Exception)
-            {
-                resultat = null;
-            }
-            return resultat;
         }
 
         public Medlem HentMedlem(string brugernavn, string password)
