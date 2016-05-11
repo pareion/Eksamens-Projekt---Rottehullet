@@ -650,7 +650,7 @@ namespace RotteHullet.Data
                 kommando.CommandType = System.Data.CommandType.StoredProcedure;
 
                 kommando.Parameters.Add(new SqlParameter("@udlånid", udl.Id));
-                kommando.Parameters.Add(new SqlParameter("@medlemsid", udl.Medlem));
+                kommando.Parameters.Add(new SqlParameter("@medlemsid", udl.Medlem.Id));
                 kommando.Parameters.Add(new SqlParameter("@adminid", udl.AdminId));
                 kommando.Parameters.Add(new SqlParameter("@udlåningsdato", udl.Udlåningsdato));
                 kommando.Parameters.Add(new SqlParameter("@afleveringsdato", udl.Afleveringsdato));
@@ -680,7 +680,7 @@ namespace RotteHullet.Data
                 SqlCommand kommando = new SqlCommand("GemUdlån", forb);
                 kommando.CommandType = System.Data.CommandType.StoredProcedure;
 
-                kommando.Parameters.Add(new SqlParameter("@medlemsid", udl.Medlem));
+                kommando.Parameters.Add(new SqlParameter("@medlemsid", udl.Medlem.Id));
                 kommando.Parameters.Add(new SqlParameter("@udlåningsdato", udl.Udlåningsdato));
                 kommando.Parameters.Add(new SqlParameter("@afleveringsdato", udl.Afleveringsdato));
 
@@ -959,7 +959,44 @@ namespace RotteHullet.Data
 
         public Medlem HentMedlem(string brugernavn, string password)
         {
-            throw new NotImplementedException();
+            Medlem resultat = null;
+
+            try
+            {
+                using (SqlConnection forb = hentForbindelse())
+                {
+                    using (SqlCommand kommando = new SqlCommand("BrugerLogin", forb))
+                    {
+                        kommando.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        kommando.Parameters.Add(new SqlParameter("@brugernavn", brugernavn));
+                        kommando.Parameters.Add(new SqlParameter("@adgangskode", password));
+
+                        using (SqlDataReader sdr = kommando.ExecuteReader())
+                        {
+                            if (sdr.Read())
+                            {
+                                int medlemid = Convert.ToInt32(sdr["medlemid"]);
+                                string loginnavn = Convert.ToString(sdr["brugernavn"]);
+                                string fornavn = Convert.ToString(sdr["fornavn"]);
+                                string efternavn = Convert.ToString(sdr["efternavn"]);
+                                string adgangskode = Convert.ToString(sdr["adgangskode"]);
+                                string email = Convert.ToString(sdr["email"]);
+                                int status = Convert.ToInt32(sdr["rang"]);
+                                Medlem.MedlemType medl = (Medlem.MedlemType)status;
+
+                                resultat = new Medlem(medlemid, fornavn, efternavn, loginnavn, adgangskode, email, medl);
+                            }
+                        }
+
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                resultat = null;
+            }
+            return resultat;
         }
         #endregion
     }

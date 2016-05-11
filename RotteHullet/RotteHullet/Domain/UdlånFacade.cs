@@ -23,15 +23,15 @@ namespace RotteHullet.Domain
         /// Kaldes når et medlem skal reservere et aktiv for første gang
         /// aktivType 0 = udstyr, 1 = bøger, 2 = brætspil og 3 = lokaler
         /// </summary>
-        /// <param name="medlemsid"></param>
         /// <param name="udlåningsdato"></param>
         /// <param name="afleveringsdato"></param>
         /// <param name="aktivType"></param>
         /// <param name="aktivIDer"></param>
         /// <returns></returns>
-        public string ReserverAktiv(Medlem medlem, DateTime udlåningsdato, DateTime afleveringsdato, int aktivType, List<int> aktivIDer)
+        public string ReserverAktiv(DateTime udlåningsdato, DateTime afleveringsdato, int aktivType, List<int> aktivIDer)
         {
-            Udlån udl = AktivFactory.HentAktivFactory().SkabNytUdlån(0,medlem,0,udlåningsdato,afleveringsdato,null,1,new List<IAktiv>());
+            // Skift ud Medlem objekt parameter til SessionBruger()-> Medlem objekt i stedet for
+            Udlån udl = AktivFactory.HentAktivFactory().SkabNytUdlån(0, MedlemFacade.HentMedlemFacade().SessionBruger(), 0,udlåningsdato,afleveringsdato,null,1,new List<IAktiv>());
 
             string resultat = "";
             switch (aktivType)

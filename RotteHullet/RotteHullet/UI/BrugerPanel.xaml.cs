@@ -23,12 +23,6 @@ namespace RotteHullet
     {
         private ListView _bogView, _brætspilView, _udstyrView, _lokaleView;
         public enum AktivType { Bog, Brætspil, Udstyr, Lokale }
-
-        private GridViewColumnHeader listeSortCol = null;
-        private ReservationListe reservationListe = null;
-        private InfoPopup infoSide = null;
-        private bool infoAktive = false;
-
         public AktivType SøgType
         {
             get
@@ -55,12 +49,38 @@ namespace RotteHullet
                 }
             }
         }
+        public bool LåsFilter { get; private set; }
+
+        private GridViewColumnHeader listeSortCol = null;
+        private ReservationListe reservationListe = null;
+        private InfoPopup infoSide = null;
 
         public BrugerPanel()
         {
             InitializeComponent();
             
             
+        }
+
+        public void FjernReservation()
+        {
+            if (reservationListe != null && reservationListe.IsClosed)
+            {
+                reservationListe = null;
+                frigivFilter();
+                reservationInfo();
+                this.Activate();
+            }
+        }
+
+        public void ReservereAktiv(object data = null)
+        {
+            opretReservationListe();
+
+            // Tilføj aktiv til reservation listen
+            tilføjTilReservation(data);
+            låsSøgningFilter();
+            reservationInfo();
         }
 
         #region Event
@@ -94,11 +114,26 @@ namespace RotteHullet
 
         private void AktivListe_DoubleClick(object sender, MouseButtonEventArgs e)
         {
-            ListViewItem data = sender as ListViewItem;
-            infoSide = new InfoPopup(InfoPopup.InfoType.Bog, data.DataContext);
-            
-            infoSide.Owner = this;
-            infoSide.Show();
+            visAktivInfo((ListViewItem)sender);
+        }
+
+        private void AktivListe_Enter(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                visAktivInfo((ListViewItem)sender);
+            }
+        }
+
+        private void AktivListeUdvalgt_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ListView liste = sender as ListView;
+            tjekUdvalgtListe(ref liste);
+        }
+
+        private void Reservere_Click(object sender, RoutedEventArgs e)
+        {
+            ReservereAktiv();
         }
 
         protected override void OnActivated(EventArgs e)
@@ -110,9 +145,159 @@ namespace RotteHullet
             }
         }
 
+        private void VisReservation_Click(object sender, RoutedEventArgs e)
+        {
+            if (reservationListe != null)
+            {
+                reservationListe.Show();
+            }
+        }
+
+        private void Filter_Checked(object sender, RoutedEventArgs e)
+        {
+            if (Indhold != null)
+            {
+                Indhold.Children.Clear();
+            }
+            
+        }
+
         #endregion
 
         #region Funktioner
+
+        private void visAktivInfo(ListViewItem data)
+        {
+            infoSide = new InfoPopup((InfoPopup.InfoType)SøgType, data.DataContext);
+            infoSide.Owner = this;
+            infoSide.ShowDialog();
+        }
+
+        private void opretReservationListe()
+        {
+            if (reservationListe == null)
+            {
+                reservationListe = new ReservationListe(SøgType);
+                reservationListe.Owner = this;
+            }
+        }
+
+        private void tilføjTilReservation(object data)
+        {
+            if (data == null)
+            {
+                switch (SøgType)
+                {
+                    case AktivType.Bog:
+                        reservationListe.Tilføj(_bogView.SelectedItem);
+                        break;
+                    case AktivType.Brætspil:
+                        reservationListe.Tilføj(_brætspilView.SelectedItem);
+                        break;
+                    case AktivType.Udstyr:
+                        reservationListe.Tilføj(_udstyrView.SelectedItem);
+                        break;
+                    case AktivType.Lokale:
+                        reservationListe.Tilføj(_lokaleView.SelectedItem);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else
+            {
+                reservationListe.Tilføj(data);
+            }
+        }
+
+        private void reservationInfo()
+        {
+            if (reservationListe == null || reservationListe.AntalAktiver == 0)
+            {
+                btn_ReservationVisning.Content = "Ingen aktiv i kurv";
+            }
+            else
+            {
+                btn_ReservationVisning.Content = string.Format("({0}) {1}", reservationListe.AntalAktiver, aktivBøjning(reservationListe.AntalAktiver));
+            }
+        }
+
+        private string aktivBøjning(int antal = 0)
+        {
+            
+            string[] bog = { "bog", "bøger" };
+            string[] spil = { "brætspil", "brætspil" };
+            string[] udstyr = { "udstyr", "udstyr" };
+            string[] lokale = { "lokale", "lokaler" };
+
+            string tekst = null;
+
+            switch (SøgType)
+            {
+                case AktivType.Bog:
+                    tekst = antal > 1 ? bog[1] : bog[0];
+                    break;
+                case AktivType.Brætspil:
+                    tekst = antal > 1 ? spil[1] : spil[0];
+                    break;
+                case AktivType.Udstyr:
+                    tekst = antal > 1 ? udstyr[1] : udstyr[0];
+                    break;
+                case AktivType.Lokale:
+                    tekst = antal > 1 ? lokale[1] : lokale[0];
+                    break;
+                default:
+                    break;
+            }
+
+            return tekst;
+        }
+
+        private void låsSøgningFilter()
+        {
+            if (LåsFilter == false)
+            {
+                switch (SøgType)
+                {
+                    case AktivType.Bog:
+                        rb_Brætspil.IsEnabled = false;
+                        rb_Udstyr.IsEnabled = false;
+                        rb_Lokale.IsEnabled = false;
+                        break;
+                    case AktivType.Brætspil:
+                        rb_Bog.IsEnabled = false;
+                        rb_Udstyr.IsEnabled = false;
+                        rb_Lokale.IsEnabled = false;
+                        break;
+                    case AktivType.Udstyr:
+                        rb_Bog.IsEnabled = false;
+                        rb_Brætspil.IsEnabled = false;
+                        rb_Lokale.IsEnabled = false;
+                        break;
+                    case AktivType.Lokale:
+                        rb_Bog.IsEnabled = false;
+                        rb_Brætspil.IsEnabled = false;
+                        rb_Udstyr.IsEnabled = false;
+                        break;
+                    default:
+                        break;
+                }
+
+                LåsFilter = true;
+            }
+        }
+        private void frigivFilter()
+        {
+            if (LåsFilter == true)
+            {
+                rb_Bog.IsEnabled = true;
+                rb_Brætspil.IsEnabled = true;
+                rb_Udstyr.IsEnabled = true;
+                rb_Lokale.IsEnabled = true;
+
+                LåsFilter = false;
+            }
+        }
 
         private void aktivSøgning()
         {
@@ -124,12 +309,15 @@ namespace RotteHullet
                     break;
                 case AktivType.Brætspil:
                     ResultatVisning(ref _brætspilView, UIFacade.HentUIFacade().HentBrætSpilFacade().FindAlleBrætspil(tb_Søgboks.Text));
+                    tjekUdvalgtListe(ref _brætspilView);
                     break;
                 case AktivType.Udstyr:
                     ResultatVisning(ref _udstyrView, UIFacade.HentUIFacade().HentUdstyrFacade().FindAlleUdstyr(tb_Søgboks.Text));
+                    tjekUdvalgtListe(ref _udstyrView);
                     break;
                 case AktivType.Lokale:
                     ResultatVisning(ref _lokaleView, UIFacade.HentUIFacade().HentLokaleFacade().FindAlleLokaler(tb_Søgboks.Text));
+                    tjekUdvalgtListe(ref _lokaleView);
                     break;
                 default:
                     break;
@@ -137,10 +325,28 @@ namespace RotteHullet
             
         }
 
+        private void tjekUdvalgtListe(ref ListView liste)
+        {
+            if(btn_Reservere.IsVisible == false)
+            {
+                btn_Reservere.Visibility = Visibility.Visible;
+            }
+
+            if (liste.SelectedIndex != -1)
+            {
+                btn_Reservere.IsEnabled = (bool)liste.SelectedItem.GetType().GetProperty("Udlånes").GetValue(liste.SelectedItem);
+            }
+            else
+            {
+                btn_Reservere.IsEnabled = false;
+            }
+        }
+
         private void ResultatVisning(ref ListView liste, List<object> resultater)
         {
             // Ryd aktiv liste
             liste.Items.Clear();
+
             // Indsæt aktiv info til listview
             foreach (object item in resultater)
             {
@@ -243,12 +449,6 @@ namespace RotteHullet
             
         }
 
-        private void VisReservation_Click(object sender, RoutedEventArgs e)
-        {
-
-            
-        }
-
         private void konfigurereListe()
         {
             // Instantiere ListView objekt
@@ -268,7 +468,6 @@ namespace RotteHullet
             bygBrætspilListe(ref _brætspilView);
             bygUdstyrListe(ref _udstyrView);
             bygLokaleListe(ref _lokaleView);
-
         }
 
         private void instillKonfig(ref ListView liste)
@@ -276,14 +475,21 @@ namespace RotteHullet
             // Position 
             liste.HorizontalAlignment = HorizontalAlignment.Stretch;
             liste.VerticalAlignment = VerticalAlignment.Stretch;
+            liste.SelectionMode = SelectionMode.Single;
             //liste.Margin = new Thickness(60, 230, 60, 0);
             //liste.Width = double.NaN;
             //liste.Height = double.NaN;
 
+            // ListView event
+            liste.SelectionChanged += AktivListeUdvalgt_SelectionChanged;
+
             // Manuelle sætter dobbelt klik event til ListViewItem(er)
-            EventSetter setter = new EventSetter(ListViewItem.MouseDoubleClickEvent, new MouseButtonEventHandler(AktivListe_DoubleClick));
+            EventSetter doubleclickEvent = new EventSetter(ListViewItem.MouseDoubleClickEvent, new MouseButtonEventHandler(AktivListe_DoubleClick));
+            EventSetter enterEvent = new EventSetter(ListViewItem.KeyDownEvent, new KeyEventHandler(AktivListe_Enter));
+
             Style style = new Style();
-            style.Setters.Add(setter);
+            style.Setters.Add(doubleclickEvent);
+            style.Setters.Add(enterEvent);
             liste.ItemContainerStyle = style;
         }
 

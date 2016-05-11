@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RotteHullet"
         mc:Ignorable="d"
-        Title="Rottehullet system" Height="700" Width="680" FocusManager.FocusedElement="{Binding ElementName=t_Søgboks}">
+        Title="Rottehullet system" Height="700" Width="680" FocusManager.FocusedElement="{Binding ElementName=t_Søgboks}" WindowStartupLocation="CenterScreen">
     <Grid>
         <!-- Top level -->
-        <Button x:Name="btn_ReservationVisning" Content="Tilføjet liste" HorizontalAlignment="Stretch" Margin="560,10,10,630" VerticalAlignment="Top" Width="80" Padding="2"  Background="{x:Null}" Click="VisReservation_Click" />
+        <Button x:Name="btn_ReservationVisning" Content="Ingen aktiv i kurv" HorizontalAlignment="Right" Margin="0,15,20,0" VerticalAlignment="Top" Padding="2" Click="VisReservation_Click" Background="{x:Null}" BorderBrush="{x:Null}" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"/>
 
         <Label Content="Hvad leder du efter?" HorizontalAlignment="Center" VerticalAlignment="Stretch"  Width="230" Height="Auto"  Margin="0,72,0,551" FontSize="24"/>
         <TextBox x:Name="tb_Søgboks" HorizontalAlignment="Center" Width="440" Height="36" Margin="0,124,0,0" FontSize="18" Padding="2,4,35,0" TextWrapping="NoWrap" VerticalAlignment="Top" KeyDown="Søgning_KeyDown" />
@@ -17,21 +17,25 @@
             <Grid>
                 <StackPanel Orientation="Horizontal" Margin="5,5,5,0">
                     <StackPanel Margin="0,0,10,0">
-                        <RadioButton x:Name="rb_Bog" GroupName="OptionValgt" Content="Bøger" IsChecked="True" />
+                        <RadioButton x:Name="rb_Bog" GroupName="OptionValgt" Content="Bøger" IsChecked="True" Checked="Filter_Checked"/>
                     </StackPanel>
                     <StackPanel Margin="0,0,10,0">
-                        <RadioButton x:Name="rb_Brætspil" GroupName="OptionValgt" Content="Brætspil" />
+                        <RadioButton x:Name="rb_Brætspil" GroupName="OptionValgt" Content="Brætspil" Checked="Filter_Checked"/>
                     </StackPanel>
                     <StackPanel Margin="0,0,10,0">
-                        <RadioButton x:Name="rb_Udstyr" GroupName="OptionValgt" Content="Udstyr" />
+                        <RadioButton x:Name="rb_Udstyr" GroupName="OptionValgt" Content="Udstyr" Checked="Filter_Checked"/>
                     </StackPanel>
                     <StackPanel>
-                        <RadioButton x:Name="rb_Lokale" GroupName="OptionValgt" Content="Lokaler" />
+                        <RadioButton x:Name="rb_Lokale" GroupName="OptionValgt" Content="Lokaler" Checked="Filter_Checked"/>
                     </StackPanel>
                 </StackPanel>
             </Grid>
         </Expander>
+
+        <Button x:Name="btn_Reservere" Content="Reservere" HorizontalAlignment="Right" Margin="0,200,60,0" VerticalAlignment="Top" Padding="6,3" Visibility="Hidden" IsEnabled="False" Click="Reservere_Click"/>
+
         <Grid x:Name="Indhold" HorizontalAlignment="Stretch" Height="430" Margin="60,230,60,0" VerticalAlignment="Top" Width="Auto">
+            
             <!--
             <ListView x:Name="lv_Aktiver" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <ListView.ItemContainerStyle>
@@ -59,10 +63,8 @@
                     <ListViewItem>Test 3</ListViewItem>
                 </ListView.Items>
             </ListView>-->
-            
-        </Grid>
-        
 
+        </Grid>
         <!-- Content level -->
         <!-- Bottom level -->
     </Grid>

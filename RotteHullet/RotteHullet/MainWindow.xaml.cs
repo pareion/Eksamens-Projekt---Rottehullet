@@ -41,7 +41,7 @@ namespace RotteHullet
 
         private void btn_LogPå_Click(object sender, RoutedEventArgs e)
         {
-            logind(true);
+            logind();
         }
 
         private void logind(bool demo = false)
@@ -143,7 +143,7 @@ namespace RotteHullet
         {
             if (e.Key == Key.Enter)
             {
-                logind(true);
+                logind();
             }
         }
     }

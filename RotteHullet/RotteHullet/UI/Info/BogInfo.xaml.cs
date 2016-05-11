@@ -23,6 +23,11 @@ namespace RotteHullet
     {
         public object AktivInfo { get; set; }
 
+        private Window hovedSide
+        {
+            get { return Window.GetWindow(this); }
+        }
+
         public BogInfo(object data)
         {
             InitializeComponent();
@@ -48,10 +53,13 @@ namespace RotteHullet
                 bool tilladelse = (bool)AktivInfo.GetType().GetProperty(egenskabNavn).GetValue(AktivInfo);
                 if (tilladelse)
                 {
+                    tb_Status.Foreground = new SolidColorBrush(Color.FromRgb(43, 200, 0));
                     return "Tilgængelig";
                 }
                 else
                 {
+                    btn_Kurv.IsEnabled = false;
+                    tb_Status.Foreground = new SolidColorBrush(Color.FromRgb(200, 44, 44));
                     return "Ikke til udlån";
                 }
             }
@@ -62,5 +70,50 @@ namespace RotteHullet
                 return tekst != null && tekst != "" ? tekst : "Ingen " + egenskabNavn.ToLower();
             }
         }
+
+        #region Event
+        private void HoverEffekt_MouseEnter(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                StackPanel panel = sender as StackPanel;
+                StackPanel childPanel = panel.Children[1] as StackPanel;
+                TextBox boks = childPanel.Children[0] as TextBox;
+                boks.Foreground = new SolidColorBrush(Color.FromRgb(33, 88, 255));
+            }
+            catch
+            {
+                
+            }
+        }
+
+        private void HoverEffekt_MouseLeave(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                StackPanel panel = sender as StackPanel;
+                StackPanel childPanel = panel.Children[1] as StackPanel;
+                TextBox boks = childPanel.Children[0] as TextBox;
+                boks.Foreground = new SolidColorBrush(Color.FromRgb(55, 55, 55));
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void TilføjAktiv_Click(object sender, RoutedEventArgs e)
+        {
+            BrugerPanel liste = hovedSide.Owner as BrugerPanel;
+            liste.ReservereAktiv(AktivInfo);
+            hovedSide.Close();
+        }
+
+        private void Annullere_Click(object sender, RoutedEventArgs e)
+        {
+            hovedSide.Close();
+        }
+
+        #endregion
     }
 }
