@@ -650,7 +650,7 @@ namespace RotteHullet.Data
                 kommando.CommandType = System.Data.CommandType.StoredProcedure;
 
                 kommando.Parameters.Add(new SqlParameter("@udlånid", udl.Id));
-                kommando.Parameters.Add(new SqlParameter("@medlemsid", udl.Medlemsid));
+                kommando.Parameters.Add(new SqlParameter("@medlemsid", udl.Medlem));
                 kommando.Parameters.Add(new SqlParameter("@adminid", udl.AdminId));
                 kommando.Parameters.Add(new SqlParameter("@udlåningsdato", udl.Udlåningsdato));
                 kommando.Parameters.Add(new SqlParameter("@afleveringsdato", udl.Afleveringsdato));
@@ -680,7 +680,7 @@ namespace RotteHullet.Data
                 SqlCommand kommando = new SqlCommand("GemUdlån", forb);
                 kommando.CommandType = System.Data.CommandType.StoredProcedure;
 
-                kommando.Parameters.Add(new SqlParameter("@medlemsid", udl.Medlemsid));
+                kommando.Parameters.Add(new SqlParameter("@medlemsid", udl.Medlem));
                 kommando.Parameters.Add(new SqlParameter("@udlåningsdato", udl.Udlåningsdato));
                 kommando.Parameters.Add(new SqlParameter("@afleveringsdato", udl.Afleveringsdato));
 

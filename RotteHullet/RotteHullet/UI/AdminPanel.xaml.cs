@@ -41,17 +41,7 @@ namespace RotteHullet
 
         #region Funktioner
 
-        public class MyItem {
-            public string Medlem;
-            public DateTime Bestillingsdato;
-            public object Reserveret;
-
-            public MyItem(string med, object res) {
-                Medlem = med;
-                Bestillingsdato = new DateTime();
-                Reserveret = res;
-            }
-        }
+    
 
         class UdlånData
         {

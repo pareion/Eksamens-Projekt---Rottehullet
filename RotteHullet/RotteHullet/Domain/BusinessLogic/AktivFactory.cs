@@ -44,9 +44,9 @@ namespace RotteHullet.Domain.BusinessLogic
         }
 
         //Udlån
-        public Udlån SkabNytUdlån(int id, int medlemsid, int adminid, DateTime udlåningsdato, DateTime afleveringsdato, DateTime? reelleafleveringsdato, bool godkendelse, List<IAktiv> aktivider)
+        public Udlån SkabNytUdlån(int id, Medlem medlem, int adminid, DateTime udlåningsdato, DateTime afleveringsdato, DateTime? reelleafleveringsdato, bool godkendelse, List<IAktiv> aktivider)
         {
-            return new Udlån(id, medlemsid, adminid, udlåningsdato, afleveringsdato, reelleafleveringsdato, godkendelse, aktivider);
+            return new Udlån(id, medlem, adminid, udlåningsdato, afleveringsdato, reelleafleveringsdato, godkendelse, aktivider);
         }
     }
 }

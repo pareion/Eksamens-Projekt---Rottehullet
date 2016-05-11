@@ -9,7 +9,7 @@ namespace RotteHullet.Domain.BusinessLogic
     class Udlån
     {
         private int _id;
-        private int _medlemsid;
+        private Medlem _medlem;
         private int _adminId;
         private DateTime _udlåningsdato;
         private DateTime _afleveringsdato;
@@ -31,16 +31,16 @@ namespace RotteHullet.Domain.BusinessLogic
             }
         }
 
-        public int Medlemsid
+        public Medlem Medlem
         {
             get
             {
-                return _medlemsid;
+                return _medlem;
             }
 
             set
             {
-                _medlemsid = value;
+                _medlem = value;
             }
         }
 
@@ -123,11 +123,11 @@ namespace RotteHullet.Domain.BusinessLogic
         }
         #endregion
 
-        public Udlån(int id, int medlemsid, int adminId, DateTime udlåningsdato, 
+        public Udlån(int id, Medlem medlem, int adminId, DateTime udlåningsdato, 
             DateTime afleveringsdato, DateTime? reelleafleveringsdato, bool godkendt, List<IAktiv> aktiver)
         {
             _id = id;
-            _medlemsid = medlemsid;
+            _medlem = medlem;
             _adminId = adminId;
             _udlåningsdato = udlåningsdato;
             _afleveringsdato = afleveringsdato;
