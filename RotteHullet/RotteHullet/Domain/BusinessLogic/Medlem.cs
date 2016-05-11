@@ -9,7 +9,7 @@ namespace RotteHullet.Domain.BusinessLogic
 {
     class Medlem
     {
-        public enum MedlemType { Bestyrelse, Bruger }
+        public enum MedlemType { Bestyrelse = 1, Bruger }
 
         private int _id;
         private string _fornavn;
