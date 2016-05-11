@@ -99,7 +99,7 @@ namespace RotteHullet
                 _lokaleData.ForEach(x => lv_lokal.Items.Add(x));
 
                 // Forventer logisk fejl (Logic error)
-                _udlånDataTuple = UIFacade.HentUIFacade().HentUdlåningsFacade().FindAlleUdlån();
+                /*_udlånDataTuple = UIFacade.HentUIFacade().HentUdlåningsFacade().FindAlleUdlån();
                 foreach (Tuple<string, object, DateTime> item in _udlånDataTuple)
                 {
                     _reservationData.Add(new UdlånData(item.Item1, item.Item2, item.Item3));
@@ -107,7 +107,7 @@ namespace RotteHullet
                     //MyItem my = new MyItem(item.Item1,item.Item2);
                     //lv_udlån.Items.Add(my);
                 }
-                _reservationData.ForEach(x => lv_udlån.Items.Add(x));
+                _reservationData.ForEach(x => lv_udlån.Items.Add(x));*/
 
                 //_udlånDataTuple.ForEach(x => lv_udlån.Items.Add(x));
                 
