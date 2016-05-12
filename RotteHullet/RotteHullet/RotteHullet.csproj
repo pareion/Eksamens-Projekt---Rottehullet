@@ -61,6 +61,9 @@
     <Compile Include="UI\AnbefaletAktiver.xaml.cs">
       <DependentUpon>AnbefaletAktiver.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\BestillingsinfoBest.xaml.cs">
+      <DependentUpon>BestillingsinfoBest.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Info\FejlInfo.xaml.cs">
       <DependentUpon>FejlInfo.xaml</DependentUpon>
     </Compile>
@@ -91,6 +94,10 @@
       <DependentUpon>UdlånPopup.xaml</DependentUpon>
     </Compile>
     <Page Include="UI\AnbefaletAktiver.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\BestillingsinfoBest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

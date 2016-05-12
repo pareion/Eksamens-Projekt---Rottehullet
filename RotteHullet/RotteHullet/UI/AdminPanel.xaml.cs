@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using RotteHullet.Domain;
+using RotteHullet.UI;
 
 namespace RotteHullet
 {
@@ -30,6 +31,8 @@ namespace RotteHullet
         private object _selectBrætspil = null;
         private object _selectUdstyr = null;
         private object _selectLokale = null;
+        private object _selectUdlån = null;
+        private BestillingsinfoBest Bestinf;
 
         public AdminPanel()
         {
@@ -500,20 +503,42 @@ namespace RotteHullet
 
         private void btn_Bestillingsinfo_Click(object sender, RoutedEventArgs e)
         {
+            if (_selectUdlån != null)
+            {
 
+            }
         }
 
         private void btn_Opdater_Click(object sender, RoutedEventArgs e)
         {
+            fjernLister();
             IndlæsData();
         }
         private void lv_udlån_DoubleClick(object sender, RoutedEventArgs e) {
-            // Gå ind i Udlånet og se dets detaljer
+            ListViewItem data = sender as ListViewItem;
+           Bestinf  = new BestillingsinfoBest(BestillingsinfoBest.Udlånstype.Bog, _selectUdlån);
+            MessageBox.Show(_udlånData.ToString());
+            Bestinf.Owner = this;
+            Bestinf.Show();
 
         }
 
         private void lv_udlån_SelectionChanged(object sender, RoutedEventArgs e)
         {
+            if (lv_udlån.SelectedIndex != -1)
+            {
+               
+               
+                _selectUdlån = lv_udlån.Items.GetItemAt(lv_udlån.SelectedIndex);
+                
+                btn_Bestillingsinfo.IsEnabled = true;
+            }
+            else
+            {
+                btn_Bestillingsinfo.IsEnabled = false;
+                }
+
+
             // opdatere det aktive element.
         }
 
