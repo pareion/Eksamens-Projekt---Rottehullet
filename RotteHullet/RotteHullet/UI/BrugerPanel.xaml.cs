@@ -58,9 +58,9 @@ namespace RotteHullet
         public BrugerPanel()
         {
             InitializeComponent();
-            
-            
         }
+
+        #region Global metoder
 
         public void FjernReservation()
         {
@@ -73,6 +73,11 @@ namespace RotteHullet
             }
         }
 
+        public void OpdatereReservation()
+        {
+            reservationInfo();
+        }
+
         public void ReservereAktiv(object data = null)
         {
             opretReservationListe();
@@ -82,6 +87,8 @@ namespace RotteHullet
             låsSøgningFilter();
             reservationInfo();
         }
+
+        #endregion
 
         #region Event
 

@@ -49,6 +49,14 @@ namespace RotteHullet
             }
         }
 
+        private BrugerPanel hovedside
+        {
+            get
+            {
+                return this.Owner as BrugerPanel;
+            }
+        }
+
         private DateTime hentAfleveringDato
         {
             get
@@ -117,6 +125,7 @@ namespace RotteHullet
                 {
                     DataListe.RemoveAt(indeks);
                     AktivListe.Items.RemoveAt(indeks);
+                    hovedside.OpdatereReservation();
                 }
                 catch
                 {
@@ -144,7 +153,6 @@ namespace RotteHullet
         private void lukReservation()
         {
             this.IsClosed = true;
-            BrugerPanel hovedside = this.Owner as BrugerPanel;
             hovedside.FjernReservation();
         }
 
