@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RotteHullet.Domain.BusinessLogic
 {
-    class Bog : IAktiv, Data.IDBFacade
+    class Bog : IAktiv
     {
         private int _id;
         private string _titel;
