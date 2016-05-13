@@ -37,6 +37,7 @@ namespace RotteHullet.UI
 
             lv_Reservationer.Items.Add(data);
             var a = data.GetType().GetProperty("Aktiver").GetValue(data);
+
             foreach (var item in (List<object>)data.GetType().GetProperty("Aktiver").GetValue(data))
             {
                 Console.WriteLine("lol");

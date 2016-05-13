@@ -110,6 +110,14 @@ namespace RotteHullet.Domain.BusinessLogic
             }
         }
 
+        public List<object> AktiverData
+        {
+            get
+            {
+                return Aktiver.ToList<object>();
+            }
+        }
+
         public godkendelse Godkendt
         {
             get
@@ -136,5 +144,8 @@ namespace RotteHullet.Domain.BusinessLogic
             Godkendt = (godkendelse)godkendt;
             _aktiver = aktiver;
         }
+
+        
+
     }//Klasse
 }//Namespace

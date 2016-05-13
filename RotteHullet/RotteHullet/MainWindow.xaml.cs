@@ -24,9 +24,8 @@ namespace RotteHullet
     {
         public MainWindow()
         {
-            DBFacade.AngivDatabaseFacade(DBFacade.DatabaseType.SqlDatabase);
-            DBFacade.HentDatabaseFacade().FindAlleUdlån();
             InitializeComponent();
+            DBFacade.AngivDatabaseFacade(DBFacade.DatabaseType.SqlDatabase);
         }
 
         private void TilmeldEvent(object sender, MouseButtonEventArgs e)
