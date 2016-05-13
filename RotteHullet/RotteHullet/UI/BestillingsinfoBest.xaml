@@ -7,24 +7,28 @@
         mc:Ignorable="d"
         Title="BestillingsinfoBest" Height="700" Width="680">
     <Grid>
-        <Label x:Name="l_BestillersNavn" Content="BestillersNavn" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" />
+        <Label x:Name="l_BestillersNavn" Content="Bestillersnavn" HorizontalAlignment="Left" Margin="50,15,0,0" VerticalAlignment="Top" FontWeight="Bold" />
+        <TextBlock x:Name="tb_Navn" Text="Medlemsnavn" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,45,0,0" />
+        <Label x:Name="l_Type" Content="Type af aktiv" HorizontalAlignment="Center" Margin="0,15,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <TextBlock x:Name="tb_Type" Text="Aktiv" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,45,0,0" />
+        <Label x:Name="l_StandarUdlånstid" Content="Standard udlånstid" HorizontalAlignment="Left" Margin="487,15,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <TextBlock x:Name="tb_Dato" Text="00-00-00 00:00" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,45,84,0" Width="83" />
 
-        <ListView SelectionMode="Single" x:Name="lv_Reservationer" HorizontalAlignment="Left" Height="470" Margin="10,41,0,0" VerticalAlignment="Top" Width="630">
+        <ListView SelectionMode="Single" x:Name="lv_Reservationer" HorizontalAlignment="Left" Height="470" Margin="10,81,0,0" VerticalAlignment="Top" Width="652">
             <ListView.View>
                 <GridView>
                     <!--<GridViewColumn Header="Navn på aktiv" Width="200" DisplayMemberBinding="{Binding Medlem.Fornavn}"/>-->
-                    <GridViewColumn Header="Kommentar" Width="449" DisplayMemberBinding="{Binding Aktiver}" />
-                    
+                    <GridViewColumn Header="Navn" Width="300" DisplayMemberBinding="{Binding Navn}" />
+                    <GridViewColumn Header="Kommentar" Width="340" DisplayMemberBinding="{Binding Kommentar}" />
 
                 </GridView>
             </ListView.View>
 
         </ListView>
-        <Button x:Name="btn_Accepter" Content="Acceptér" Margin="522,597,75,51" Width = "75"/>
-        <Button x:Name="btn_Afslå" Content="Afvis" HorizontalAlignment="Left" Margin="63,597,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="btn_Tilbage" Content="Tilbage" HorizontalAlignment="Left" Margin="289,597,0,0" VerticalAlignment="Top" Width="75"/>
-        <Label x:Name="l_Type" Content="Type af aktiv" HorizontalAlignment="Left" Margin="289,10,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="l_StandarUdlånstid" Content="Standard udlånstid" HorizontalAlignment="Left" Margin="522,10,0,0" VerticalAlignment="Top"/>
+
+        <Button x:Name="btn_Accepter" Content="Acceptér" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="533,597,0,0" Padding="10,5" Click="acceptere_Click"/>
+        <Button x:Name="btn_Afslå" Content="Afvis" HorizontalAlignment="Left" Margin="63,597,0,0" VerticalAlignment="Top" Padding="10,5" Click="afvis_Click"/>
+        <Button x:Name="btn_Tilbage" Content="Tilbage" HorizontalAlignment="Left" Margin="289,597,0,0" VerticalAlignment="Top" Padding="10,5" Click="tillbage_Click"/>
 
     </Grid>
 </Window>

@@ -33,31 +33,64 @@ namespace RotteHullet.UI
         }
 
 
-        void udfyldVindue(object data) {
+        void udfyldVindue(object data)
+        {
+            // Forventer syntax fejl
+            // Instatiate data
+            List<object> aktiv = data.GetType().GetProperty("AktiverData").GetValue(data) as List<object>;
 
-            lv_Reservationer.Items.Add(data);
-            var a = data.GetType().GetProperty("Aktiver").GetValue(data);
+            string aktivType = aktiv[0].GetType().Name;
 
-            foreach (var item in (List<object>)data.GetType().GetProperty("Aktiver").GetValue(data))
-            {
-                Console.WriteLine("lol");
-            }
-            /*
+            object medlem = data.GetType().GetProperty("Medlem").GetValue(data);
+            string fornavn = (string)medlem.GetType().GetProperty("Fornavn").GetValue(medlem);
+            string efternavn = (string)medlem.GetType().GetProperty("Efternavn").GetValue(medlem);
+
+            tb_Navn.Text = fornavn + " " + efternavn;
+            tb_Type.Text = aktivType;
+
+            aktiv.ForEach(x => omdanneAktiv(x));
+        }
+
+        private void omdanneAktiv(object data)
+        {
+            object aktiv = new { };
             switch (data.GetType().Name)
             {
                 case "Bog":
-                    
+                    aktiv = new { Navn = hentEgenskab<string>("Titel", data), Kommentar = hentEgenskab<string>("Kommentar", data) };
                     break;
                 case "Brætspil":
+                    aktiv = new { Navn = hentEgenskab<string>("BrætspilsNavn", data), Kommentar = hentEgenskab<string>("Kommentar", data) };
                     break;
                 case "Udstyr":
+                    aktiv = new { Navn = hentEgenskab<string>("UdstyrsNavn", data), Kommentar = hentEgenskab<string>("Kommentar", data) };
                     break;
                 case "Lokale":
+                    aktiv = new { Navn = hentEgenskab<string>("LokaleNavn", data), Kommentar = hentEgenskab<string>("Kommentar", data) };
                     break;
-                default:
-                    break;
-            }*/
+            }
+            lv_Reservationer.Items.Add(aktiv);
         }
 
+        private T hentEgenskab<T>(string egenskab, object data)
+        {
+            return (T)data.GetType().GetProperty(egenskab).GetValue(data);
+        }
+
+        private void acceptere_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void afvis_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void tillbage_Click(object sender, RoutedEventArgs e)
+        {
+            this.Owner.Activate();
+            this.Close();
+        }
     }
 }

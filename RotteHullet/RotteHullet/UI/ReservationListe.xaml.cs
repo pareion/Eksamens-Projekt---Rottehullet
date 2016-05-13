@@ -237,6 +237,7 @@ namespace RotteHullet
                     FjernAlle();
 
                     lukReservation();
+                    this.Owner.Activate();
                     this.Close();
                 }
                 else
