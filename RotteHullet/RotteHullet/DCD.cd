@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="RotteHullet.MainWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="8" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAACIICAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAIEAA=</HashCode>
+      <FileName>MainWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RotteHullet.AdminPanel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="10.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAQAAASACAMACAiwARKEIAISEABAQoAQBBQAkAiSA=</HashCode>
+      <FileName>UI\AdminPanel.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RotteHullet.AnbefaletAktiver" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="12.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UI\AnbefaletAktiver.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RotteHullet.BrugerPanel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="10.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgACQQBGAAAYAhEAgAICkEQCAAQoBQACACEQRQAJARE=</HashCode>
+      <FileName>UI\BrugerPanel.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RotteHullet.BogInfo" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="14.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAACAAAAAAAAACAACAABAAAAAAgBAIAAAAA=</HashCode>
+      <FileName>UI\Info\BogInfo.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RotteHullet.BrætspilInfo" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="14.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAACAAAAAAAAACAACAABAAAAAAgBAIAAAAA=</HashCode>
+      <FileName>UI\Info\BrætspilInfo.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RotteHullet.FejlInfo" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="14.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UI\Info\FejlInfo.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RotteHullet.LokaleInfo" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="14.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAACAAAAAAAAACAACAABAAAAAAgBAIAAAAA=</HashCode>
+      <FileName>UI\Info\LokaleInfo.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RotteHullet.UdstyrInfo" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="14.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAACAAAAAAAAACAACAABAAAAAAgBAIAAAAA=</HashCode>
+      <FileName>UI\Info\UdstyrInfo.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RotteHullet.InfoPopup" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="12.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAAAAAAAAAgAAAAgAAQAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UI\InfoPopup.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RotteHullet.OpretÆndreAktiv" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="12.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAJAAChAAMCAIgEAAAAAIAIAgAgAEAAZAAACACAAEAA=</HashCode>
+      <FileName>UI\OpretÆndreAktiv.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RotteHullet.ReservationListe" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="12.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgACYAQAAgAAQEAAwBAAiAAAAAUJAEACAIAAAAIBAME=</HashCode>
+      <FileName>UI\ReservationListe.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RotteHullet.Data.DBFacade" Collapsed="true">
+    <Position X="4.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAQAAAAAAAEAAAAAAAAAEAAA=</HashCode>
+      <FileName>Data\DBFacade.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RotteHullet.Data.DBSQLFacade" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEBAEBQREAEAAgAAAEgAIAAAIEAIAXAABEAgAAEIgAA=</HashCode>
+      <FileName>Data\DBSQLFacade.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RotteHullet.Domain.BogFacade" Collapsed="true">
+    <Position X="14.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQCBAAAAAAAAAAAAAAAACAAAAAgAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Domain\BogFacade.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RotteHullet.Domain.BrætspilFacade" Collapsed="true">
+    <Position X="14.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAEAAAAAAAAAAAAAACQEAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>Domain\BrætspilFacade.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RotteHullet.Domain.LokaleFacade" Collapsed="true">
+    <Position X="14.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAIAAAAAAAAAAAAAAABAACAAAAAAAAAAAAAAEAACA=</HashCode>
+      <FileName>Domain\LokaleFacade.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RotteHullet.Domain.MedlemFacade" Collapsed="true">
+    <Position X="14.25" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAgEAAAGAAAGAAQAAABAAA=</HashCode>
+      <FileName>Domain\MedlemFacade.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RotteHullet.Domain.UdlånFacade" Collapsed="true">
+    <Position X="14.25" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAAAAAAgAAAAAAAAABAAAAAAAABAAAAQ=</HashCode>
+      <FileName>Domain\UdlånFacade.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RotteHullet.Domain.UdstyrFacade" Collapsed="true">
+    <Position X="14.25" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAECABACAQAAAAAAAAgAA=</HashCode>
+      <FileName>Domain\UdstyrFacade.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RotteHullet.Domain.UIFacade" Collapsed="true">
+    <Position X="14.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAAAAAAAAAACAQAAAEAAQAEAABAAAAAQ=</HashCode>
+      <FileName>Domain\UIFacade.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RotteHullet.Domain.BusinessLogic.AktivFactory" Collapsed="true">
+    <Position X="9.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAEgAQAAAAAAAAAAAAEAQQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\BusinessLogic\AktivFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RotteHullet.Domain.BusinessLogic.Bog" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="12" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIACAAAAIgAESIAMAAJAABgAAAQAAgAAAACAAAAQACA=</HashCode>
+      <FileName>Domain\BusinessLogic\Bog.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RotteHullet.Domain.BusinessLogic.Brætspil" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="12" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIACAAAAAgAECCBEAABAAAgAAAAACAAAAAAAQIAAAgA=</HashCode>
+      <FileName>Domain\BusinessLogic\Brætspil.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RotteHullet.Domain.BusinessLogic.Lokale" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="12" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIACAAAAAgAECAAEAAJAEAgIQAAAAAAAIAAAQAAAAAA=</HashCode>
+      <FileName>Domain\BusinessLogic\Lokale.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RotteHullet.Domain.BusinessLogic.Medlem" Collapsed="true">
+    <Position X="12" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEQKAEAEAKAEAAAAAABAAAAIAAAAAAACAAAAAAAAAAM=</HashCode>
+      <FileName>Domain\BusinessLogic\Medlem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RotteHullet.Domain.BusinessLogic.Søgning" Collapsed="true">
+    <Position X="7" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAACAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Domain\BusinessLogic\Søgning.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RotteHullet.Domain.BusinessLogic.Udlån" Collapsed="true">
+    <Position X="12" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIACAIAIEAAIAAAIAABAABIAACAAEIAAQAEIAAAAAAA=</HashCode>
+      <FileName>Domain\BusinessLogic\Udlån.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RotteHullet.Domain.BusinessLogic.Udstyr" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="12" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gIACAAAAAgAECCAEAABAAAgAAAAAAACAAAAAQAAAAAA=</HashCode>
+      <FileName>Domain\BusinessLogic\Udstyr.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RotteHullet.UI.BestillingsinfoBest" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="10.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAEAAA=</HashCode>
+      <FileName>UI\BestillingsinfoBest.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Interface Name="RotteHullet.Data.IDBFacade" Collapsed="true">
+    <Position X="4.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEBAEBQREAEAAAAAAEgAIAAAIEAAAXAABEAgAAEIgAA=</HashCode>
+      <FileName>Data\IDBFacade.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="RotteHullet.Domain.BusinessLogic.IAktiv" Collapsed="true">
+    <Position X="5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\BusinessLogic\IAktiv.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

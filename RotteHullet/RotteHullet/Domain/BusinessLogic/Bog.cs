@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RotteHullet.Domain.BusinessLogic
 {
-    class Bog : IAktiv
+    class Bog : IAktiv, Data.IDBFacade
     {
         private int _id;
         private string _titel;
@@ -138,7 +138,7 @@ namespace RotteHullet.Domain.BusinessLogic
         #endregion
 
         public Bog(int id, string titel, string forfatter, string genre, string subkategori,
-            string familie, string forlag,bool udlånes, string kommentar = null, bool udlånt = false)
+            string familie, string forlag, bool udlånes, string kommentar = null, bool udlånt = false)
         {
             _id = id;
             _titel = titel;
@@ -155,7 +155,7 @@ namespace RotteHullet.Domain.BusinessLogic
         public override string ToString()
         {
             return "ID: " + _id + " Titel: " + _titel + " Forfatter: " + _forfatter + " Genre: " + _genre
-                   + " Subkategori: " + _subkategori + " Familie: " + _familie + " Forlag: " + _forlag 
+                   + " Subkategori: " + _subkategori + " Familie: " + _familie + " Forlag: " + _forlag
                    + " Udlånes: " + _udlånes + " Kommentar: " + _kommentar;
         }
 
