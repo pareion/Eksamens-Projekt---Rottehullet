@@ -126,17 +126,20 @@ namespace RotteHullet.Domain
             return resultat;
         }
 
-        public List<object> FindAlleUdlån()
+        public List<Tuple<object, List<object>>> FindAlleUdlån()
         {
-            List<object> resultater = new List<object>();
-
+            List<Tuple<object, List<object>>> resultater = new List<Tuple<object, List<object>>>();
+            List<object> aktiver = new List<object>();
             List<Udlån> udlån = DBFacade.HentDatabaseFacade().FindAlleUdlån();
 
             if (udlån.Count>0)
             {
                 foreach (Udlån item in udlån)
                 {
-                    resultater.Add((object)item);
+                    List<object> a = item.Aktiver.ToList<object>();
+                    Tuple<object, List<object>> b = new Tuple<object,List<object>>(item,a);
+                    resultater.Add(b);
+                    
                 }
 
             }

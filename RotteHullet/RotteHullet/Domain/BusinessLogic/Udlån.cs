@@ -97,7 +97,7 @@ namespace RotteHullet.Domain.BusinessLogic
             }
         }
 
-        internal List<IAktiv> Aktiver
+        public List<IAktiv> Aktiver
         {
             get
             {

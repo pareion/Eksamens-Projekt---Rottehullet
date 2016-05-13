@@ -517,8 +517,8 @@ namespace RotteHullet
         }
         private void lv_udlån_DoubleClick(object sender, RoutedEventArgs e) {
             ListViewItem data = sender as ListViewItem;
-           Bestinf  = new BestillingsinfoBest(BestillingsinfoBest.Udlånstype.Bog, _selectUdlån);
-                 
+            Bestinf  = new BestillingsinfoBest(BestillingsinfoBest.Udlånstype.Bog, _selectUdlån);
+            
             Bestinf.Owner = this;
             Bestinf.Show();
 
@@ -531,7 +531,7 @@ namespace RotteHullet
                
                
                 _selectUdlån = lv_udlån.Items.GetItemAt(lv_udlån.SelectedIndex);
-                
+               
                 btn_Bestillingsinfo.IsEnabled = true;
             }
             else

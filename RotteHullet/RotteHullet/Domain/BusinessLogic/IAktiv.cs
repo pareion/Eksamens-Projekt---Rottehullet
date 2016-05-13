@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RotteHullet.Domain.BusinessLogic
 {
-    interface IAktiv
+    class IAktiv
     {
     }
 }

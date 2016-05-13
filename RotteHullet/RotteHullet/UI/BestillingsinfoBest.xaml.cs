@@ -35,26 +35,27 @@ namespace RotteHullet.UI
 
         void udfyldVindue(object data) {
 
-            
-
             lv_Reservationer.Items.Add(data);
-
-
-
-            switch (Udlånstilstand)
+            var a = data.GetType().GetProperty("Aktiver").GetValue(data);
+            foreach (var item in (List<object>)data.GetType().GetProperty("Aktiver").GetValue(data))
             {
-                case Udlånstype.Bog:
-      
+                Console.WriteLine("lol");
+            }
+            /*
+            switch (data.GetType().Name)
+            {
+                case "Bog":
+                    
                     break;
-                case Udlånstype.Brætspil:
+                case "Brætspil":
                     break;
-                case Udlånstype.Udstyr:
+                case "Udstyr":
                     break;
-                case Udlånstype.Lokale:
+                case "Lokale":
                     break;
                 default:
                     break;
-            }
+            }*/
         }
 
     }

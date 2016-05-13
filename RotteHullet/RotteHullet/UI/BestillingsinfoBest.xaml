@@ -12,8 +12,8 @@
         <ListView SelectionMode="Single" x:Name="lv_Reservationer" HorizontalAlignment="Left" Height="470" Margin="10,41,0,0" VerticalAlignment="Top" Width="630">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Navn på aktiv" Width="200" DisplayMemberBinding="{Binding Medlem.Fornavn}"/>
-                    <GridViewColumn Header="Kommentar" Width="449" DisplayMemberBinding="{Binding Path= Aktiver[0]}" />
+                    <!--<GridViewColumn Header="Navn på aktiv" Width="200" DisplayMemberBinding="{Binding Medlem.Fornavn}"/>-->
+                    <GridViewColumn Header="Kommentar" Width="449" DisplayMemberBinding="{Binding Aktiver}" />
                     
 
                 </GridView>
