@@ -146,10 +146,10 @@ namespace RotteHullet
         protected override void OnActivated(EventArgs e)
         {
             base.OnActivated(e);
-            if (infoSide.IsActive)
-            {
-                MessageBox.Show("Success");
-            }
+            //if (infoSide.IsActive)
+            //{
+            //    MessageBox.Show("Success");
+            //}
         }
 
         private void VisReservation_Click(object sender, RoutedEventArgs e)
