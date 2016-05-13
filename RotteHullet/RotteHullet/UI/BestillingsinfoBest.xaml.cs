@@ -34,9 +34,13 @@ namespace RotteHullet.UI
 
 
         void udfyldVindue(object data) {
+
             
 
             lv_Reservationer.Items.Add(data);
+
+
+
             switch (Udlånstilstand)
             {
                 case Udlånstype.Bog:

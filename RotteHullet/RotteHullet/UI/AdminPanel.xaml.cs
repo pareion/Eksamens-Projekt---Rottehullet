@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using RotteHullet.Domain;
 using RotteHullet.UI;
+using System.Reflection;
 
 namespace RotteHullet
 {
@@ -517,7 +518,7 @@ namespace RotteHullet
         private void lv_udlån_DoubleClick(object sender, RoutedEventArgs e) {
             ListViewItem data = sender as ListViewItem;
            Bestinf  = new BestillingsinfoBest(BestillingsinfoBest.Udlånstype.Bog, _selectUdlån);
-            MessageBox.Show(_udlånData.ToString());
+                 
             Bestinf.Owner = this;
             Bestinf.Show();
 

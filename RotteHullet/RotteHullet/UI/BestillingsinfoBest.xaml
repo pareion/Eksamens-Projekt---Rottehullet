@@ -13,7 +13,7 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Navn på aktiv" Width="200" DisplayMemberBinding="{Binding Medlem.Fornavn}"/>
-                    <GridViewColumn Header="Kommentar" Width="449" DisplayMemberBinding="{Binding Aktiver}" />
+                    <GridViewColumn Header="Kommentar" Width="449" DisplayMemberBinding="{Binding Path= Aktiver[0]}" />
                     
 
                 </GridView>
