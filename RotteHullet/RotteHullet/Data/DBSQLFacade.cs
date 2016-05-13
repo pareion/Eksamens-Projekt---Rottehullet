@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using RotteHullet.Domain.BusinessLogic;
 using System.Data;
+using System.Threading;
 
 namespace RotteHullet.Data
 {
@@ -907,22 +908,27 @@ namespace RotteHullet.Data
         }
         public void Vedligeholdelse()
         {
-            try
+            while (true)
             {
-                SqlConnection forb = hentForbindelse();
+                try
+                {
+                    SqlConnection forb = hentForbindelse();
 
-                SqlCommand kommando = new SqlCommand("SletGamleUdlån", forb);
-                kommando.CommandType = System.Data.CommandType.StoredProcedure;
+                    SqlCommand kommando = new SqlCommand("SletGamleUdlån", forb);
+                    kommando.CommandType = System.Data.CommandType.StoredProcedure;
 
-                kommando.ExecuteNonQuery();
+                    kommando.ExecuteNonQuery();
 
-                forb.Close();
-                forb.Dispose();
+                    forb.Close();
+                    forb.Dispose();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                Thread.Sleep(10000);
             }
-            catch (Exception e )
-            {
-                Console.WriteLine(e.Message);
-            }
+            
         }
         #endregion
         #region medlem
