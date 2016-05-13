@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using RotteHullet.Data;
 using RotteHullet.Domain.BusinessLogic;
+using System.Threading;
 
 namespace RotteHullet.Domain
 {
@@ -152,5 +153,11 @@ namespace RotteHullet.Domain
 
         //    return resultater;
         //}
+
+        public void StartVedligeholdelse()
+        {
+            Thread t = new Thread(new ThreadStart(DBFacade.HentDatabaseFacade().Vedligeholdelse));
+            t.Start();
+        }
     }
 }

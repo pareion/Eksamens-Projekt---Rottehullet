@@ -49,6 +49,7 @@ namespace RotteHullet.Data
         #endregion
         #region medlem
         Medlem HentMedlem(int id);
+        void Vedligeholdelse();
         #endregion
     }
 }
