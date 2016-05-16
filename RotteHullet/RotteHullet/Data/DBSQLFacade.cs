@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using RotteHullet.Domain.BusinessLogic;
 using System.Data;
+using System.Threading;
 
 namespace RotteHullet.Data
 {
@@ -13,6 +14,7 @@ namespace RotteHullet.Data
     {
         //Disse glemmer vi lidt at bruge... PLease advice JA
         private static DBSQLFacade _dbsqlfacade;
+        private bool _running = true;
         public static IDBFacade HentDBSQLFacade()
         {
             if (_dbsqlfacade == null)
@@ -21,7 +23,10 @@ namespace RotteHullet.Data
             }
             return _dbsqlfacade;
         }
-
+        public void Terminate()
+        {
+            _running = false;
+        }
         #region forbindelse
         private SqlConnection hentForbindelse()
         {
@@ -997,6 +1002,34 @@ namespace RotteHullet.Data
                 resultat = null;
             }
             return resultat;
+        }
+        #endregion
+        #region vedligeholdelse
+        public void Vedligeholdelse()
+        {
+            while (_running)
+            {
+                try
+                {
+                    SqlConnection forb = hentForbindelse();
+
+                    SqlCommand kommando = new SqlCommand("SletGamleUdlån", forb);
+                    kommando.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    kommando.Parameters.Add(new SqlParameter("@idag", DateTime.Now.AddDays(10)));
+
+                    kommando.ExecuteNonQuery();
+
+                    forb.Close();
+                    forb.Dispose();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                Thread.Sleep(10000);
+            }
+            
         }
         #endregion
     }

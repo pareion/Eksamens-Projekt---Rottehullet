@@ -26,8 +26,13 @@ namespace RotteHullet
         {
             InitializeComponent();
             DBFacade.AngivDatabaseFacade(DBFacade.DatabaseType.SqlDatabase);
+            UIFacade.HentUIFacade().HentUdlåningsFacade().BegyndVedligeholdelse();
         }
-
+        protected override void OnClosed(EventArgs e)
+        {
+            UIFacade.HentUIFacade().HentUdlåningsFacade().stopVedligeholdelse();
+            base.OnClosed(e);
+        }
         private void TilmeldEvent(object sender, MouseButtonEventArgs e)
         {
 
