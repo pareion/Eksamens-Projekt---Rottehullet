@@ -1030,32 +1030,7 @@ namespace RotteHullet.Data
 
         #endregion
         #region vedligeholdelse
-        public void Vedligeholdelse()
-        {
-            while (_running)
-            {
-                try
-                {
-                    SqlConnection forb = hentForbindelse();
-
-                    SqlCommand kommando = new SqlCommand("SletGamleUdlån", forb);
-                    kommando.CommandType = System.Data.CommandType.StoredProcedure;
-
-                    kommando.Parameters.Add(new SqlParameter("@idag", DateTime.Now.AddDays(10)));
-
-                    kommando.ExecuteNonQuery();
-
-                    forb.Close();
-                    forb.Dispose();
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
-                Thread.Sleep(10000);
-            }
-            
-        }
+        
         #endregion
     }
 }
