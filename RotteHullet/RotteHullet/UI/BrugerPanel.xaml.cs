@@ -505,7 +505,6 @@ namespace RotteHullet
             GridView view = new GridView();
             view.Columns.Add(bygColumn("Titel", null, 220));
             view.Columns.Add(bygColumn("Familie", null, 180));
-            view.Columns.Add(bygColumn("Status", null, 180));
 
             liste.View = view;
         }
@@ -515,7 +514,6 @@ namespace RotteHullet
             GridView view = new GridView();
             view.Columns.Add(bygColumn("Navn", "BrætspilsNavn", 220));
             view.Columns.Add(bygColumn("Kategori", null, 180));
-            view.Columns.Add(bygColumn("Status", null, 180));
 
             liste.View = view;
         }
@@ -525,7 +523,6 @@ namespace RotteHullet
             GridView view = new GridView();
             view.Columns.Add(bygColumn("Navn", "UdstyrsNavn", 220));
             view.Columns.Add(bygColumn("Kategori", null, 180));
-            view.Columns.Add(bygColumn("Status", null, 180));
 
             liste.View = view;
         }
@@ -535,7 +532,6 @@ namespace RotteHullet
             GridView view = new GridView();
             view.Columns.Add(bygColumn("Navn", "LokaleNavn", 220));
             view.Columns.Add(bygColumn("Adresse", "Lokation", 180));
-            view.Columns.Add(bygColumn("Status", null, 180));
 
             liste.View = view;
         }

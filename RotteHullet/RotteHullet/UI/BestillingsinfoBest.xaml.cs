@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using RotteHullet.Domain;
 
 namespace RotteHullet.UI
 {
@@ -32,6 +33,24 @@ namespace RotteHullet.UI
             denne = data;
         }
 
+        public BestillingsinfoBest(object data)
+        {
+            InitializeComponent();
+
+            try
+            {
+                List<object> temp = (List<object>)data.GetType().GetProperty("AktiverData").GetValue(data);
+                Udlånstilstand = (Udlånstype)Enum.Parse(typeof(Udlånstype), temp[0].GetType().Name);
+            }
+            catch
+            {
+
+            }
+
+            udfyldVindue(data);
+            denne = data;
+        }
+
 
         void udfyldVindue(object data)
         {
@@ -40,10 +59,12 @@ namespace RotteHullet.UI
             List<object> aktiv = data.GetType().GetProperty("AktiverData").GetValue(data) as List<object>;
 
             string aktivType = aktiv[0].GetType().Name;
-
-            object medlem = data.GetType().GetProperty("Medlem").GetValue(data);
-            string fornavn = (string)medlem.GetType().GetProperty("Fornavn").GetValue(medlem);
-            string efternavn = (string)medlem.GetType().GetProperty("Efternavn").GetValue(medlem);
+            object medlem = hentEgenskab<object>("Medlem", data);
+            string fornavn = hentEgenskab<string>("Fornavn", medlem);
+            string efternavn = hentEgenskab<string>("Efternavn", medlem);
+            //object medlem = data.GetType().GetProperty("Medlem").GetValue(data);
+            //string fornavn = (string)medlem.GetType().GetProperty("Fornavn").GetValue(medlem);
+            //string efternavn = (string)medlem.GetType().GetProperty("Efternavn").GetValue(medlem);
 
             tb_Navn.Text = fornavn + " " + efternavn;
             tb_Type.Text = aktivType;
@@ -79,18 +100,52 @@ namespace RotteHullet.UI
 
         private void acceptere_Click(object sender, RoutedEventArgs e)
         {
+            string svar = UIFacade.HentUIFacade().HentUdlåningsFacade().BesvarReservation(denne, 1);
+            if (svar == "Udlån er skabt")
+            {
+                AdminPanel panel = this.Owner as AdminPanel;
+                panel.OpdatereListe();
 
+                this.Owner.Activate();
+                this.Close();
+            }
+            else
+            {
+                fejlMeddelse();
+            }
         }
 
         private void afvis_Click(object sender, RoutedEventArgs e)
         {
+            string svar = UIFacade.HentUIFacade().HentUdlåningsFacade().BesvarReservation(denne, 2);
+            if (svar == "Udlån er skabt")
+            {
+                AdminPanel panel = this.Owner as AdminPanel;
+                panel.OpdatereListe();
 
+                this.Owner.Activate();
+                this.Close();
+            }
+            else
+            {
+                fejlMeddelse();
+            }
         }
 
         private void tillbage_Click(object sender, RoutedEventArgs e)
         {
             this.Owner.Activate();
             this.Close();
+        }
+
+        private void fejlMeddelse()
+        {
+            MessageBoxResult besvar = MessageBox.Show("Vil du lukke vidue?", "Fejl, Kunne ikke gemmenføre opgave", MessageBoxButton.YesNo);
+            if (besvar == MessageBoxResult.Yes)
+            {
+                this.Owner.Activate();
+                this.Close();
+            }
         }
     }
 }

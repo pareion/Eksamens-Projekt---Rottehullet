@@ -34,38 +34,6 @@
 
         <Button x:Name="btn_Reservere" Content="Reservere" HorizontalAlignment="Right" Margin="0,200,60,0" VerticalAlignment="Top" Padding="6,3" Visibility="Hidden" IsEnabled="False" Click="Reservere_Click"/>
 
-        <Grid x:Name="Indhold" HorizontalAlignment="Stretch" Height="430" Margin="60,230,60,0" VerticalAlignment="Top" Width="Auto">
-            
-            <!--
-            <ListView x:Name="lv_Aktiver" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                        <EventSetter Event="MouseDoubleClick" Handler="listViewItem_MouseDoubleClick" />
-                    </Style>
-                </ListView.ItemContainerStyle>
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Width="200"  DisplayMemberBinding="{Binding Navn}">
-                            <GridViewColumn.Header>
-                                <GridViewColumnHeader Tag="Titel" Click="Sortering_Click">Titel</GridViewColumnHeader>
-                            </GridViewColumn.Header>
-                        </GridViewColumn>
-                        <GridViewColumn Width="150" DisplayMemberBinding="{Binding Forfatter}">
-                            <GridViewColumn.Header>
-                                <GridViewColumnHeader Tag="Forfatter" Click="Sortering_Click">Forfatter</GridViewColumnHeader>
-                            </GridViewColumn.Header>
-                        </GridViewColumn>
-                    </GridView>
-                </ListView.View>
-                <ListView.Items>
-                    <ListViewItem>Test 1</ListViewItem>
-                    <ListViewItem>Test 2</ListViewItem>
-                    <ListViewItem>Test 3</ListViewItem>
-                </ListView.Items>
-            </ListView>-->
-
-        </Grid>
-        <!-- Content level -->
-        <!-- Bottom level -->
+        <Grid x:Name="Indhold" HorizontalAlignment="Stretch" Height="430" Margin="60,230,60,0" VerticalAlignment="Top" Width="Auto"></Grid>
     </Grid>
 </Window>

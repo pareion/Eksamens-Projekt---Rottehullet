@@ -79,6 +79,107 @@ namespace RotteHullet.Domain
             return resultat;
         }
 
+        /// <summary>
+        /// Hurtig BesvarReservation
+        /// </summary>
+        /// <param name="udlån">Udlån objekt</param>
+        /// <param name="godkendelse">Godkendelse værdi(0 = Afvent, 1 = Godkendt, 2 = Afvist)</param>
+        public string BesvarReservation(object udlån, int godkendelse)
+        {
+            Udlån data = udlån as Udlån;
+
+            // Opdatere info
+            data.Godkendt = (Udlån.Godkendelse)godkendelse;
+            // Administrator Id
+            data.AdminId = MedlemFacade.HentMedlemFacade().SessionBruger().Id;
+
+            if (data.Godkendt == Udlån.Godkendelse.Tillad)
+            {
+                // Udvide udlån dato
+                data.Udlåningsdato = DateTime.Now;
+                try
+                {
+                    if (data.Aktiver[0] is Bog)
+                    {
+                        data.Afleveringsdato = DateTime.Now.AddMonths(3);
+                    }
+                    else if (data.Aktiver[0] is Brætspil)
+                    {
+                        data.Afleveringsdato = DateTime.Now.AddDays(1);
+                    }
+                    else if (data.Aktiver[0] is Udstyr)
+                    {
+                        data.Afleveringsdato = DateTime.Now.AddMonths(3);
+                    }
+                    else if (data.Aktiver[0] is Lokale)
+                    {
+                        data.Afleveringsdato = DateTime.Now.AddDays(1);
+                    }
+                }
+                catch
+                {
+                    Console.WriteLine("Fejl, udlån er peudo data eller test data)");
+                }
+            }
+
+            if (DBFacade.HentDatabaseFacade().OpdaterUdlån(data))
+            {
+                return "Udlån er skabt";
+            }
+            else
+            {
+                return "Udlån er ikke skabt";
+            }
+        }
+
+        /// <summary>
+        /// Standard BesvarReservation
+        /// </summary>
+        /// <param name="udlån">Udlån objekt</param>
+        /// <param name="godkendelse">Godkendelse værdi(0 = Afvent, 1 = Godkendt, 2 = Afvist)</param>
+        /// <param name="afleveringsdato">Udlån Afleveringsdato</param>
+        /// <param name="udlåningsdato">Udlåndato, hvis ikke sætte, bliver det til nuværende tid(DateTime.Now)</param>
+        /// <returns></returns>
+        public string BesvarReservation(object udlån, int godkendelse, DateTime afleveringsdato, DateTime udlåningsdato = default(DateTime))
+        {
+            Udlån data = udlån as Udlån;
+
+            if (udlåningsdato == default(DateTime))
+            {
+                udlåningsdato = DateTime.Now;
+            }
+
+            // Opdatere info
+            data.Godkendt = (Udlån.Godkendelse)godkendelse;
+            data.Afleveringsdato = afleveringsdato;
+            data.Udlåningsdato = udlåningsdato;
+
+            // Administrator Id
+            data.AdminId = MedlemFacade.HentMedlemFacade().SessionBruger().Id;
+
+            if (DBFacade.HentDatabaseFacade().OpdaterUdlån(data))
+            {
+                return "Udlån er skabt";
+            }
+            else
+            {
+                return "Udlån er ikke skabt";
+            }
+        }
+
+        /// <summary>
+        /// Brugerdefineret BesvarReservation
+        /// <para>* Bruger til opdateret hele reservation set</para>
+        /// </summary>
+        /// <param name="udlånid"></param>
+        /// <param name="medlemid"></param>
+        /// <param name="adminid"></param>
+        /// <param name="udlåningsdato"></param>
+        /// <param name="afleveringsdato"></param>
+        /// <param name="godkendelse"></param>
+        /// <param name="aktivType"></param>
+        /// <param name="aktivIDer"></param>
+        /// <returns></returns>
         public string BesvarReservation(int udlånid, int medlemid, int adminid, DateTime udlåningsdato, DateTime afleveringsdato, int godkendelse, int aktivType, List<int> aktivIDer)
         {
             Udlån udl = AktivFactory.HentAktivFactory().SkabNytUdlån(udlånid, DBFacade.HentDatabaseFacade().HentMedlem(medlemid), adminid, udlåningsdato, afleveringsdato, null, godkendelse, new List<IAktiv>());

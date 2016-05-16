@@ -646,7 +646,7 @@ namespace RotteHullet.Data
         #region Udlån
         public bool OpdaterUdlån(Udlån udl)
         {
-            bool resultat;
+            bool resultat = true;
             try
             {
                 SqlConnection forb = hentForbindelse();
@@ -666,8 +666,6 @@ namespace RotteHullet.Data
 
                 forb.Close();
                 forb.Dispose();
-
-                resultat = true;
             }
             catch (Exception)
             {
