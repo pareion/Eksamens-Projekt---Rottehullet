@@ -87,8 +87,8 @@
                     <ListView SelectionMode="Single" x:Name="lv_udlån" HorizontalAlignment="Left" Height="470" Margin="65,54,0,0" VerticalAlignment="Top" Width="519" SelectionChanged="lv_udlån_SelectionChanged" MouseDoubleClick="lv_udlån_DoubleClick" KeyDown="slet_KeyDown">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="Bestillingsdato" Width="125" DisplayMemberBinding="{Binding Udlåningsdato}"/>
-                                <GridViewColumn Header="Medlemsnavn" Width="400" DisplayMemberBinding="{Binding Medlem.Fornavn }" />
+                                <GridViewColumn Header="Bestillingsdato" Width="200" DisplayMemberBinding="{Binding Path=Udlåningsdato, StringFormat='dd-MM-yyyy HH:mm:ss'}"/>
+                                <GridViewColumn Header="Medlemsnavn" Width="300" DisplayMemberBinding="{Binding Medlem.Fornavn }" />
                                
                             </GridView>
                         </ListView.View>

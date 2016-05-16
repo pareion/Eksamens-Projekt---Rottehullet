@@ -910,6 +910,30 @@ namespace RotteHullet.Data
             }
             return result;
         }
+        public void Vedligeholdelse()
+        {
+            while (true)
+            {
+                try
+                {
+                    SqlConnection forb = hentForbindelse();
+
+                    SqlCommand kommando = new SqlCommand("SletGamleUdlån", forb);
+                    kommando.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    kommando.ExecuteNonQuery();
+
+                    forb.Close();
+                    forb.Dispose();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                Thread.Sleep(10000);
+            }
+            
+        }
         #endregion
         #region medlem
         public Medlem HentMedlem(int id)
@@ -1003,6 +1027,7 @@ namespace RotteHullet.Data
             }
             return resultat;
         }
+
         #endregion
         #region vedligeholdelse
         public void Vedligeholdelse()

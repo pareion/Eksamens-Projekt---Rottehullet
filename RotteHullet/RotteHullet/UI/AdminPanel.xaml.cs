@@ -528,8 +528,6 @@ namespace RotteHullet
         {
             if (lv_udlån.SelectedIndex != -1)
             {
-               
-               
                 _selectUdlån = lv_udlån.Items.GetItemAt(lv_udlån.SelectedIndex);
                
                 btn_Bestillingsinfo.IsEnabled = true;
@@ -537,7 +535,7 @@ namespace RotteHullet
             else
             {
                 btn_Bestillingsinfo.IsEnabled = false;
-                }
+            }
 
 
             // opdatere det aktive element.
