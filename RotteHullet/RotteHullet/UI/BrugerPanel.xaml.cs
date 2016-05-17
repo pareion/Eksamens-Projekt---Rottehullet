@@ -503,7 +503,7 @@ namespace RotteHullet
         private void bygBogListe(ref ListView liste)
         {
             GridView view = new GridView();
-            view.Columns.Add(bygColumn("Titel", null, 220));
+            view.Columns.Add(bygColumn("Titel", null, 360));
             view.Columns.Add(bygColumn("Familie", null, 180));
 
             liste.View = view;
@@ -536,10 +536,9 @@ namespace RotteHullet
             liste.View = view;
         }
 
-        private GridViewColumn bygColumn(string header, string bind = null, double width = 0)
+        private GridViewColumn bygColumn(string name, string bind = null, double width = 0)
         {
-            GridViewColumn col = new GridViewColumn { Header = header, DisplayMemberBinding = new Binding(bind == null ? header : bind) };
-            
+            GridViewColumn col = new GridViewColumn { DisplayMemberBinding = new Binding(bind == null ? name : bind)};
             if (width != 0)
             {
                 col.Width = width;
@@ -548,6 +547,14 @@ namespace RotteHullet
             {
                 col.Width = 50;
             }
+
+            GridViewColumnHeader head = new GridViewColumnHeader();
+            head.Tag = name;
+            head.Content = name;
+            head.Click += Sortering_Click;
+
+            col.Header = head;
+
             return col;
         }
 

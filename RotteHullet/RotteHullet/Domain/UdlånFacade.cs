@@ -105,7 +105,7 @@ namespace RotteHullet.Domain
                     }
                     else if (data.Aktiver[0] is Brætspil)
                     {
-                        data.Afleveringsdato = DateTime.Now.AddDays(1);
+                        data.Afleveringsdato = DateTime.Now.AddDays(7);
                     }
                     else if (data.Aktiver[0] is Udstyr)
                     {
