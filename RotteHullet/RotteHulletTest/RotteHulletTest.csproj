@@ -58,6 +58,7 @@
     <Compile Include="Sprint1\TestÆndring.cs" />
     <Compile Include="Sprint1\TestSøgning.cs" />
     <Compile Include="Sprint1\TestSletning.cs" />
+    <Compile Include="Udlån.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Sprint2\" />

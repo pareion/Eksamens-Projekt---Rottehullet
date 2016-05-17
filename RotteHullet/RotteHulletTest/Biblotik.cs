@@ -30,10 +30,10 @@ namespace RotteHulletTest
             {
                 return new List<Brætspil>
                 {
-                    new Brætspil(1, "Test spil 1", "Test Facility", true, null, "Test1"),
-                    new Brætspil(2, "Test spil 2", "Test Facility", true, null, "Test2"),
-                    new Brætspil(3, "Test spil 3", "Test Data", true, null, "Test3"),
-                    new Brætspil(4, "Test spil 4", "Test Data", true, null, "Test4")
+                    new Brætspil(1, "Test spil 1", "Test Facility", true, "ingen", "Test1"),
+                    new Brætspil(2, "Test spil 2", "Test Facility", true, "ingen", "Test2"),
+                    new Brætspil(3, "Test spil 3", "Test Data", true, "ingen", "Test3"),
+                    new Brætspil(4, "Test spil 4", "Test Data", true, "ingen", "Test4")
                 };
             }
         }
@@ -44,10 +44,10 @@ namespace RotteHulletTest
             {
                 return new List<Udstyr>
                 {
-                    new Udstyr(1, "Udstyr 1", "Tøj", true, null, false),
-                    new Udstyr(1, "Udstyr 2", "Spyd", true, null, false),
-                    new Udstyr(1, "Udstyr 3", "Sværd", true, null, false),
-                    new Udstyr(1, "Udstyr 4", "Bukser", true, null, false)
+                    new Udstyr(1, "Udstyr 1", "Tøj", true, "ingen", false),
+                    new Udstyr(1, "Udstyr 2", "Spyd", true, "ingen", false),
+                    new Udstyr(1, "Udstyr 3", "Sværd", true, "ingen", false),
+                    new Udstyr(1, "Udstyr 4", "Bukser", true, "ingen", false)
                 };
             }
         }
@@ -57,8 +57,8 @@ namespace RotteHulletTest
             {
                 return new List<Lokale>
                 {
-                    new Lokale(1, "Blå rum", "Studenterhus", true, null, "1 Sofa, 2 bord"),
-                    new Lokale(2, "Rød rum", "Studenterhus", true, null, "1 Sofa, 2 bord, 10 Stoler")
+                    new Lokale(1, "Blå rum", "Studenterhus", true, "ingen", "1 Sofa, 2 bord"),
+                    new Lokale(2, "Rød rum", "Studenterhus", true, "ingen", "1 Sofa, 2 bord, 10 Stoler")
                 };
             }
         }
