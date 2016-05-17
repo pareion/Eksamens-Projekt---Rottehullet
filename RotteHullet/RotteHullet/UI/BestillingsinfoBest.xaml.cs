@@ -100,7 +100,52 @@ namespace RotteHullet.UI
 
         private void acceptere_Click(object sender, RoutedEventArgs e)
         {
-            string svar = UIFacade.HentUIFacade().HentUdlåningsFacade().BesvarReservation(denne, 1);
+            List<object> aktiver = hentEgenskab<List<object>>("AktiverData", denne);
+            List<int> aktiverId = new List<int>();
+
+            int aktivType = 0;
+            string aktivNavn = aktiver[0].GetType().Name;
+            DateTime aflevering;
+            switch (aktivNavn)
+            {
+                case "Bog":
+                    aktivType = 0;
+                    aflevering = DateTime.Now.AddMonths(3);
+                    break;
+                case "Brætspil":
+                    aktivType = 1;
+                    aflevering = DateTime.Now.AddDays(7);
+                    break;
+                case "Udstyr":
+                    aktivType = 2;
+                    aflevering = DateTime.Now.AddMonths(3);
+                    break;
+                case "Lokale":
+                    aktivType = 3;
+                    aflevering = DateTime.Now.AddDays(1);
+                    break;
+                default:
+                    aflevering = DateTime.Now;
+                    break;
+            }
+
+            foreach (object item in aktiver)
+            {
+                aktiverId.Add(hentEgenskab<int>("Id", item));
+            }
+
+            string svar = UIFacade.HentUIFacade().HentUdlåningsFacade().BesvarReservation(
+                hentEgenskab<int>("Id", denne),
+                hentEgenskab<int>("Id", hentEgenskab<object>("Medlem", denne)),
+                UIFacade.HentUIFacade().HentMedlemFacade().SessionBruger().Id,
+                DateTime.Now,
+                aflevering,
+                2,
+                aktivType,
+                aktiverId
+            );
+
+
             if (svar == "Udlån er skabt")
             {
                 AdminPanel panel = this.Owner as AdminPanel;
@@ -111,13 +156,57 @@ namespace RotteHullet.UI
             }
             else
             {
-                fejlMeddelse();
+                // Alternitiv proces
+                //svar = UIFacade.HentUIFacade().HentUdlåningsFacade().BesvarReservation(denne, 1);
+                if (svar != "Udlån er skabt")
+                {
+                    fejlMeddelse();
+                }
             }
         }
 
         private void afvis_Click(object sender, RoutedEventArgs e)
         {
-            string svar = UIFacade.HentUIFacade().HentUdlåningsFacade().BesvarReservation(denne, 2);
+            List<object> aktiver = hentEgenskab<List<object>>("AktiverData", denne);
+            List<int> aktiverId = new List<int>();
+
+            int aktivType = 0;
+            string aktivNavn = aktiver[0].GetType().Name;
+            switch (aktivNavn)
+            {
+                case "Bog":
+                    aktivType = 0;
+                    break;
+                case "Brætspil":
+                    aktivType = 1;
+                    break;
+                case "Udstyr":
+                    aktivType = 2;
+                    break;
+                case "Lokale":
+                    aktivType = 3;
+                    break;
+                default:
+                    break;
+            }
+
+            foreach(object item in aktiver)
+            {
+                aktiverId.Add(hentEgenskab<int>("Id", item));
+            }
+
+            string svar = UIFacade.HentUIFacade().HentUdlåningsFacade().BesvarReservation(
+                hentEgenskab<int>("Id", denne),
+                hentEgenskab<int>("Id", hentEgenskab<object>("Medlem", denne)),
+                UIFacade.HentUIFacade().HentMedlemFacade().SessionBruger().Id,
+                hentEgenskab<DateTime>("Udlåningsdato", denne),
+                hentEgenskab<DateTime>("Afleveringsdato", denne),
+                2,
+                aktivType,
+                aktiverId
+            );
+            
+
             if (svar == "Udlån er skabt")
             {
                 AdminPanel panel = this.Owner as AdminPanel;
@@ -128,7 +217,12 @@ namespace RotteHullet.UI
             }
             else
             {
-                fejlMeddelse();
+                // Alternitiv proces
+                //svar = UIFacade.HentUIFacade().HentUdlåningsFacade().BesvarReservation(denne, 2);
+                if (svar != "Udlån er skabt")
+                {
+                    fejlMeddelse();
+                }
             }
         }
 
