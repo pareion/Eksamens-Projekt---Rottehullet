@@ -53,13 +53,13 @@ namespace RotteHulletTest
             List<object> data = BrætspilFacade.HentBrætSpilFacade().FindAlleBrætspil(aktiv.BrætspilsNavn);
 
             //Finder det første resultat
-            //Brætspil resultat = data[0] as Brætspil;
+            Brætspil resultat = data[0] as Brætspil;
 
             //Checker om brætspillet blev oprettet
             Assert.AreEqual("Brætspillet er skabt", message);
 
             //Checker om navnet og udgiveren er den samme
-            //Assert.AreEqual(aktiv.BrætspilsNavn + aktiv.Udgiver, resultat.BrætspilsNavn + resultat.Udgiver);
+            Assert.AreEqual(aktiv.BrætspilsNavn + aktiv.Udgiver, resultat.BrætspilsNavn + resultat.Udgiver);
         }
 
         [TestMethod]
@@ -111,14 +111,6 @@ namespace RotteHulletTest
             //Sammenligner navnet 
             Assert.AreEqual(aktiv.LokaleNavn + aktiv.Lokation, resultat.LokaleNavn + resultat.Lokation);
         }
-
-        /*
-        [TestMethod]
-        public void GemMedlem()
-        {
-
-        }
-        */
         #endregion
     }
 }
