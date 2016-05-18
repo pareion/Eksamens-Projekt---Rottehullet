@@ -912,7 +912,7 @@ namespace RotteHullet.Data
         }
         public void Vedligeholdelse()
         {
-            while (true)
+            while (_running)
             {
                 try
                 {

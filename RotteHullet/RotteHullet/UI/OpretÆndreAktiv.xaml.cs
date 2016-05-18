@@ -272,7 +272,7 @@ namespace RotteHullet
                     tb_Lokation.Text = _originalInfo["Lokation"];
                     tb_LokaleMøbler.Text = _originalInfo["LokaleMøbler"];
                     tb_LokaleKommentar.Text = _originalInfo["LokaleKommentar"];
-                    cb_UdstyrUdlån.IsChecked = _tilladelse;
+                    cb_LokaleUdlån.IsChecked = _tilladelse;
 
                     btn_GemBog.IsEnabled = false;
                     break;
