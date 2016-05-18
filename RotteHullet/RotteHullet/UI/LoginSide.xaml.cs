@@ -15,14 +15,14 @@ using System.Windows.Shapes;
 using RotteHullet.Domain;
 using RotteHullet.Data;
 
-namespace RotteHullet
+namespace RotteHullet.UI
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for LoginSide.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class LoginSide : Window
     {
-        public MainWindow()
+        public LoginSide()
         {
             InitializeComponent();
             DBFacade.AngivDatabaseFacade(DBFacade.DatabaseType.SqlDatabase);

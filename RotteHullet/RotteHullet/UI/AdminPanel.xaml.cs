@@ -12,10 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using RotteHullet.Domain;
-using RotteHullet.UI;
 using System.Reflection;
 
-namespace RotteHullet
+namespace RotteHullet.UI
 {
     /// <summary>
     /// Interaction logic for AdminPanel.xaml

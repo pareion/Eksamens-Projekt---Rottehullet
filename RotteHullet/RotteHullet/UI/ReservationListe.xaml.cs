@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using RotteHullet.Domain;
 
-namespace RotteHullet
+namespace RotteHullet.UI
 {
     /// <summary>
     /// Interaction logic for ReservationListe.xaml
