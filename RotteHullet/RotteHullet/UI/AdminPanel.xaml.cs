@@ -43,9 +43,10 @@ namespace RotteHullet
 
         #region Funktioner
 
-    
-
-       
+        public void OpdatereListe()
+        {
+            IndlæsData();
+        }
 
         internal void IndlæsData()
         {
@@ -506,7 +507,11 @@ namespace RotteHullet
         {
             if (_selectUdlån != null)
             {
+                ListViewItem data = sender as ListViewItem;
+                Bestinf = new BestillingsinfoBest(_selectUdlån);
 
+                Bestinf.Owner = this;
+                Bestinf.Show();
             }
         }
 
@@ -516,12 +521,14 @@ namespace RotteHullet
             IndlæsData();
         }
         private void lv_udlån_DoubleClick(object sender, RoutedEventArgs e) {
-            ListViewItem data = sender as ListViewItem;
-            Bestinf  = new BestillingsinfoBest(BestillingsinfoBest.Udlånstype.Bog, _selectUdlån);
-            
-            Bestinf.Owner = this;
-            Bestinf.Show();
+            if (_selectUdlån != null)
+            {
+                ListViewItem data = sender as ListViewItem;
+                Bestinf = new BestillingsinfoBest(_selectUdlån);
 
+                Bestinf.Owner = this;
+                Bestinf.Show();
+            }
         }
 
         private void lv_udlån_SelectionChanged(object sender, RoutedEventArgs e)

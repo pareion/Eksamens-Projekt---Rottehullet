@@ -13,5 +13,10 @@ namespace RotteHullet
     /// </summary>
     public partial class App : Application
     {
+        private void Application_Exit(object sender, ExitEventArgs e)
+        {
+            RotteHullet.Data.DBSQLFacade.HentDBSQLFacade().Terminate();
+            Environment.Exit(Environment.ExitCode);
+        }
     }
 }

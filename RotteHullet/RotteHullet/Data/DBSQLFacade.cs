@@ -27,6 +27,7 @@ namespace RotteHullet.Data
         {
             _running = false;
         }
+        
         #region forbindelse
         private SqlConnection hentForbindelse()
         {
@@ -646,7 +647,7 @@ namespace RotteHullet.Data
         #region Udlån
         public bool OpdaterUdlån(Udlån udl)
         {
-            bool resultat;
+            bool resultat = true;
             try
             {
                 SqlConnection forb = hentForbindelse();
@@ -659,15 +660,13 @@ namespace RotteHullet.Data
                 kommando.Parameters.Add(new SqlParameter("@adminid", udl.AdminId));
                 kommando.Parameters.Add(new SqlParameter("@udlåningsdato", udl.Udlåningsdato));
                 kommando.Parameters.Add(new SqlParameter("@afleveringsdato", udl.Afleveringsdato));
-                kommando.Parameters.Add(new SqlParameter("@reeleafleveringsdato", udl.Reelleafleveringsdato));
+                kommando.Parameters.Add(new SqlParameter("@reeleafleveringsdato", tjekNullData(udl.Reelleafleveringsdato)));
                 kommando.Parameters.Add(new SqlParameter("@godkendelse", (int)udl.Godkendt));
 
                 kommando.ExecuteNonQuery();
 
                 forb.Close();
                 forb.Dispose();
-
-                resultat = true;
             }
             catch (Exception)
             {
@@ -932,7 +931,6 @@ namespace RotteHullet.Data
                 }
                 Thread.Sleep(10000);
             }
-            
         }
         #endregion
         #region medlem
@@ -1027,10 +1025,13 @@ namespace RotteHullet.Data
             }
             return resultat;
         }
-
+        private object tjekNullData(object data)
+        {
+            return data != null ? data : DBNull.Value;
+        }
         #endregion
         #region vedligeholdelse
-        
+
         #endregion
     }
 }
