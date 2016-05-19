@@ -1,9 +1,9 @@
-﻿<Window x:Class="RotteHullet.OpretÆndreAktiv"
+﻿<Window x:Class="RotteHullet.UI.OpretÆndreAktiv"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:RotteHullet"
+        xmlns:local="clr-namespace:RotteHullet.UI"
         mc:Ignorable="d"
         Title="OpretÆndreAktiv" Height="550" Width="400" WindowStartupLocation="CenterScreen">
     <Grid>

@@ -70,6 +70,35 @@ namespace RotteHullet.UI
             tb_Type.Text = aktivType;
 
             aktiv.ForEach(x => omdanneAktiv(x));
+
+            try
+            {
+                switch (aktiv[0].GetType().Name)
+                {
+                    case "Bog":
+                        Udlånstilstand = Udlånstype.Bog;
+                        tb_Dato.Text = "3 måneder";
+                        break;
+                    case "Brætspil":
+                        Udlånstilstand = Udlånstype.Brætspil;
+                        tb_Dato.Text = "1 uge";
+                        break;
+                    case "Udstyr":
+                        Udlånstilstand = Udlånstype.Udstyr;
+                        tb_Dato.Text = "3 måneder";
+                        break;
+                    case "Lokale":
+                        Udlånstilstand = Udlånstype.Lokale;
+                        tb_Dato.Text = "1 dag";
+                        break;
+                    default:
+                        break;
+                }
+            }
+            catch
+            {
+
+            }
         }
 
         private void omdanneAktiv(object data)

@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace RotteHullet
+namespace RotteHullet.UI
 {
     /// <summary>
     /// Interaction logic for FejlInfo.xaml

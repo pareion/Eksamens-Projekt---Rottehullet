@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using RotteHullet.Domain;
 
-namespace RotteHullet
+namespace RotteHullet.UI
 {
     /// <summary>
     /// Interaction logic for BrugerPanel.xaml
@@ -51,7 +51,8 @@ namespace RotteHullet
         }
         public bool LåsFilter { get; private set; }
 
-        private GridViewColumnHeader listeSortCol = null;
+        private GridViewColumnHeader listViewCol = null;
+        private SortAdorner listViewColUdseende = null;
         private ReservationListe reservationListe = null;
         private InfoPopup infoSide = null;
 
@@ -366,23 +367,45 @@ namespace RotteHullet
         #region ListView Sortering
         private void Sortering_Click(object sender, RoutedEventArgs e)
         {
-            GridViewColumnHeader column = sender as GridViewColumnHeader;
-            
-
-            //Console.WriteLine(dock.Parent.GetType().Name);
-
-            //Console.WriteLine(column.Parent.GetType().Name);
-
-            string sortOrd = column.Tag.ToString();
-
-            ListSortDirection dir = ListSortDirection.Ascending;
-            if (listeSortCol == column)
+            switch (SøgType)
             {
-                dir = ListSortDirection.Descending;
+                case AktivType.Bog:
+                    sorteringData(sender as GridViewColumnHeader, _bogView);
+                    break;
+                case AktivType.Brætspil:
+                    sorteringData(sender as GridViewColumnHeader, _brætspilView);
+                    break;
+                case AktivType.Udstyr:
+                    sorteringData(sender as GridViewColumnHeader, _udstyrView);
+                    break;
+                case AktivType.Lokale:
+                    sorteringData(sender as GridViewColumnHeader, _lokaleView);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+
+        private void sorteringData(GridViewColumnHeader column, ListView datavising)
+        {
+            string sortBy = column.Tag.ToString();
+            if (listViewCol != null)
+            {
+                AdornerLayer.GetAdornerLayer(listViewCol).Remove(listViewColUdseende);
+                datavising.Items.SortDescriptions.Clear();
             }
 
-            listeSortCol = column;
-            //lv_Aktiver.Items.SortDescriptions.Add(new SortDescription(sortOrd, dir));
+            ListSortDirection nyRetning = ListSortDirection.Ascending;
+            if (listViewCol == column && listViewColUdseende.Retning == nyRetning)
+            {
+                nyRetning = ListSortDirection.Descending;
+            }
+
+            listViewCol = column;
+            listViewColUdseende = new SortAdorner(listViewCol, nyRetning);
+            AdornerLayer.GetAdornerLayer(listViewCol).Add(listViewColUdseende);
+            datavising.Items.SortDescriptions.Add(new SortDescription(sortBy, nyRetning));
         }
 
 
@@ -418,7 +441,6 @@ namespace RotteHullet
                 drawContext.Pop();
             }
         }
-
         #endregion
 
         #region ListView danner
@@ -503,7 +525,7 @@ namespace RotteHullet
         private void bygBogListe(ref ListView liste)
         {
             GridView view = new GridView();
-            view.Columns.Add(bygColumn("Titel", null, 360));
+            view.Columns.Add(bygColumn("Titel", null, 350));
             view.Columns.Add(bygColumn("Familie", null, 180));
 
             liste.View = view;
@@ -538,7 +560,11 @@ namespace RotteHullet
 
         private GridViewColumn bygColumn(string name, string bind = null, double width = 0)
         {
-            GridViewColumn col = new GridViewColumn { DisplayMemberBinding = new Binding(bind == null ? name : bind)};
+            if (bind == null)
+            {
+                bind = name;
+            }
+            GridViewColumn col = new GridViewColumn { DisplayMemberBinding = new Binding(bind) };
             if (width != 0)
             {
                 col.Width = width;
@@ -549,7 +575,7 @@ namespace RotteHullet
             }
 
             GridViewColumnHeader head = new GridViewColumnHeader();
-            head.Tag = name;
+            head.Tag = bind;
             head.Content = name;
             head.Click += Sortering_Click;
 

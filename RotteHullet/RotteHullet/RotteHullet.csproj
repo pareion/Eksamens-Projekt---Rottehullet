@@ -58,9 +58,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="UI\AnbefaletAktiver.xaml.cs">
-      <DependentUpon>AnbefaletAktiver.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UI\BestillingsinfoBest.xaml.cs">
       <DependentUpon>BestillingsinfoBest.xaml</DependentUpon>
     </Compile>
@@ -90,10 +87,6 @@
       <DependentUpon>ReservationListe.xaml</DependentUpon>
     </Compile>
     <Compile Include="Domain\BusinessLogic\Søgning.cs" />
-    <Page Include="UI\AnbefaletAktiver.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="UI\BestillingsinfoBest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -130,7 +123,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="UI\LoginSide.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -158,8 +151,8 @@
     <Compile Include="Domain\UdlånFacade.cs" />
     <Compile Include="Domain\UdstyrFacade.cs" />
     <Compile Include="Domain\UIFacade.cs" />
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="UI\LoginSide.xaml.cs">
+      <DependentUpon>LoginSide.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Page Include="UI\OpretÆndreAktiv.xaml">
