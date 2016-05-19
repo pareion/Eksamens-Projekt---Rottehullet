@@ -35,6 +35,9 @@ namespace RotteHulletTest
 
             //Checker om titlen og forfatteren er den samme på begge bøger (Den får et nyt id i databasen så man kan ikke sammenligne objektet)
             Assert.AreEqual(aktiv.Titel + aktiv.Forfatter, resultat.Titel + resultat.Forfatter);
+
+            //Sletter aktivet fra databasen 
+            BogFacade.HentBogFacade().SletBog(resultat.Id);
         }
 
         [TestMethod]
@@ -60,6 +63,9 @@ namespace RotteHulletTest
 
             //Checker om navnet og udgiveren er den samme
             Assert.AreEqual(aktiv.BrætspilsNavn + aktiv.Udgiver, resultat.BrætspilsNavn + resultat.Udgiver);
+
+            //Sletter aktivet fra databasen
+            BrætspilFacade.HentBrætSpilFacade().SletBrætSpil(resultat.Id);
         }
 
         [TestMethod]
@@ -85,6 +91,9 @@ namespace RotteHulletTest
 
             //Sammenligner navnet 
             Assert.AreEqual(aktiv.UdstyrsNavn, resultat.UdstyrsNavn);
+
+            //Sletter aktivet fra databasen
+            UdstyrFacade.HentUdstyrFacade().SletUdstyr(resultat.Id);
         }
 
         [TestMethod]
@@ -110,6 +119,9 @@ namespace RotteHulletTest
 
             //Sammenligner navnet 
             Assert.AreEqual(aktiv.LokaleNavn + aktiv.Lokation, resultat.LokaleNavn + resultat.Lokation);
+
+            //Sletter aktivet fra databasen
+            LokaleFacade.HentLokaleFacade().SletLokale(resultat.Id);
         }
         #endregion
     }
