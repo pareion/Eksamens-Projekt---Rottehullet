@@ -83,6 +83,9 @@
     <Compile Include="UI\BrugerPanel.xaml.cs">
       <DependentUpon>BrugerPanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\RegisterBruger.xaml.cs">
+      <DependentUpon>RegisterBruger.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\ReservationListe.xaml.cs">
       <DependentUpon>ReservationListe.xaml</DependentUpon>
     </Compile>
@@ -156,6 +159,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="UI\OpretÆndreAktiv.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\RegisterBruger.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

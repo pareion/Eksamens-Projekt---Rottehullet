@@ -25,7 +25,7 @@ namespace RotteHullet.UI
         public LoginSide()
         {
             InitializeComponent();
-            DBFacade.AngivDatabaseFacade(DBFacade.DatabaseType.SqlDatabase);
+            //DBFacade.AngivDatabaseFacade(DBFacade.DatabaseType.SqlDatabase);
             UIFacade.HentUIFacade().HentUdlåningsFacade().BegyndVedligeholdelse();
         }
         protected override void OnClosed(EventArgs e)
@@ -35,7 +35,9 @@ namespace RotteHullet.UI
         }
         private void TilmeldEvent(object sender, MouseButtonEventArgs e)
         {
-
+            RegisterBruger win = new RegisterBruger();
+            win.Show();
+            this.Close();
         }
 
         private void GlemtAdgangskodeEvent(object sender, MouseButtonEventArgs e)

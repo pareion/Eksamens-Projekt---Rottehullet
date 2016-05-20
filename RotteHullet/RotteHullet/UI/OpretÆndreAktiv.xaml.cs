@@ -303,7 +303,44 @@ namespace RotteHullet.UI
         private void annullereProces(object sender, RoutedEventArgs e)
         {
             // Lukke Opret og Ændre aktiv vindue ned
-            this.Close();
+            switch (faneIndeks)
+            {
+                case IndexTab.Bog:
+                    lukkeVindue(btn_GemBog.IsEnabled);
+                    break;
+                case IndexTab.Brætspil:
+                    lukkeVindue(btn_GemBrætspil.IsEnabled);
+                    break;
+                case IndexTab.Udstyr:
+                    lukkeVindue(btn_GemUdstyr.IsEnabled);
+                    break;
+                case IndexTab.Lokale:
+                    lukkeVindue(btn_GemLokale.IsEnabled);
+                    break;
+                default:
+                    this.Owner.Activate();
+                    this.Close();
+                    break;
+            }
+        }
+
+        private void lukkeVindue(bool redigerede)
+        {
+            if (redigerede)
+            {
+                string caption = string.Format("Der er ændring på {0}", Enum.GetName(typeof(IndexTab), faneIndeks).ToLower());
+                MessageBoxResult besvar = MessageBox.Show("Vil du forlade vindue?", caption, MessageBoxButton.YesNo);
+                if (besvar == MessageBoxResult.Yes)
+                {
+                    this.Owner.Activate();
+                    this.Close();
+                }
+            }
+            else
+            {
+                this.Owner.Activate();
+                this.Close();
+            }
         }
 
         private void redigereLytter()

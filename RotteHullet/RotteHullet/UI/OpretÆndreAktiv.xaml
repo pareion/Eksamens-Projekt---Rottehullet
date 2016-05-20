@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RotteHullet.UI"
         mc:Ignorable="d"
-        Title="OpretÆndreAktiv" Height="550" Width="400" WindowStartupLocation="CenterScreen">
+        Title="OpretÆndreAktiv" Height="550" Width="400" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <TabControl x:Name="maintab" HorizontalAlignment="Left" Height="500" Margin="10,10,0,0" VerticalAlignment="Top" Width="370">
             <TabItem Header="Bog" IsEnabled="False">

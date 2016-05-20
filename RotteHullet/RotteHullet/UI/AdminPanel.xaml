@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RotteHullet.UI"
         mc:Ignorable="d"
-        Title="AdminPanel" Height="700" Width="680" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="AdminPanel" Height="700" Width="680" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
     <Grid>
         <TabControl x:Name="adminTab" HorizontalAlignment="Left" Height="650" Margin="10,10,0,0" VerticalAlignment="Top" Width="652">
             <TabItem Header="Bøger">

@@ -1,0 +1,33 @@
+﻿<Window x:Class="RotteHullet.UI.RegisterBruger"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RotteHullet.UI"
+        mc:Ignorable="d"
+        Title="Tilmeld til rottehullet" Height="500" Width="400" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Label x:Name="l_Brugernavn" Content="Brugernavn" HorizontalAlignment="Left" Margin="100,27,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tb_Brugernavn" HorizontalAlignment="Left" Height="23" Margin="100,58,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" TextChanged="Tekst_Redigered"/>
+        
+        <Label x:Name="l_Password" Content="Adgangskode" HorizontalAlignment="Left" Margin="100,86,0,0" VerticalAlignment="Top"/>
+        <PasswordBox x:Name="pb_Password" HorizontalAlignment="Left" Height="23" Margin="100,117,0,0" VerticalAlignment="Top" Width="200" PasswordChanged="Password_Redigered"/>
+        
+        <Label x:Name="l_GenPassword" Content="Gentag adgangskode" HorizontalAlignment="Left" Margin="100,145,0,0" VerticalAlignment="Top"/>
+        <PasswordBox x:Name="pb_GenPassword" HorizontalAlignment="Left" Height="23" Margin="100,176,0,0" VerticalAlignment="Top" Width="200" PasswordChanged="Password_Redigered"/>
+        
+        <Label x:Name="l_Email" Content="E-mail" HorizontalAlignment="Left" Margin="100,204,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tb_Email" HorizontalAlignment="Left" Height="23" Margin="100,235,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" TextChanged="Tekst_Redigered"/>
+        
+        <Label x:Name="l_Fornavn" Content="Fornavn" HorizontalAlignment="Left" Margin="100,263,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tb_Fornavn" HorizontalAlignment="Left" Height="23" Margin="100,294,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" TextChanged="Tekst_Redigered"/>
+        
+        <Label x:Name="l_Efternavn" Content="Efternavn" HorizontalAlignment="Left" Margin="100,322,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tb_Efternavn" HorizontalAlignment="Left" Height="23" Margin="100,353,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" TextChanged="Tekst_Redigered"/>
+
+        <Button x:Name="btn_Tilmeld" Content="Tilmeld" IsEnabled="False" HorizontalAlignment="Left" Margin="100,0,0,30" Padding="10,5" VerticalAlignment="Bottom" Click="Tilmeld_Click" />
+        <Button x:Name="btn_Annullere" Content="Annullere" HorizontalAlignment="Right" Margin="205,0,100,30" Padding="10,5" VerticalAlignment="Bottom" Click="Annullere_Click" />
+
+
+    </Grid>
+</Window>

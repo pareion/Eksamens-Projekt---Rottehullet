@@ -75,5 +75,14 @@ namespace RotteHullet.UI
         }
 
         #endregion
+
+        private void InfoPopup_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+            {
+                this.Owner.Activate();
+                this.Close();
+            }
+        }
     }
 }
