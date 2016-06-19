@@ -15,7 +15,7 @@ namespace RotteHullet.Domain
         {
             get
             {
-                return _sessionBruger != null && _sessionBruger.Status == Medlem.MedlemType.Bestyrelse;
+                return _sessionBruger != null && (Utility.MedlemType)_sessionBruger.rang == Utility.MedlemType.Bestyrelse;
             }
         }
 
@@ -33,12 +33,12 @@ namespace RotteHullet.Domain
             return _medlemFacade;
         }
 
-        public void GemMedlem(string brugernavn, string password, string fornavn, string efternavn, string email, Medlem.MedlemType medlemtype = Medlem.MedlemType.Bruger)
+        public void GemMedlem(string brugernavn, string password, string fornavn, string efternavn, string email, Utility.MedlemType medlemtype = Utility.MedlemType.Bruger)
         {
             // Do something
         }
 
-        public void ÆndreMedlem(int id, string brugernavn, string password, string fornavn, string efternavn, string email, Medlem.MedlemType medlemtype = Medlem.MedlemType.Bruger)
+        public void ÆndreMedlem(int id, string brugernavn, string password, string fornavn, string efternavn, string email, Utility.MedlemType medlemtype = Utility.MedlemType.Bruger)
         {
             // Do something
         }

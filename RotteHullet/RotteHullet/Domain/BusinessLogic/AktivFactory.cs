@@ -22,31 +22,78 @@ namespace RotteHullet.Domain.BusinessLogic
         //Bog
         public Bog SkabNyBog(int id, string titel, string forfatter, string genre, string subkategori, string familie, string forlag, bool udlånes, string kommentar = null, bool udlånt = false)
         {
-            return new Bog(id, titel, forfatter, genre, subkategori, familie, forlag, udlånes, kommentar, udlånt);
+            Bog b = new Bog();
+            b.bogid = id;
+            b.titel = titel;
+            b.forfatter = forfatter;
+            b.genre = genre;
+            b.subkategori = subkategori;
+            b.familie = familie;
+            b.forlag = forlag;
+            b.udlånes = udlånes;
+            b.kommentar = kommentar;
+            b.udlånt = udlånt;
+            return b;
         }
 
         //Lokale
         public Lokale SkabNytLokale(int id, string navn, string lokation, bool udlånes, string kommentar, string møbler, bool udlånt = false)
         {
-            return new Lokale(id, navn, lokation, udlånes, kommentar, møbler, udlånt);
+            Lokale l = new Lokale();
+            l.lokaleid = id;
+            l.lokalenavn = navn;
+            l.lokation = lokation;
+            l.udlånes = udlånes;
+            l.kommentar = kommentar;
+            l.møbler = møbler;
+            l.udlånt = udlånt;
+            return l;
         }
 
         //Brætspil
-        public Brætspil SkabNyBrætspil(int id, string navn, string udgiver, bool udlånes, string kommentar, string kategori, bool udlånt = false)
+        public Brætspil SkabNyBrætspil(int id, string navn, string udgiver, bool? udlånes, string kommentar, string kategori, bool udlånt = false)
         {
-            return new Brætspil(id, navn,udgiver, udlånes, kommentar, kategori, udlånt);
+            Brætspil b = new Brætspil();
+            b.brætspilid = id;
+            b.brætspilnavn = navn;
+            b.udgiver = udgiver;
+            b.udlånes = udlånes;
+            b.kommentar = kommentar;
+            b.kategori = kategori;
+            b.udlånt = udlånt;
+            return b;
         }
 
         //Udstyr
         public Udstyr SkabNytUdstyr(int id, string navn, string kategori, bool udlånes, string kommentar, bool udlånt = false)
         {
-            return new Udstyr(id, navn, kategori, udlånes, kommentar, udlånt);
+            Udstyr u = new Udstyr();
+            u.udstyrid = id;
+            u.navn = navn;
+            u.kategori = kategori;
+            u.udlånes = udlånes;
+            u.kommentar = kommentar;
+            u.udlånt = udlånt;
+            return u;
         }
 
         //Udlån
-        public Udlån SkabNytUdlån(int id, Medlem medlem, int adminid, DateTime udlåningsdato, DateTime afleveringsdato, DateTime? reelleafleveringsdato, int godkendelse, List<IAktiv> aktivider)
+        public Udlån SkabNytUdlån(int id, Medlem medlem, int adminid, DateTime udlåningsdato, DateTime afleveringsdato, DateTime? reelleafleveringsdato,
+            int godkendelse, HashSet<Bog> bøger = null, HashSet<Udstyr> udstyr = null, HashSet<Lokale> lokaler = null, HashSet<Brætspil> brætspil = null)
         {
-            return new Udlån(id, medlem, adminid, udlåningsdato, afleveringsdato, reelleafleveringsdato, godkendelse, aktivider);
+            Udlån u = new Udlån();
+            u.medlemid = id;
+            u.Medlem1 = medlem;
+            u.adminid = adminid;
+            u.udlåningsdato = udlåningsdato;
+            u.afleveringsdato = afleveringsdato;
+            u.reeleafleveringsdato = reelleafleveringsdato;
+            u.godkendelse = godkendelse;
+            u.Bog = bøger;
+            u.Udstyr = udstyr;
+            u.Lokale = lokaler;
+            u.Brætspil = brætspil;
+            return u;
         }
     }
 }

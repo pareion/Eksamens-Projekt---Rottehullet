@@ -17,11 +17,11 @@ namespace RotteHullet
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            DBFacade.AngivDatabaseFacade(DBFacade.DatabaseType.SqlDatabase);
+            DBFacade.AngivDatabaseFacade(DBFacade.DatabaseType.EntityFrame);
         }
         private void Application_Exit(object sender, ExitEventArgs e)
         {
-            RotteHullet.Data.DBSQLFacade.HentDBSQLFacade().Terminate();
+            RotteHullet.Data.DBFacade.HentDatabaseFacade().Terminate();
             Environment.Exit(Environment.ExitCode);
         }
     }

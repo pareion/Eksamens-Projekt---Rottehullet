@@ -5,11 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using RotteHullet.Domain;
 using RotteHullet.Domain.BusinessLogic;
+using RotteHullet;
 
 namespace RotteHulletTest
 {
     static class Biblotik
     {
+        /*
         public static List<Bog> Bøger
         {
             get
@@ -73,6 +75,6 @@ namespace RotteHulletTest
                     new Medlem(2, "Medlem", "Medlemsen", "medlem", "medlem", "medlem@rottehullet.dk", Medlem.MedlemType.Bruger)
                 };
             }
-        }
+        }*/
     }
 }

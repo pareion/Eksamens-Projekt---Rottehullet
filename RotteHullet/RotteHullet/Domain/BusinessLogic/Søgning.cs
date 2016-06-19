@@ -27,10 +27,10 @@ namespace RotteHullet.Domain.BusinessLogic
             bøger = new List<Bog>();
             
             bøger = Data.DBFacade.HentDatabaseFacade().HentAlleBøger().FindAll(x => 
-            x.Titel.ToLower().Contains(søgord.ToLower()) ||
-            x.Familie.ToLower().Contains(søgord.ToLower()) ||
-            x.Forfatter.ToLower().Contains(søgord.ToLower()) ||
-            x.Genre.ToLower().Contains(søgord.ToLower()));
+            x.titel.ToLower().Contains(søgord.ToLower()) ||
+            x.familie.ToLower().Contains(søgord.ToLower()) ||
+            x.forfatter.ToLower().Contains(søgord.ToLower()) ||
+            x.genre.ToLower().Contains(søgord.ToLower()));
 
             return bøger.Count != 0;
         }
@@ -39,9 +39,9 @@ namespace RotteHullet.Domain.BusinessLogic
         {
             lokaler = new List<Lokale>();
             lokaler = Data.DBFacade.HentDatabaseFacade().HentAlleLokaler().FindAll(x =>
-            x.LokaleNavn.ToLower().Contains(søgord.ToLower()) ||
-            x.Lokation.ToLower().Contains(søgord.ToLower()) ||
-            x.Møbler.ToLower().Contains(søgord.ToLower()));
+            x.lokalenavn.ToLower().Contains(søgord.ToLower()) ||
+            x.lokation.ToLower().Contains(søgord.ToLower()) ||
+            x.møbler.ToLower().Contains(søgord.ToLower()));
 
             return lokaler.Count != 0;
         }
@@ -50,8 +50,8 @@ namespace RotteHullet.Domain.BusinessLogic
         {
             udstyr = new List<Udstyr>();
             udstyr = Data.DBFacade.HentDatabaseFacade().HentALtUdstyr().FindAll(x => 
-            x.UdstyrsNavn.ToLower().Contains(søgord.ToLower()) ||
-            x.Kategori.ToLower().Contains(søgord.ToLower()));
+            x.navn.ToLower().Contains(søgord.ToLower()) ||
+            x.kategori.ToLower().Contains(søgord.ToLower()));
 
             return udstyr.Count != 0;
         }
@@ -60,9 +60,9 @@ namespace RotteHullet.Domain.BusinessLogic
         {
             brætspil = new List<Brætspil>();
             brætspil = Data.DBFacade.HentDatabaseFacade().HentAlleBrætSpil().FindAll(x => 
-            x.BrætspilsNavn.ToLower().Contains(søgord.ToLower()) ||
-            x.Kategori.ToLower().Contains(søgord.ToLower()) ||
-            x.Udgiver.ToLower().Contains(søgord.ToLower()));
+            x.brætspilnavn.ToLower().Contains(søgord.ToLower()) ||
+            x.kategori.ToLower().Contains(søgord.ToLower()) ||
+            x.udgiver.ToLower().Contains(søgord.ToLower()));
 
             return brætspil.Count != 0;
         }

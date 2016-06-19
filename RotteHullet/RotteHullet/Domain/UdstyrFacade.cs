@@ -64,7 +64,7 @@ namespace RotteHullet.Domain
 
         public string SletUdstyr(int id)
         {
-            if (DBSQLFacade.HentDBSQLFacade().SletUdstyr(id))
+            if (DBFacade.HentDatabaseFacade().SletUdstyr(id))
             {
                 return "Udstyret er slettet";
             }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using RotteHullet.Data;
 using RotteHullet.Domain.BusinessLogic;
 using System.Threading;
+using RotteHullet;
 
 namespace RotteHullet.Domain
 {
@@ -29,10 +30,10 @@ namespace RotteHullet.Domain
         /// <param name="aktivType"></param>
         /// <param name="aktivIDer"></param>
         /// <returns></returns>
-        public string ReserverAktiv(DateTime udlåningsdato, DateTime afleveringsdato, int aktivType, List<int> aktivIDer)
+        public string ReserverAktiv(DateTime udlåningsdato, DateTime afleveringsdato, int aktivType, List<int> aktivIDer, HashSet<Bog> bøger = null, HashSet<Udstyr> udstyr = null, HashSet<Lokale> lokaler = null, HashSet<Brætspil> brætspil = null)
         {
             // Skift ud Medlem objekt parameter til SessionBruger()-> Medlem objekt i stedet for
-            Udlån udl = AktivFactory.HentAktivFactory().SkabNytUdlån(0, MedlemFacade.HentMedlemFacade().SessionBruger(), 0,udlåningsdato,afleveringsdato,null,1,new List<IAktiv>());
+            Udlån udl = AktivFactory.HentAktivFactory().SkabNytUdlån(0, MedlemFacade.HentMedlemFacade().SessionBruger(), 0, udlåningsdato, afleveringsdato, null, 1, bøger, udstyr, lokaler, brætspil);
 
             string resultat = "";
             switch (aktivType)
@@ -40,25 +41,25 @@ namespace RotteHullet.Domain
                 case 0:
                     foreach (var id in aktivIDer)
                     {
-                        udl.Aktiver.Add(DBFacade.HentDatabaseFacade().HentUdstyr(id));
+                        udl.Udstyr.Add(DBFacade.HentDatabaseFacade().HentUdstyr(id));
                     }
                     break;
                 case 1:
                     foreach (var id in aktivIDer)
                     {
-                        udl.Aktiver.Add(DBFacade.HentDatabaseFacade().HentBog(id));
+                        udl.Bog.Add(DBFacade.HentDatabaseFacade().HentBog(id));
                     }
                     break;
                 case 2:
                     foreach (var id in aktivIDer)
                     {
-                        udl.Aktiver.Add(DBFacade.HentDatabaseFacade().HentBrætSpil(id));
+                        udl.Brætspil.Add(DBFacade.HentDatabaseFacade().HentBrætSpil(id));
                     }
                     break;
                 case 3:
                     foreach (var id in aktivIDer)
                     {
-                        udl.Aktiver.Add(DBFacade.HentDatabaseFacade().HentLokale(id));
+                        udl.Lokale.Add(DBFacade.HentDatabaseFacade().HentLokale(id));
                     }
                     break;
                 default:
@@ -75,7 +76,7 @@ namespace RotteHullet.Domain
                 resultat = "Udlån er ikke skabt";
             }
 
-            finish:
+        finish:
             return resultat;
         }
 
@@ -89,31 +90,31 @@ namespace RotteHullet.Domain
             Udlån data = udlån as Udlån;
 
             // Opdatere info
-            data.Godkendt = (Udlån.Godkendelse)godkendelse;
+            data.godkendelse = godkendelse;
             // Administrator Id
-            data.AdminId = MedlemFacade.HentMedlemFacade().SessionBruger().Id;
+            data.adminid = MedlemFacade.HentMedlemFacade().SessionBruger().medlemid;
 
-            if (data.Godkendt == Udlån.Godkendelse.Tillad)
+            if ((Utility.Godkendelse)data.godkendelse == Utility.Godkendelse.Tillad)
             {
                 // Udvide udlån dato
-                data.Udlåningsdato = DateTime.Now;
+                data.udlåningsdato = DateTime.Now;
                 try
                 {
-                    if (data.Aktiver[0] is Bog)
+                    if (data.Bog.Count > data.Brætspil.Count && data.Bog.Count > data.Udstyr.Count && data.Bog.Count > data.Lokale.Count)
                     {
-                        data.Afleveringsdato = DateTime.Now.AddMonths(3);
+                        data.afleveringsdato = DateTime.Now.AddMonths(3);
                     }
-                    else if (data.Aktiver[0] is Brætspil)
+                    else if (data.Brætspil.Count > data.Bog.Count && data.Brætspil.Count > data.Udstyr.Count && data.Brætspil.Count > data.Lokale.Count)
                     {
-                        data.Afleveringsdato = DateTime.Now.AddDays(7);
+                        data.afleveringsdato = DateTime.Now.AddDays(7);
                     }
-                    else if (data.Aktiver[0] is Udstyr)
+                    else if (data.Udstyr.Count > data.Bog.Count && data.Udstyr.Count > data.Brætspil.Count && data.Udstyr.Count > data.Lokale.Count)
                     {
-                        data.Afleveringsdato = DateTime.Now.AddMonths(3);
+                        data.afleveringsdato = DateTime.Now.AddMonths(3);
                     }
-                    else if (data.Aktiver[0] is Lokale)
+                    else if (data.Lokale.Count > data.Bog.Count && data.Lokale.Count > data.Brætspil.Count && data.Lokale.Count > data.Udstyr.Count)
                     {
-                        data.Afleveringsdato = DateTime.Now.AddDays(1);
+                        data.afleveringsdato = DateTime.Now.AddMonths(3);
                     }
                 }
                 catch
@@ -150,12 +151,12 @@ namespace RotteHullet.Domain
             }
 
             // Opdatere info
-            data.Godkendt = (Udlån.Godkendelse)godkendelse;
-            data.Afleveringsdato = afleveringsdato;
-            data.Udlåningsdato = udlåningsdato;
+            data.godkendelse = godkendelse;
+            data.afleveringsdato = afleveringsdato;
+            data.udlåningsdato = udlåningsdato;
 
             // Administrator Id
-            data.AdminId = MedlemFacade.HentMedlemFacade().SessionBruger().Id;
+            data.adminid = MedlemFacade.HentMedlemFacade().SessionBruger().medlemid;
 
             if (DBFacade.HentDatabaseFacade().OpdaterUdlån(data))
             {
@@ -180,34 +181,34 @@ namespace RotteHullet.Domain
         /// <param name="aktivType"></param>
         /// <param name="aktivIDer"></param>
         /// <returns></returns>
-        public string BesvarReservation(int udlånid, int medlemid, int adminid, DateTime udlåningsdato, DateTime afleveringsdato, int godkendelse, int aktivType, List<int> aktivIDer)
+        public string BesvarReservation(int udlånid, int medlemid, int adminid, DateTime udlåningsdato, DateTime afleveringsdato, int godkendelse, int aktivType, HashSet<Bog> bøger = null, HashSet<Udstyr> udstyr = null, HashSet<Lokale> lokaler = null, HashSet<Brætspil> brætspil = null)
         {
-            Udlån udl = AktivFactory.HentAktivFactory().SkabNytUdlån(udlånid, DBFacade.HentDatabaseFacade().HentMedlem(medlemid), adminid, udlåningsdato, afleveringsdato, null, godkendelse, new List<IAktiv>());
+            Udlån udl = AktivFactory.HentAktivFactory().SkabNytUdlån(udlånid, DBFacade.HentDatabaseFacade().HentMedlem(medlemid), adminid, udlåningsdato, afleveringsdato, null, godkendelse, bøger, udstyr, lokaler, brætspil);
             string resultat = "";
             switch (aktivType)
             {
                 case 0:
-                    foreach (var id in aktivIDer)
+                    foreach (var id in udstyr)
                     {
-                        udl.Aktiver.Add(DBFacade.HentDatabaseFacade().HentUdstyr(id));
+                        udl.Udstyr.Add(DBFacade.HentDatabaseFacade().HentUdstyr(id.udstyrid));
                     }
                     break;
                 case 1:
-                    foreach (var id in aktivIDer)
+                    foreach (var id in bøger)
                     {
-                        udl.Aktiver.Add(DBFacade.HentDatabaseFacade().HentBog(id));
+                        udl.Bog.Add(DBFacade.HentDatabaseFacade().HentBog(id.bogid));
                     }
                     break;
                 case 2:
-                    foreach (var id in aktivIDer)
+                    foreach (var id in brætspil)
                     {
-                        udl.Aktiver.Add(DBFacade.HentDatabaseFacade().HentBrætSpil(id));
+                        udl.Brætspil.Add(DBFacade.HentDatabaseFacade().HentBrætSpil(id.brætspilid));
                     }
                     break;
                 case 3:
-                    foreach (var id in aktivIDer)
+                    foreach (var id in lokaler)
                     {
-                        udl.Aktiver.Add(DBFacade.HentDatabaseFacade().HentLokale(id));
+                        udl.Lokale.Add(DBFacade.HentDatabaseFacade().HentLokale(id.lokaleid));
                     }
                     break;
                 default:
@@ -246,7 +247,7 @@ namespace RotteHullet.Domain
         //            List<object> a = item.Aktiver.ToList<object>();
         //            Tuple<object, List<object>> b = new Tuple<object,List<object>>(item,a);
         //            resultater.Add(b);
-                    
+
         //        }
 
         //    }

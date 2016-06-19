@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9d969e3c57b045fd8281c6b450ed9908" Name="Diagram1">
+        <EntityTypeShape EntityType="EJL52_DBModel.Bog" Width="1.5" PointX="2.25" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EJL52_DBModel.Brætspil" Width="1.5" PointX="5.625" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EJL52_DBModel.Lokale" Width="1.5" PointX="8.375" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EJL52_DBModel.Medlem" Width="1.5" PointX="0.875" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="EJL52_DBModel.Udlån" Width="1.5" PointX="4.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EJL52_DBModel.Udstyr" Width="1.5" PointX="7.75" PointY="1.125" IsExpanded="true" />
+        <AssociationConnector Association="EJL52_DBModel.FK__Udlån__adminid__2DB1C7EE" ManuallyRouted="false" />
+        <AssociationConnector Association="EJL52_DBModel.FK__Udlån__medlemid__2CBDA3B5" ManuallyRouted="false" />
+        <AssociationConnector Association="EJL52_DBModel.UdlånteBrætspil" ManuallyRouted="false" />
+        <AssociationConnector Association="EJL52_DBModel.UdlånteBøger" ManuallyRouted="false" />
+        <AssociationConnector Association="EJL52_DBModel.UdlånteLokaler" ManuallyRouted="false" />
+        <AssociationConnector Association="EJL52_DBModel.UdlåntUdstyr" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -10,7 +10,7 @@ namespace RotteHullet.Data
     {
         public enum DatabaseType
         {
-            SqlDatabase
+            EntityFrame
         }
 
         private static volatile IDBFacade _idbf = null;
@@ -19,8 +19,8 @@ namespace RotteHullet.Data
         {
             switch (databaseType)
             {
-                case DatabaseType.SqlDatabase:
-                    _idbf = DBSQLFacade.HentDBSQLFacade();
+                case DatabaseType.EntityFrame:
+                    _idbf = DBEF.HentDBEFFacade();
                     break;
                 default:
                     break;

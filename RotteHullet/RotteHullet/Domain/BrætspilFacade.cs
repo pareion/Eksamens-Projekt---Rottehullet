@@ -21,7 +21,7 @@ namespace RotteHullet.Domain
             return _brætSpilFacade;
         }
 
-        public string SkabBrætSpil(int id, string navn, string udgiver, bool udlånes, string kommentar, string kategori)
+        public string SkabBrætSpil(int id, string navn, string udgiver, bool? udlånes, string kommentar, string kategori)
         {
             Brætspil bs = AktivFactory.HentAktivFactory().SkabNyBrætspil(id, navn, udgiver, udlånes, kommentar, kategori);
             if (DBFacade.HentDatabaseFacade().GemBrætSpil(bs))

@@ -162,11 +162,11 @@ namespace RotteHullet.UI
             {
                 aktiverId.Add(hentEgenskab<int>("Id", item));
             }
-
-            string svar = UIFacade.HentUIFacade().HentUdlåningsFacade().BesvarReservation(
+            //TODO Skal have 4 lister ind af de pågældende ting i reservationen istedet for kun en liste af id'er
+            string svar  = UIFacade.HentUIFacade().HentUdlåningsFacade().BesvarReservation(
                 hentEgenskab<int>("Id", denne),
                 hentEgenskab<int>("Id", hentEgenskab<object>("Medlem", denne)),
-                UIFacade.HentUIFacade().HentMedlemFacade().SessionBruger().Id,
+                UIFacade.HentUIFacade().HentMedlemFacade().SessionBruger().medlemid,
                 DateTime.Now,
                 aflevering,
                 2,
@@ -223,11 +223,11 @@ namespace RotteHullet.UI
             {
                 aktiverId.Add(hentEgenskab<int>("Id", item));
             }
-
+            //TODO Skal have 4 lister ind af de pågældende ting i reservationen istedet for kun en liste af id'er
             string svar = UIFacade.HentUIFacade().HentUdlåningsFacade().BesvarReservation(
                 hentEgenskab<int>("Id", denne),
                 hentEgenskab<int>("Id", hentEgenskab<object>("Medlem", denne)),
-                UIFacade.HentUIFacade().HentMedlemFacade().SessionBruger().Id,
+                UIFacade.HentUIFacade().HentMedlemFacade().SessionBruger().medlemid,
                 hentEgenskab<DateTime>("Udlåningsdato", denne),
                 hentEgenskab<DateTime>("Afleveringsdato", denne),
                 2,
