@@ -242,12 +242,12 @@ namespace RotteHullet.UI
                 }
                 else
                 {
-                    MessageBox.Show("Fejl, kunne ikke opret reservation");
+                    MessageBox.Show("Fejl, kunne ikke oprette reservation");
                 }
             }
             catch
             {
-                MessageBox.Show("Fejl, kunne ikke opret reservation");
+                MessageBox.Show("Fejl, kunne ikke oprette reservation");
             }
         }
         private void Fjern_Click(object sender, RoutedEventArgs e)

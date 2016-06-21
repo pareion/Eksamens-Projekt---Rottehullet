@@ -55,6 +55,7 @@ namespace RotteHullet.UI
         private SortAdorner listViewColUdseende = null;
         private ReservationListe reservationListe = null;
         private InfoPopup infoSide = null;
+        private UdlånsListe udlånsListe = null;
 
         public BrugerPanel()
         {
@@ -161,6 +162,14 @@ namespace RotteHullet.UI
             }
         }
 
+        private void VisUdlånte_Click(object sender, RoutedEventArgs e)
+        {
+            if (reservationListe != null)
+            {
+             //   reservationListe.Show();
+            }
+        }
+
         private void Filter_Checked(object sender, RoutedEventArgs e)
         {
             if (Indhold != null)
@@ -187,6 +196,15 @@ namespace RotteHullet.UI
             {
                 reservationListe = new ReservationListe(SøgType);
                 reservationListe.Owner = this;
+            }
+        }
+
+        private void opretUdlånsliste()
+        {
+            if (udlånsListe == null)
+            {
+                udlånsListe = new UdlånsListe();
+                udlånsListe.Owner = this;
             }
         }
 

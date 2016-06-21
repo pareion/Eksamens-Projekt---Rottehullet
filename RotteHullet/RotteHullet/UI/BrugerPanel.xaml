@@ -9,6 +9,7 @@
     <Grid>
         <!-- Top level -->
         <Button x:Name="btn_ReservationVisning" Content="Ingen aktiv i kurv" HorizontalAlignment="Right" Margin="0,15,20,0" VerticalAlignment="Top" Padding="2" Click="VisReservation_Click" Background="{x:Null}" BorderBrush="{x:Null}" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"/>
+        <Button x:Name="btn_AktivVisning" Content="Dine lånte aktiver" HorizontalAlignment="Left" Margin="28,15,0,0" VerticalAlignment="Top" Padding="2" Click="VisUdlånte_Click" Background="{x:Null}" BorderBrush="{x:Null}" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"/>
 
         <Label Content="Hvad leder du efter?" HorizontalAlignment="Center" VerticalAlignment="Stretch"  Width="230" Height="Auto"  Margin="0,72,0,551" FontSize="24"/>
         <TextBox x:Name="tb_Søgboks" HorizontalAlignment="Center" Width="440" Height="36" Margin="0,124,0,0" FontSize="18" Padding="2,4,35,0" TextWrapping="NoWrap" VerticalAlignment="Top" KeyDown="Søgning_KeyDown" />
