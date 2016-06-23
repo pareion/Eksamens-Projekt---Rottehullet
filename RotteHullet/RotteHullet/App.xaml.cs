@@ -18,6 +18,7 @@ namespace RotteHullet
         {
             base.OnStartup(e);
             DBFacade.AngivDatabaseFacade(DBFacade.DatabaseType.EntityFrame);
+            Domain.UIFacade.HentUIFacade().HentBogFacade().FindAlleBøger();
         }
         private void Application_Exit(object sender, ExitEventArgs e)
         {

@@ -119,7 +119,8 @@ namespace RotteHullet.Data
         }
         public List<Bog> HentAlleBøger()
         {
-            return new EJL52_DBEntities().Bog.ToList<Bog>();
+            EJL52_DBEntities ejl = new EJL52_DBEntities();
+            return ejl.Bog.ToList();
         }
         public List<Lokale> HentAlleLokaler()
         {
@@ -322,7 +323,12 @@ namespace RotteHullet.Data
             while (_running)
             {
                 EJL52_DBEntities ejl = new EJL52_DBEntities();
-                ejl.Udlån.Remove(ejl.Udlån.First(x => x.godkendelse == 2 || x.reeleafleveringsdato < DateTime.Now.AddDays(5)));
+                Udlån udlån = ejl.Udlån.ToList().Find(x => x.godkendelse == 2 || x.reeleafleveringsdato < DateTime.Now.AddDays(5));
+                if (udlån != null)
+                {
+                    ejl.Udlån.Remove(udlån);
+                    ejl.SaveChanges();
+                }
                 Thread.Sleep(10000);
             }
         }
