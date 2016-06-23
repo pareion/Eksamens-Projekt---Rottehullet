@@ -119,8 +119,7 @@ namespace RotteHullet.Data
         }
         public List<Bog> HentAlleBøger()
         {
-            EJL52_DBEntities ejl = new EJL52_DBEntities();
-            return ejl.Bog.ToList();
+            return new EJL52_DBEntities().Bog.ToList();
         }
         public List<Lokale> HentAlleLokaler()
         {
