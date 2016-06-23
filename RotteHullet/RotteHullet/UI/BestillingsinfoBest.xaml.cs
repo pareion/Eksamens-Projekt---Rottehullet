@@ -163,7 +163,7 @@ namespace RotteHullet.UI
                 aktiverId.Add(hentEgenskab<int>("Id", item));
             }
             //TODO Skal have 4 lister ind af de pågældende ting i reservationen istedet for kun en liste af id'er
-            string svar  = UIFacade.HentUIFacade().HentUdlåningsFacade().BesvarReservation(
+            /*string svar  = UIFacade.HentUIFacade().HentUdlåningsFacade().BesvarReservation(
                 hentEgenskab<int>("Id", denne),
                 hentEgenskab<int>("Id", hentEgenskab<object>("Medlem", denne)),
                 UIFacade.HentUIFacade().HentMedlemFacade().SessionBruger().medlemid,
@@ -191,7 +191,7 @@ namespace RotteHullet.UI
                 {
                     fejlMeddelse();
                 }
-            }
+            }*/
         }
 
         private void afvis_Click(object sender, RoutedEventArgs e)
@@ -224,7 +224,7 @@ namespace RotteHullet.UI
                 aktiverId.Add(hentEgenskab<int>("Id", item));
             }
             //TODO Skal have 4 lister ind af de pågældende ting i reservationen istedet for kun en liste af id'er
-            string svar = UIFacade.HentUIFacade().HentUdlåningsFacade().BesvarReservation(
+            /*string svar = UIFacade.HentUIFacade().HentUdlåningsFacade().BesvarReservation(
                 hentEgenskab<int>("Id", denne),
                 hentEgenskab<int>("Id", hentEgenskab<object>("Medlem", denne)),
                 UIFacade.HentUIFacade().HentMedlemFacade().SessionBruger().medlemid,
@@ -252,7 +252,7 @@ namespace RotteHullet.UI
                 {
                     fejlMeddelse();
                 }
-            }
+            }*/
         }
 
         private void tillbage_Click(object sender, RoutedEventArgs e)
