@@ -107,15 +107,16 @@
                     <ListView SelectionMode="Single" x:Name="lv_udlånteAktiver" HorizontalAlignment="Left" Height="470" Margin="65,54,0,0" VerticalAlignment="Top" Width="519" SelectionChanged="lv_udlån_SelectionChanged" MouseDoubleClick="lv_udlån_DoubleClick" KeyDown="slet_KeyDown">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="Medlemsnavn" Width="100" DisplayMemberBinding="{Binding Path=Udlåningsdato, StringFormat='dd-MM-yyyy HH:mm:ss'}"/>
-                                <GridViewColumn Header="Aflevering" Width="100" DisplayMemberBinding="{Binding Path=Udlåningsdato, StringFormat='dd-MM-yyyy HH:mm:ss'}"/>
-                                <GridViewColumn Header="Udlånte Aktiver" Width="300" DisplayMemberBinding="{Binding Medlem.Fornavn }" />
+                                <GridViewColumn Header="Medlemsnavn" Width="100" DisplayMemberBinding="{Binding Medlem.Fornavn }" />
+
+                                <GridViewColumn Header="Aflevering" Width="100" DisplayMemberBinding="{Binding Path=afleveringsdato, StringFormat='dd-MM-yyyy HH:mm:ss'}"/>
+                                <GridViewColumn Header="Aktiver" Width="300" DisplayMemberBinding="{Binding Path=udlåningsdato, StringFormat='dd-MM-yyyy HH:mm:ss'}"/>
 
                             </GridView>
                         </ListView.View>
 
                     </ListView>
-                    <Button x:Name="btn_Bestillingsinfo3" Content="Bestillingsinfo" Margin="500,570,58,24" Click="btn_Bestillingsinfo_Click"/>
+                    <Button x:Name="btn_Bestillingsinfo3" Content="Aflever" Margin="500,570,58,24" Click="btn_Bestillingsinfo_Click"/>
                     <Button x:Name="btn_Opdater3" Content="Opdater" HorizontalAlignment="Left" Margin="509,10,0,0" VerticalAlignment="Top" Width="75" Click="btn_Opdater_Click"/>
                 </Grid>
 

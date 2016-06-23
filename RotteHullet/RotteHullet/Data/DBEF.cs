@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using RotteHullet.Domain.BusinessLogic;
@@ -113,6 +114,22 @@ namespace RotteHullet.Data
 
             return result;
         }
+
+        public List<Udlån> HentAlleUdlån()
+        {
+            return new EJL52_DBEntities().Udlån.ToList<Udlån>();
+        }
+
+        public List<Udlån> HentMineUdlån(int brugerid)
+        {
+            List<Udlån> res = new List<Udlån>();
+
+            res = new EJL52_DBEntities().Udlån.ToList();
+            List<Udlån> ret = new List<Udlån>();
+            ret = res.FindAll(udlån => udlån.Medlem.medlemid == brugerid);
+            return ret;
+        }
+
         public List<Brætspil> HentAlleBrætSpil()
         {
             return new EJL52_DBEntities().Brætspil.ToList<Brætspil>();

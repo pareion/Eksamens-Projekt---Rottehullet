@@ -71,7 +71,9 @@ namespace RotteHullet.UI
 
                 _udlånData = UIFacade.HentUIFacade().HentUdlåningsFacade().FindAlleUdlån();
                 _udlånData.ForEach(x=> lv_udlån.Items.Add(x));
-                
+                _udlånData.ForEach(x => lv_udlånteAktiver.Items.Add(x));
+
+
 
             }
             catch
@@ -93,6 +95,7 @@ namespace RotteHullet.UI
             lv_udstyr.Items.Clear();
             lv_lokal.Items.Clear();
             lv_udlån.Items.Clear();
+            lv_udlånteAktiver.Items.Clear();
         }
 
         private void redigereAktiv()
