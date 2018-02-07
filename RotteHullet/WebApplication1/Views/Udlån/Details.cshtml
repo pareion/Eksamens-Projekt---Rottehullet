@@ -1,0 +1,50 @@
+﻿@model RotteHullet.Udlån
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Udlån</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.udlåningsdato)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.udlåningsdato)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.afleveringsdato)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.afleveringsdato)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.reeleafleveringsdato)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.reeleafleveringsdato)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Medlem.brugernavn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Medlem.brugernavn)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.udlånid }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
