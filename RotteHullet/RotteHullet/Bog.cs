@@ -17,7 +17,7 @@ namespace RotteHullet
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Bog()
         {
-            this.UdlånBog = new HashSet<UdlånBog>();
+            this.Udlån = new HashSet<Udlån>();
         }
     
         public int bogid { get; set; }
@@ -32,6 +32,6 @@ namespace RotteHullet
         public Nullable<bool> udlånt { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UdlånBog> UdlånBog { get; set; }
+        public virtual ICollection<Udlån> Udlån { get; set; }
     }
 }

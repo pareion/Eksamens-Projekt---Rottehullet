@@ -14,6 +14,12 @@ namespace RotteHullet
     
     public partial class Brætspil
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Brætspil()
+        {
+            this.Udlån = new HashSet<Udlån>();
+        }
+    
         public int brætspilid { get; set; }
         public string brætspilnavn { get; set; }
         public string udgiver { get; set; }
@@ -21,5 +27,8 @@ namespace RotteHullet
         public string kommentar { get; set; }
         public string kategori { get; set; }
         public Nullable<bool> udlånt { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Udlån> Udlån { get; set; }
     }
 }

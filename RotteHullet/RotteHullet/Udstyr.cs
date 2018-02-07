@@ -12,21 +12,20 @@ namespace RotteHullet
     using System;
     using System.Collections.Generic;
     
-    public partial class Medlem
+    public partial class Udstyr
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Medlem()
+        public Udstyr()
         {
             this.Udlån = new HashSet<Udlån>();
         }
     
-        public int medlemid { get; set; }
-        public string brugernavn { get; set; }
-        public string fornavn { get; set; }
-        public string efternavn { get; set; }
-        public string adgangskode { get; set; }
-        public string email { get; set; }
-        public Nullable<int> rang { get; set; }
+        public int udstyrid { get; set; }
+        public string navn { get; set; }
+        public string kategori { get; set; }
+        public Nullable<bool> udlånes { get; set; }
+        public string kommentar { get; set; }
+        public Nullable<bool> udlånt { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Udlån> Udlån { get; set; }

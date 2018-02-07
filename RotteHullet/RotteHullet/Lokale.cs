@@ -14,6 +14,12 @@ namespace RotteHullet
     
     public partial class Lokale
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Lokale()
+        {
+            this.Udlån = new HashSet<Udlån>();
+        }
+    
         public int lokaleid { get; set; }
         public string lokalenavn { get; set; }
         public string møbler { get; set; }
@@ -21,5 +27,8 @@ namespace RotteHullet
         public Nullable<bool> udlånes { get; set; }
         public string kommentar { get; set; }
         public Nullable<bool> udlånt { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Udlån> Udlån { get; set; }
     }
 }

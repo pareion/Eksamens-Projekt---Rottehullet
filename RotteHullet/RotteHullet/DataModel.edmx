@@ -1,0 +1,549 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="FoeniksDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Bog">
+          <Key>
+            <PropertyRef Name="bogid" />
+          </Key>
+          <Property Name="bogid" Type="int" Nullable="false" />
+          <Property Name="titel" Type="varchar" MaxLength="255" />
+          <Property Name="familie" Type="varchar" MaxLength="255" />
+          <Property Name="subkategori" Type="varchar" MaxLength="255" />
+          <Property Name="forfatter" Type="varchar" MaxLength="255" />
+          <Property Name="genre" Type="varchar" MaxLength="255" />
+          <Property Name="forlag" Type="varchar" MaxLength="255" />
+          <Property Name="kommentar" Type="varchar" MaxLength="255" />
+          <Property Name="udlånes" Type="bit" />
+          <Property Name="udlånt" Type="bit" />
+        </EntityType>
+        <EntityType Name="Brætspil">
+          <Key>
+            <PropertyRef Name="brætspilid" />
+          </Key>
+          <Property Name="brætspilid" Type="int" Nullable="false" />
+          <Property Name="brætspilnavn" Type="varchar" MaxLength="255" />
+          <Property Name="udgiver" Type="varchar" MaxLength="255" />
+          <Property Name="udlånes" Type="bit" />
+          <Property Name="kommentar" Type="varchar" MaxLength="255" />
+          <Property Name="kategori" Type="varchar" MaxLength="255" />
+          <Property Name="udlånt" Type="bit" />
+        </EntityType>
+        <EntityType Name="Lokale">
+          <Key>
+            <PropertyRef Name="lokaleid" />
+          </Key>
+          <Property Name="lokaleid" Type="int" Nullable="false" />
+          <Property Name="lokalenavn" Type="varchar" MaxLength="255" />
+          <Property Name="møbler" Type="varchar" MaxLength="255" />
+          <Property Name="lokation" Type="varchar" MaxLength="255" />
+          <Property Name="udlånes" Type="bit" />
+          <Property Name="kommentar" Type="varchar" MaxLength="255" />
+          <Property Name="udlånt" Type="bit" />
+        </EntityType>
+        <EntityType Name="Medlem">
+          <Key>
+            <PropertyRef Name="medlemid" />
+          </Key>
+          <Property Name="medlemid" Type="int" Nullable="false" />
+          <Property Name="brugernavn" Type="varchar" MaxLength="255" />
+          <Property Name="fornavn" Type="varchar" MaxLength="255" />
+          <Property Name="efternavn" Type="varchar" MaxLength="255" />
+          <Property Name="adgangskode" Type="varchar" MaxLength="255" />
+          <Property Name="email" Type="varchar" MaxLength="255" />
+          <Property Name="rang" Type="int" />
+        </EntityType>
+        <EntityType Name="Udlån">
+          <Key>
+            <PropertyRef Name="udlånid" />
+          </Key>
+          <Property Name="udlånid" Type="int" Nullable="false" />
+          <Property Name="udlåningsdato" Type="date" />
+          <Property Name="afleveringsdato" Type="date" />
+          <Property Name="reeleafleveringsdato" Type="date" />
+          <Property Name="medlemid" Type="int" />
+        </EntityType>
+        <EntityType Name="UdlånBog">
+          <Key>
+            <PropertyRef Name="udlånid" />
+            <PropertyRef Name="bogid" />
+          </Key>
+          <Property Name="udlånid" Type="int" Nullable="false" />
+          <Property Name="bogid" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UdlånBrætspil">
+          <Key>
+            <PropertyRef Name="brætspilid" />
+            <PropertyRef Name="udlånid" />
+          </Key>
+          <Property Name="brætspilid" Type="int" Nullable="false" />
+          <Property Name="udlånid" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UdlånLokale">
+          <Key>
+            <PropertyRef Name="lokaleid" />
+            <PropertyRef Name="udlånid" />
+          </Key>
+          <Property Name="lokaleid" Type="int" Nullable="false" />
+          <Property Name="udlånid" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UdlånUdstyr">
+          <Key>
+            <PropertyRef Name="udstyrid" />
+            <PropertyRef Name="udlånid" />
+          </Key>
+          <Property Name="udstyrid" Type="int" Nullable="false" />
+          <Property Name="udlånid" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Udstyr">
+          <Key>
+            <PropertyRef Name="udstyrid" />
+          </Key>
+          <Property Name="udstyrid" Type="int" Nullable="false" />
+          <Property Name="navn" Type="varchar" MaxLength="255" />
+          <Property Name="kategori" Type="varchar" MaxLength="255" />
+          <Property Name="udlånes" Type="bit" />
+          <Property Name="kommentar" Type="varchar" MaxLength="255" />
+          <Property Name="udlånt" Type="bit" />
+        </EntityType>
+        <Association Name="FK__Udlån__medlemid__6E01572D">
+          <End Role="Medlem" Type="Self.Medlem" Multiplicity="0..1" />
+          <End Role="Udlån" Type="Self.Udlån" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medlem">
+              <PropertyRef Name="medlemid" />
+            </Principal>
+            <Dependent Role="Udlån">
+              <PropertyRef Name="medlemid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UdlånBog__bogid__619B8048">
+          <End Role="Bog" Type="Self.Bog" Multiplicity="1" />
+          <End Role="UdlånBog" Type="Self.UdlånBog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bog">
+              <PropertyRef Name="bogid" />
+            </Principal>
+            <Dependent Role="UdlånBog">
+              <PropertyRef Name="bogid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UdlånBog__udlåni__60A75C0F">
+          <End Role="Udlån" Type="Self.Udlån" Multiplicity="1" />
+          <End Role="UdlånBog" Type="Self.UdlånBog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Udlån">
+              <PropertyRef Name="udlånid" />
+            </Principal>
+            <Dependent Role="UdlånBog">
+              <PropertyRef Name="udlånid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UdlånBræt__bræts__656C112C">
+          <End Role="Brætspil" Type="Self.Brætspil" Multiplicity="1" />
+          <End Role="UdlånBrætspil" Type="Self.UdlånBrætspil" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Brætspil">
+              <PropertyRef Name="brætspilid" />
+            </Principal>
+            <Dependent Role="UdlånBrætspil">
+              <PropertyRef Name="brætspilid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UdlånBræt__udlån__6477ECF3">
+          <End Role="Udlån" Type="Self.Udlån" Multiplicity="1" />
+          <End Role="UdlånBrætspil" Type="Self.UdlånBrætspil" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Udlån">
+              <PropertyRef Name="udlånid" />
+            </Principal>
+            <Dependent Role="UdlånBrætspil">
+              <PropertyRef Name="udlånid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UdlånLoka__lokal__693CA210">
+          <End Role="Lokale" Type="Self.Lokale" Multiplicity="1" />
+          <End Role="UdlånLokale" Type="Self.UdlånLokale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lokale">
+              <PropertyRef Name="lokaleid" />
+            </Principal>
+            <Dependent Role="UdlånLokale">
+              <PropertyRef Name="lokaleid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UdlånLoka__udlån__68487DD7">
+          <End Role="Udlån" Type="Self.Udlån" Multiplicity="1" />
+          <End Role="UdlånLokale" Type="Self.UdlånLokale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Udlån">
+              <PropertyRef Name="udlånid" />
+            </Principal>
+            <Dependent Role="UdlånLokale">
+              <PropertyRef Name="udlånid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UdlånUdst__udlån__6D0D32F4">
+          <End Role="Udlån" Type="Self.Udlån" Multiplicity="1" />
+          <End Role="UdlånUdstyr" Type="Self.UdlånUdstyr" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Udlån">
+              <PropertyRef Name="udlånid" />
+            </Principal>
+            <Dependent Role="UdlånUdstyr">
+              <PropertyRef Name="udlånid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UdlånUdst__udsty__6C190EBB">
+          <End Role="Udstyr" Type="Self.Udstyr" Multiplicity="1" />
+          <End Role="UdlånUdstyr" Type="Self.UdlånUdstyr" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Udstyr">
+              <PropertyRef Name="udstyrid" />
+            </Principal>
+            <Dependent Role="UdlånUdstyr">
+              <PropertyRef Name="udstyrid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FoeniksDBModelStoreContainer">
+          <EntitySet Name="Bog" EntityType="Self.Bog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Brætspil" EntityType="Self.Brætspil" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lokale" EntityType="Self.Lokale" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Medlem" EntityType="Self.Medlem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Udlån" EntityType="Self.Udlån" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UdlånBog" EntityType="Self.UdlånBog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UdlånBrætspil" EntityType="Self.UdlånBrætspil" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UdlånLokale" EntityType="Self.UdlånLokale" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UdlånUdstyr" EntityType="Self.UdlånUdstyr" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Udstyr" EntityType="Self.Udstyr" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Udlån__medlemid__6E01572D" Association="Self.FK__Udlån__medlemid__6E01572D">
+            <End Role="Medlem" EntitySet="Medlem" />
+            <End Role="Udlån" EntitySet="Udlån" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UdlånBog__bogid__619B8048" Association="Self.FK__UdlånBog__bogid__619B8048">
+            <End Role="Bog" EntitySet="Bog" />
+            <End Role="UdlånBog" EntitySet="UdlånBog" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UdlånBog__udlåni__60A75C0F" Association="Self.FK__UdlånBog__udlåni__60A75C0F">
+            <End Role="Udlån" EntitySet="Udlån" />
+            <End Role="UdlånBog" EntitySet="UdlånBog" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UdlånBræt__bræts__656C112C" Association="Self.FK__UdlånBræt__bræts__656C112C">
+            <End Role="Brætspil" EntitySet="Brætspil" />
+            <End Role="UdlånBrætspil" EntitySet="UdlånBrætspil" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UdlånBræt__udlån__6477ECF3" Association="Self.FK__UdlånBræt__udlån__6477ECF3">
+            <End Role="Udlån" EntitySet="Udlån" />
+            <End Role="UdlånBrætspil" EntitySet="UdlånBrætspil" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UdlånLoka__lokal__693CA210" Association="Self.FK__UdlånLoka__lokal__693CA210">
+            <End Role="Lokale" EntitySet="Lokale" />
+            <End Role="UdlånLokale" EntitySet="UdlånLokale" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UdlånLoka__udlån__68487DD7" Association="Self.FK__UdlånLoka__udlån__68487DD7">
+            <End Role="Udlån" EntitySet="Udlån" />
+            <End Role="UdlånLokale" EntitySet="UdlånLokale" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UdlånUdst__udlån__6D0D32F4" Association="Self.FK__UdlånUdst__udlån__6D0D32F4">
+            <End Role="Udlån" EntitySet="Udlån" />
+            <End Role="UdlånUdstyr" EntitySet="UdlånUdstyr" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UdlånUdst__udsty__6C190EBB" Association="Self.FK__UdlånUdst__udsty__6C190EBB">
+            <End Role="Udstyr" EntitySet="Udstyr" />
+            <End Role="UdlånUdstyr" EntitySet="UdlånUdstyr" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FoeniksDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Bog">
+          <Key>
+            <PropertyRef Name="bogid" />
+          </Key>
+          <Property Name="bogid" Type="Int32" Nullable="false" />
+          <Property Name="titel" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="familie" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="subkategori" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="forfatter" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="genre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="forlag" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="kommentar" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="udlånes" Type="Boolean" />
+          <Property Name="udlånt" Type="Boolean" />
+          <NavigationProperty Name="Udlån" Relationship="Self.UdlånBog" FromRole="Bog" ToRole="Udlån" />
+        </EntityType>
+        <EntityType Name="Brætspil">
+          <Key>
+            <PropertyRef Name="brætspilid" />
+          </Key>
+          <Property Name="brætspilid" Type="Int32" Nullable="false" />
+          <Property Name="brætspilnavn" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="udgiver" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="udlånes" Type="Boolean" />
+          <Property Name="kommentar" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="kategori" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="udlånt" Type="Boolean" />
+          <NavigationProperty Name="Udlån" Relationship="Self.UdlånBrætspil" FromRole="Brætspil" ToRole="Udlån" />
+        </EntityType>
+        <EntityType Name="Lokale">
+          <Key>
+            <PropertyRef Name="lokaleid" />
+          </Key>
+          <Property Name="lokaleid" Type="Int32" Nullable="false" />
+          <Property Name="lokalenavn" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="møbler" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="lokation" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="udlånes" Type="Boolean" />
+          <Property Name="kommentar" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="udlånt" Type="Boolean" />
+          <NavigationProperty Name="Udlån" Relationship="Self.UdlånLokale" FromRole="Lokale" ToRole="Udlån" />
+        </EntityType>
+        <EntityType Name="Medlem">
+          <Key>
+            <PropertyRef Name="medlemid" />
+          </Key>
+          <Property Name="medlemid" Type="Int32" Nullable="false" />
+          <Property Name="brugernavn" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="fornavn" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="efternavn" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="adgangskode" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="rang" Type="Int32" />
+          <NavigationProperty Name="Udlån" Relationship="FoeniksDBModel.FK__Udlån__medlemid__6E01572D" FromRole="Medlem" ToRole="Udlån" />
+        </EntityType>
+        <EntityType Name="Udlån">
+          <Key>
+            <PropertyRef Name="udlånid" />
+          </Key>
+          <Property Name="udlånid" Type="Int32" Nullable="false" />
+          <Property Name="udlåningsdato" Type="DateTime" Precision="0" />
+          <Property Name="afleveringsdato" Type="DateTime" Precision="0" />
+          <Property Name="reeleafleveringsdato" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Bog" Relationship="Self.UdlånBog" FromRole="Udlån" ToRole="Bog" />
+          <NavigationProperty Name="Brætspil" Relationship="Self.UdlånBrætspil" FromRole="Udlån" ToRole="Brætspil" />
+          <NavigationProperty Name="Lokale" Relationship="Self.UdlånLokale" FromRole="Udlån" ToRole="Lokale" />
+          <NavigationProperty Name="Udstyr" Relationship="Self.UdlånUdstyr" FromRole="Udlån" ToRole="Udstyr" />
+          <Property Name="medlemid" Type="Int32" />
+          <NavigationProperty Name="Medlem" Relationship="FoeniksDBModel.FK__Udlån__medlemid__6E01572D" FromRole="Udlån" ToRole="Medlem" />
+        </EntityType>
+        <EntityType Name="Udstyr">
+          <Key>
+            <PropertyRef Name="udstyrid" />
+          </Key>
+          <Property Name="udstyrid" Type="Int32" Nullable="false" />
+          <Property Name="navn" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="kategori" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="udlånes" Type="Boolean" />
+          <Property Name="kommentar" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="udlånt" Type="Boolean" />
+          <NavigationProperty Name="Udlån" Relationship="Self.UdlånUdstyr" FromRole="Udstyr" ToRole="Udlån" />
+        </EntityType>
+        <Association Name="UdlånBog">
+          <End Role="Bog" Type="Self.Bog" Multiplicity="*" />
+          <End Role="Udlån" Type="Self.Udlån" Multiplicity="*" />
+        </Association>
+        <Association Name="UdlånBrætspil">
+          <End Role="Brætspil" Type="Self.Brætspil" Multiplicity="*" />
+          <End Role="Udlån" Type="Self.Udlån" Multiplicity="*" />
+        </Association>
+        <Association Name="UdlånLokale">
+          <End Role="Lokale" Type="Self.Lokale" Multiplicity="*" />
+          <End Role="Udlån" Type="Self.Udlån" Multiplicity="*" />
+        </Association>
+        <Association Name="UdlånUdstyr">
+          <End Role="Udlån" Type="Self.Udlån" Multiplicity="*" />
+          <End Role="Udstyr" Type="Self.Udstyr" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="FoeniksDB" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Bog" EntityType="Self.Bog" />
+          <EntitySet Name="Brætspil" EntityType="Self.Brætspil" />
+          <EntitySet Name="Lokale" EntityType="Self.Lokale" />
+          <EntitySet Name="Medlem" EntityType="Self.Medlem" />
+          <EntitySet Name="Udlån" EntityType="Self.Udlån" />
+          <EntitySet Name="Udstyr" EntityType="Self.Udstyr" />
+          <AssociationSet Name="UdlånBog" Association="Self.UdlånBog">
+            <End Role="Bog" EntitySet="Bog" />
+            <End Role="Udlån" EntitySet="Udlån" />
+          </AssociationSet>
+          <AssociationSet Name="UdlånBrætspil" Association="Self.UdlånBrætspil">
+            <End Role="Brætspil" EntitySet="Brætspil" />
+            <End Role="Udlån" EntitySet="Udlån" />
+          </AssociationSet>
+          <AssociationSet Name="UdlånLokale" Association="Self.UdlånLokale">
+            <End Role="Lokale" EntitySet="Lokale" />
+            <End Role="Udlån" EntitySet="Udlån" />
+          </AssociationSet>
+          <AssociationSet Name="UdlånUdstyr" Association="Self.UdlånUdstyr">
+            <End Role="Udlån" EntitySet="Udlån" />
+            <End Role="Udstyr" EntitySet="Udstyr" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Udlån__medlemid__6E01572D" Association="FoeniksDBModel.FK__Udlån__medlemid__6E01572D">
+            <End Role="Medlem" EntitySet="Medlem" />
+            <End Role="Udlån" EntitySet="Udlån" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK__Udlån__medlemid__6E01572D">
+          <End Type="FoeniksDBModel.Medlem" Role="Medlem" Multiplicity="0..1" />
+          <End Type="FoeniksDBModel.Udlån" Role="Udlån" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medlem">
+              <PropertyRef Name="medlemid" />
+            </Principal>
+            <Dependent Role="Udlån">
+              <PropertyRef Name="medlemid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FoeniksDBModelStoreContainer" CdmEntityContainer="FoeniksDB">
+          <EntitySetMapping Name="Bog">
+            <EntityTypeMapping TypeName="FoeniksDBModel.Bog">
+              <MappingFragment StoreEntitySet="Bog">
+                <ScalarProperty Name="bogid" ColumnName="bogid" />
+                <ScalarProperty Name="titel" ColumnName="titel" />
+                <ScalarProperty Name="familie" ColumnName="familie" />
+                <ScalarProperty Name="subkategori" ColumnName="subkategori" />
+                <ScalarProperty Name="forfatter" ColumnName="forfatter" />
+                <ScalarProperty Name="genre" ColumnName="genre" />
+                <ScalarProperty Name="forlag" ColumnName="forlag" />
+                <ScalarProperty Name="kommentar" ColumnName="kommentar" />
+                <ScalarProperty Name="udlånes" ColumnName="udlånes" />
+                <ScalarProperty Name="udlånt" ColumnName="udlånt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Brætspil">
+            <EntityTypeMapping TypeName="FoeniksDBModel.Brætspil">
+              <MappingFragment StoreEntitySet="Brætspil">
+                <ScalarProperty Name="brætspilid" ColumnName="brætspilid" />
+                <ScalarProperty Name="brætspilnavn" ColumnName="brætspilnavn" />
+                <ScalarProperty Name="udgiver" ColumnName="udgiver" />
+                <ScalarProperty Name="udlånes" ColumnName="udlånes" />
+                <ScalarProperty Name="kommentar" ColumnName="kommentar" />
+                <ScalarProperty Name="kategori" ColumnName="kategori" />
+                <ScalarProperty Name="udlånt" ColumnName="udlånt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lokale">
+            <EntityTypeMapping TypeName="FoeniksDBModel.Lokale">
+              <MappingFragment StoreEntitySet="Lokale">
+                <ScalarProperty Name="lokaleid" ColumnName="lokaleid" />
+                <ScalarProperty Name="lokalenavn" ColumnName="lokalenavn" />
+                <ScalarProperty Name="møbler" ColumnName="møbler" />
+                <ScalarProperty Name="lokation" ColumnName="lokation" />
+                <ScalarProperty Name="udlånes" ColumnName="udlånes" />
+                <ScalarProperty Name="kommentar" ColumnName="kommentar" />
+                <ScalarProperty Name="udlånt" ColumnName="udlånt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Medlem">
+            <EntityTypeMapping TypeName="FoeniksDBModel.Medlem">
+              <MappingFragment StoreEntitySet="Medlem">
+                <ScalarProperty Name="medlemid" ColumnName="medlemid" />
+                <ScalarProperty Name="brugernavn" ColumnName="brugernavn" />
+                <ScalarProperty Name="fornavn" ColumnName="fornavn" />
+                <ScalarProperty Name="efternavn" ColumnName="efternavn" />
+                <ScalarProperty Name="adgangskode" ColumnName="adgangskode" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="rang" ColumnName="rang" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Udlån">
+            <EntityTypeMapping TypeName="FoeniksDBModel.Udlån">
+              <MappingFragment StoreEntitySet="Udlån">
+                <ScalarProperty Name="medlemid" ColumnName="medlemid" />
+                <ScalarProperty Name="udlånid" ColumnName="udlånid" />
+                <ScalarProperty Name="udlåningsdato" ColumnName="udlåningsdato" />
+                <ScalarProperty Name="afleveringsdato" ColumnName="afleveringsdato" />
+                <ScalarProperty Name="reeleafleveringsdato" ColumnName="reeleafleveringsdato" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Udstyr">
+            <EntityTypeMapping TypeName="FoeniksDBModel.Udstyr">
+              <MappingFragment StoreEntitySet="Udstyr">
+                <ScalarProperty Name="udstyrid" ColumnName="udstyrid" />
+                <ScalarProperty Name="navn" ColumnName="navn" />
+                <ScalarProperty Name="kategori" ColumnName="kategori" />
+                <ScalarProperty Name="udlånes" ColumnName="udlånes" />
+                <ScalarProperty Name="kommentar" ColumnName="kommentar" />
+                <ScalarProperty Name="udlånt" ColumnName="udlånt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="UdlånBog" TypeName="FoeniksDBModel.UdlånBog" StoreEntitySet="UdlånBog">
+            <EndProperty Name="Bog">
+              <ScalarProperty Name="bogid" ColumnName="bogid" />
+            </EndProperty>
+            <EndProperty Name="Udlån">
+              <ScalarProperty Name="udlånid" ColumnName="udlånid" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="UdlånBrætspil" TypeName="FoeniksDBModel.UdlånBrætspil" StoreEntitySet="UdlånBrætspil">
+            <EndProperty Name="Brætspil">
+              <ScalarProperty Name="brætspilid" ColumnName="brætspilid" />
+            </EndProperty>
+            <EndProperty Name="Udlån">
+              <ScalarProperty Name="udlånid" ColumnName="udlånid" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="UdlånLokale" TypeName="FoeniksDBModel.UdlånLokale" StoreEntitySet="UdlånLokale">
+            <EndProperty Name="Lokale">
+              <ScalarProperty Name="lokaleid" ColumnName="lokaleid" />
+            </EndProperty>
+            <EndProperty Name="Udlån">
+              <ScalarProperty Name="udlånid" ColumnName="udlånid" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="UdlånUdstyr" TypeName="FoeniksDBModel.UdlånUdstyr" StoreEntitySet="UdlånUdstyr">
+            <EndProperty Name="Udlån">
+              <ScalarProperty Name="udlånid" ColumnName="udlånid" />
+            </EndProperty>
+            <EndProperty Name="Udstyr">
+              <ScalarProperty Name="udstyrid" ColumnName="udstyrid" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

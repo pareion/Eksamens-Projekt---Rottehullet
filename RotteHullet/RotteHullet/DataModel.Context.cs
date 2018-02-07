@@ -13,10 +13,10 @@ namespace RotteHullet
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class FoeniksDBEntities1 : DbContext
+    public partial class FoeniksDB : DbContext
     {
-        public FoeniksDBEntities1()
-            : base("name=FoeniksDBEntities1")
+        public FoeniksDB()
+            : base("name=FoeniksDB")
         {
         }
     
@@ -29,6 +29,7 @@ namespace RotteHullet
         public virtual DbSet<Brætspil> Brætspil { get; set; }
         public virtual DbSet<Lokale> Lokale { get; set; }
         public virtual DbSet<Medlem> Medlem { get; set; }
-        public virtual DbSet<UdlånBog> UdlånBog { get; set; }
+        public virtual DbSet<Udlån> Udlån { get; set; }
+        public virtual DbSet<Udstyr> Udstyr { get; set; }
     }
 }

@@ -32,11 +32,11 @@ namespace RotteHullet.Data
         }
         public List<Udlån> FindAlleUdlån()
         {
-            return new EJL52_DBEntities().Udlån.ToList<Udlån>();
+            return new FoeniksDB().Udlån.ToList<Udlån>();
         }
         public bool GemBog(Bog bog)
         {
-            EJL52_DBEntities ejl = new EJL52_DBEntities();
+            FoeniksDB ejl = new FoeniksDB();
             int count = ejl.Bog.Count() + 1;
             bool result = false;
 
@@ -52,7 +52,7 @@ namespace RotteHullet.Data
         }
         public bool GemBrætSpil(Brætspil bs)
         {
-            EJL52_DBEntities ejl = new EJL52_DBEntities();
+            FoeniksDB ejl = new FoeniksDB();
             int count = ejl.Brætspil.Count() + 1;
             bool result = false;
 
@@ -68,7 +68,7 @@ namespace RotteHullet.Data
         }
         public bool GemLokale(Lokale lokale)
         {
-            EJL52_DBEntities ejl = new EJL52_DBEntities();
+            FoeniksDB ejl = new FoeniksDB();
             int count = ejl.Lokale.Count() + 1;
             bool result = false;
 
@@ -84,7 +84,7 @@ namespace RotteHullet.Data
         }
         public bool GemUdlån(Udlån udl)
         {
-            EJL52_DBEntities ejl = new EJL52_DBEntities();
+            FoeniksDB ejl = new FoeniksDB();
             int count = ejl.Udlån.Count() + 1;
             bool result = false;
 
@@ -100,7 +100,8 @@ namespace RotteHullet.Data
         }
         public bool GemUdstyr(Udstyr udstyr)
         {
-            EJL52_DBEntities ejl = new EJL52_DBEntities();
+            
+            FoeniksDB ejl = new FoeniksDB();
             int count = ejl.Udstyr.Count() + 1;
             bool result = false;
 
@@ -117,14 +118,14 @@ namespace RotteHullet.Data
 
         public List<Udlån> HentAlleUdlån()
         {
-            return new EJL52_DBEntities().Udlån.ToList<Udlån>();
+            return new FoeniksDB().Udlån.ToList<Udlån>();
         }
 
         public List<Udlån> HentMineUdlån(int brugerid)
         {
             List<Udlån> res = new List<Udlån>();
 
-            res = new EJL52_DBEntities().Udlån.ToList();
+            res = new FoeniksDB().Udlån.ToList();
             List<Udlån> ret = new List<Udlån>();
             ret = res.FindAll(udlån => udlån.Medlem.medlemid == brugerid);
             return ret;
@@ -132,23 +133,23 @@ namespace RotteHullet.Data
 
         public List<Brætspil> HentAlleBrætSpil()
         {
-            return new EJL52_DBEntities().Brætspil.ToList<Brætspil>();
+            return new FoeniksDB().Brætspil.ToList<Brætspil>();
         }
         public List<Bog> HentAlleBøger()
         {
-            return new EJL52_DBEntities().Bog.ToList();
+            return new FoeniksDB().Bog.ToList();
         }
         public List<Lokale> HentAlleLokaler()
         {
-            return new EJL52_DBEntities().Lokale.ToList<Lokale>();
+            return new FoeniksDB().Lokale.ToList<Lokale>();
         }
         public List<Udstyr> HentALtUdstyr()
         {
-            return new EJL52_DBEntities().Udstyr.ToList<Udstyr>();
+            return new FoeniksDB().Udstyr.ToList<Udstyr>();
         }
         public Bog HentBog(int id)
         {
-            EJL52_DBEntities ejl = new EJL52_DBEntities();
+            FoeniksDB ejl = new FoeniksDB();
             Bog b = new Bog();
 
             foreach (var item in ejl.Bog)
@@ -164,7 +165,7 @@ namespace RotteHullet.Data
         }
         public Brætspil HentBrætSpil(int id)
         {
-            EJL52_DBEntities ejl = new EJL52_DBEntities();
+            FoeniksDB ejl = new FoeniksDB();
             Brætspil b = new Brætspil();
 
             foreach (var item in ejl.Brætspil)
@@ -180,7 +181,7 @@ namespace RotteHullet.Data
         }
         public Lokale HentLokale(int id)
         {
-            EJL52_DBEntities ejl = new EJL52_DBEntities();
+            FoeniksDB ejl = new FoeniksDB();
             Lokale l = new Lokale();
 
             foreach (var item in ejl.Lokale)
@@ -196,7 +197,7 @@ namespace RotteHullet.Data
         }
         public Medlem HentMedlem(int id)
         {
-            EJL52_DBEntities ejl = new EJL52_DBEntities();
+            FoeniksDB ejl = new FoeniksDB();
             Medlem m = new Medlem();
 
             foreach (var item in ejl.Medlem)
@@ -212,7 +213,7 @@ namespace RotteHullet.Data
         }
         public Medlem HentMedlem(string brugernavn, string password)
         {
-            EJL52_DBEntities ejl = new EJL52_DBEntities();
+            FoeniksDB ejl = new FoeniksDB();
             Medlem m = new Medlem();
 
             foreach (var item in ejl.Medlem)
@@ -228,7 +229,7 @@ namespace RotteHullet.Data
         }
         public Udstyr HentUdstyr(int id)
         {
-            EJL52_DBEntities ejl = new EJL52_DBEntities();
+            FoeniksDB ejl = new FoeniksDB();
             Udstyr u = new Udstyr();
 
             foreach (var item in ejl.Udstyr)
@@ -244,7 +245,7 @@ namespace RotteHullet.Data
         }
         public bool OpdaterUdlån(Udlån udl)
         {
-            EJL52_DBEntities ejl = new EJL52_DBEntities();
+            FoeniksDB ejl = new FoeniksDB();
             int beforecount = ejl.Udlån.Count() - 1;
             int aftercount = ejl.Udlån.Count();
             bool result = false;
@@ -265,7 +266,7 @@ namespace RotteHullet.Data
         }
         public bool SletBog(int id)
         {
-            EJL52_DBEntities ejl = new EJL52_DBEntities();
+            FoeniksDB ejl = new FoeniksDB();
             int count = ejl.Bog.Count() - 1;
             bool result = false;
 
@@ -281,7 +282,7 @@ namespace RotteHullet.Data
         }
         public bool SletBrætSpil(int id)
         {
-            EJL52_DBEntities ejl = new EJL52_DBEntities();
+            FoeniksDB ejl = new FoeniksDB();
             int count = ejl.Brætspil.Count() - 1;
             bool result = false;
 
@@ -297,7 +298,7 @@ namespace RotteHullet.Data
         }
         public bool SletLokale(int id)
         {
-            EJL52_DBEntities ejl = new EJL52_DBEntities();
+            FoeniksDB ejl = new FoeniksDB();
             int count = ejl.Lokale.Count() - 1;
             bool result = false;
 
@@ -313,7 +314,7 @@ namespace RotteHullet.Data
         }
         public bool SletUdstyr(int id)
         {
-            EJL52_DBEntities ejl = new EJL52_DBEntities();
+            FoeniksDB ejl = new FoeniksDB();
             int count = ejl.Udstyr.Count() - 1;
             bool result = false;
 
@@ -338,8 +339,8 @@ namespace RotteHullet.Data
         {
             while (_running)
             {
-                EJL52_DBEntities ejl = new EJL52_DBEntities();
-                Udlån udlån = ejl.Udlån.ToList().Find(x => x.godkendelse == 2 || x.reeleafleveringsdato < DateTime.Now.AddDays(5));
+                FoeniksDB ejl = new FoeniksDB();
+                Udlån udlån = ejl.Udlån.ToList().Find(x => x.reeleafleveringsdato < DateTime.Now.AddDays(5));
                 if (udlån != null)
                 {
                     ejl.Udlån.Remove(udlån);
@@ -350,7 +351,7 @@ namespace RotteHullet.Data
         }
         public bool ÆndreBog(Bog bog)
         {
-            EJL52_DBEntities ejl = new EJL52_DBEntities();
+            FoeniksDB ejl = new FoeniksDB();
             int beforecount = ejl.Bog.Count() - 1;
             int aftercount = ejl.Bog.Count();
             bool result = false;
@@ -371,7 +372,7 @@ namespace RotteHullet.Data
         }
         public bool ÆndreBrætSpil(Brætspil bs)
         {
-            EJL52_DBEntities ejl = new EJL52_DBEntities();
+            FoeniksDB ejl = new FoeniksDB();
             int beforecount = ejl.Brætspil.Count() - 1;
             int aftercount = ejl.Brætspil.Count();
             bool result = false;
@@ -392,7 +393,7 @@ namespace RotteHullet.Data
         }
         public bool ÆndreLokale(Lokale lokale)
         {
-            EJL52_DBEntities ejl = new EJL52_DBEntities();
+            FoeniksDB ejl = new FoeniksDB();
             int beforecount = ejl.Lokale.Count() - 1;
             int aftercount = ejl.Lokale.Count();
             bool result = false;
@@ -413,7 +414,7 @@ namespace RotteHullet.Data
         }
         public bool ÆndreUdstyr(Udstyr udstyr)
         {
-            EJL52_DBEntities ejl = new EJL52_DBEntities();
+            FoeniksDB ejl = new FoeniksDB();
             int beforecount = ejl.Udstyr.Count() - 1;
             int aftercount = ejl.Udstyr.Count();
             bool result = false;
