@@ -25,12 +25,9 @@ namespace RotteHullet.UI
         public LoginSide()
         {
             InitializeComponent();
-            //DBFacade.AngivDatabaseFacade(DBFacade.DatabaseType.SqlDatabase);
-            UIFacade.HentUIFacade().HentUdlåningsFacade().BegyndVedligeholdelse();
         }
         protected override void OnClosed(EventArgs e)
         {
-            UIFacade.HentUIFacade().HentUdlåningsFacade().stopVedligeholdelse();
             base.OnClosed(e);
         }
         private void TilmeldEvent(object sender, MouseButtonEventArgs e)
@@ -60,10 +57,8 @@ namespace RotteHullet.UI
                     {
                         if (UIFacade.HentUIFacade().HentMedlemFacade().TjekLogind(tb_Brugernavn.Text, tb_Kodeord.Password))
                         {
-                            // Fjern advarelse
                             advarelse(false);
-
-                            // Tjekker på bruger typer
+                            
                             Window panel;
                             if (UIFacade.HentUIFacade().HentMedlemFacade().ErAdmin)
                             {

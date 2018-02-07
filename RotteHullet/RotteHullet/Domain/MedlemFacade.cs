@@ -33,12 +33,12 @@ namespace RotteHullet.Domain
             return _medlemFacade;
         }
 
-        public void GemMedlem(string brugernavn, string password, string fornavn, string efternavn, string email, Utility.MedlemType medlemtype = Utility.MedlemType.Bruger)
+        public void GemMedlem(string brugernavn, string password, string fornavn, string efternavn, string email)
         {
             // Do something
         }
 
-        public void ÆndreMedlem(int id, string brugernavn, string password, string fornavn, string efternavn, string email, Utility.MedlemType medlemtype = Utility.MedlemType.Bruger)
+        public void ÆndreMedlem(int id, string brugernavn, string password, string fornavn, string efternavn, string email)
         {
             // Do something
         }
@@ -55,7 +55,7 @@ namespace RotteHullet.Domain
 
         public bool TjekLogind(string brugernavn, string password)
         {
-            Medlem bruger = DBFacade.HentDatabaseFacade().HentMedlem(brugernavn, password);
+            Medlem bruger = DBEF.HentDBEF().HentMedlem(brugernavn, password);
 
             if (bruger != null)
             {

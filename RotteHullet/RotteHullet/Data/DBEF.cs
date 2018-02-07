@@ -9,20 +9,13 @@ using System.Threading;
 
 namespace RotteHullet.Data
 {
-    class DBEF : IDBFacade
+    class DBEF
     {
         #region variables
         private static DBEF _dbef;
-        private bool _running;
-        #endregion
-        #region constructors
-        private DBEF()
-        {
-            _running = true;
-        }
         #endregion
         #region methods
-        internal static IDBFacade HentDBEFFacade()
+        internal static DBEF HentDBEF()
         {
             if (_dbef == null)
             {
@@ -328,27 +321,7 @@ namespace RotteHullet.Data
 
             return result;
         }
-        public void Terminate()
-        {
-            _running = false;
-        }
-        /// <summary>
-        /// Removes all old reservationens and reservations there have gone through but it only removes 1 each 10 second at max
-        /// </summary>
-        public void Vedligeholdelse()
-        {
-            while (_running)
-            {
-                FoeniksDB ejl = new FoeniksDB();
-                Udlån udlån = ejl.Udlån.ToList().Find(x => x.reeleafleveringsdato < DateTime.Now.AddDays(5));
-                if (udlån != null)
-                {
-                    ejl.Udlån.Remove(udlån);
-                    ejl.SaveChanges();
-                }
-                Thread.Sleep(10000);
-            }
-        }
+
         public bool ÆndreBog(Bog bog)
         {
             FoeniksDB ejl = new FoeniksDB();

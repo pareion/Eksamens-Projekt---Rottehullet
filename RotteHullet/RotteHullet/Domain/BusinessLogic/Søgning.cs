@@ -9,8 +9,6 @@ namespace RotteHullet.Domain.BusinessLogic
 {
     class Søgning
     {
-        public enum AktivType { Bog, Brætspil, Udstyr, Lokale }
-
         private static Søgning _søgning;
 
         public static Søgning HentSøgning()
@@ -22,11 +20,11 @@ namespace RotteHullet.Domain.BusinessLogic
             return _søgning;
         }
 
-        public bool Søg(string søgord, out List<Bog> bøger)
+        public bool SøgBøger(string søgord, out List<Bog> bøger)
         {
             bøger = new List<Bog>();
             
-            bøger = Data.DBFacade.HentDatabaseFacade().HentAlleBøger().FindAll(x => 
+            bøger = Data.DBEF.HentDBEF().HentAlleBøger().FindAll(x => 
             x.titel.ToLower().Contains(søgord.ToLower()) ||
             x.familie.ToLower().Contains(søgord.ToLower()) ||
             x.forfatter.ToLower().Contains(søgord.ToLower()) ||
@@ -35,10 +33,10 @@ namespace RotteHullet.Domain.BusinessLogic
             return bøger.Count != 0;
         }
 
-        public bool Søg(string søgord, out List<Lokale> lokaler)
+        public bool SøgLokaler(string søgord, out List<Lokale> lokaler)
         {
             lokaler = new List<Lokale>();
-            lokaler = Data.DBFacade.HentDatabaseFacade().HentAlleLokaler().FindAll(x =>
+            lokaler = Data.DBEF.HentDBEF().HentAlleLokaler().FindAll(x =>
             x.lokalenavn.ToLower().Contains(søgord.ToLower()) ||
             x.lokation.ToLower().Contains(søgord.ToLower()) ||
             x.møbler.ToLower().Contains(søgord.ToLower()));
@@ -46,20 +44,20 @@ namespace RotteHullet.Domain.BusinessLogic
             return lokaler.Count != 0;
         }
 
-        public bool Søg(string søgord, out List<Udstyr> udstyr)
+        public bool SøgUdstyr(string søgord, out List<Udstyr> udstyr)
         {
             udstyr = new List<Udstyr>();
-            udstyr = Data.DBFacade.HentDatabaseFacade().HentALtUdstyr().FindAll(x => 
+            udstyr = Data.DBEF.HentDBEF().HentALtUdstyr().FindAll(x => 
             x.navn.ToLower().Contains(søgord.ToLower()) ||
             x.kategori.ToLower().Contains(søgord.ToLower()));
 
             return udstyr.Count != 0;
         }
 
-        public bool Søg(string søgord, out List<Brætspil> brætspil)
+        public bool SøgBrætspil(string søgord, out List<Brætspil> brætspil)
         {
             brætspil = new List<Brætspil>();
-            brætspil = Data.DBFacade.HentDatabaseFacade().HentAlleBrætSpil().FindAll(x => 
+            brætspil = Data.DBEF.HentDBEF().HentAlleBrætSpil().FindAll(x => 
             x.brætspilnavn.ToLower().Contains(søgord.ToLower()) ||
             x.kategori.ToLower().Contains(søgord.ToLower()) ||
             x.udgiver.ToLower().Contains(søgord.ToLower()));

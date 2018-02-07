@@ -117,7 +117,6 @@
     <Compile Include="UI\Info\BrætspilInfo.xaml.cs">
       <DependentUpon>BrætspilInfo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Data\DBFacade.cs" />
     <Compile Include="UI\Info\LokaleInfo.xaml.cs">
       <DependentUpon>LokaleInfo.xaml</DependentUpon>
     </Compile>
@@ -187,7 +186,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data\IDBFacade.cs" />
     <Compile Include="Domain\BogFacade.cs" />
     <Compile Include="Domain\BrætspilFacade.cs" />
     <Compile Include="Domain\BusinessLogic\AktivFactory.cs" />

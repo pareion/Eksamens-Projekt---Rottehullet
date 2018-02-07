@@ -24,7 +24,7 @@ namespace RotteHullet.Domain
         public string SkabBrætSpil(int id, string navn, string udgiver, bool? udlånes, string kommentar, string kategori)
         {
             Brætspil bs = AktivFactory.HentAktivFactory().SkabNyBrætspil(id, navn, udgiver, udlånes, kommentar, kategori);
-            if (DBFacade.HentDatabaseFacade().GemBrætSpil(bs))
+            if (DBEF.HentDBEF().GemBrætSpil(bs))
             {
                 return "Brætspillet er skabt";
             }
@@ -35,7 +35,7 @@ namespace RotteHullet.Domain
             string kommentar, string kategori)
         {
             Brætspil bs = AktivFactory.HentAktivFactory().SkabNyBrætspil(id, navn, udgiver, udlånes, kommentar, kategori);
-            if (DBFacade.HentDatabaseFacade().ÆndreBrætSpil(bs))
+            if (DBEF.HentDBEF().ÆndreBrætSpil(bs))
             {
                 return "Brætspillet er ændret";
             }
@@ -44,16 +44,16 @@ namespace RotteHullet.Domain
 
         public List<object> FindAlleBrætspil(string søgeord = null) //Mangler søgning
         {
-            List<Brætspil> aktiver = DBFacade.HentDatabaseFacade().HentAlleBrætSpil();
+            List<Brætspil> aktiver = DBEF.HentDBEF().HentAlleBrætSpil();
             List<object> dataListe = new List<object>();
 
             if (søgeord == null)
             {
-                aktiver = DBFacade.HentDatabaseFacade().HentAlleBrætSpil();
+                aktiver = DBEF.HentDBEF().HentAlleBrætSpil();
             }
             else
             {
-                Søgning.HentSøgning().Søg(søgeord, out aktiver);
+                Søgning.HentSøgning().SøgBrætspil(søgeord, out aktiver);
             }
 
             foreach (Brætspil item in aktiver)
@@ -65,7 +65,7 @@ namespace RotteHullet.Domain
 
         public string SletBrætSpil(int id)
         {
-            if (DBFacade.HentDatabaseFacade().SletBrætSpil(id))
+            if (DBEF.HentDBEF().SletBrætSpil(id))
             {
                 return "Brætspillet er slettet";
             }

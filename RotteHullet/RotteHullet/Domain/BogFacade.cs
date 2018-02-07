@@ -27,7 +27,7 @@ namespace RotteHullet.Domain
             Bog bog = AktivFactory.HentAktivFactory().SkabNyBog(0, bognavn, forfatter, genre, subkategori, familie,
                 forlag, udlånes, kommentar);
 
-            return DBFacade.HentDatabaseFacade().GemBog(bog) ? "Bog er oprettet" : "Bog blev ikke oprettet";
+            return DBEF.HentDBEF().GemBog(bog) ? "Bog er oprettet" : "Bog blev ikke oprettet";
         }
 
         public string ÆndreBog(int id, string bognavn, string forfatter, string genre, string subkategori, 
@@ -36,7 +36,7 @@ namespace RotteHullet.Domain
             Bog bog = AktivFactory.HentAktivFactory().SkabNyBog(id, bognavn, forfatter, genre, subkategori, familie,
                 forlag, udlånes, kommentar);
 
-            return DBFacade.HentDatabaseFacade().ÆndreBog(bog) ? "Bog blev ændret" : "Bog blev ikke ændret";
+            return DBEF.HentDBEF().ÆndreBog(bog) ? "Bog blev ændret" : "Bog blev ikke ændret";
         }
 
         public List<object> FindAlleBøger(string søgeord = null)
@@ -46,11 +46,11 @@ namespace RotteHullet.Domain
 
             if(søgeord == null)
             {
-                aktiver = DBFacade.HentDatabaseFacade().HentAlleBøger();
+                aktiver = DBEF.HentDBEF().HentAlleBøger();
             }
             else
             {
-                Søgning.HentSøgning().Søg(søgeord, out aktiver);
+                Søgning.HentSøgning().SøgBøger(søgeord, out aktiver);
             }
 
             foreach (Bog item in aktiver)
@@ -62,7 +62,7 @@ namespace RotteHullet.Domain
 
         public string SletBog(int id)
         {
-            return DBFacade.HentDatabaseFacade().SletBog(id) ? "Bog blev slettet" : "Kan ikke slet bog";
+            return DBEF.HentDBEF().SletBog(id) ? "Bog blev slettet" : "Kan ikke slet bog";
         }
     }
 }

@@ -100,7 +100,6 @@ namespace RotteHullet
         }
         private void Application_Exit(object sender, ExitEventArgs e)
         {
-            RotteHullet.Data.DBFacade.HentDatabaseFacade().Terminate();
             Environment.Exit(Environment.ExitCode);
         }
     }

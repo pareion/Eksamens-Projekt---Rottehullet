@@ -24,7 +24,7 @@ namespace RotteHullet.Domain
         public string SkabUdstyr(int id, string navn, string kategori, bool udlånes, string kommentar)
         {
             Udstyr uds = AktivFactory.HentAktivFactory().SkabNytUdstyr(id, navn, kategori, udlånes, kommentar);
-            if (DBFacade.HentDatabaseFacade().GemUdstyr(uds))
+            if (DBEF.HentDBEF().GemUdstyr(uds))
             {
                 return "Udstyret er skabt";
             }
@@ -34,7 +34,7 @@ namespace RotteHullet.Domain
         public string ÆndreUdstyr(int id, string navn, string kategori, bool udlånes, string kommentar)
         {
             Udstyr uds = AktivFactory.HentAktivFactory().SkabNytUdstyr(id, navn, kategori, udlånes, kommentar);
-            if (DBFacade.HentDatabaseFacade().ÆndreUdstyr(uds))
+            if (DBEF.HentDBEF().ÆndreUdstyr(uds))
             {
                 return "Udstyret er ændret";
             }
@@ -43,16 +43,16 @@ namespace RotteHullet.Domain
 
         public List<object> FindAlleUdstyr(string søgeord = null)
         {
-            List<Udstyr> aktiver = DBFacade.HentDatabaseFacade().HentALtUdstyr();
+            List<Udstyr> aktiver = DBEF.HentDBEF().HentALtUdstyr();
             List<object> dataListe = new List<object>();
 
             if (søgeord == null)
             {
-                aktiver = DBFacade.HentDatabaseFacade().HentALtUdstyr();
+                aktiver = DBEF.HentDBEF().HentALtUdstyr();
             }
             else
             {
-                Søgning.HentSøgning().Søg(søgeord, out aktiver);
+                Søgning.HentSøgning().SøgUdstyr(søgeord, out aktiver);
             }
 
             foreach (Udstyr item in aktiver)
@@ -64,7 +64,7 @@ namespace RotteHullet.Domain
 
         public string SletUdstyr(int id)
         {
-            if (DBFacade.HentDatabaseFacade().SletUdstyr(id))
+            if (DBEF.HentDBEF().SletUdstyr(id))
             {
                 return "Udstyret er slettet";
             }

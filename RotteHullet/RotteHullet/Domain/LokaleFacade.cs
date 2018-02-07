@@ -24,7 +24,7 @@ namespace RotteHullet.Domain
         public string SkabLokale(int id, string navn, string lokation, bool udlånes, string kommentar, string møbler)
         {
             Lokale lok = AktivFactory.HentAktivFactory().SkabNytLokale(id, navn, lokation, udlånes, kommentar, møbler);
-            if (DBFacade.HentDatabaseFacade().GemLokale(lok))
+            if (DBEF.HentDBEF().GemLokale(lok))
             {
                 return "Lokalet er skabt";
             }
@@ -33,7 +33,7 @@ namespace RotteHullet.Domain
         public string ÆndreLokale(int id, string navn, string lokation, bool udlånes, string kommentar, string møbler)
         {
             Lokale lok = AktivFactory.HentAktivFactory().SkabNytLokale(id, navn, lokation, udlånes, kommentar, møbler);
-            if (DBFacade.HentDatabaseFacade().ÆndreLokale(lok))
+            if (DBEF.HentDBEF().ÆndreLokale(lok))
             {
                 return "Lokalet er blevet ændret";
             }
@@ -42,16 +42,16 @@ namespace RotteHullet.Domain
 
         public List<object> FindAlleLokaler(string søgeord = null)
         {
-            List<Lokale> aktiver = DBFacade.HentDatabaseFacade().HentAlleLokaler();
+            List<Lokale> aktiver = DBEF.HentDBEF().HentAlleLokaler();
             List<object> dataListe = new List<object>();
 
             if (søgeord == null)
             {
-                aktiver = DBFacade.HentDatabaseFacade().HentAlleLokaler();
+                aktiver = DBEF.HentDBEF().HentAlleLokaler();
             }
             else
             {
-                Søgning.HentSøgning().Søg(søgeord, out aktiver);
+                Søgning.HentSøgning().SøgLokaler(søgeord, out aktiver);
             }
 
             foreach (Lokale item in aktiver)
@@ -63,7 +63,7 @@ namespace RotteHullet.Domain
 
         public string SletLokale(int id)
         {
-            if (DBFacade.HentDatabaseFacade().SletBrætSpil(id))
+            if (DBEF.HentDBEF().SletBrætSpil(id))
             {
                 return "Lokalet er blevet slettet";
             }

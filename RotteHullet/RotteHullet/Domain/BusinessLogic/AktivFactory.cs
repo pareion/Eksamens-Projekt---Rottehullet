@@ -76,19 +76,16 @@ namespace RotteHullet.Domain.BusinessLogic
             u.udlånt = udlånt;
             return u;
         }
-
-        //Udlån
+        
         public Udlån SkabNytUdlån(int id, Medlem medlem, int adminid, DateTime udlåningsdato, DateTime afleveringsdato, DateTime? reelleafleveringsdato,
             int godkendelse, HashSet<Bog> bøger = null, HashSet<Udstyr> udstyr = null, HashSet<Lokale> lokaler = null, HashSet<Brætspil> brætspil = null)
         {
             Udlån u = new Udlån();
             u.medlemid = id;
-            u.Medlem1 = medlem;
-            u.adminid = adminid;
+            u.Medlem = medlem;
             u.udlåningsdato = udlåningsdato;
             u.afleveringsdato = afleveringsdato;
             u.reeleafleveringsdato = reelleafleveringsdato;
-            u.godkendelse = godkendelse;
             u.Bog = bøger;
             u.Udstyr = udstyr;
             u.Lokale = lokaler;
