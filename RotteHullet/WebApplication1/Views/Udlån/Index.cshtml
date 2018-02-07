@@ -1,0 +1,51 @@
+﻿@model IEnumerable<RotteHullet.Udlån>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.udlåningsdato)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.afleveringsdato)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.reeleafleveringsdato)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Medlem.brugernavn)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.udlåningsdato)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.afleveringsdato)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.reeleafleveringsdato)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Medlem.brugernavn)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.udlånid }) |
+            @Html.ActionLink("Details", "Details", new { id=item.udlånid }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.udlånid })
+        </td>
+    </tr>
+}
+
+</table>
