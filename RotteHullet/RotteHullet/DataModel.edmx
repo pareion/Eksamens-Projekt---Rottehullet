@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="bogid" />
           </Key>
-          <Property Name="bogid" Type="int" Nullable="false" />
+          <Property Name="bogid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="titel" Type="varchar" MaxLength="255" />
           <Property Name="familie" Type="varchar" MaxLength="255" />
           <Property Name="subkategori" Type="varchar" MaxLength="255" />
@@ -121,7 +121,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__UdlånBog__bogid__619B8048">
+        <Association Name="FK__UdlånBog__bogid__73BA3083">
           <End Role="Bog" Type="Self.Bog" Multiplicity="1" />
           <End Role="UdlånBog" Type="Self.UdlånBog" Multiplicity="*" />
           <ReferentialConstraint>
@@ -133,7 +133,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__UdlånBog__udlåni__60A75C0F">
+        <Association Name="FK__UdlånBog__udlåni__72C60C4A">
           <End Role="Udlån" Type="Self.Udlån" Multiplicity="1" />
           <End Role="UdlånBog" Type="Self.UdlånBog" Multiplicity="*" />
           <ReferentialConstraint>
@@ -232,11 +232,11 @@
             <End Role="Medlem" EntitySet="Medlem" />
             <End Role="Udlån" EntitySet="Udlån" />
           </AssociationSet>
-          <AssociationSet Name="FK__UdlånBog__bogid__619B8048" Association="Self.FK__UdlånBog__bogid__619B8048">
+          <AssociationSet Name="FK__UdlånBog__bogid__73BA3083" Association="Self.FK__UdlånBog__bogid__73BA3083">
             <End Role="Bog" EntitySet="Bog" />
             <End Role="UdlånBog" EntitySet="UdlånBog" />
           </AssociationSet>
-          <AssociationSet Name="FK__UdlånBog__udlåni__60A75C0F" Association="Self.FK__UdlånBog__udlåni__60A75C0F">
+          <AssociationSet Name="FK__UdlånBog__udlåni__72C60C4A" Association="Self.FK__UdlånBog__udlåni__72C60C4A">
             <End Role="Udlån" EntitySet="Udlån" />
             <End Role="UdlånBog" EntitySet="UdlånBog" />
           </AssociationSet>

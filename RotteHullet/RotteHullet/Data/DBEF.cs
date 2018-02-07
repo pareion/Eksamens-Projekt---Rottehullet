@@ -29,19 +29,18 @@ namespace RotteHullet.Data
         }
         public bool GemBog(Bog bog)
         {
-            FoeniksDB ejl = new FoeniksDB();
-            int count = ejl.Bog.Count() + 1;
-            bool result = false;
-
-            ejl.Bog.Add(bog);
-            
-            if (ejl.Bog.Count() == count)
+            try
             {
+                FoeniksDB ejl = new FoeniksDB();
+                ejl.Bog.Add(bog);
                 ejl.SaveChanges();
-                result = true;
             }
-
-            return result;
+            catch (Exception e)
+            {
+                return false;
+            }
+            
+            return true;
         }
         public bool GemBrætSpil(Brætspil bs)
         {
@@ -93,7 +92,7 @@ namespace RotteHullet.Data
         }
         public bool GemUdstyr(Udstyr udstyr)
         {
-            
+
             FoeniksDB ejl = new FoeniksDB();
             int count = ejl.Udstyr.Count() + 1;
             bool result = false;
@@ -248,7 +247,7 @@ namespace RotteHullet.Data
             if (beforecount == ejl.Udlån.Count())
             {
                 ejl.Udlån.Add(udl);
-                if (aftercount== ejl.Udlån.Count())
+                if (aftercount == ejl.Udlån.Count())
                 {
                     ejl.SaveChanges();
                     result = true;

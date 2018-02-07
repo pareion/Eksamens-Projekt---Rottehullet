@@ -94,6 +94,11 @@ namespace RotteHullet
             for (int i = 490-1; i >= 448; i--)
             {
                 finishedBooks.RemoveAt(i);
+
+            }
+            foreach (var item in finishedBooks)
+            {
+                DBEF.HentDBEF().GemBog(item);
             }
             //DBFacade.AngivDatabaseFacade(DBFacade.DatabaseType.EntityFrame);
             //Domain.UIFacade.HentUIFacade().HentBogFacade().FindAlleBøger();
