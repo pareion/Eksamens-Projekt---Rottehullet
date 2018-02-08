@@ -15,14 +15,14 @@ namespace WebApplication1.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Dette er en prøveside, der skal blive Føniks' udlånssystem.";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Problemer med siden? Kontakt Arndal fra Føniks.";
 
             return View();
         }

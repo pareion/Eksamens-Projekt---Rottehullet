@@ -52,6 +52,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -175,8 +177,41 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Bog.cs">
+      <DependentUpon>FøniksEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Brætspil.cs">
+      <DependentUpon>FøniksEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FøniksEntity.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FøniksEntity.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FøniksEntity.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FøniksEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FøniksEntity.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FøniksEntity.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Lokale.cs">
+      <DependentUpon>FøniksEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Medlem.cs">
+      <DependentUpon>FøniksEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Udlån.cs">
+      <DependentUpon>FøniksEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Udstyr.cs">
+      <DependentUpon>FøniksEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -187,8 +222,25 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\FøniksEntity.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FøniksEntity.edmx</DependentUpon>
+      <LastGenOutput>FøniksEntity.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\FøniksEntity.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FøniksEntity.edmx</DependentUpon>
+      <LastGenOutput>FøniksEntity.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="Models\FøniksEntity.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FøniksEntity.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\FøniksEntity.edmx.diagram">
+      <DependentUpon>FøniksEntity.edmx</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\FøniksUdlån - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\FøniksUdlån - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -259,6 +311,9 @@
       <Project>{c83abc0b-0ebe-4da0-ba43-15654d0ea4c0}</Project>
       <Name>RotteHullet</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
